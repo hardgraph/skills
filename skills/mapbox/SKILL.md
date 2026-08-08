@@ -1,11 +1,9 @@
 ---
 name: mapbox
-description: Mapbox — developer platform for maps, location search, and navigation REST APIs plus GL JS and mobile SDKs. Use when adding an interactive map to web or mobile, requesting Vector/Raster Tiles or Static Images, rendering a Mapbox Style, geocoding an address or reverse-geocoding coordinates, routing turn-by-turn Directions, computing a Matrix or Isochrone, optimizing stops, map-matching GPS traces, or uploading and managing custom map data with the Uploads API and Mapbox Tiling Service. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+description: Mapbox — developer platform for maps, location search, and navigation REST APIs plus GL JS and mobile SDKs. Use when adding an interactive map to web or mobile, requesting Vector/Raster Tiles or Static Images, rendering a Mapbox Style, geocoding an address or reverse-geocoding coordinates, routing turn-by-turn Directions, computing a Matrix or Isochrone, optimizing stops, map-matching GPS traces, or uploading and managing custom map data with the Uploads API and Mapbox Tiling Service.
 ---
 
 # Mapbox
-
-> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 Mapbox is a location platform exposed almost entirely as REST APIs over one
 access token. The same token drives the tile servers, the routing engine, the

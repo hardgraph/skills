@@ -1,0 +1,171 @@
+# Mapbox Documentation
+
+> Mapbox is a developer platform for mapping, location search, and navigation. Developers can use Mapbox's APIs, SDKs, and tools to build custom maps, add location search, and implement navigation features into web and mobile applications. This file contains information and links to the documentation for all products in the Mapbox ecosystem.
+
+## Maps client libraries & SDKs
+
+- [Mapbox GL JS - GL JS Docs](https://docs.mapbox.com/mapbox-gl-js/llms.txt)
+- [Maps SDK for iOS](https://docs.mapbox.com/ios/maps/llms.txt)
+- [Maps SDK for Android](https://docs.mapbox.com/android/maps/llms.txt)
+- [Maps SDK for Flutter](https://docs.mapbox.com/flutter/maps/llms.txt)
+
+## Data loading & access APIs
+
+- [Mapbox Tiling Service Guides & Examples](https://docs.mapbox.com/mapbox-tiling-service/llms.txt)
+- [Mapbox Tiling Service - API Reference](https://docs.mapbox.com/api/maps/mapbox-tiling-service.md)
+- [Uploads API - API Reference](https://docs.mapbox.com/api/maps/uploads.md)
+- [Datasets API - API Reference](https://docs.mapbox.com/api/maps/datasets.md)
+- [Tilequery API - API Reference](https://docs.mapbox.com/api/maps/tilequery.md)
+- [Tilequery API - Interactive Playground](https://docs.mapbox.com/playground/tilequery/)
+
+## Tiling & rendering APIs
+
+- [Vector Tiles API - API Reference](https://docs.mapbox.com/api/maps/vector-tiles.md)
+- [Raster Tiles API - API Reference](https://docs.mapbox.com/api/maps/raster-tiles.md)
+- [Static Images API - API Reference](https://docs.mapbox.com/api/maps/static-images.md)
+- [Static Images API - Interactive Playground](https://docs.mapbox.com/playground/static/)
+- [Static Tiles API - API Reference](https://docs.mapbox.com/api/maps/static-tiles.md)
+
+## Map design
+
+- [Mapbox Studio Docs](https://docs.mapbox.com/console-tools/llms.txt)
+- [Mapbox Studio - Studio Login](https://studio.mapbox.com/)
+- [Style Specification - View the Spec](https://docs.mapbox.com/style-spec/llms.txt)
+- [Mapbox Standard Style - View the docs](https://docs.mapbox.com/map-styles/standard/llms.txt)
+- [Styles API - API Reference](https://docs.mapbox.com/api/maps/styles.md)
+- [Fonts API - API Reference](https://docs.mapbox.com/api/maps/fonts.md)
+
+## Navigation client SDKs
+
+- [Navigation SDK for iOS](https://docs.mapbox.com/ios/navigation/llms.txt)
+- [Navigation SDK for Android](https://docs.mapbox.com/android/navigation/llms.txt)
+
+## Navigation APIs
+
+- [Directions API - API Reference](https://docs.mapbox.com/api/navigation/directions.md)
+- [Directions API - Interactive Playground](https://docs.mapbox.com/playground/directions/)
+- [Map Matching API - API Reference](https://docs.mapbox.com/api/navigation/map-matching.md)
+- [Isochrone API - API Reference](https://docs.mapbox.com/api/navigation/isochrone.md)
+- [Isochrone API - Interactive Playground](https://docs.mapbox.com/playground/isochrone/)
+- [Optimization API - API Reference](https://docs.mapbox.com/api/navigation/optimization.md)
+- [Optimization API - Interactive Demo](https://demos.mapbox.com/optimization-v2-playground/)
+- [Matrix API - API Reference](https://docs.mapbox.com/api/navigation/matrix.md)
+- [Matrix API - Interactive Playground](https://docs.mapbox.com/playground/matrix/)
+- [EV Charge Finder API - API Reference](https://docs.mapbox.com/api/navigation/ev-charge-finder.md)
+- [EV Charge Finder API - Interactive Playground](https://docs.mapbox.com/playground/ev-charge-finder/)
+
+## Search client libraries & SDKs
+
+- [Mapbox Search JS - Search JS Docs](https://docs.mapbox.com/mapbox-search-js/llms.txt)
+- [Search SDK for iOS](https://docs.mapbox.com/ios/search/llms.txt)
+- [Search SDK for Android](https://docs.mapbox.com/android/search/llms.txt)
+
+## Search APIs
+
+- [Geocoding API - API Reference](https://docs.mapbox.com/api/search/geocoding.md)
+- [Geocoding API - Interactive Playground](https://docs.mapbox.com/playground/geocoding/)
+- [Search Box API - API Reference](https://docs.mapbox.com/api/search/search-box.md)
+- [Search Box API - Interactive Playground](https://docs.mapbox.com/playground/search-box/)
+
+## AI applications
+
+- [Mapbox MCP Server - MCP Server Docs](https://docs.mapbox.com/api/guides/mcp-server/)
+- [Mapbox MCP Server - Github Repo](https://github.com/mapbox/mcp-server/)
+
+## AI-assisted development
+
+- [Devkit MCP Server - Devkit MCP Server Docs](https://docs.mapbox.com/api/guides/devkit-mcp-server/)
+- [Devkit MCP Server - Github Repo](https://github.com/mapbox/mcp-devkit-server/)
+- [Agent Skills - Agent Skills Docs](https://docs.mapbox.com/api/guides/mapbox-agent-skills/)
+- [Agent Skills - Github Repo](https://github.com/mapbox/mapbox-agent-skills/)
+
+## Mapbox Tilesets
+
+- [Vector and Raster Tileset Docs](https://docs.mapbox.com/data/tilesets/llms.txt)
+
+## Specialty data products
+
+- [Mapbox Boundaries - Dataset Docs](https://docs.mapbox.com/data/boundaries/llms.txt)
+- [Mapbox Movement - Dataset Docs](https://docs.mapbox.com/data/movement/llms.txt)
+- [Traffic Data - Dataset Docs](https://docs.mapbox.com/data/traffic/llms.txt)
+
+## Mapbox Help Center
+
+- [Help Center - Guides, Tutorials, Troubleshooting, and Glossary](https://docs.mapbox.com/help/llms.txt)
+
+## Accounts and Pricing
+
+- [Accounts and Pricing Account Docs](https://docs.mapbox.com/accounts/llms.txt)
+
+## Tokens API
+
+- [Tokens API Reference](https://docs.mapbox.com/api/accounts/tokens.md)
+
+## Atlas
+
+- [Atlas Docs](https://docs.mapbox.com/atlas/llms.txt)
+
+## Android Core library
+
+- [Android Core library Library Docs](https://docs.mapbox.com/android/core/llms.txt)
+
+## Maps SDK for Unity
+
+- [Maps SDK for Unity SDK Docs](https://docs.mapbox.com/unity/maps/llms.txt)
+
+## Geospatial Dev Tools
+
+- [geojson.io](https://geojson.io/)
+- [Location Helper](https://labs.mapbox.com/location-helper/)
+- [What the Tile](https://labs.mapbox.com/what-the-tile/)
+- [See all Dev Tools](https://docs.mapbox.com/resources/dev-tools/)
+
+## Additional Map Design Tools
+
+- [Mapbox Studio](https://studio.mapbox.com/)
+- [Cartogram - Create Map Styles from Images](https://apps.mapbox.com/cartogram/)
+- [Maki Icon Editor](https://labs.mapbox.com/maki-icons/)
+- [Mapbox Classic Styles](https://docs.mapbox.com/api/maps/styles/#mapbox-styles)
+- [Style Gallery](https://www.mapbox.com/gallery/)
+
+## API Playgrounds
+
+- [API Playgrounds Directions API](https://docs.mapbox.com/playground/directions/)
+- [API Playgrounds Search Box API](https://docs.mapbox.com/playground/search-box/)
+- [API Playgrounds Static Images API](https://docs.mapbox.com/playground/static/)
+- [API Playgrounds Isochrone API](https://docs.mapbox.com/playground/isochrone/)
+- [API Playgrounds See all](https://docs.mapbox.com/playground/)
+
+## Open Code
+
+- [Open Code Mapbox Vector Tile Specification](https://github.com/mapbox/vector-tile-spec/)
+- [Open Code Rasterio](https://github.com/mapbox/rasterio/)
+- [Open Code PixelMatch](https://github.com/mapbox/pixelmatch/)
+- [Open Code See all](https://github.com/mapbox/)
+
+## Developers
+
+- [Developers Developer AI Assistant](/ask-ai/)
+- [Developers Developer Cheatsheet](https://labs.mapbox.com/developer-cheatsheet/)
+- [Developers MapboxDevs Discord](https://discord.gg/sBBksyMjcd)
+- [Developers @Mapbox on Twitter](https://x.com/mapbox/)
+- [Developers Events](https://www.mapbox.com/webinars/)
+
+## Demos & Projects
+
+- [Demos & Projects Real Estate Demo App](https://labs.mapbox.com/demo-realestate/)
+- [Demos & Projects Store Locator Demo App](https://labs.mapbox.com/demo-store-locator/)
+- [Demos & Projects Isochrone Intersect Demo](https://labs.mapbox.com/isochrone-intersect/)
+- [Demos & Projects See all](https://docs.mapbox.com/resources/demos-and-projects/)
+
+## Web service interfaces
+
+- [Web service interfaces JavaScript](https://github.com/mapbox/mapbox-sdk-js/)
+- [Web service interfaces Python](https://github.com/mapbox/mapbox-cli-py/)
+- [Web service interfaces Java](https://docs.mapbox.com/android/java/overview/)
+- [Web service interfaces Ruby](https://github.com/mapbox/mapbox-sdk-rb/)
+
+## Additional Documentation
+
+- [All Mapbox Web Services APIs](https://docs.mapbox.com/api/llms.txt)
+

@@ -1,0 +1,111 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - maps
+    - geospatial
+    - navigation
+    - routing
+    - rest-api
+visibility:
+  audiences:
+    - frontend-devs
+    - fullstack-devs
+    - mobile-devs
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: mapbox-api-llms-index
+    kind: llms.txt
+    url: "https://docs.mapbox.com/llms.txt"
+    allowed_hosts:
+      - docs.mapbox.com
+    allowed_extensions:
+      - .md
+    follow_index_depth: 0
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: mapbox
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: mapbox
+    intensity: 10
+  - type: keyword
+    value: mapbox gl js
+    intensity: 9
+  - type: keyword
+    value: mapbox access token
+    intensity: 9
+  - type: keyword
+    value: mapbox directions api
+    intensity: 9
+  - type: keyword
+    value: geocoding api
+    intensity: 8
+  - type: keyword
+    value: mapbox tiles
+    intensity: 8
+  - type: keyword
+    value: isochrone
+    intensity: 8
+  - type: keyword
+    value: map matching
+    intensity: 7
+  - type: keyword
+    value: mapbox tiling service
+    intensity: 8
+  - type: keyword
+    value: static images api
+    intensity: 7
+  - type: vector
+    value: Add an interactive map to a web or mobile app with Mapbox GL JS or the Maps SDKs.
+    intensity: 10
+  - type: vector
+    value: Route between waypoints with the Mapbox Directions API and choose a profile.
+    intensity: 10
+  - type: vector
+    value: Geocode an address or reverse-geocode coordinates with the Mapbox Geocoding API.
+    intensity: 9
+  - type: vector
+    value: Render a server-side map image at a URL with the Static Images API.
+    intensity: 8
+  - type: vector
+    value: Publish a custom tileset from GeoJSON via Mapbox Tiling Service or the Uploads API.
+    intensity: 8
+provenance:
+  summary: Mapbox reference. Packages the official Mapbox llms.txt index (https://docs.mapbox.com/llms.txt) plus a reproducible verbatim mirror of the API reference pages it links to at the top level on docs.mapbox.com, under references/vendor/. Covers access tokens, the Maps APIs (Vector/Raster Tiles, Styles, Static Images, Tilequery, Fonts), the Navigation APIs (Directions, Matrix, Isochrone, Optimization, Map Matching, EV Charge Finder), the Search APIs (Geocoding, Search Box), and data management (Uploads, Datasets, Mapbox Tiling Service). Per-product client-library sub-indexes are not recursed (follow_index_depth 0).
+  sources:
+    - title: Mapbox llms.txt index
+      url: https://docs.mapbox.com/llms.txt
+      authors:
+        - Mapbox
+      inspected_at: "2026-08-08"
+      adopted:
+        - Curated top-level index linking the Mapbox REST API reference pages plus per-product sub-indexes
+        - Top-level API reference links mirrored at follow_index_depth 0
+    - title: Mapbox API reference (mirrored .md)
+      url: https://docs.mapbox.com/api
+      authors:
+        - Mapbox
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of the top-level docs.mapbox.com API reference pages the seed index links to
+        - Accounts/tokens, Maps, Navigation, Search, and data-management endpoint references
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 20
+  sources:
+    - id: mapbox-api-llms-index
+      kind: llms.txt
+      url: https://docs.mapbox.com/llms.txt
+      seed_path: docs.mapbox.com/llms.txt
+  failures: []
