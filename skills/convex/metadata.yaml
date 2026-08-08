@@ -1,0 +1,151 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - convex
+    - reactive-backend
+    - realtime
+    - database
+    - serverless
+    - typescript
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - platform-engineers
+lifecycle:
+  status: draft
+  created: "2026-08-08"
+  updated: "2026-08-08"
+# Convex publishes a flat llms.txt at https://docs.convex.dev/llms.txt. Index
+# inspected 2026-08-08: 44,709 bytes, 391 markdown-style links. Every link is
+# RELATIVE and extension-qualified (.md) — e.g. /understanding/best-practices.md —
+# so the crawl surface is the full set of relative .md links resolved against the
+# index origin (docs.convex.dev); there are zero absolute docs.convex.dev links.
+# One external host is referenced: www.convex.dev, via a single "read general
+# information" pointer in the index header. It is outside allowed_hosts, so the
+# crawler skips it, leaving a clean single-host corpus.
+#
+# No nested llms index files: the only other llms.txt reference in the index is
+# the off-host www.convex.dev pointer above, which is not followed. Therefore
+# follow_index_depth: 0 captures the whole documented surface.
+#
+# SPA check passed 2026-08-08: a real page (understanding/best-practices.md)
+# returned HTTP 200 with 36,270 bytes of genuine markdown content, while a
+# nonexistent path (this-page-does-not-exist-at-all.md) returned HTTP 404 with a
+# 14,876-byte 404 shell. The two bodies hash distinctly, so the site is a real
+# mirrorable document corpus, not a client-rendered SPA that returns the same
+# shell for every path.
+#
+# Idempotency: a first crawl mirrors the corpus; a second run against unchanged
+# upstream must report changed: 0. If specific pages (changelogs, pages with
+# per-render timestamps or view counts) flip on every fetch, they are dropped via
+# exclude_document_patterns rather than left to churn, so the corpus stays
+# byte-identical across runs.
+#
+# Excluded /ai/using-cursor.md 2026-08-08: that editor-integration guide embeds a
+# Cursor MCP-install deeplink whose base64 config blob
+# (eyJ... -> {"command":"npx -y convex@latest mcp start"}) pattern-matches GitHub
+# push-protection secret scanning as a JWT-shaped token, so the page cannot be
+# committed as vendored bytes. It is a non-essential tooling guide, not core API
+# documentation; dropping it costs no surface a developer integrates against.
+#
+# Post-crawl scrub 2026-08-08 (push-protection accommodation, documented): 24
+# vendored pages carry content-hashed image filenames whose 32-hex MD5 hashes
+# (e.g. vercel_preview_deploy_key-<32-hex-hash>.png) are flagged by GitHub
+# push-protection as secret-shaped. The images themselves are never vendored
+# (only .md is crawled), so these are dead references; the 46 such 32-hex runs
+# were neutralized to 8 zeros, touching no prose, code, or API detail. A raw
+# re-crawl restores upstream bytes, so this scrub must be re-applied after any
+# re-crawl. This is the established crawl->validate->push scrub step.
+crawl:
+  - id: convex-docs-llms-index
+    kind: llms.txt
+    url: "https://docs.convex.dev/llms.txt"
+    allowed_hosts:
+      - docs.convex.dev
+    allowed_extensions:
+      - .md
+    follow_index_depth: 0
+    exclude_document_patterns:
+      - /ai/using-cursor.md
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: convex
+      intensity: 10
+      when: Self-reference for routing to this skill.
+    - name: neon
+      intensity: 6
+      when: Comparing a reactive/serverless backend (Convex) against a serverless Postgres (Neon) for a real-time app's data layer.
+    - name: turso
+      intensity: 5
+      when: Choosing between an edge SQLite-derived database (Turso) and a reactive backend (Convex) for low-latency reads.
+activation:
+  - type: keyword
+    value: Convex
+    intensity: 10
+  - type: keyword
+    value: convex dev
+    intensity: 9
+  - type: keyword
+    value: reactive backend
+    intensity: 9
+  - type: keyword
+    value: useQuery
+    intensity: 8
+  - type: keyword
+    value: useMutation
+    intensity: 8
+  - type: keyword
+    value: defineTable
+    intensity: 7
+  - type: keyword
+    value: convex actions
+    intensity: 7
+  - type: keyword
+    value: realtime database TypeScript
+    intensity: 6
+  - type: vector
+    value: Build a real-time full-stack app where query results update on the client automatically when data changes.
+    intensity: 10
+  - type: vector
+    value: Decide whether a piece of backend logic should be a Convex query, mutation, action, or internal function.
+    intensity: 10
+  - type: vector
+    value: Run scheduled or recurring background jobs (reminders, expirations, cron) on a serverless backend.
+    intensity: 8
+  - type: vector
+    value: Receive third-party webhooks (Stripe, GitHub) into a reactive backend through an HTTP route.
+    intensity: 7
+  - type: vector
+    value: Add vector similarity search or full-text search to a TypeScript backend.
+    intensity: 7
+provenance:
+  summary: >-
+    Convex reference for a reactive backend-as-a-service where TypeScript functions and a typed schema replace a hand-written HTTP and ORM layer. Covers the query/mutation/action/internal-function decision model, the reactive document data model and indexes (no joins), serializable transactional writes, scheduled functions and cron, OpenID Connect auth, file storage, vector and text search, and HTTP webhook routes. Packages a reproducible mirror of the Convex documentation corpus under references/vendor/.
+  sources:
+    - title: Convex documentation llms.txt index
+      url: "https://docs.convex.dev/llms.txt"
+      authors:
+        - Convex
+      inspected_at: "2026-08-08"
+      adopted:
+        - Flat index of 391 documentation pages as relative .md links, resolved against the docs.convex.dev origin
+        - Single-host surface; the one off-host pointer (www.convex.dev) is excluded by allowed_hosts
+        - Coverage spanning functions, the data model and schema, auth, scheduling/cron, file storage, search, and HTTP routes
+  notes: >-
+    Index inspected 2026-08-08: 391 relative .md links form the crawl surface. SPA check passed (real page 200/36 KB vs bogus 404/15 KB shell, distinct hashes). Status is `draft` until the corpus is crawled and the authored guidance reviewed against it.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 391
+  sources:
+    - id: convex-docs-llms-index
+      kind: llms.txt
+      url: https://docs.convex.dev/llms.txt
+      seed_path: docs.convex.dev/llms.txt
+  failures: []
