@@ -1,0 +1,118 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - agent-browser
+    - browser-automation
+    - rust-cli
+    - accessibility
+    - testing
+    - web-vitals
+    - mcp
+visibility:
+  audiences:
+    - frontend-devs
+    - backend-devs
+    - qa-engineers
+lifecycle:
+  status: draft
+  created: '2026-08-08'
+  updated: '2026-08-08'
+# agent-browser is a native Rust browser-automation CLI from Vercel Labs. Its
+# canonical docs live in the repository: 37 MDX pages under docs/src/app/** and
+# authored reference notes under skill-data/core/references/. No public llms.txt
+# exists, so this is a repos crawl, not llms.txt.
+# Pinned to release tag v0.33.2 (latest at authoring) for reproducibility.
+# Include globs select documentation content only; the deny-list and excludes
+# drop source, tests, evals, lockfiles, and nested SKILL.md manifests.
+crawl:
+  - id: agent-browser-repo
+    kind: repos
+    url: 'https://github.com/vercel-labs/agent-browser'
+    ref: 'v0.33.2'
+    include:
+      - README.md
+      - CHANGELOG.md
+      - 'docs/src/app/**/*.mdx'
+      - 'skill-data/core/references/*.md'
+    exclude:
+      - '**/node_modules/**'
+      - 'evals/**'
+      - '**/SKILL.md'
+      - '**/package.json'
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: agent-browser
+      intensity: 10
+      when: Self-reference for routing to this skill.
+    - name: chrome-devtools
+      intensity: 6
+      when: Lower-level Chrome DevTools Protocol inspection when agent-browser's command surface is too coarse.
+activation:
+  - type: keyword
+    value: agent-browser
+    intensity: 10
+  - type: keyword
+    value: browser automation CLI
+    intensity: 8
+  - type: keyword
+    value: snapshot ref
+    intensity: 7
+  - type: keyword
+    value: accessibility audit
+    intensity: 7
+  - type: keyword
+    value: axe audit
+    intensity: 6
+  - type: keyword
+    value: Web Vitals
+    intensity: 6
+  - type: keyword
+    value: React DevTools
+    intensity: 6
+  - type: keyword
+    value: headless Chrome
+    intensity: 6
+  - type: vector
+    value: Drive a real Chrome browser from an AI agent to navigate, read, and fill web pages by stable accessibility refs.
+    intensity: 10
+  - type: vector
+    value: Take a DOM accessibility-tree snapshot and interact with elements by ref instead of brittle CSS selectors.
+    intensity: 9
+  - type: vector
+    value: Audit a page for WCAG accessibility violations or capture Core Web Vitals from the command line.
+    intensity: 8
+  - type: vector
+    value: Inspect a running React component tree, hooks, and render profile during debugging.
+    intensity: 7
+  - type: vector
+    value: Run a headless, CDP, or remote-provider browser session for end-to-end automation.
+    intensity: 7
+provenance:
+  summary: >-
+    Reference for agent-browser, Vercel Labs' native Rust CLI that drives a real Chrome browser for AI agents. Covers the snapshot-and-ref interaction model, the command surface, CDP/native/remote modes and engines, providers, accessibility and Web Vitals audits, React introspection, session management, proxy, streaming, and the trust-boundary rules for treating browser content as hostile input. Packages a reproducible mirror of the repository's documentation corpus under references/vendor/.
+  sources:
+    - title: agent-browser repository and documentation
+      url: 'https://github.com/vercel-labs/agent-browser'
+      authors:
+        - Vercel Labs
+      inspected_at: '2026-08-08'
+      adopted:
+        - 37 MDX documentation pages under docs/src/app/** (installation, quick-start, commands, modes, engines, providers, proxy, security, streaming)
+        - Authored reference notes under skill-data/core/references/ (commands, snapshot-refs, authentication, trust-boundaries, session-management, profiling, video-recording, streaming, proxy-support, webgpu)
+  notes: >-
+    No public llms.txt is published; the docs site is a Next.js SPA, so the repository is the mirrorable source of truth. Pinned to release tag v0.33.2. Status is `draft` until the corpus is crawled and the authored guidance reviewed against it.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 48
+  sources:
+    - id: agent-browser-repo
+      kind: repos
+      url: https://github.com/vercel-labs/agent-browser
+      seed_path: github.com/vercel-labs/agent-browser
+  failures: []
