@@ -1,0 +1,96 @@
+
+## Generating packages for Gatling Enterprise
+
+Gatling Enterprise deploys packages containing your compiled simulations and resources. Those packages have to be generated
+upstream, using one of the methods below, before you can run them with Gatling Enterprise.
+
+Gatling Enterprise is compatible with Gatling version from 3.5 to {{< var gatlingVersion >}} included, however, these instructions are aligned with the new Maven-based bundle released in Gatling 3.11.
+
+{{< alert tip >}}
+You can download sample projects for all the options below by going to the [Simulations page]({{< ref "/reference/run-tests/tests/intro" >}}) in the Gatling Enterprise app and clicking on "Don't know where to start?" in the Test as code tab.
+{{< /alert >}}
+
+
+
+### Maven, Gradle, sbt, or JavaScript/TypeScript project
+
+To set up your project, and to learn how to use your preferred build tool to upload simulations to Gatling Enterprise
+Cloud, please refer to respective build tool plugin documentation:
+
+- [Gatling plugin for Maven]({{< ref "/integrations/build-tools/maven-plugin" >}}) (for Java, Kotlin and Scala)
+- [Gatling plugin for Gradle]({{< ref "/integrations/build-tools/gradle-plugin" >}}) (for Java, Kotlin and Scala)
+- [Gatling plugin for sbt]({{< ref "/integrations/build-tools/sbt-plugin" >}}) (for Scala)
+- [Gatling CLI for JavaScript/TypeScript]({{< ref "/integrations/build-tools/js-cli" >}}) (for JavaScript and TypeScript)
+
+{{< alert warning >}}
+The Gatling build plugins now include everything you need to work with Gatling Enterprise. Previous versions required an
+additional plugin to work with Gatling Enterprise. If you have one of the old "FrontLine" plugins
+(`io.gatling.frontline:frontline-maven-plugin`, `io.gatling.frontline:frontline-gradle-plugin` or
+`io.gatling.frontline:sbt-frontline`) in your build, we recommend removing it and updating to the latest version of the
+Gatling plugin instead.
+{{< /alert >}}
+
+### Gatling bundle
+
+Once you have created a simulation you want to upload, you can use the `enterpriseDeploy` command to upload your package and simulation with the default configuration. To customize your package and simulation configuration, see the [Configuration as code documentation]({{< ref "configuration-as-code" >}}). 
+
+To use the `enterpriseDeploy` command:
+
+1. Create an [API token]({{< ref "/reference/administration/api-tokens" >}}) in Gatling Enterprise. 
+2. Set the API token in your local environment using either:
+    - the `GATLING_ENTERPRISE_API_TOKEN` environment variable,
+    - the `gatling.enterprise.apiToken` [Java System property](https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html).
+3. Run the `enterpriseDeploy` command:
+
+{{< platform-toggle >}}
+Linux/MacOS: ./mvnw gatling:enterpriseDeploy
+Windows: mvnw.cmd gatling:enterpriseDeploy
+{{</ platform-toggle >}}
+
+{{< alert info >}}
+Learn how to work with environment variables, Java system properties, and JavaScript parameters in the
+[Configuration documentation]({{< ref "/concepts/configuration#manage-configuration-values" >}}). 
+{{< /alert >}}
+
+Alternatively, you can package your simulation and then upload it using the Gatling Enterprise UI. To package and upload your simulation:
+
+1. Run the command `enterprisePackage` in your local terminal:
+
+    {{< platform-toggle >}}
+    Linux/MacOS: ./mvnw gatling:enterprisePackage
+    Windows: mvnw.cmd gatling:enterprisePackage
+    {{</ platform-toggle >}}
+
+2. Log in to Gatling Enterprise and go to the **Packages** page from the left-side navigation menu.
+3. Click **+ Create**. 
+4. Use the upload modal to name the package and assign it to a team.
+5. Upload the `.jar` file created in step 1 from your project's `target` folder.
+6. Click **Save**.
+
+Finally, you can get the list of all the available options with the `help` command:
+
+{{< platform-toggle >}}
+Linux/MacOS: ./mvnw gatling:help
+Windows: mvnw.cmd gatling:help
+{{</ platform-toggle >}}
+
+{{< alert warning >}}
+These commands are only available since Gatling `3.11`. If you're using an older version, you have to upgrade.
+{{< /alert >}}
+
+## Note on feeders
+
+A typical mistake with Gatling and Gatling Enterprise is to rely on having an exploded Maven/Gradle/sbt project structure, and to try to load files from the project filesystem.
+
+This filesystem structure will not be accessible once your project has been packaged and deployed to Gatling Enterprise.
+
+If your feeder files are packaged with your test sources, you must resolve them from the classpath. This will work both
+when you run simulations locally and when you deploy them to Gatling Enterprise.
+
+```scala
+// incorrect
+val feeder = csv("src/test/resources/foo.csv")
+
+// correct
+val feeder = csv("foo.csv")
+```

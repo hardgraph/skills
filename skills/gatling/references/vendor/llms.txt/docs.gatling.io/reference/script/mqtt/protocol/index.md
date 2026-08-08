@@ -1,0 +1,77 @@
+
+{{< alert info >}}
+MQTT 3.1, 3.1.1 and 5 are currently supported, but some of the new features introduced in 5 might be missing.
+{{< /alert >}}
+
+## Prerequisites
+
+Gatling Enterprise MQTT SDK is not imported by default.
+
+You have to manually add the following imports:
+
+{{< include-code "imports" >}}
+
+## MQTT protocol
+
+Use the `mqtt` object in order to create a MQTT protocol.
+
+{{< include-code "protocol-sample" >}}
+
+## Request
+
+Use the `mqtt("requestName")` method in order to create a MQTT request.
+
+### `connect`
+
+Your virtual users first have to establish a connection.
+
+{{< include-code "connect" >}}
+
+### `subscribe`
+
+Use the `subscribe` method to subscribe to an MQTT topic:
+
+{{< include-code "subscribe" >}}
+
+### `publish`
+
+Use the `publish` method to publish a message. You can use the same `Body` API as for HTTP request bodies:
+
+{{< include-code "publish" >}}
+
+## MQTT checks
+
+You can define blocking checks with `await` and non-blocking checks with `expect`.
+Those can be set right after subscribing, or after publishing:
+
+{{< include-code "check" >}}
+
+You can optionally define in which topic the expected message will be received:
+
+You can optionally define check criteria to be applied on the matching received message:
+
+You can use `waitForMessages` and block for all pending non-blocking checks:
+
+{{< include-code "waitForMessages" >}}
+
+## Processing unmatched messages
+
+You can use `processUnmatchedMessages` to process inbound messages that haven't been matched with a check and have been buffered.
+By default, unmatched inbound messages are not buffered, you must enable this feature by setting the size of the buffer on the protocol with `.unmatchedInboundMessageQueueSize(maxSize)`.
+The buffer is reset when:
+* sending an outbound message
+* calling `processUnmatchedMessages` so we don't present the same message twice
+
+You can then pass your processing logic as a function.
+The list of messages passed to this function is sorted in timestamp ascending (meaning older messages first).
+It contains instances of type `io.gatling.mqtt.action.MqttInboundMessage`.
+
+{{< include-code "process" >}}
+
+## MQTT configuration
+
+MQTT support honors the ssl and netty configurations from `gatling.conf`.
+
+## Example
+
+{{< include-code "example" >}}

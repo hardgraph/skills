@@ -1,0 +1,100 @@
+
+## Optional configurations for tests
+
+In addition to the standard configuration options, Gatling Enterprise Edition provides several optional configurations for tests. These options allow you to customize the behavior of your tests to better suit your testing needs.
+
+### Override the injection profile
+
+You can override the injection profile defined in your test code to adjust the load pattern without modifying or repackaging your test. The override completely replaces the code-defined injection profile and is saved with the test. You can revert to the code-defined profile at any time.
+
+For the full reference (injection models, step types, templates, and scenario naming rules) see [Override the injection profile]({{< ref "/reference/run-tests/tests/override-injection-profile/" >}}).
+
+### Load generator parameters
+
+You can specify load generator parameters in your test configuration. This is useful for scenarios where you need to customize the behavior of the load generator, such as adjusting the number of virtual users or the ramp-up time.
+
+This step allows you to define the Java system properties or JS parameters and environment variables used when running this particular test. Properties/variables entered here are in addition to the default parameters, unless you ignore the defaults. 
+
+If have the same key in your test configuration and the the default load generator parameters table <!--link here--> the test value is used and overrides the default.
+
+{{< alert tip >}}
+JVM options, Java System Properties or JS parameters and environment variables will be saved in a snapshot that will be available in the run. This information will be visible by anyone who has read access.
+You can exclude some system properties from being copied if you prefix them with `sensitive.`, and environment variables if you prefix them with `SENSITIVE_`.
+{{< /alert >}}
+
+{{< alert tip >}}
+You can configure the `gatling.enterprise.groupedDomains` Java System property to group connection stats from multiple subdomains and avoid memory issues when hitting a very large number of subdomains.
+
+For example, setting this property as `.foo.com, .bar.com` will consolidate stats for `sub1.foo.com`, `sub2.foo.com`, `sub1.bar.com`, `sub2.bar.com` into `*****.foo.com` and `*****.bar.com`.
+{{< /alert >}}
+
+{{< alert tip >}}
+System properties can be retrieved in your Gatling simulation with `System.getProperty("YOUR_PROPERTY_KEY")`.
+
+Environment variables can be retrieved in your Gatling simulation with `System.getEnv("YOUR_ENV_VAR_KEY")`.
+{{< /alert >}}
+
+### Configure Service Level Objectives (SLOs) {#slos}
+
+A Service Level Objective (SLO) defines a target performance threshold for your test. Gatling Enterprise Edition evaluates each SLO over the duration of the run and reports the percentage of time the condition was met.
+
+You can add multiple SLOs to a test. Each SLO is defined by:
+
+- **Metric**: the global statistic to measure:
+  - **Error ratio**: the percentage of failed requests across all scenarios.
+  - **Response time percentile**: the Nth percentile of response times, in milliseconds. Available percentiles: p50, p95, p99, p99.9, p99.99, p99.999, p99.9999.
+- **Operator**: the comparison to apply — **less than** (`<`) or **less than or equal** (`≤`).
+- **Threshold**: the target value — in milliseconds for response time, or as a percentage for error ratio.
+
+The SLO result is expressed as a percentage: the proportion of seconds during the run where the condition was met. Ramp-up and ramp-down periods are excluded from this calculation (see [Time window](#time-window)).
+
+{{< alert warning >}}
+Adding SLOs to your test overwrites any assertions defined in the simulation code. When SLOs are configured on a test in Gatling Enterprise Edition, assertions are not evaluated.
+{{< /alert >}}
+
+SLO results appear in the run summary as circular gauges, color-coded by compliance:
+
+- **Green**: the condition was met 99% of the time or more.
+- **Orange**: the condition was met between 90% and 99% of the time.
+- **Red**: the condition was met less than 90% of the time.
+
+### Time window {#time-window}
+
+You can configure ramp-up and ramp-down time windows to be excluded from SLOs and assertions computation. This is typically useful when you know that at the beginning of your test run you expect higher response times than when your system is warm (JIT compiler has kicked in, autoscaling has done its work, caches are filled, etc.) and don’t want the warm-up time to cause your SLOs or assertions to fail.
+
+- **Ramp Up**: the number of seconds you want to exclude at the beginning of the run.
+- **Ramp Down**: the number of seconds you want to exclude at the end of the run.
+
+{{< alert tip >}}
+Ramp up/down parameters will only be applied if the run duration is longer than the sum of the two.
+{{< /alert >}}
+
+{{< alert tip >}}
+Ramp up/down parameters can also be specified with the [public API]({{< ref "/reference/api/" >}}) and the [package descriptor]({{< ref "/reference/run-tests/sources/configuration-as-code" >}}). 
+{{< /alert >}}
+
+### Stop criteria
+
+In this step, you can configure specific stop criteria to end the run earlier if certain thresholds are exceeded. 
+This is particularly useful for terminating test runs once key performance metrics exceed acceptable limits.
+
+Each stop criterion must include:
+
+- **Metric**: The metric for which the stop criterion is evaluated. (Mean CPU, Global Error Ratio or Global Response Time)
+- **Threshold**: The value that, when reached or exceeded, will trigger the stop condition. (eg: over 30% / 300ms on 99.9 percentile)
+- **Timeframe (in seconds)**: The period during which the **metric** must exceed the **threshold** for the entire duration to trigger the stop (eg: last 60 seconds).
+
+You can base stop criteria on the following metrics:
+
+- **Mean CPU Usage**: The average CPU usage of the load generators, measured as a percentage.
+- **Global Error Ratio**: The percentage of failed requests across all simulation scenarios.
+- **Global Response Time**: The response time of all requests, measured at a specific percentile, in milliseconds.
+
+{{< alert tip >}}
+If you set a stop criterion to monitor the **mean CPU** over a **timeframe of 60 seconds** with a **threshold of 80%**, 
+the **run will stop if the mean CPU exceeds 80% for the last 60 seconds**.
+{{< /alert >}}
+
+### Acceptance criteria (no-code tests only)
+
+Gatling Enterprise Edition allows you to define acceptance criteria for your tests. This includes specifying thresholds for key performance indicators (KPIs) such as response time, throughput, and error rate. By setting clear acceptance criteria, you can ensure that your application meets the desired performance standards before it is deployed. For test-as-code tests, these criteria can be defined in the test code itself, while for no-code tests, they can be configured through the user interface.

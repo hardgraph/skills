@@ -1,0 +1,247 @@
+# Gatling Documentation
+> Modern load testing framework for testing the performance of web applications
+
+## Tutorials
+- [Common questions about Gatling Enterprise and Community Editions](https://docs.gatling.io/tutorials/faq/index.md): Common questions and answers
+- [Create a simulation from Postman](https://docs.gatling.io/tutorials/low-code/postman/index.md): Learn how to use your Postman collections in Gatling load tests.
+- [Create a test in the GUI](https://docs.gatling.io/tutorials/no-code/gui-builder/index.md): Learn how to set up Gatling Enterprise for the first time
+- [Create your first Java-based simulation](https://docs.gatling.io/tutorials/test-as-code/java-jvm/running-your-first-simulation/index.md): Get started with Gatling: install, write your first load test, and execute it.
+- [Create your first JavaScript-based simulation](https://docs.gatling.io/tutorials/test-as-code/javascript/running-your-first-simulation/index.md): Get started with Gatling and JavaScript: install, write your first load test, and execute it.
+- [Explore the JavaScript SDK — From Template to Production-Ready Simulations](https://docs.gatling.io/tutorials/test-as-code/javascript/full-sdk-capabilities/index.md): Learn how to create a Gatling simulation using the JavaScript SDK, run it locally, and deploy it to Gatling Enterprise Edition.
+- [Gatling Java SDK — From Template to Production-Ready Simulations](https://docs.gatling.io/tutorials/test-as-code/java-jvm/full-sdk-capabilities/index.md): Learn how to create a Gatling simulation using the Java SDK, run it locally, and deploy it to Gatling Enterprise Edition.
+- [Gatling Studio](https://docs.gatling.io/tutorials/low-code/browser/studio/index.md): Create a Recording, transform it into a Scenario, and export a fully functional Gatling project in seconds from scratch thanks to Gatling Studio.
+- [Installation Guide](https://docs.gatling.io/tutorials/test-as-code/javascript/installation-guide/index.md): Step-by-step guide to installing the Gatling JavaScript SDK.
+- [Installation Guide](https://docs.gatling.io/tutorials/test-as-code/java-jvm/installation-guide/index.md): Step-by-step guide to installing the Gatling Java SDK.
+- [Introduction to the Gatling Recorder](https://docs.gatling.io/tutorials/low-code/browser/recorder/index.md): Learn the basics about Gatling: installing, using the Recorder to generate a basic raw test and how to execute it.
+
+## User Guides
+- [Create a load test with basic authentication](https://docs.gatling.io/guides/use-cases/basic-auth/index.md): Create a Gatling simulation that uses basic authentication.
+- [Debugging guide](https://docs.gatling.io/guides/optimize-scripts/debugging/index.md): Debug Gatling scripts by printing session values or with logback.
+- [Generate synthetic data for your load tests](https://docs.gatling.io/guides/optimize-scripts/generate-test-data/index.md): Learn how to generate synthetic data for your Gatling load tests
+- [Grouping Feeder records](https://docs.gatling.io/guides/optimize-scripts/grouping-feeder/index.md): Group different records from a Gatling Feeder.
+- [How to test a Dockerized application with Gatling](https://docs.gatling.io/guides/use-cases/docker-app/index.md): Create a Gatling simulation that tests dockerized applications.
+- [How to test the gRPC protocol](https://docs.gatling.io/guides/use-cases/grpc/index.md): Learn how to load test gRPC with Gatling
+- [How to test the MQTT protocol](https://docs.gatling.io/guides/use-cases/mqtt/index.md): Learn how to test the MQTT protocol with Gatling
+- [How to test the SSE protocol with JavaScript/TypeScript SDK](https://docs.gatling.io/guides/use-cases/sse-js/index.md): Learn how to load test SSE with Gatling and the JavaScript/TypeScript SDK
+- [How to test the WebSocket protocol](https://docs.gatling.io/guides/use-cases/websocket/index.md): Learn how to load test WebSocket with Gatling
+- [How to test the WebSocket protocol with JavaScript/TypeScript SDK](https://docs.gatling.io/guides/use-cases/websocket-js/index.md): Learn how to load test WebSocket with Gatling and the JavaScript/TypeScript SDK
+- [How to use configuration-as-code to manage test configurations](https://docs.gatling.io/guides/ci-cd-automations/config-as-code/index.md): Learn how to configure and deploy tests to Gatling Enterprise Edition using a package descriptor conf file.
+- [How to use Gatling with AWS Secrets Manager](https://docs.gatling.io/guides/optimize-scripts/aws-secrets-manager/index.md): Learn how to retrieve and access your AWS Secrets Manager values directly within your Gatling scripts for improved security and efficiency during load testing.
+- [Integrate Gatling with Github Actions](https://docs.gatling.io/guides/ci-cd-automations/github-action-integration/index.md): Learn how to integrate Gatling with GitHub Actions for continuous performance testing
+- [Integrate Gatling with Gitlab CI/CD](https://docs.gatling.io/guides/ci-cd-automations/gitlab-ci-integration/index.md): Set up automated load testing with Gitlab CI/CD
+- [Load test a Kafka server](https://docs.gatling.io/guides/use-cases/kafka/index.md): Learn how to Load test a Kafka server with Gatling
+- [Passing parameters to a simulation](https://docs.gatling.io/guides/optimize-scripts/passing-parameters/index.md): Use Java system properties to pass parameters to a Gatling Simulation.
+- [Test gRPC with the JS/TS SDK](https://docs.gatling.io/guides/use-cases/grpc-js/index.md): Step-by-step guide to testing gRPC using the JavaScript/TypeScript SDK.
+- [Test MQTT with the JS/TS SDK](https://docs.gatling.io/guides/use-cases/mqtt-js/index.md): Step-by-step guide to testing MQTT using the JavaScript/TypeScript SDK.
+- [Understanding load tests with Gatling Enterprise Edition's advanced reporting features](https://docs.gatling.io/guides/analysis/enterprise-reports/index.md): Understanding load tests with Gatling Enterprise Edition's advanced reporting features
+- [Use Postman collections to create Gatling load tests](https://docs.gatling.io/guides/optimize-scripts/postman/index.md): Export Postman collections and use them as Gatling scenarios.
+- [Use S3 Bucket Feeders for large scale data](https://docs.gatling.io/guides/optimize-scripts/aws-s3-bucket-feeders/index.md): Store your feeder files in S3 and access them from your Gatling scripts.
+- [Using SSE to load test an LLM API](https://docs.gatling.io/guides/use-cases/llm-api/index.md): Learn how to use server sent events to load test an LLM API
+- [Writing realistic Gatling tests](https://docs.gatling.io/guides/optimize-scripts/writing-realistic-tests/index.md): Write realistic Gatling tests that simulate real world scenarios on your application.
+
+## Reference Documentation
+- [API tokens configuration](https://docs.gatling.io/reference/administration/api-tokens/index.md): Learn how to administrate API tokens to authenticate your requests to the Gatling Enterprise Edition public API.
+- [AWS locations configuration](https://docs.gatling.io/reference/deploy/private-locations/aws/configuration/index.md): AWS locations on your private AWS account.
+- [AWS locations installation](https://docs.gatling.io/reference/deploy/private-locations/aws/installation/index.md): Learn how to install a Gatling Control Plane on AWS using Elastic Container Service (ECS) and Fargate, to set up your Private Locations and run load generators in your own AWS network.
+- [Azure locations configuration](https://docs.gatling.io/reference/deploy/private-locations/azure/configuration/index.md): Learn how to configure load generators on your private Azure portal.
+- [Azure locations installation](https://docs.gatling.io/reference/deploy/private-locations/azure/installation/index.md): How to install a Gatling Control Plane on Azure using Container Apps.
+- [Billing](https://docs.gatling.io/reference/administration/billing/index.md): Learn how to manage billing, plans, and offers in Gatling Enterprise Edition.
+- [Campaign scores](https://docs.gatling.io/reference/run-tests/campaigns/scores/index.md): Learn how campaign scores are computed and what each metric means.
+- [Configuration as code](https://docs.gatling.io/reference/run-tests/sources/configuration-as-code/index.md): Guides you through deploying your Gatling project on Gatling Enterprise Edition.
+- [Configure git repositories](https://docs.gatling.io/reference/deploy/private-locations/build-from-git/index.md): Learn how to deploy your Gatling project on Gatling Enterprise Edition by connecting a source repository.
+- [Control plane setup for private locations](https://docs.gatling.io/reference/deploy/private-locations/introduction/index.md): Learn how to configure and install a control plane to use Private Locations for Gatling Enterprise Edition.
+- [Create and manage campaigns](https://docs.gatling.io/reference/run-tests/campaigns/manage/index.md): Learn how to create campaigns, link tests, and manage campaign settings in Gatling Enterprise Edition.
+- [Create no-code tests](https://docs.gatling.io/reference/run-tests/tests/no-code/index.md): Learn how to create no-code tests in Gatling Enterprise Edition.
+- [Create tests from a git repository](https://docs.gatling.io/reference/run-tests/tests/git-repository/index.md): Learn how to create tests from git repositories in Gatling Enterprise Edition.
+- [Create tests from packaged code](https://docs.gatling.io/reference/run-tests/tests/test-as-code/index.md): Learn how to create tests from packaged code in Gatling Enterprise Edition.
+- [Credit consumption](https://docs.gatling.io/reference/run-tests/credits/index.md): Learn how tests consume credits in Gatling Enterprise Edition.
+- [Custom SSO configuration](https://docs.gatling.io/reference/administration/custom-sso/index.md): Learn how to set up a custom Single Sign-On (SSO) system for your organization.
+- [Dedicated IP addresses](https://docs.gatling.io/reference/deploy/dedicated-ips/index.md): Request and use dedicated IP addresses for your load generator locations in Gatling Enterprise Edition.
+- [Dedicated locations configuration](https://docs.gatling.io/reference/deploy/private-locations/dedicated/configuration/index.md): Deploy load generators on dedicated machines that you manage.
+- [Dedicated locations installation](https://docs.gatling.io/reference/deploy/private-locations/dedicated/installation/index.md): How to install a Gatling Control Plane on Docker, to set up your Private Locations and run load generators.
+- [Gatling glossary](https://docs.gatling.io/reference/glossary/index.md): Learn the main Gatling concepts such as Virtual Users, Sessions, Scenarios, Injection Profiles and Simulations.
+- [Gatling installation](https://docs.gatling.io/reference/deploy/install-local/index.md): How to install Gatling: prerequisites, different available distributions including the bundle, Maven, Gradle, sbt, and npm. Also IDE integration for IntelliJ idea and Visual Studio Code (VSCode).
+- [GCP locations configuration](https://docs.gatling.io/reference/deploy/private-locations/gcp/configuration/index.md): Load Generators on your private GCP account.
+- [GCP locations installation](https://docs.gatling.io/reference/deploy/private-locations/gcp/installation/index.md): How to install a Gatling Control Plane on GCP using Compute Engine, to set up your Private Locations and run load generators in your own GCP network.
+- [Git repository](https://docs.gatling.io/reference/run-tests/sources/git-repository/index.md): Learn how to create and manage git repositories in Gatling Enterprise Edition.
+- [gRPC Checks](https://docs.gatling.io/reference/script/grpc/checks/index.md): Checks specific to the Gatling gRPC protocol
+- [gRPC Messages](https://docs.gatling.io/reference/script/grpc/messages/index.md): Request and response message with Gatling gRPC
+- [gRPC Methods](https://docs.gatling.io/reference/script/grpc/methods/index.md): All methods of the Gatling gRPC SDK
+- [gRPC Protocol](https://docs.gatling.io/reference/script/grpc/protocol/index.md): How to configure Gatling gRPC service address, headers, TLS and load balancing
+- [Home](https://docs.gatling.io/reference/user-guide/home/index.md): Checkout your teams last runs and credits left.
+- [HTTP Checks](https://docs.gatling.io/reference/script/http/checks/index.md): How to use HTTP specific checks, such as status, header or currentLocation, to validate your HTTP payloads and capture elements and store them in the Session.
+- [HTTP Helpers](https://docs.gatling.io/reference/script/http/helpers/index.md): How to use built-in HTTP helpers to manipulate cookies and cache.
+- [HTTP Polling](https://docs.gatling.io/reference/script/http/polling/index.md): How to perform HTTP polling in your tests.
+- [HTTP Protocol](https://docs.gatling.io/reference/script/http/protocol/index.md): How to configure Gatling HTTP behavior such as baseUrl, common HTTP headers, common HTTP checks and connection pool sharing.
+- [HTTP Request](https://docs.gatling.io/reference/script/http/request/index.md): Create HTTP requests
+- [Infrastructure-as-code](https://docs.gatling.io/reference/deploy/infrastructure-as-code/index.md): Learn how to automate your Gatling Private Locations & Packages deployment.
+- [Interactive reports](https://docs.gatling.io/reference/stats/reports/cloud/index.md): Learn how to analyze test reports and discover the slow parts of your application.
+- [Introduction to campaigns](https://docs.gatling.io/reference/run-tests/campaigns/overview/index.md): Learn how campaigns help you structure tests around a clear performance purpose and track outcomes over time.
+- [Introduction to run trends and comparison](https://docs.gatling.io/reference/stats/trends/introduction/index.md): Using trends and comparison to analyze tests with Gatling Enterprise
+- [Introduction to sources](https://docs.gatling.io/reference/run-tests/sources/intro/index.md): Learn how to create and manage sources in Gatling Enterprise Edition.
+- [Introduction to tests in Gatling Enterprise Edition](https://docs.gatling.io/reference/run-tests/tests/intro/index.md): Learn how to run tests on Gatling Enterprise Edition.
+- [Invitations](https://docs.gatling.io/reference/administration/invitations/index.md): Learn how to invite users to your Gatling Enterprise Edition organization.
+- [JMS](https://docs.gatling.io/reference/script/jms/index.md): How to use the Java Message Service (JMS) support in Gatling to connect to a broker and perform checks against inbound messages.
+- [Kubernetes locations configuration](https://docs.gatling.io/reference/deploy/private-locations/kubernetes/configuration/index.md): Load Generators on your private Kubernetes cluster.
+- [Kubernetes locations installation](https://docs.gatling.io/reference/deploy/private-locations/kubernetes/installation/index.md): How to install a Gatling Control Plane on Kubernetes or OpenShift, to set up your Private Locations and run load generators in your own Kubernetes cluster.
+- [Login](https://docs.gatling.io/reference/user-guide/login/index.md): Learn how to connect to Gatling Enterprise Edition with a login/password, or with Google, GitHub, etc.
+- [Migrating from the community plugin](https://docs.gatling.io/reference/script/grpc/migrating/index.md): Migration guide from the gatling-grpc community plugin to the official Gatling gRPC support
+- [MQTT Protocol](https://docs.gatling.io/reference/script/mqtt/protocol/index.md): How to use the MQTT support in Gatling to connect to a broker and perform checks against inbound messages.
+- [Network Requirements for Gatling Control Plane and Private Locations](https://docs.gatling.io/reference/deploy/private-locations/network/index.md): Learn how to configure network configuration your Control Plane and Private Locations
+- [Optional configurations for tests](https://docs.gatling.io/reference/run-tests/tests/optional-config/index.md): Learn about the optional configurations available for tests in Gatling Enterprise Edition.
+- [Organization settings](https://docs.gatling.io/reference/administration/organization-settings/index.md): Learn how to manage your organization's settings and features in Gatling Enterprise Edition.
+- [Organizations](https://docs.gatling.io/reference/user-guide/organization/index.md): Learn how to view your organization details in Gatling Enterprise Edition.
+- [Override the injection profile](https://docs.gatling.io/reference/run-tests/tests/override-injection-profile/index.md): Learn how to override the injection profile of a test in Gatling Enterprise to adjust the load pattern without modifying or repackaging your simulation code.
+- [Overview](https://docs.gatling.io/reference/user-guide/overview/index.md): Learn how to navigate in Gatling Enterprise Edition.
+- [Package configuration](https://docs.gatling.io/reference/run-tests/sources/package-conf/index.md): Learn how to configure and upload a package to Gatling Enterprise.
+- [Package generation](https://docs.gatling.io/reference/run-tests/sources/package-gen/index.md): Learn how to package Gatling simulations for Gatling Enterprise from the Gatling zip bundle, or from a Maven, sbt, or Gradle project.
+- [Private packages](https://docs.gatling.io/reference/deploy/private-locations/private-packages/index.md): How to install and use a private repository on your Control Plane.
+- [Project Setup](https://docs.gatling.io/reference/script/mqtt/setup/index.md): How to set up your project to use the Gatling MQTT protocol.
+- [Project Setup](https://docs.gatling.io/reference/script/grpc/setup/index.md): How to set up your project to use the Gatling gRPC protocol
+- [Public API](https://docs.gatling.io/reference/api/index.md): Learn how to use the Gatling Enterprise Edition public API with its Swagger (OpenAPI) documentation.
+- [Recorder](https://docs.gatling.io/reference/script/http/recorder/index.md): How to use the Recorder and its proxy and HAR modes to capture HTTP traffic from your browser and turn it into a Gatling load test.
+- [Run comparison](https://docs.gatling.io/reference/stats/trends/run-compare/index.md): Using run comparison to analyze tests with Gatling Enterprise
+- [Run trends](https://docs.gatling.io/reference/stats/trends/run-trends/index.md): Using trends and comparison to analyze tests with Gatling Enterprise
+- [SSE (Server Sent Event)](https://docs.gatling.io/reference/script/sse/index.md): How to use the Server-Sent Events (SSE) support for connecting and performing checks on inbound messages.
+- [Static HTML reports](https://docs.gatling.io/reference/stats/reports/oss/index.md): Description of the different charts and tables available in the HTML reports Gatling generates at the end of each test, in particular throughput and response time distribution.
+- [Teams](https://docs.gatling.io/reference/user-guide/teams/index.md): Learn how to view teams in your Gatling Enterprise Edition organization.
+- [Teams administration](https://docs.gatling.io/reference/administration/teams/index.md): Learn how to administer teams in Gatling Enterprise Edition.
+- [Third-party plugins for Gatling](https://docs.gatling.io/reference/script/third-parties/index.md): Active, lagging, and inactive third-party plugins to use non-officially supported protocols, such as Kafka, AMQP, Cassandra and JDBC.
+- [TLS](https://docs.gatling.io/reference/script/http/tls/index.md): How to configure TLS/HTTPS features, such as SSLContext, SNI, keystore and truststore.
+- [User Management](https://docs.gatling.io/reference/administration/users/index.md): Learn how to manage users and their permissions in Gatling Enterprise Edition.
+- [User profile and settings](https://docs.gatling.io/reference/user-guide/profile/index.md): Learn how to access your Gatling Enterprise Edition user profile and manage your personal settings.
+- [Various test limits](https://docs.gatling.io/reference/run-tests/tests/limits/index.md): Learn about the various test limits applied when running tests on Gatling Enterprise Edition
+- [WebSocket](https://docs.gatling.io/reference/script/websocket/index.md): How to use the WebSocket support for connecting and performing checks on inbound frames.
+
+## Search.md
+- [Search](https://docs.gatling.io/search/index.md)
+
+## Testing Concepts
+- [Metrics and analysis of load testing, mean and standard deviation](https://docs.gatling.io/testing-concepts/mean-and-sd/index.md): Learn about why mean and standard deviation can be misleading metrics for load tests
+- [Workload models](https://docs.gatling.io/testing-concepts/workload-models/index.md): Choosing the correct workload model is essential for conducting meaningful load tests. Learn the differences and how to pick the correct model.
+
+## Release Notes
+- [Gatling Enterprise release notes](https://docs.gatling.io/release-notes/gatling/whats-new-enterprise/index.md): Find out about the latest Gatling Enterprise features and important changes.
+- [Migrate to the Gradle build tool](https://docs.gatling.io/release-notes/gatling/upgrading/migrate-gradle/index.md): Learn how to migrate to the Gradle build tool
+- [Migrate to the Maven build tool](https://docs.gatling.io/release-notes/gatling/upgrading/migrate-maven/index.md): Learn how to migrate to the Maven build tool.
+- [Terraform Official Registry](https://docs.gatling.io/release-notes/private-control-plane/whats-new/terraform-official-registry/index.md): The Gatling Control Plane Terraform modules are now published on the official Terraform Registry for AWS, Azure, and GCP.
+- [Upgrading from 2.3 to 3.0](https://docs.gatling.io/release-notes/gatling/upgrading/2.3-to-3.0/index.md): Gatling upgrade guide from version 2.3 to 3.0.
+- [Upgrading from 3.10 to 3.11](https://docs.gatling.io/release-notes/gatling/upgrading/3.10-to-3.11/index.md): Gatling upgrade guide from version 3.10 to 3.11.
+- [Upgrading from 3.11 to 3.12](https://docs.gatling.io/release-notes/gatling/upgrading/3.11-to-3.12/index.md): Gatling upgrade guide from version 3.11 to 3.12.
+- [Upgrading from 3.12 to 3.13](https://docs.gatling.io/release-notes/gatling/upgrading/3.12-to-3.13/index.md): Gatling upgrade guide from version 3.12 to 3.13.
+- [Upgrading from 3.13 to 3.14](https://docs.gatling.io/release-notes/gatling/upgrading/3.13-to-3.14/index.md): Gatling upgrade guide from version 3.13 to 3.14.
+- [Upgrading from 3.14 to 3.15](https://docs.gatling.io/release-notes/gatling/upgrading/3.14-to-3.15/index.md): Gatling upgrade guide from version 3.14 to 3.15.
+- [Upgrading from 3.3 to 3.4](https://docs.gatling.io/release-notes/gatling/upgrading/3.3-to-3.4/index.md): Gatling upgrade guide from version 3.3 to 3.4.
+- [Upgrading from 3.4 to 3.5](https://docs.gatling.io/release-notes/gatling/upgrading/3.4-to-3.5/index.md): Gatling upgrade guide from version 3.4 to 3.5
+- [Upgrading from 3.6 to 3.7](https://docs.gatling.io/release-notes/gatling/upgrading/3.6-to-3.7/index.md): Gatling upgrade guide from version 3.6 to 3.7.
+- [Upgrading from 3.7 to 3.8](https://docs.gatling.io/release-notes/gatling/upgrading/3.7-to-3.8/index.md): Gatling upgrade guide from version 3.7 to 3.8.
+- [Upgrading from 3.8 to 3.9](https://docs.gatling.io/release-notes/gatling/upgrading/3.8-to-3.9/index.md): Gatling upgrade guide from version 3.8 to 3.9.
+- [Upgrading from 3.9 to 3.10](https://docs.gatling.io/release-notes/gatling/upgrading/3.9-to-3.10/index.md): Gatling upgrade guide from version 3.9 to 3.10.
+- [Upgrading to 2025.20.6](https://docs.gatling.io/release-notes/private-control-plane/upgrading/to-2025.20.6/index.md): Control Plane upgrade guide from previous versions to 2025.20.6
+- [Upgrading to 2025.36.1](https://docs.gatling.io/release-notes/private-control-plane/upgrading/to-2025.36.1/index.md): Control Plane upgrade guide from previous versions to 2025.36.1
+- [Upgrading to 2025.37.0](https://docs.gatling.io/release-notes/private-control-plane/upgrading/to-2025.37.0/index.md): Control Plane upgrade guide from previous versions to 2025.37.0
+- [Upgrading to 2026.4.0](https://docs.gatling.io/release-notes/private-control-plane/upgrading/to-2026.4.0/index.md): Control Plane upgrade guide from previous versions to 2026.4.0
+- [What's new in 2025.14.3](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.14.3/index.md): Control Plane 2025.14.3 release notes.
+- [What's new in 2025.20.6](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.20.6/index.md): Control Plane 2025.20.6 release notes.
+- [What's new in 2025.30.2](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.30.2/index.md): Control Plane 2025.30.2 release notes.
+- [What's new in 2025.33.2](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.33.2/index.md): Control Plane 2025.33.2 release notes.
+- [What's new in 2025.35.1](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.35.1/index.md): Control Plane 2025.35.1 release notes.
+- [What's new in 2025.36.1](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.36.1/index.md): Control Plane 2025.36.1 release notes.
+- [What's new in 2025.37.0](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.37.0/index.md): Control Plane 2025.37.0 release notes.
+- [What's new in 2025.40.2](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.40.2/index.md): Control Plane 2025.40.2 release notes.
+- [What's new in 2025.41.2](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.41.2/index.md): Control Plane 2025.41.2 release notes.
+- [What's new in 2025.44.0](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.44.0/index.md): Control Plane 2025.44.0 release notes.
+- [What's new in 2025.48.1](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.48.1/index.md): Control Plane 2025.48.1 release notes.
+- [What's new in 2025.49.1](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.49.1/index.md): Control Plane 2025.49.1 release notes.
+- [What's new in 2025.50.0](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.50.0/index.md): Control Plane 2025.50.0 release notes.
+- [What's new in 2025.51.2](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2025.51.2/index.md): Control Plane 2025.51.2 release notes.
+- [What's new in 2026.11.5](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2026.11.5/index.md): Control Plane 2026.11.5 release notes.
+- [What's new in 2026.3.3](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2026.3.3/index.md): Control Plane 2026.3.3 release notes.
+- [What's new in 2026.4.0](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2026.4.0/index.md): Control Plane 2026.4.0 release notes.
+- [What's new in 2026.7.2](https://docs.gatling.io/release-notes/private-control-plane/whats-new/2026.7.2/index.md): Control Plane 2026.7.2 release notes.
+- [What's new in 3.0](https://docs.gatling.io/release-notes/gatling/whats-new/3.0/index.md): Gatling 3.0 release notes.
+- [What's new in 3.1](https://docs.gatling.io/release-notes/gatling/whats-new/3.1/index.md): Gatling 3.1 release notes.
+- [What's new in 3.10](https://docs.gatling.io/release-notes/gatling/whats-new/3.10/index.md): Gatling 3.10 release notes.
+- [What's new in 3.11](https://docs.gatling.io/release-notes/gatling/whats-new/3.11/index.md): Gatling 3.11 release notes.
+- [What's new in 3.12](https://docs.gatling.io/release-notes/gatling/whats-new/3.12/index.md): Gatling 3.12 release notes.
+- [What's new in 3.13](https://docs.gatling.io/release-notes/gatling/whats-new/3.13/index.md): Gatling 3.13 release notes.
+- [What's new in 3.14](https://docs.gatling.io/release-notes/gatling/whats-new/3.14/index.md): Gatling 3.14 release notes.
+- [What's new in 3.15](https://docs.gatling.io/release-notes/gatling/whats-new/3.15/index.md): Gatling 3.15 release notes.
+- [What's new in 3.2](https://docs.gatling.io/release-notes/gatling/whats-new/3.2/index.md): Gatling 3.2 release notes.
+- [What's new in 3.3](https://docs.gatling.io/release-notes/gatling/whats-new/3.3/index.md): Gatling 3.3 release notes.
+- [What's new in 3.4](https://docs.gatling.io/release-notes/gatling/whats-new/3.4/index.md): Gatling 3.4 release notes.
+- [What's new in 3.5](https://docs.gatling.io/release-notes/gatling/whats-new/3.5/index.md): Gatling 3.5 release notes.
+- [What's new in 3.6](https://docs.gatling.io/release-notes/gatling/whats-new/3.6/index.md): Gatling 3.6 release notes.
+- [What's new in 3.7](https://docs.gatling.io/release-notes/gatling/whats-new/3.7/index.md): Gatling 3.7 release notes.
+- [What's new in 3.8](https://docs.gatling.io/release-notes/gatling/whats-new/3.8/index.md): Gatling 3.8 release notes.
+- [What's new in 3.9](https://docs.gatling.io/release-notes/gatling/whats-new/3.9/index.md): Gatling 3.9 release notes.
+
+## Project
+- [Gatling contributors](https://docs.gatling.io/project/contributors/index.md): Some amazing people have greatly contributed to Gatling and helped make it a great project!
+- [Gatling Enterprise Component License](https://docs.gatling.io/project/licenses/enterprise-component/index.md): License used to publish specific Gatling Enterprise components. These components can be used free of charge outside Gatling Enterprise with certain limitations.
+- [Gatling project licenses](https://docs.gatling.io/project/licenses/project-licenses/index.md): Gatling is licensed under the Apache License v2.0 and other specific licenses.
+- [Gatling-Highcharts License](https://docs.gatling.io/project/licenses/highcharts/index.md): License used by Gatling components which integrate HighCharts & HighStock software licensed by GatlingCorp from the HighSoft company.
+- [Issue tracking and community](https://docs.gatling.io/project/issue-tracking/index.md): Links to Gatling's GitHub bug tracker and to the Gatling Community Forum.
+
+## Integrations
+- [Bamboo Plugin](https://docs.gatling.io/integrations/ci-cd/bamboo/index.md): Learn how to configure the Gatling Enterprise Edition Bamboo plugin and run your simulations.
+- [Datadog integration for Gatling](https://docs.gatling.io/integrations/observability-tools/datadog/index.md): Send load test metrics to Datadog.
+- [Dynatrace integration for Gatling](https://docs.gatling.io/integrations/observability-tools/dynatrace/index.md): Send load test metrics to Dynatrace and set custom test headers on all generated requests.
+- [Gatling Gradle Plugin](https://docs.gatling.io/integrations/build-tools/gradle-plugin/index.md): How to use the Gradle plugin for Gatling to run tests and deploy them to Gatling Enterprise Edition.
+- [Gatling Maven Plugin](https://docs.gatling.io/integrations/build-tools/maven-plugin/index.md): How to use the Maven plugin for Gatling to run tests and deploy them to Gatling Enterprise Edition.
+- [Gatling sbt Plugin](https://docs.gatling.io/integrations/build-tools/sbt-plugin/index.md): How to use the sbt plugin for Gatling to run tests and deploy them to Gatling Enterprise Edition.
+- [GitHub Actions integration](https://docs.gatling.io/integrations/ci-cd/github-actions/index.md): Learn how to configure the Gatling Enterprise Edition GitHub Action and run your simulations.
+- [Gitlab CI/CD integration](https://docs.gatling.io/integrations/ci-cd/gitlab-ci/index.md): Learn how to configure GitLab CI/CD to run your simulations on Gatling Enterprise Edition.
+- [InfluxDB integration for Gatling](https://docs.gatling.io/integrations/observability-tools/influxdb/index.md): Send load test metrics to InfluxDB.
+- [Integrating Azure DevOps Pipelines](https://docs.gatling.io/integrations/ci-cd/azure-devops/index.md): Learn how to use the CI script with Azure DevOps Pipelines to run your simulations.
+- [Integrating Other CI/CD Systems](https://docs.gatling.io/integrations/ci-cd/other/index.md): Learn how to configure other Continuous Integration/Continuous Delivery systems to run your simulations on Gatling Enterprise Edition.
+- [JavaScript tooling](https://docs.gatling.io/integrations/build-tools/js-cli/index.md): Use our command-line (CLI) tool and a package manager such as npm to work with Gatling and Gatling Enterprise Edition, when using the JavaScript/TypeScript SDK to write your tests.
+
+- [Jenkins Plugin](https://docs.gatling.io/integrations/ci-cd/jenkins/index.md): Learn how to configure the Gatling Enterprise Edition Jenkins plugin and run your simulations.
+- [Microsoft teams configuration](https://docs.gatling.io/integrations/notifications/ms-teams/index.md): Get notified about your Gatling simulations in Microsoft Teams.
+- [New Relic integration for Gatling](https://docs.gatling.io/integrations/observability-tools/newrelic/index.md): Send load test metrics to New Relic.
+- [OpenTelemetry integration for Gatling](https://docs.gatling.io/integrations/observability-tools/otel/index.md): Send load test metrics to OpenTelemetry.
+- [Postman](https://docs.gatling.io/integrations/postman/index.md): Learn how to use your Postman collections in Gatling load tests.
+- [Slack notifications configuration](https://docs.gatling.io/integrations/notifications/slack/index.md): Get notified about your Gatling simulations in Slack.
+- [TeamCity Plugin](https://docs.gatling.io/integrations/ci-cd/teamcity/index.md): Learn how to configure the Gatling Enterprise Edition TeamCity plugin and run your simulations.
+
+## Evaluate Enterprise
+- [Evaluating Gatling Enterprise Edition with a trial plan](https://docs.gatling.io/evaluate-enterprise/trial-plan/index.md): Learn about Gatling Enterprise Edition’s free trial, including features to test, trial limitations, advanced features to test, and post-trial options.
+
+## Concepts
+- [Assertions](https://docs.gatling.io/concepts/assertions/index.md): How to use assertions to define acceptance criteria and have your test pass or failed based on response time or request status statistics.
+- [Checks](https://docs.gatling.io/concepts/checks/index.md): How to use generic checks available on most protocols supported in Gatling, such as regex, JsonPath, JMESPath or XPath to validate your response payloads and capture elements in there, so you can reuse them later.
+- [Configuration](https://docs.gatling.io/concepts/configuration/index.md): How to configure Gatling: configuration file options, bundle command line options, logging.
+- [Expression Language](https://docs.gatling.io/concepts/session/el/index.md): How to use Gatling Expression Language (EL) to compute dynamic parameters based on Session data using a simple text templating engine
+- [Feeders](https://docs.gatling.io/concepts/session/feeders/index.md): How to use feeders to inject test data into your virtual users' Session so that they don't all hit the same content and don't wrongfully test your caches.
+- [Functions](https://docs.gatling.io/concepts/session/functions/index.md): How to use functions to compute dynamic parameters based on Session data using all the power of programing language of choice (Java, Kotlin or Scala)
+- [Injection](https://docs.gatling.io/concepts/injection/index.md): How to define the way virtual users are started over time and injected into a scenario. Explain the difference between open and closed workload models and which type suits your application best.
+- [Operations](https://docs.gatling.io/concepts/operations/index.md): How to tweak the TCP stack of your computer for more performance.
+- [Scenario](https://docs.gatling.io/concepts/scenario/index.md): How to define scenarios that your virtual users will execute. Use exec to attach a chain or execute a request or a function. Use loops such as repeat, during and asLongAs. Use conditions like doIf and randomSwitch. Uses pauses.
+- [Session API](https://docs.gatling.io/concepts/session/api/index.md): How to store and fetch data programmatically for your virtual users' Session, typically when using functions.
+- [Simulation](https://docs.gatling.io/concepts/simulation/index.md): Learn about the structure of the Gatling simulation, including required imports, protocol configuration and setUp.
+- [Timings](https://docs.gatling.io/concepts/timings/index.md): Description of the different metrics reported in Gatling's HTML reports.
+- [Validation](https://docs.gatling.io/concepts/session/validation/index.md): How to use the Validation monad to handle composable failures in Scala functions. Intended for advanced Scala developers only.
+
+## Ai Plugins
+- [Contextual Chat](https://docs.gatling.io/ai-plugins/assistant/vscode/contextual-chat/index.md): Ask questions about Gatling concepts, best practices, and implementation details
+- [Create a Simulation](https://docs.gatling.io/ai-plugins/assistant/vscode/create-simulation/index.md): Create new Gatling simulations using the interactive wizard
+- [Explain Code](https://docs.gatling.io/ai-plugins/assistant/vscode/explain-code/index.md): Get contextual explanations of Gatling code directly in VS Code
+- [Gatling AI Assistant for Antigravity](https://docs.gatling.io/ai-plugins/assistant/antigravity/index.md): AI-powered assistant for Gatling performance testing in Antigravity. Get intelligent help with creating, optimizing, and understanding Gatling simulations.
+- [Gatling AI Assistant for Cursor](https://docs.gatling.io/ai-plugins/assistant/cursor/index.md): AI-powered assistant for Gatling performance testing in Cursor. Get intelligent help with creating, optimizing, and understanding Gatling simulations.
+- [Gatling AI Assistant for Windsurf](https://docs.gatling.io/ai-plugins/assistant/windsurf/index.md): AI-powered assistant for Gatling performance testing in Windsurf. Get intelligent help with creating, optimizing, and understanding Gatling simulations.
+- [Gatling MCP Server](https://docs.gatling.io/ai-plugins/mcp-server/index.md): Connect AI assistants to Gatling Enterprise using the Model Context Protocol (MCP) server to query and manage your load testing infrastructure through natural language.
+- [Gatling Skills](https://docs.gatling.io/ai-plugins/skills/index.md): Overview of the available Claude skills for Gatling.
+- [Overview](https://docs.gatling.io/ai-plugins/overview/index.md): Overview of the Gatling AI extensions including installation, requirements, and available skills.
+- [Overview and Getting Started](https://docs.gatling.io/ai-plugins/assistant/vscode/overview/index.md): AI-powered assistant for Gatling performance testing. Get intelligent help with creating, optimizing, and understanding Gatling simulations.
+- [Refine Selection](https://docs.gatling.io/ai-plugins/assistant/vscode/refine-selection/index.md): AI-powered code refinement for Gatling simulations in VS Code
+
+## Ai For Analysis
+- [AI Run Comparison](https://docs.gatling.io/ai-for-analysis/ai-run-comparison/index.md): Get an AI-generated analysis of the differences across 2 to 5 selected runs.
+- [AI Run Summary](https://docs.gatling.io/ai-for-analysis/ai-run-summary/index.md): Get an instant AI-generated analysis of your load test results.
+- [AI Trends Analysis](https://docs.gatling.io/ai-for-analysis/ai-trend-analysis/index.md): Get an AI-generated analysis of your test trends across the last 10 runs.
+
+## Optional
+- [Changelog](https://docs.gatling.io/changelog): Release notes and version history
+- [Community](https://docs.gatling.io/community): Join the Gatling community
+- [Support](https://docs.gatling.io/support): Get help with Gatling

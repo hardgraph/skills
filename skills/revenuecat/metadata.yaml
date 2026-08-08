@@ -1,0 +1,122 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - revenuecat
+    - in-app-purchase
+    - subscriptions
+    - entitlements
+    - ios
+    - android
+    - mobile
+    - app-store
+    - play-billing
+    - stripe
+visibility:
+  audiences:
+    - mobile-devs
+    - fullstack-devs
+    - backend-devs
+lifecycle:
+  status: active
+  created: '2026-08-08'
+  updated: '2026-08-08'
+crawl:
+  - id: revenuecat-llms-index
+    kind: llms.txt
+    url: 'https://docs.revenuecat.com/llms.txt'
+    allowed_hosts:
+      - www.revenuecat.com
+    allowed_extensions:
+      - .md
+    # The index is published at docs.revenuecat.com but its document links
+    # point at www.revenuecat.com (text/markdown). Allow that host.
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: revenuecat
+      intensity: 10
+      when: Self-reference for routing to this skill.
+    - name: polar
+      intensity: 5
+      when: Both manage subscription/billing backends; Polar is merchant-of-record for SaaS web subs, RevenueCat for mobile IAP.
+activation:
+  - type: keyword
+    value: revenuecat
+    intensity: 10
+  - type: keyword
+    value: purchases sdk
+    intensity: 9
+  - type: keyword
+    value: offerings
+    intensity: 8
+  - type: keyword
+    value: entitlement
+    intensity: 8
+  - type: keyword
+    value: entitlements
+    intensity: 8
+  - type: keyword
+    value: in-app purchase
+    intensity: 8
+  - type: keyword
+    value: storekit
+    intensity: 7
+  - type: keyword
+    value: google play billing
+    intensity: 7
+  - type: keyword
+    value: revenuecat webhook
+    intensity: 8
+  - type: vector
+    value: Manage in-app subscriptions and entitlements across iOS, Android, and web.
+    intensity: 10
+  - type: vector
+    value: Configure RevenueCat products, offerings, and entitlements for a paywall.
+    intensity: 10
+  - type: vector
+    value: Integrate StoreKit 2 and Google Play Billing through RevenueCat.
+    intensity: 9
+  - type: vector
+    value: Receive server-side subscription webhooks from RevenueCat to grant access.
+    intensity: 9
+  - type: vector
+    value: Restore purchases and handle subscription lifecycle events on mobile.
+    intensity: 8
+  - type: vector
+    value: Detect and handle a lapsed, refunded, or billing-retry subscription.
+    intensity: 8
+provenance:
+  summary: >-
+    RevenueCat reference. Packages the official docs.revenuecat.com llms.txt index (https://docs.revenuecat.com/llms.txt) plus a reproducible verbatim mirror of the documentation it links to under references/vendor/ (documents are served as text/markdown at www.revenuecat.com). RevenueCat is a subscription and in-app-purchase platform that wraps Apple App Store / StoreKit, Google Play Billing, Amazon, and Stripe behind one cross-platform SDK and a server API, normalising products, offerings, entitlements, purchases, restore, and subscription lifecycle (grace period, billing retry, refunds) across iOS, Android, web, Flutter, React Native, and Unity. Covers the Purchases SDK, product/entitlement configuration, customer info and entitlement checks, paywalls and offerings, server-side webhooks and the REST API, sandbox and StoreKit testing, and identity (anonymous vs identified app user IDs).
+  sources:
+    - title: RevenueCat llms.txt index
+      url: https://docs.revenuecat.com/llms.txt
+      authors:
+        - RevenueCat, Inc.
+      inspected_at: '2026-08-08'
+      adopted:
+        - Official curated index linking RevenueCat's SDK, entitlement, webhook, REST API, paywall, testing, and platform documentation.
+    - title: RevenueCat documentation (mirrored)
+      url: https://www.revenuecat.com
+      authors:
+        - RevenueCat, Inc.
+      inspected_at: '2026-08-08'
+      adopted:
+        - Verbatim mirror of the www.revenuecat.com markdown documentation the index links to.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 43
+  sources:
+    - id: revenuecat-llms-index
+      kind: llms.txt
+      url: https://docs.revenuecat.com/llms.txt
+      seed_path: docs.revenuecat.com/llms.txt
+  failures:
+    - url: https://www.revenuecat.com/state-of-subscription-apps.md
+      status: 404
+      detail: HTTP 404

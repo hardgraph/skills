@@ -1,0 +1,20 @@
+
+## Use Case
+
+Assuming you have a feeder file that contains data where records must be grouped by virtual users, such as:
+
+```csv
+username,url
+user1,url1
+user1,url2
+user2,url3
+user2,url4
+```
+
+You want to make sure *user1* will pick *url1* and *url2* while *user2* will pick *url3* and *url4*.
+
+## Suggested Solution
+
+The idea here is to use [`readRecords`]({{< ref "/concepts/session/feeders#read-records" >}}) to load all the csv file records in memory so you can group them the way you want.
+
+{{< include-code "grouping-feeder" >}}

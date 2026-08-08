@@ -1,0 +1,21 @@
+
+For more detailed release notes, including patch releases, please check the [milestones on GitHub](https://github.com/gatling/gatling/milestones?state=closed).
+
+{{< alert warning >}}
+Beware that Gatling 3.8 introduces a few breaking changes. Make sure to check the [Upgrade guide]({{< ref "../upgrading/3.7-to-3.8.md" >}})
+{{</ alert >}}
+
+## Core
+
+* [#4057](https://github.com/gatling/gatling/issues/4057): `andThen` has been redesigned to support chaining, see [doc]({{< ref "/concepts/injection#sequential-scenarios" >}})
+* [#4215](https://github.com/gatling/gatling/issues/4215): Redis feeder now supports the `RPOPLPUSH` command, see [doc]({{< ref "/concepts/session/feeders#redis" >}}), thanks to [@shoaib42](https://github.com/shoaib42).
+* [#4262](https://github.com/gatling/gatling/issues/4262): Gatling Expression language now supports sequence/array/list access by negative index, ie counting backward from the end
+* [#4263](https://github.com/gatling/gatling/issues/4263): When running a test, Gatling now tries to check if a newer release is available on maven central and if so prompts a warning in the console and if the version is really lagging (more than 1 year old), displays a warning in the HTML reports.
+
+## HTTP
+
+* [#4204](https://github.com/gatling/gatling/issues/4204): WebSockets close now supports passing a status code, see [doc]({{< ref "/reference/script/websocket#close" >}})
+
+## HTML Reports
+
+* [#4258](https://github.com/gatling/gatling/issues/4258): HTML reports have be revamped with a more modern look-and-feel

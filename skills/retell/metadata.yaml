@@ -1,0 +1,107 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - retell
+    - retell-ai
+    - voice-agents
+    - voice-ai
+    - conversational-ai
+    - realtime
+    - tts
+    - stt
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - platform-engineers
+lifecycle:
+  status: active
+  created: '2026-08-08'
+  updated: '2026-08-08'
+crawl:
+  - id: retell-llms-index
+    kind: llms.txt
+    url: 'https://docs.retellai.com/llms.txt'
+    allowed_hosts:
+      - docs.retellai.com
+    allowed_extensions:
+      - .md
+      - .mdx
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: retell
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: retell
+    intensity: 10
+  - type: keyword
+    value: retell ai
+    intensity: 10
+  - type: keyword
+    value: retell studio
+    intensity: 9
+  - type: keyword
+    value: retell agent
+    intensity: 9
+  - type: keyword
+    value: voice agent
+    intensity: 8
+  - type: keyword
+    value: conversational ai
+    intensity: 8
+  - type: keyword
+    value: realtime voice
+    intensity: 8
+  - type: keyword
+    value: twiml
+    intensity: 7
+  - type: vector
+    value: Build an AI voice agent that talks on phone calls in real time.
+    intensity: 10
+  - type: vector
+    value: Connect a Retell AI call to Twilio or a custom phone number.
+    intensity: 10
+  - type: vector
+    value: Configure LLM, transcription, and text-to-speech models for a voice agent.
+    intensity: 9
+  - type: vector
+    value: Handle function calling and tools inside a Retell voice agent.
+    intensity: 9
+  - type: vector
+    value: Interruption, barge-in, and latency tuning for a realtime conversational agent.
+    intensity: 8
+provenance:
+  summary: >-
+    Retell reference. Packages the official docs.retellai.com llms.txt index (https://docs.retellai.com/llms.txt) plus a reproducible verbatim mirror of the documentation it links to under references/vendor/. Retell AI is a platform for building, deploying, and observing realtime conversational voice agents — phone and web — combining speech-to-text, an LLM reasoning loop, text-to-speech, interruption/barge-in handling, telephony (Twilio, Vonage, SIP) and WebRTC transport, function-calling tools, and the Retell Studio / API control plane. Covers agent configuration, the realtime WebSocket protocol, telephony and WebRTC integration, custom LLM and tool/function handlers, call analysis, and web-call embedding.
+  sources:
+    - title: Retell llms.txt index
+      url: https://docs.retellai.com/llms.txt
+      authors:
+        - Retell AI
+      inspected_at: '2026-08-08'
+      adopted:
+        - Official curated index linking Retell's agent, telephony, WebRTC, API, SDK, and Studio documentation.
+    - title: Retell documentation (mirrored)
+      url: https://docs.retellai.com
+      authors:
+        - Retell AI
+      inspected_at: '2026-08-08'
+      adopted:
+        - Verbatim mirror of the docs.retellai.com documentation the index links to.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 276
+  sources:
+    - id: retell-llms-index
+      kind: llms.txt
+      url: https://docs.retellai.com/llms.txt
+      seed_path: docs.retellai.com/llms.txt
+  failures: []

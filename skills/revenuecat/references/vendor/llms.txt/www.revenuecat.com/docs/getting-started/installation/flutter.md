@@ -1,0 +1,142 @@
+---
+id: "getting-started/installation/flutter"
+title: "Flutter"
+description: "What is RevenueCat?"
+permalink: "/docs/getting-started/installation/flutter"
+slug: "flutter"
+version: "current"
+original_source: "docs/getting-started/installation/flutter.mdx"
+---
+
+> **AI agents:** This is the Markdown version of a RevenueCat documentation page. For the complete documentation index, see [llms.txt](https://www.revenuecat.com/docs/llms.txt).
+
+## What is RevenueCat?
+
+RevenueCat provides a backend and SDKs that wrap StoreKit, Google Play Billing, and [RevenueCat Billing](https://www.revenuecat.com/docs/web/overview) to make implementing in-app and web purchases and subscriptions easy. With our SDK, you can build and manage your app business on any platform without having to maintain IAP infrastructure. You can read more about [how RevenueCat fits into your app](https://www.revenuecat.com/blog/where-does-revenuecat-fit-in-your-app) or you can [sign up free](https://app.revenuecat.com/signup) to start building.
+
+## Requirements
+
+Xcode 13.3.1+
+Minimum target: iOS 11.0+
+
+## Installation
+
+[![Release](https://img.shields.io/github/release/RevenueCat/purchases-flutter.svg?filter=!*beta*\&style=flat)](https://github.com/RevenueCat/purchases-flutter/releases)
+
+To use this plugin, add `purchases_flutter` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/) (and run an implicit dart pub get):
+
+```yaml
+dependencies:
+  purchases_flutter: <latest version> // or 9.0.0-beta.3 for Flutter Web
+```
+
+Alternatively run this command:
+
+```
+ $ flutter pub add purchases_flutter
+```
+
+### iOS Deployment Target
+
+RevenueCat is compatible with iOS 11.0 or higher. Flutter does not automatically set the iOS deployment target for your project. You need to make sure that the deployment target is set to 11.0 or higher. To do that, simply edit `ios/Podfile` and add the following line if it's not already there:
+
+```
+platform :ios, '11.0'
+```
+
+Set it to 11.0 or a higher version for RevenueCat to work.
+
+### iOS Swift Version
+
+RevenueCat requires Swift >= 5.0 to work. If the `Podfile` in your project's `ios` folder specifies a Swift version, make sure that it's at least 5.0, otherwise you may run into build issues.
+
+### Set the correct launchMode for Android
+
+Depending on your user's payment method, they may be asked by Google Play to verify their purchase in their (banking) app. This means they will have to background your app and go to another app to verify the purchase. If your Activity's `launchMode` is set to anything other than `standard` or `singleTop`, backgrounding your app can cause the purchase to get cancelled. To avoid this, set the `launchMode` of your Activity to `standard` or `singleTop` in your Android app's `android/app/src/main/AndroidManifest.xml` file:
+
+```xml
+<activity 
+    android:name="com.your.Activity"
+    android:launchMode="standard" />  <!-- or singleTop -->
+```
+
+You can find Android's documentation on the various `launchMode` options [here](https://developer.android.com/guide/topics/manifest/activity-element#lmode).
+
+### Optional: Change MainActivity subclass
+
+If you plan to use [RevenueCat Paywalls](https://www.revenuecat.com/docs/tools/paywalls), your `MainActivity` needs to subclass `FlutterFragmentActivity` instead of `FlutterActivity`.
+
+```MainActivity.kt
+package com.your.package.name
+
+import io.flutter.embedding.android.FlutterFragmentActivity
+
+class MainActivity: FlutterFragmentActivity()
+```
+
+## Import Purchases
+
+You should now be able to import `purchases_flutter`.
+
+```dart
+import 'package:purchases_flutter/purchases_flutter.dart';
+```
+
+:::info\[Enable In-App Purchase capability for iOS projects in Xcode]
+Don't forget to enable the In-App Purchase capability for your iOS project under `Project Target -> Capabilities -> In-App Purchase`
+:::
+
+:::info\[Include BILLING permission for Android projects]
+Don't forget to include the `BILLING` permission in your AndroidManifest.xml file
+:::
+
+```xml
+<uses-permission android:name="com.android.vending.BILLING" />
+```
+
+:::warning
+If you're using other plugins like [mobx](https://pub.dev/packages/flutter_mobx), you may run into conflicts with types from other plugins having the same name as those defined in `purchases_flutter`.<br>
+If this happens, you can resolve the ambiguity in the types by adding an import alias, for example:
+
+```dart
+import 'package:purchases_flutter/purchases_flutter.dart' as purchases;
+```
+
+After that, you can reference the types from `purchases_flutter` as `purchases.Foo`, like `purchases.CustomerInfo`.
+:::
+
+## Flutter Web Configuration
+
+RevenueCat's Flutter SDK supports web platforms, allowing you to manage subscriptions across Flutter web, mobile, and desktop apps using the same SDK.
+
+### Web Product Configuration
+
+On web, the Flutter SDK supports the same billing engines as the [Web SDK](https://www.revenuecat.com/docs/web/web-billing/web-sdk): RevenueCat Billing, Stripe Billing, and Paddle Billing. Your billing engine determines where products, taxes, emails, and subscription management are configured.
+
+To enable web purchases in your Flutter app, connect a billing engine and create a web config for it:
+
+- **RevenueCat Billing**: Create a RevenueCat Billing config in your RevenueCat project dashboard, choosing your connected Stripe account as the payment gateway, and [configure your products](https://www.revenuecat.com/docs/web/web-billing/configuring-overview). See the [RevenueCat Billing Overview](https://www.revenuecat.com/docs/web/overview) for details.
+- **Stripe Billing**: [Connect your Stripe account and create a Stripe web config](https://www.revenuecat.com/docs/web/integrations/stripe). Products and subscriptions are managed in Stripe. To have Stripe act as the merchant of record, enable [Stripe Managed Payments](https://www.revenuecat.com/docs/web/integrations/stripe/stripe-managed-payments).
+- **Paddle Billing**: [Connect your Paddle account and create a Paddle web config](https://www.revenuecat.com/docs/web/integrations/paddle). Products and subscriptions are managed in Paddle, and Paddle acts as the merchant of record.
+
+Then configure the SDK in your Flutter app using the public API key of the web config you created.
+
+:::info\[Web purchases vs In-App Purchases]
+Web purchases are separate from iOS/Android in-app purchases, but integrate with the same RevenueCat entitlements system, allowing unified subscription management across platforms.
+:::
+
+### Current Limitations
+
+When using the Flutter SDK on web, keep in mind the following:
+
+- **Billing Engine Required**: Web purchases require a RevenueCat Billing, Stripe Billing, or Paddle Billing setup. Native iOS/Android in-app purchases cannot be processed through the web platform.
+- **Payment Processing**: RevenueCat Billing uses Stripe as the payment processor. With Stripe Billing, payments go through Stripe Checkout, and with Paddle Billing through Paddle's checkout.
+- **Subscription Management**: RevenueCat Billing subscriptions can be managed through the RevenueCat-provided [Customer Portal](https://www.revenuecat.com/docs/web/web-billing/customer-portal). Stripe Billing and Paddle Billing subscriptions are managed in Stripe and Paddle respectively.
+- **Platform Separation**: Web products must be configured separately from iOS/Android products, though entitlements can be shared across platforms.
+- **User Identity**: For unified cross-platform subscriptions, ensure you're using the same `appUserID` across web and mobile platforms.
+- **RevenueCat Paywalls**: Presenting [RevenueCat Paywalls](https://www.revenuecat.com/docs/tools/paywalls) (`presentPaywall`) is not yet supported on web.
+- **Unsupported operations**: There are some unsupported operations. Mainly operations `getProducts`, `purchaseProduct` or `restorePurchases` won't work on web environments.
+
+## Next Steps
+
+- Now that you've installed the Purchases SDK in Flutter, get started by [configuring an instance of Purchases →](https://www.revenuecat.com/docs/getting-started/quickstart#2-initialize-and-configure-the-revenuecat-sdk)

@@ -1,0 +1,111 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - gatling
+    - load-testing
+    - performance-testing
+    - stress-testing
+    - scala
+    - java
+    - simulation
+visibility:
+  audiences:
+    - backend-devs
+    - qa-engineers
+    - platform-engineers
+lifecycle:
+  status: active
+  created: '2026-08-08'
+  updated: '2026-08-08'
+crawl:
+  - id: gatling-llms-index
+    kind: llms.txt
+    url: 'https://docs.gatling.io/llms.txt'
+    allowed_hosts:
+      - docs.gatling.io
+      - gatling.io
+    allowed_extensions:
+      - .md
+    # docs.gatling.io publishes a full llms.txt index of its markdown docs.
+    # A few linked pages redirect to gatling.io; allow both hosts.
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: gatling
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: gatling
+    intensity: 10
+  - type: keyword
+    value: gatling js
+    intensity: 9
+  - type: keyword
+    value: gatling java
+    intensity: 9
+  - type: keyword
+    value: gatling scala
+    intensity: 9
+  - type: keyword
+    value: gatling maven plugin
+    intensity: 8
+  - type: keyword
+    value: gatling gradle plugin
+    intensity: 8
+  - type: keyword
+    value: gatling enterprise
+    intensity: 8
+  - type: keyword
+    value: simulation
+    intensity: 7
+  - type: vector
+    value: Load test an HTTP API with many concurrent virtual users to find its breaking point.
+    intensity: 10
+  - type: vector
+    value: Write a Gatling simulation scenario with feeders, loops, and assertions.
+    intensity: 10
+  - type: vector
+    value: Run a performance test from CI using the Gatling Maven or Gradle plugin.
+    intensity: 9
+  - type: vector
+    value: Choose between Gatling, k6, and JMeter for load testing.
+    intensity: 8
+  - type: vector
+    value: Parametrise a load test with a CSV feeder and ramp-up profile.
+    intensity: 8
+provenance:
+  summary: >-
+    Gatling reference. Packages the official docs.gatling.io llms.txt index (https://docs.gatling.io/llms.txt) plus a reproducible verbatim mirror of the documentation it links to under references/vendor/. Gatling is a load- and performance-testing tool that runs protocol-level (HTTP, JMS, MQTT) load tests as code, with Java, Kotlin, Scala, and JavaScript DSLs, a Maven/Gradle/sbt build integration, feeders and session variables, closed and open workload models (concurrent users vs requests per second), checks and assertions, HTML reports, and the hosted Gatling Enterprise control plane. Covers simulation structure, scenarios and execs, injection profiles, feeders, checks, the recorder, CLI and CI runners, and reporting.
+  sources:
+    - title: Gatling llms.txt index
+      url: https://docs.gatling.io/llms.txt
+      authors:
+        - GatlingCorp
+      inspected_at: '2026-08-08'
+      adopted:
+        - Official curated index linking Gatling's Java/Kotlin/Scala/JavaScript, HTTP, feeder, check, report, CI, and Enterprise documentation.
+    - title: Gatling documentation (mirrored)
+      url: https://docs.gatling.io
+      authors:
+        - GatlingCorp
+      inspected_at: '2026-08-08'
+      adopted:
+        - Verbatim mirror of the docs.gatling.io documentation the index links to.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 215
+  sources:
+    - id: gatling-llms-index
+      kind: llms.txt
+      url: https://docs.gatling.io/llms.txt
+      seed_path: docs.gatling.io/llms.txt
+  failures:
+    - url: https://docs.gatling.io/search/index.md
+      status: network-error
+      detail: Request blocked - received 403 status code.

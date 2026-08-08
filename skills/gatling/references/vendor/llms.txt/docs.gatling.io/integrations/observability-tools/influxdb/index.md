@@ -1,0 +1,106 @@
+
+{{< alert enterprise >}}
+This feature is only available on Gatling Enterprise Edition. To learn more, [explore our plans](https://gatling.io/pricing?utm_source=docs)
+{{< /alert >}}
+
+## Introduction
+
+The InfluxDB integration allows Gatling Enterprise Edition to send load-test metrics - such as response times, throughput, and error rates - directly into an InfluxDB time series database.
+Once enabled, performance data from Gatling Enterprise Edition is sent to InfluxDB, where it can be correlated with infrastructure and application metrics already collected in your InfluxDB database.
+
+With this integration in place, you can:
+
+- Monitor Gatling scenarios alongside server-level KPIs (CPU, memory, network) in a single dashboard.
+- Investigate performance issues more effectively by overlaying load-test metrics on traces, logs, and resource utilization charts.
+
+## Compatibility
+
+This integration supports any backend compatible with the InfluxDB Line Protocol (ILP) over HTTP. This includes [InfluxDB](https://docs.influxdata.com/influxdb3/core/reference/line-protocol/) 1, 2 and 3, but also other products such as [QuestDB](https://questdb.com/docs/ingestion/ilp/overview/).
+
+## Prerequisites 
+
+- A valid `Authorization` header
+- Your InfluxDB database (we support InfluxDB 1, 2 and 3)
+- A Gatling Enterprise Edition account with private locations that can connect to the InfluxDB database. 
+
+## Install the InfluxDB integration
+
+The InfluxDB integration requires installation steps on your private locations control plane.
+
+In your [control-plane configuration]({{< ref "/reference/deploy/private-locations/introduction" >}}), in the section `system-properties`, add:
+
+```hocon
+control-plane {
+  locations = [
+    {
+      system-properties {
+        "gatling.enterprise.influx.api.authorization" = "<your Authorization header>"
+        "gatling.enterprise.influx.api.url" = "<your InfluxDB API url>"
+        "gatling.enterprise.influx.useProxy" = "<true to use the same proxy as for the Gatling API>" # optional, default is false
+      }
+    }
+  ]
+}
+```
+
+{{< alert warning >}}
+Your Authorization header must match your InfluxDB version, eg:
+{{< /alert >}}
+
+```
+// InfluxDB 1
+Token <YOUR_API_TOKEN>
+
+// InfluxDB 2
+Token <YOUR_API_TOKEN>
+
+// InfluxDB 3
+Bearer <YOUR_API_TOKEN>
+```
+
+
+{{< alert warning >}}
+Your InfluxDB API url must use **second** precision, eg:
+{{< /alert >}}
+
+```
+// InfluxDB 1
+http(s)//host:port/api/v3/write_lp?db=mydb&precision=s
+
+// InfluxDB 2
+http(s)//host:port/api/v2/write?org=myorg&bucket=mybucket&precision=s
+
+// InfluxDB 3
+http(s)//host:port/write?db=mydb&precision=second
+```
+ 
+## Uninstall the InfluxDB integration
+
+To remove the link between Gatling Enterprise Edition and InfluxDB, remove the lines containing `gatling.enterprise.influx` in your control-plane configuration.
+
+## Tables schema
+
+Gatling Enterprise Edition creates the following schema in your InfluxDB database:
+
+**Common Tags**|
+|:-------------|
+run_id|
+test|
+team|
+load_generator|
+
+**Table**| **Specific Tags**                                     |**Fields**
+:--------|:------------------------------------------------------|:---------
+gatling_enterprise_users|scenario|start_count,<br>end_count,<br>max_concurrent
+gatling_enterprise_requests|scenario,<br>group,<br>request|count
+gatling_enterprise_responses|scenario,<br>group,<br>request,<br>status|count,<br>time_mean,<br>time_min,<br>time_p50,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_responses_by_code|scenario,<br>group,<br>request,code|count
+gatling_enterprise_group_durations|scenario,<br>group,<br>status|count,<br>time_mean,<br>time_min,<br>time_p50,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_group_cumulated|scenario,<br>group,<br>status|count,<br>time_mean,<br>time_min,<br>time_p50,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_dns|runId,<br>test,<br>team,<br>load_generator,hostname,status|count,<br>time_mean,<br>time_min,<br>time_p50,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_connections|remote|bandwidth_usage_sent,<br>bandwidth_usage_received,<br>tcp_open_count,<br>tcp_close_count
+gatling_enterprise_tcp_states|remote,<br>state|count
+gatling_enterprise_tcp_connects|remote,<br>status|count,<br>time_mean,<br>time_min,<br>time_p50,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_tls_handshakes|remote,<br>status|count,<br>time_mean,<br>time_min,<br>time_p50,<br>time_p95,<br>time_p99,<br>time_p999,<br>time_max
+gatling_enterprise_cpu||user,<br>sys|
+gatling_enterprise_mem||ram_max,<br>ram_used,<br>heap_max,<br>heap_committed,<br>heap_used|

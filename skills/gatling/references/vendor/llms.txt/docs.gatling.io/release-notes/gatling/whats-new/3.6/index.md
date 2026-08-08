@@ -1,0 +1,12 @@
+
+For more detailed release notes, including patch releases, please check the [milestones on GitHub](https://github.com/gatling/gatling/milestones?state=closed).
+
+## HTTP
+
+* [#3992](https://github.com/gatling/gatling/issues/3992): formParamMap now supports EL for key
+* [#4076](https://github.com/gatling/gatling/issues/4076): Support passing multiple BodyParts at once
+* [#4034](https://github.com/gatling/gatling/issues/4034): Support Brotli compressed response bodies
+
+## MQTT
+
+* [#4043](https://github.com/gatling/gatling/issues/4043): Support configuring distinct KeyManagers per virtual user
