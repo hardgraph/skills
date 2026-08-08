@@ -1,0 +1,157 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - cloudflare
+    - workers
+    - edge
+    - serverless
+    - d1
+    - r2
+    - kv
+    - durable-objects
+    - wrangler
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - platform-engineers
+lifecycle:
+  status: draft
+  created: '2026-08-08'
+  updated: '2026-08-08'
+# Cloudflare's root llms.txt is a directory of 105 product indexes, each of which
+# lists that product's pages as absolute `.md` links — so depth 1, not 0.
+#
+# `include_index_patterns` scopes the crawl to the Developer platform section.
+# The other ~66 products (Magic Transit, BYOIP, DMARC, Registrar, WARP, radar…)
+# are real Cloudflare documentation but not what someone building on Workers is
+# asking about, and including them would roughly triple the corpus.
+#
+# Note each product index links back to the root directory. The crawler tracks
+# visited indexes, so that back-link does not loop.
+crawl:
+  - id: cloudflare-developers-llms-index
+    kind: llms.txt
+    url: 'https://developers.cloudflare.com/llms.txt'
+    allowed_hosts:
+      - developers.cloudflare.com
+    allowed_extensions:
+      - .md
+    follow_index_depth: 1
+    include_index_patterns:
+      - /workers/llms.txt
+      - /workers-ai/llms.txt
+      - /workers-vpc/llms.txt
+      - /workflows/llms.txt
+      - /pages/llms.txt
+      - /d1/llms.txt
+      - /r2/llms.txt
+      - /r2-sql/llms.txt
+      - /r2-data-catalog/llms.txt
+      - /kv/llms.txt
+      - /durable-objects/llms.txt
+      - /queues/llms.txt
+      - /vectorize/llms.txt
+      - /hyperdrive/llms.txt
+      - /ai/llms.txt
+      - /ai-gateway/llms.txt
+      - /ai-search/llms.txt
+      - /agents/llms.txt
+      - /agent-memory/llms.txt
+      - /containers/llms.txt
+      - /pipelines/llms.txt
+      - /sandbox/llms.txt
+      - /browser-run/llms.txt
+      - /realtime/llms.txt
+      - /images/llms.txt
+      - /stream/llms.txt
+      - /secrets-store/llms.txt
+      - /dynamic-workers/llms.txt
+      - /cloudflare-for-platforms/llms.txt
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: cloudflare
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: Cloudflare Workers
+    intensity: 10
+  - type: keyword
+    value: wrangler
+    intensity: 9
+  - type: keyword
+    value: Durable Objects
+    intensity: 9
+  - type: keyword
+    value: Cloudflare D1
+    intensity: 9
+  - type: keyword
+    value: Cloudflare R2
+    intensity: 9
+  - type: keyword
+    value: Workers KV
+    intensity: 8
+  - type: keyword
+    value: Vectorize
+    intensity: 8
+  - type: keyword
+    value: workerd
+    intensity: 7
+  - type: keyword
+    value: wrangler.toml
+    intensity: 7
+  - type: vector
+    value: Deploy a serverless function that runs at the edge rather than in one region.
+    intensity: 10
+  - type: vector
+    value: Store relational data, object blobs, or key-value pairs for an edge application.
+    intensity: 9
+  - type: vector
+    value: Keep per-object state consistent across a globally distributed application.
+    intensity: 9
+  - type: vector
+    value: Run model inference or vector search close to the user without managing servers.
+    intensity: 8
+  - type: vector
+    value: Configure bindings and environments for a serverless deployment.
+    intensity: 8
+provenance:
+  summary: >-
+    Cloudflare developer platform reference. Covers Workers and the runtime model, storage bindings (D1, R2, KV, Durable Objects, Queues, Hyperdrive), the AI surface (Workers AI, Vectorize, AI Gateway, Agents), and deployment with Wrangler. Packages a reproducible mirror of the Developer platform documentation under references/vendor/.
+  sources:
+    - title: Cloudflare Developer Documentation llms.txt directory
+      url: 'https://developers.cloudflare.com/llms.txt'
+      authors:
+        - Cloudflare
+      inspected_at: '2026-08-08'
+      adopted:
+        - 'Two-level structure: a root directory of 105 product indexes, each listing that product pages as absolute .md links'
+        - Section grouping used to scope this crawl to the Developer platform rather than the whole product catalogue
+        - Documented alternative retrieval via an Accept text/markdown header on any page URL
+  notes: >-
+    Root directory inspected 2026-08-08: 105 nested product indexes, no direct page links at the root, absolute URLs throughout. Scoped to the Developer platform section. Status is `draft` until the corpus is crawled and the authored guidance reviewed against it.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 2416
+  sources:
+    - id: cloudflare-developers-llms-index
+      kind: llms.txt
+      url: https://developers.cloudflare.com/llms.txt
+      seed_path: developers.cloudflare.com/llms.txt
+  failures:
+    - url: https://developers.cloudflare.com/analytics/analytics-engineindex.md
+      status: 404
+      detail: HTTP 404
+    - url: https://developers.cloudflare.com/hyperdriveindex.md
+      status: 404
+      detail: HTTP 404
+    - url: https://developers.cloudflare.com/sandbox-sdk/index.md
+      status: 404
+      detail: HTTP 404

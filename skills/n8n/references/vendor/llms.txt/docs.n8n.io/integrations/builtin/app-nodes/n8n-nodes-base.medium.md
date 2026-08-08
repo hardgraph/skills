@@ -1,0 +1,42 @@
+> For the complete documentation index, see [llms.txt](https://docs.n8n.io/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.medium.md).
+
+# Medium
+
+Use the Medium node to automate work in Medium, and integrate Medium with other applications. n8n has built-in support for a wide range of Medium features, including creating posts, and getting publications.
+
+On this page, you'll find a list of operations the Medium node supports and links to more resources.
+
+{% hint style="warning" %}
+**Medium API no longer supported**
+
+Medium has stopped supporting the Medium API. The Medium node still appears within n8n, but you won't be able to configure new API keys to authenticate with.
+
+Refer to [Medium credentials](/integrations/builtin/credentials/medium.md) for guidance on setting up existing API keys.
+{% endhint %}
+
+{% hint style="info" %}
+**This node can be used as an AI tool**
+
+This node can be used to enhance the capabilities of an AI agent. When used in this way, many parameters can be set automatically, or with information directed by AI - find out more in the [AI tool parameters documentation](/build/integrate-ai/ai-examples/use-ai-for-parameters.md).
+{% endhint %}
+
+## Operations <a href="#operations" id="operations"></a>
+
+* Post
+  * Create a post
+* Publication
+  * Get all publications
+
+## Templates and examples <a href="#templates-and-examples" id="templates-and-examples"></a>
+
+[Browse Medium node documentation integration templates](https://n8n.io/integrations/medium) or [search all templates](https://n8n.io/workflows/)
+
+If this node doesn't support the operation you want to do, you can use the [HTTP Request node](/integrations/builtin/core-nodes/n8n-nodes-base.httprequest.md) to call the service's API.
+
+You can use the credential you created for this service in the HTTP Request node:
+
+1. In the HTTP Request node, select **Authentication** > **Predefined Credential Type**.
+2. Select the service you want to connect to.
+3. Select your credential.
+
+Refer to [Custom API operations](/integrations/builtin/custom-api-actions-for-existing-nodes.md) for more information.

@@ -1,0 +1,113 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 5
+  tags:
+    - n8n
+    - workflow-automation
+    - low-code
+    - integrations
+    - ipaas
+    - agent-workflows
+    - webhooks
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - devops-engineers
+    - automation-engineers
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: n8n-docs-llms-index
+    kind: llms.txt
+    url: "https://docs.n8n.io/llms.txt"
+    allowed_hosts:
+      - docs.n8n.io
+    allowed_extensions:
+      - .md
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: n8n
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: n8n
+    intensity: 10
+  - type: keyword
+    value: workflow automation
+    intensity: 9
+  - type: keyword
+    value: n8n node
+    intensity: 9
+  - type: keyword
+    value: n8n expression
+    intensity: 8
+  - type: keyword
+    value: HTTP Request node
+    intensity: 8
+  - type: keyword
+    value: n8n webhook trigger
+    intensity: 8
+  - type: keyword
+    value: n8n credentials
+    intensity: 7
+  - type: keyword
+    value: n8n advanced ai
+    intensity: 8
+  - type: keyword
+    value: n8n self-hosting
+    intensity: 8
+  - type: keyword
+    value: n8n rest api
+    intensity: 7
+  - type: vector
+    value: Build an automation workflow in n8n that connects APIs and services.
+    intensity: 10
+  - type: vector
+    value: Map data between n8n nodes with expressions and the per-item model.
+    intensity: 9
+  - type: vector
+    value: Call any API from n8n with the HTTP Request node and credentials.
+    intensity: 9
+  - type: vector
+    value: Trigger an n8n workflow from a webhook or a schedule.
+    intensity: 8
+  - type: vector
+    value: Build an AI agent workflow with n8n's Advanced AI nodes.
+    intensity: 8
+provenance:
+  summary: n8n reference. Packages the official n8n llms.txt index (https://docs.n8n.io/llms.txt) plus a reproducible verbatim mirror of the documentation pages it links to, under references/vendor/. Covers the node/workflow model, the per-item execution and expression model, the HTTP Request node and credentials, Code and Advanced AI agent nodes, triggers (webhook/schedule/manual/chat), self-hosting, and the REST API.
+  sources:
+    - title: n8n llms.txt index
+      url: https://docs.n8n.io/llms.txt
+      authors:
+        - n8n
+      inspected_at: "2026-08-08"
+      adopted:
+        - Curated link index organising n8n docs by topic (workflows, nodes, expressions, integrations, hosting, api)
+        - Per-topic reference pages mirrored verbatim as .md
+    - title: n8n documentation corpus (mirrored .md)
+      url: https://docs.n8n.io
+      authors:
+        - n8n
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of every resolvable .md link in the seed index, preserving URL path structure under references/vendor/
+        - Workflow/node model, expressions, HTTP Request node, credentials, Code and Advanced AI nodes, triggers, self-hosting, REST API
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 1328
+  sources:
+    - id: n8n-docs-llms-index
+      kind: llms.txt
+      url: https://docs.n8n.io/llms.txt
+      seed_path: docs.n8n.io/llms.txt
+  failures: []

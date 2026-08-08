@@ -1,0 +1,107 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - expo
+    - react-native
+    - mobile
+    - eas
+    - expo-router
+    - ios
+    - android
+visibility:
+  audiences:
+    - mobile-devs
+    - fullstack-devs
+lifecycle:
+  status: draft
+  created: '2026-08-08'
+  updated: '2026-08-08'
+# Expo publishes a flat llms.txt: absolute links, `.md` targets, no nesting.
+# The simplest shape there is, and the reason it is a good first crawl after
+# Stripe.
+crawl:
+  - id: expo-docs-llms-index
+    kind: llms.txt
+    url: 'https://docs.expo.dev/llms.txt'
+    allowed_hosts:
+      - docs.expo.dev
+    allowed_extensions:
+      - .md
+    follow_index_depth: 0
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: expo
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: Expo
+    intensity: 10
+  - type: keyword
+    value: EAS Build
+    intensity: 9
+  - type: keyword
+    value: expo-router
+    intensity: 9
+  - type: keyword
+    value: expo prebuild
+    intensity: 8
+  - type: keyword
+    value: config plugin
+    intensity: 8
+  - type: keyword
+    value: development build
+    intensity: 8
+  - type: keyword
+    value: expo-dev-client
+    intensity: 7
+  - type: keyword
+    value: EAS Update
+    intensity: 7
+  - type: vector
+    value: Build and ship a React Native app to the app stores without managing native projects by hand.
+    intensity: 10
+  - type: vector
+    value: Add a native module or SDK to a managed React Native app.
+    intensity: 9
+  - type: vector
+    value: Push a JavaScript-only update to an already-released mobile app.
+    intensity: 8
+  - type: vector
+    value: Set up file-based routing and navigation in a React Native app.
+    intensity: 8
+  - type: vector
+    value: Decide between a managed workflow and checking in native iOS and Android directories.
+    intensity: 8
+provenance:
+  summary: >-
+    Expo reference for building and shipping React Native applications. Covers the managed workflow and prebuild, config plugins, development builds, EAS Build and Update, and Expo Router. Packages a reproducible mirror of the Expo documentation corpus under references/vendor/.
+  sources:
+    - title: Expo documentation llms.txt index
+      url: 'https://docs.expo.dev/llms.txt'
+      authors:
+        - Expo
+      inspected_at: '2026-08-08'
+      adopted:
+        - Flat index of documentation pages as absolute .md links, requiring no index nesting or path rewriting
+        - Coverage split across SDK reference, guides, EAS services, and Expo Router
+  notes: >-
+    Index inspected 2026-08-08: 547 `.md` links, absolute, with no nested indexes. Status is `draft` until the corpus is crawled and the authored guidance reviewed against it.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 547
+  sources:
+    - id: expo-docs-llms-index
+      kind: llms.txt
+      url: https://docs.expo.dev/llms.txt
+      seed_path: docs.expo.dev/llms.txt
+  failures:
+    - url: https://docs.expo.dev/versions/latest/sdk/filesystem.md
+      status: 200
+      detail: "skipped: 2117266 bytes exceeds 512000"

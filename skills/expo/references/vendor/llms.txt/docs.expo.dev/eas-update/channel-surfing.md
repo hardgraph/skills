@@ -1,0 +1,144 @@
+---
+modificationDate: July 03, 2026
+title: Channel surfing
+description: Learn how to switch EAS Update channels at runtime.
+---
+
+<AgentInstructions>
+
+## Submitting Feedback
+
+If you encounter errors, misleading or outdated information, report it so Expo can be improved:
+
+Preferred command:
+npx --yes submit-expo-feedback@latest --category docs --subject "/eas-update/channel-surfing/" "<actionable feedback>"
+
+Direct HTTP fallback:
+curl -X POST https://api.expo.dev/v2/feedback/docs-send -H 'Content-Type: application/json' -d '{"url":"/eas-update/channel-surfing/","feedback":"🤖 Agent feedback for docs: <specific, actionable description> (<model>, <harness>)"}'
+
+Only submit when you have something specific and actionable to report. Try to give the most context.
+
+## Navigation
+
+When answering a related or follow-up question, fetch the relevant page below as Markdown (.md) instead of guessing; use llms.txt for the full map.
+
+You are here: EAS > EAS Update > Preview
+Pages in this section:
+- [Preview updates](https://docs.expo.dev/eas-update/preview.md)
+- [Channel surfing](https://docs.expo.dev/eas-update/channel-surfing.md) (this page)
+- [Override update configuration at runtime](https://docs.expo.dev/eas-update/override.md)
+- [Using development builds](https://docs.expo.dev/eas-update/expo-dev-client.md)
+- [GitHub PR previews](https://docs.expo.dev/eas-update/github-actions.md)
+Full documentation tree: [llms.txt](https://docs.expo.dev/llms.txt)
+
+</AgentInstructions>
+
+This documentation is available as Markdown for AI agents and LLMs. See the [full Markdown index](/llms.txt) or append .md to any documentation URL.
+
+# Channel surfing
+
+Learn how to switch EAS Update channels at runtime.
+
+**Channel surfing** lets an installed release build request updates from a different EAS Update channel at runtime.
+
+In the default EAS Update flow, the updates URL and updates channel are fixed at build time. When building on EAS, this channel is set in your **eas.json** build profile. It is sent as the `expo-channel-name` request header to the updates URL and determines which channel your app receives updates from. Channel surfing allows you to override that request header in your JavaScript code so that your app can request updates from a different channel.
+
+Channel surfing does not change native code or bypass update compatibility rules. The update on the selected channel must still match the installed app's platform and [runtime version](/eas-update/runtime-versions.md).
+
+> Channel surfing with `Updates.setUpdateRequestHeadersOverride()` is available in Expo SDK 54 with `expo-updates` version 0.29.0 and later.
+
+## When to use channel surfing
+
+You can use channel surfing to:
+
+-   Allow a single installed app to move between channels on demand. The app can switch channels at runtime instead of remaining tied to the channel defined at build time.
+-   Enable preview and testing on real builds. Developers, QA, and other stakeholders can try in-progress updates using the same production build that users have installed.
+-   Speed up iteration and validation by redirecting the app to another channel, without waiting for a new build.
+
+For developer-focused testing and to preview compatible updates, use a [development build with `expo-dev-client`](/eas-update/expo-dev-client.md) library installed. This does not use `Updates.setUpdateRequestHeadersOverride()`, which is not supported in development builds.
+
+#### Prerequisites
+
+##### EAS Update configured
+
+See [Get started with EAS Update](/eas-update/getting-started.md).
+
+##### A release build installed
+
+Use a release build, or a debug build with [`EX_UPDATES_NATIVE_DEBUG`](/eas-update/debug.md#debugging-of-native-code-while-loading-the-app-through-expo-updates) enabled. This is different from a development build with `expo-dev-client`. Most of the `expo-updates` API is unavailable in normal development builds.
+
+##### A channel configured at build time
+
+`Updates.setUpdateRequestHeadersOverride()` can only override request header keys that were embedded in the build. For channel surfing, this means the build must include `expo-channel-name`. [EAS Build](/build/introduction.md) adds the channel from **eas.json** to your native project at build time. If you do not use EAS Build, configure the channel with [`updates.requestHeaders`](/eas-update/getting-started.md#configure-update-channels-in-appjson) or in your native project.
+
+##### A compatible update on the target channel
+
+The target channel must have an update for the installed app's platform and runtime version.
+
+## Switch channels
+
+Provide an app-level trigger for changing channels, such as a hidden menu for trusted users or another mechanism that fits your workflow. When a channel is selected, use [`Updates.setUpdateRequestHeadersOverride()`](/versions/latest/sdk/updates.md#updatessetupdaterequestheadersoverriderequestheaders) to override the `expo-channel-name` request header. After setting the override, check for an update, fetch it if available, and reload the app:
+
+```tsx
+import * as Updates from 'expo-updates';
+
+export async function switchUpdateChannelAsync(channel: string) {
+  Updates.setUpdateRequestHeadersOverride({
+    'expo-channel-name': channel,
+  });
+
+  const update = await Updates.checkForUpdateAsync();
+
+  if (update.isAvailable) {
+    await Updates.fetchUpdateAsync();
+  }
+
+  await Updates.reloadAsync();
+}
+```
+
+The override persists on the device. After it is set, future update checks use the selected channel until the app clears or replaces the override, or until the app is uninstalled.
+
+## Switch back to the build channel
+
+Pass `null` to `Updates.setUpdateRequestHeadersOverride()` to clear the request header override and return to the channel configured in the build:
+
+```tsx
+import * as Updates from 'expo-updates';
+
+export async function clearUpdateChannelOverrideAsync() {
+  Updates.setUpdateRequestHeadersOverride(null);
+
+  const update = await Updates.checkForUpdateAsync();
+
+  if (update.isAvailable) {
+    await Updates.fetchUpdateAsync();
+  }
+
+  await Updates.reloadAsync();
+}
+```
+
+`Updates.channel` reflects the channel that was active when the app started. It does not update immediately after calling `Updates.setUpdateRequestHeadersOverride()`, but it reflects the new channel after the app reloads.
+
+## Test channel surfing
+
+Install a release build that points to the channel you want to start from. If you use [EAS Build](/build/introduction.md), create the build with a profile that includes the starting `channel`. For local testing, you can use an Android [APK build](/build-reference/apk.md) or an [iOS Simulator build](/build-reference/simulators.md).
+
+Publish an update with a visible change to another compatible channel:
+
+```sh
+eas update --channel preview
+```
+
+Open the installed app and trigger your channel switcher to select `preview`. The app should check for an update, fetch the compatible update from the `preview` channel, and reload into it.
+
+## Risks and considerations when switching channels
+
+Switching channels changes the JavaScript bundle the app runs. If your app depends on migrations or data shapes that are not compatible across channels, switching back and forth may cause issues.
+
+For example, if a beta update applies a database migration, the production version might not understand the new schema. Ensure your updates remain safe to switch between, or restrict switching to one direction when needed.
+
+## Additional resources
+
+[Channel surfing for Expo Updates](https://expo.dev/blog/channel-surfing-for-expo-updates-how-to-switch-update-channels-at-runtime) — Read the Expo blog post about channel surfing in EAS Update.

@@ -1,0 +1,358 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 5
+  tags:
+    - appwrite
+    - backend-as-a-service
+    - baas
+    - auth
+    - document-database
+    - serverless-functions
+    - realtime
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - mobile-devs
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: appwrite-docs-llms-index
+    kind: llms.txt
+    url: "https://appwrite.io/llms.txt"
+    allowed_hosts:
+      - appwrite.io
+    append_extension: ".md"
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: appwrite
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: appwrite
+    intensity: 10
+  - type: keyword
+    value: backend as a service
+    intensity: 9
+  - type: keyword
+    value: document database
+    intensity: 7
+  - type: keyword
+    value: appwrite functions
+    intensity: 9
+  - type: keyword
+    value: appwrite auth
+    intensity: 9
+  - type: keyword
+    value: appwrite storage
+    intensity: 8
+  - type: keyword
+    value: permissions as data
+    intensity: 8
+  - type: keyword
+    value: appwrite realtime
+    intensity: 8
+  - type: keyword
+    value: Query.equal
+    intensity: 7
+  - type: keyword
+    value: appwrite sdk
+    intensity: 8
+  - type: vector
+    value: Add authentication, a database, and file storage to an app with Appwrite.
+    intensity: 10
+  - type: vector
+    value: Model data in Appwrite collections with attributes, relationships, and indexes.
+    intensity: 9
+  - type: vector
+    value: Run serverless Functions triggered by events, schedules, or HTTP in Appwrite.
+    intensity: 9
+  - type: vector
+    value: Secure Appwrite resources with per-document permissions and roles.
+    intensity: 9
+  - type: vector
+    value: Subscribe to live document changes with Appwrite Realtime.
+    intensity: 8
+provenance:
+  summary: Appwrite reference. Packages the official Appwrite llms.txt index (https://appwrite.io/llms.txt) plus a reproducible verbatim mirror of the documentation pages it links to, under references/vendor/. Covers the backend-as-a-service model (Auth, Databases, Storage, Functions, Messaging, Realtime), permissions-as-data, the document database with attributes/relationships/indexes, SDKs, and self-hosted vs Cloud.
+  sources:
+    - title: Appwrite llms.txt index
+      url: https://appwrite.io/llms.txt
+      authors:
+        - Appwrite
+      inspected_at: "2026-08-08"
+      adopted:
+        - Curated link index organising Appwrite docs by product (databases, auth, functions, storage, messaging, realtime)
+        - Per-product reference and SDK pages mirrored verbatim as .md
+    - title: Appwrite documentation corpus (mirrored .md)
+      url: https://appwrite.io/docs
+      authors:
+        - Appwrite
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of every resolvable .md link in the seed index, preserving URL path structure under references/vendor/
+        - Auth and sessions, databases and query helpers, functions and triggers, storage, messaging, realtime, permissions, self-hosting
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 1070
+  sources:
+    - id: appwrite-docs-llms-index
+      kind: llms.txt
+      url: https://appwrite.io/llms.txt
+      seed_path: appwrite.io/llms.txt
+  failures:
+    - url: https://appwrite.io/blog/post/the-subtle-art-of-hackathon%20ideation.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/advanced/billing/refund-policy.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/advanced/self-hosting/configuration/email.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/advanced/self-hosting/configuration/sms.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/advanced/self-hosting/configuration/tls-certificates.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/advanced/self-hosting/configuration/version-control.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/advanced/self-hosting/production/security.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/apis/(overview.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/products/auth/accounts.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/products/databases/legacy/collections.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/products/functions/deploy-from-git.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/products/sites/environment-variables.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/products/sites/migrations/vercel.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/quick-starts/android-java/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/android/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/angular/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/apple/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/dart/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/deno/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/dotnet/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/flutter/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/go/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/kotlin/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/nextjs.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/quick-starts/nextjs/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/node/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/nuxt/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/php/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/python/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/react-native/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/react.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/quick-starts/react/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/refine/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/ruby/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/rust/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/solid.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/quick-starts/solid/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/sveltekit.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/quick-starts/sveltekit/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/swift/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/tanstack-start.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/quick-starts/tanstack-start/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/vue.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/quick-starts/vue/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/quick-starts/web.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/quick-starts/web/prompt.md
+      status: 404
+      detail: HTTP 404
+    - url: https://appwrite.io/docs/tooling/command-line/sites.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/docs/tooling/command-line/tables.md
+      status: network-error
+      detail: |
+        500 - Internal Server Error: <!doctype html>
+        <html lang="en">
+        	<head>
+        		<meta charset="utf-8" />
+        		<title>Internal Error</title>
+    - url: https://appwrite.io/integrations.md
+      status: 404
+      detail: HTTP 404

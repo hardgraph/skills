@@ -1,0 +1,128 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - paypal
+    - payments
+    - checkout
+    - orders-api
+    - subscriptions
+    - payouts
+    - webhooks
+    - marketplace
+    - api
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - platform-engineers
+lifecycle:
+  status: draft
+  created: '2026-08-08'
+  updated: '2026-08-08'
+# Authored crawl inputs. The crawler reports back into `vendor:`.
+#
+# PayPal's llms.txt is an index of indexes: the root lists nine section indexes,
+# each of which lists pages as relative, extensionless paths. Appending `.md` to
+# a page path returns markdown, so `follow_index_depth` and `append_extension`
+# describe the dialect rather than hard-coding PayPal anywhere in the crawler.
+#
+# The `Other` section is excluded deliberately: it holds ~2,969 pages of
+# miscellany against ~900 in the product sections, and mirroring it would triple
+# the corpus for material an agent integrating PayPal will not read.
+crawl:
+  - id: paypal-developer-llms-index
+    kind: llms.txt
+    url: 'https://developer.paypal.com/llms.txt'
+    allowed_hosts:
+      - developer.paypal.com
+    allowed_extensions:
+      - .md
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: paypal
+      intensity: 10
+      when: Self-reference for routing to this skill.
+    - name: stripe
+      intensity: 5
+      when: Use when comparing payment providers, or when a task could be served by either platform.
+activation:
+  - type: keyword
+    value: PayPal
+    intensity: 10
+  - type: keyword
+    value: Orders API
+    intensity: 9
+  - type: keyword
+    value: Smart Payment Buttons
+    intensity: 8
+  - type: keyword
+    value: paypal-js
+    intensity: 8
+  - type: keyword
+    value: PayPal webhook verification
+    intensity: 8
+  - type: keyword
+    value: PayPal Payouts
+    intensity: 7
+  - type: keyword
+    value: PAYPAL-TRANSMISSION-SIG
+    intensity: 7
+  - type: keyword
+    value: Express Checkout
+    intensity: 6
+  - type: vector
+    value: Accept payments with a wallet button rather than a card form.
+    intensity: 10
+  - type: vector
+    value: Create an order, have the buyer approve it, then capture the money server-side.
+    intensity: 10
+  - type: vector
+    value: Send mass payouts to many recipients at once.
+    intensity: 8
+  - type: vector
+    value: Verify that an incoming payment webhook genuinely came from the provider.
+    intensity: 8
+  - type: vector
+    value: Migrate a payments integration off a legacy SOAP or name-value-pair API.
+    intensity: 8
+  - type: vector
+    value: Build a marketplace where a platform takes payments on behalf of sellers.
+    intensity: 7
+provenance:
+  summary: >-
+    PayPal payments platform reference. Covers the Orders v2 payment flow, the
+    browser JS SDK and Smart Payment Buttons, subscriptions, payouts, disputes,
+    webhook verification, sandbox testing, and the Business versus Platforms
+    split. Steers away from the legacy NVP/SOAP and Express Checkout surfaces
+    that remain functional and therefore keep resurfacing in tutorials.
+  sources:
+    - title: PayPal Developer llms.txt index
+      url: 'https://developer.paypal.com/llms.txt'
+      authors:
+        - PayPal
+      inspected_at: '2026-08-08'
+      adopted:
+        - 'Two-level index structure: a root index linking nine section indexes, which in turn list pages as relative extensionless paths'
+        - Section split between Business and Platforms, which mirrors the two integration audiences and their divergent APIs
+        - Page counts per section, used to scope the crawl away from the oversized Other section
+    - title: PayPal Developer documentation
+      url: 'https://developer.paypal.com/'
+      authors:
+        - PayPal
+      inspected_at: '2026-08-08'
+      adopted:
+        - Orders v2 create/approve/capture lifecycle as the current payment flow, superseding Payments v1 and Express Checkout
+        - OAuth 2.0 client-credentials token exchange, with separate sandbox and live credentials and base URLs
+        - Webhook signature verification against the raw request body, and at-least-once delivery requiring idempotent handlers
+  notes: >-
+    Written from PayPal's public developer documentation, inspected 2026-08-08.
+    Markdown is served by appending `.md` to a documentation path
+    (`/alipay.md` returns text/markdown); `/alipay/index.md` does not resolve.
+    Status is `draft` until the corpus has been crawled and the guidance reviewed
+    against it — in particular the exact webhook verification endpoint and the
+    current API version pins, which are deliberately left as links rather than
+    asserted values.

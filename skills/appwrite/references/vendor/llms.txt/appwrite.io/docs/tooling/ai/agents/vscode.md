@@ -1,0 +1,63 @@
+---
+layout: article
+title: VS Code
+description: Learn how you can use Appwrite with VS Code and GitHub Copilot for AI-assisted development. Get started quickly with pre-built prompts and connect to Appwrite MCP servers for deeper integration.
+---
+
+{% section #quick-start-prompts step=1 title="Quick start prompts" %}
+
+Get started quickly with these pre-built prompts for common Appwrite integrations:
+
+{% cards %}
+{% cards_item href="/docs/tooling/ai/quickstart-prompts/nextjs" title="Next.js" icon="icon-nextjs" %}
+{% /cards_item %}
+{% cards_item href="/docs/tooling/ai/quickstart-prompts/tanstack-start" title="TanStack Start" icon="web-icon-tanstack" %}
+{% /cards_item %}
+{% /cards %}
+
+{% arrow_link href="/docs/tooling/ai/quickstart-prompts" %}
+Browse all quick start prompts
+{% /arrow_link %}
+
+{% /section %}
+
+{% section #add-mcp-servers step=2 title="Add the MCP server" %}
+
+Connect the Appwrite MCP server to VS Code for deeper integration with the Appwrite API and documentation. It is a remote HTTP server, so there are no additional pre-requisites to install.
+
+In VS Code, open the **Command Palette** (press `CTRL + Shift + P` on Windows or `CMD + Shift + P` on MacOS) and run the `MCP: Open User Configuration` command.
+
+Update the `mcp.json` file to include the Appwrite MCP server:
+
+```json
+{
+  "servers": {
+    "appwrite": {
+      "url": "https://mcp.appwrite.io/",
+      "type": "http"
+    }
+  }
+}
+
+```
+
+The server uses OAuth for authentication. When the server starts, VS Code prompts you to authenticate, and your browser opens so you can sign in to your Appwrite account and authorize access.
+
+Once you save the configuration, Copilot Chat will connect with the MCP server and load all available tools.
+
+{% /section %}
+
+{% section #test-the-integration step=3 title="Test the integration" %}
+
+Open **Copilot Chat** in VS Code and switch to **Agent Mode** to test your MCP integration. You can try out the following example prompts:
+
+**Example prompts:**
+
+- `Create a new user in my Appwrite project`
+- `List all databases in my project`
+- `Show me the tables in my database`
+- `How do I set up real-time subscriptions in Appwrite?`
+- `Show me how to authenticate users with OAuth`
+- `How do I implement file uploads with Appwrite Storage?`
+
+{% /section %}

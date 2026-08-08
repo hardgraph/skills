@@ -1,0 +1,50 @@
+---
+layout: article
+title: Model Context Protocol
+description: Enable LLMs and code-generation tools to interact with your Appwrite project
+---
+
+Appwrite offers a [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that allows LLMs to directly interact with Appwrite's API and docs. Using the MCP server, you can use applications such as Claude Code, Codex, Cursor, Claude Desktop, and others to operate on your Appwrite project as well as gain context about the latest updates to Appwrite's SDKs, APIs, and CLI.
+
+# What is MCP?
+
+The Model Context Protocol (MCP) is an open standard that enables Large Language Models (LLMs) and AI code-generation tools to interact with APIs and documentation in a structured manner. MCP servers provide a bridge between LLMs and external services, allowing them to perform actions such as querying databases, managing users, and accessing files.
+
+The key benefits of using MCP servers include:
+
+- **Enhanced capabilities**: LLMs can perform complex tasks by interacting with APIs, going beyond simple text generation.
+- **Improved context**: By accessing up-to-date documentation and API definitions, LLMs can provide more accurate and relevant responses.
+- **Seamless integration**: MCP servers can be easily integrated with popular AI tools and code editors, enhancing their functionality.
+
+# The Appwrite MCP server
+
+Appwrite offers a single MCP server that covers both the Appwrite API and documentation:
+
+{% cards %}
+
+{% cards_item href="/docs/tooling/ai/mcp-servers/api" title="Appwrite MCP server" icon="icon-globe-alt"%}
+{% /cards_item %}
+
+{% /cards %}
+
+## Why use the Appwrite MCP server?
+
+Some **popular use cases** for the Appwrite MCP server include:
+
+- **Code generation**: Automatically generate code snippets or entire files based on user input and context.
+- **Documentation lookup**: Quickly find relevant documentation for specific API endpoints or SDK features.
+- **Project management**: Create, update, or delete resources in your Appwrite project using natural language commands.
+- **Debugging assistance**: Get help with debugging issues by providing context about your project and recent changes.
+- **Learning and exploration**: Explore Appwrite's features and capabilities through interactive conversations with LLMs.
+
+# Build your own MCP server
+
+Use the MCP server Function template to expose your application's own tools to AI clients over HTTPS. Appwrite provides the stateless transport, deployment, Function domain, and optional bearer authentication.
+
+{% cards %}
+
+{% cards_item href="/docs/tooling/ai/build-mcp-server" title="Build an MCP server" %}
+Create, secure, deploy, and connect a custom MCP server on Appwrite Functions.
+{% /cards_item %}
+
+{% /cards %}

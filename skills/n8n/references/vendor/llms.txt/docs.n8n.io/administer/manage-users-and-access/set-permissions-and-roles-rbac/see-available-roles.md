@@ -1,0 +1,54 @@
+> For the complete documentation index, see [llms.txt](https://docs.n8n.io/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://docs.n8n.io/administer/manage-users-and-access/set-permissions-and-roles-rbac/see-available-roles.md).
+
+# See available roles
+
+{% hint style="info" %}
+**Feature availability**
+
+* The Project Editor role is available on Pro Cloud and Self-hosted Enterprise plans.
+* The Project Viewer role is only available on Self-hosted Enterprise and Cloud Enterprise plans.
+  {% endhint %}
+
+Within projects, there are three user roles: Admin, Editor, and Viewer. These roles control what the user can do in a project. A user can have different roles within different projects.
+
+## Project Admin <a href="#project-admin" id="project-admin"></a>
+
+A Project Admin role has the highest level of permissions. Project admins can:
+
+* Manage project settings: Change name, delete project.
+* Manage project members: Invite members and remove members, change members' roles.
+* View, create, update, and delete any workflows, credentials, or executions within a project.
+* Create [end-user credentials](/administer/manage-credentials/end-user-credentials.md). By default, only project admins can create this credential type, but you can grant it to other users through custom roles.
+
+## Project Editor <a href="#project-editor" id="project-editor"></a>
+
+A Project Editor can view, create, update, and delete any workflows, credentials, or executions within a project.
+
+## Project Viewer <a href="#project-viewer" id="project-viewer"></a>
+
+A Project Viewer is effectively a `read-only` role with access to all workflows, credentials, and executions within a project.
+
+Viewers aren't able to manually execute any workflows that exist in a project.
+
+{% hint style="info" %}
+**Project roles and instance roles**
+
+n8n has two levels of roles. [Instance roles](/administer/manage-users-and-access/understand-instance-roles.md) control what a user can do across the entire instance. Project roles control what a user can do within a specific [project](/administer/manage-users-and-access/set-permissions-and-roles-rbac/organize-work-in-projects.md), and a user can have different project roles in different projects.
+{% endhint %}
+
+| Permission                          | Admin | Editor | Viewer |
+| ----------------------------------- | ----- | ------ | ------ |
+| View workflows in the project       | ✅     | ✅      | ✅      |
+| View credentials in the project     | ✅     | ✅      | ✅      |
+| View executions                     | ✅     | ✅      | ✅      |
+| Edit credentials and workflows      | ✅     | ✅      | ❌      |
+| Add workflows and credentials       | ✅     | ✅      | ❌      |
+| Execute workflows                   | ✅     | ✅      | ❌      |
+| Manage members                      | ✅     | ❌      | ❌      |
+| Modify the project                  | ✅     | ❌      | ❌      |
+| Use external secrets in credentials | ✅\*   | ✅\*    | ❌      |
+| Manage project secret vaults        | ✅\*   | ❌      | ❌      |
+
+\* Requires **Enable external secrets for project roles** to be enabled by an instance owner or admin. Refer to [Access for project roles](/administer/manage-credentials/use-external-secret-stores.md#access-for-project-roles). This is available from n8n version `2.13.0`.
+
+[Variables](/build/code-in-n8n/define-custom-variables.md) and [tags](/build/manage-workflows/tag-workflows.md) aren't affected by RBAC: they're global across the n8n instance.

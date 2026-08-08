@@ -1,0 +1,31 @@
+> For the complete documentation index, see [llms.txt](https://docs.n8n.io/llms.txt). Markdown versions of documentation pages are available by appending `.md` to page URLs; this page is available as [Markdown](https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-base.coppertrigger.md).
+
+# Copper Trigger
+
+[Copper](https://www.copper.com/) is a CRM that focuses on strong integration with Google Workspace. It's mainly targeted towards small and medium-sized businesses.
+
+{% hint style="info" %}
+**Credentials**
+
+You can find authentication information for this node [here](/integrations/builtin/credentials/copper.md).
+{% endhint %}
+
+{% hint style="info" %}
+**Examples and templates**
+
+For usage examples and templates to help you get started, refer to n8n's [Copper Trigger integrations](https://n8n.io/integrations/copper-trigger/) page.
+{% endhint %}
+
+## Events <a href="#events" id="events"></a>
+
+* Delete
+* New
+* Update
+
+## Related resources <a href="#related-resources" id="related-resources"></a>
+
+n8n provides an app node for Copper. You can find the node docs [here](/integrations/builtin/app-nodes/n8n-nodes-base.copper.md).
+
+View [example workflows and related content](https://n8n.io/integrations/copper-trigger/) on n8n's website.
+
+Refer to [Copper's documentation](https://developer.copper.com/) for details about their API.

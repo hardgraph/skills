@@ -1,0 +1,108 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - better-auth
+    - authentication
+    - typescript
+    - sessions
+    - oauth
+    - two-factor
+    - rbac
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+lifecycle:
+  status: draft
+  created: '2026-08-08'
+  updated: '2026-08-08'
+# Better Auth's index is flat but every link is a root-relative path that itself
+# begins with `/llms.txt/` — for example `/llms.txt/docs/adapters/drizzle.md`,
+# which resolves to https://www.better-auth.com/llms.txt/docs/adapters/drizzle.md
+# and serves text/markdown. The bare docs path (without the /llms.txt prefix)
+# returns 404, so relative resolution against the index URL is required rather
+# than optional here.
+#
+# Classified by shape: flat, so depth 0. A naive substring check would misread
+# these as nested indexes because the path contains `llms.txt`; index detection
+# keys on the path *ending* in llms.txt, which these do not.
+crawl:
+  - id: better-auth-docs-llms-index
+    kind: llms.txt
+    url: 'https://www.better-auth.com/llms.txt'
+    allowed_hosts:
+      - www.better-auth.com
+    allowed_extensions:
+      - .md
+    follow_index_depth: 0
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: better-auth
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: Better Auth
+    intensity: 10
+  - type: keyword
+    value: betterAuth
+    intensity: 9
+  - type: keyword
+    value: createAuthClient
+    intensity: 9
+  - type: keyword
+    value: better-auth cli generate
+    intensity: 8
+  - type: keyword
+    value: better-auth plugin
+    intensity: 8
+  - type: keyword
+    value: BETTER_AUTH_SECRET
+    intensity: 7
+  - type: keyword
+    value: drizzleAdapter
+    intensity: 7
+  - type: vector
+    value: Add email and password sign-in plus social providers to a TypeScript application.
+    intensity: 10
+  - type: vector
+    value: Own the user and session tables in my own database rather than an external auth service.
+    intensity: 9
+  - type: vector
+    value: Add two-factor authentication, organizations, or role-based access to an existing auth setup.
+    intensity: 8
+  - type: vector
+    value: Generate and migrate the database schema an authentication library requires.
+    intensity: 8
+  - type: vector
+    value: Share a typed authentication client between server and browser code.
+    intensity: 7
+provenance:
+  summary: >-
+    Better Auth reference: a TypeScript authentication framework where the application owns its own user and session tables. Covers the server instance, the typed client, database adapters, the schema generation and migration step, and the plugin model for two-factor, organizations, and admin features. Packages a reproducible mirror of the documentation under references/vendor/.
+  sources:
+    - title: Better Auth documentation llms.txt index
+      url: 'https://www.better-auth.com/llms.txt'
+      authors:
+        - Better Auth
+      inspected_at: '2026-08-08'
+      adopted:
+        - Flat index of 180 documentation pages as root-relative paths under a /llms.txt/ prefix, each serving text/markdown
+        - Structure grouped by adapters, integrations, authentication methods, concepts, and plugins
+  notes: >-
+    Index inspected 2026-08-08: 180 `.md` links, all root-relative and prefixed `/llms.txt/`. Verified that the prefixed path serves `text/markdown` while the unprefixed docs path returns 404. Status is `draft` until the corpus is crawled and the authored guidance reviewed against it.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 181
+  sources:
+    - id: better-auth-docs-llms-index
+      kind: llms.txt
+      url: https://www.better-auth.com/llms.txt
+      seed_path: www.better-auth.com/llms.txt
+  failures: []

@@ -1,0 +1,396 @@
+---
+layout: article
+title: Installation
+description: Get started with the Appwrite CLI by following the installation guide. Learn how to set up and configure the CLI on your development environment.
+---
+
+The [Appwrite Command Line Interface (CLI)](https://github.com/appwrite/sdk-for-cli) is an application that allows you to interact with Appwrite to perform server-side tasks using your terminal. This includes creating and managing projects, managing resources (rows, files, users), creating and deploying Appwrite Functions, and other operations available through Appwrite's API.
+
+# Getting started {% #getting-started %}
+
+The CLI is packaged both as an [npm module](https://www.npmjs.com/package/appwrite-cli) as well as a [standalone binary](https://github.com/appwrite/sdk-for-cli/releases/latest) for your operating system, making it completely dependency free, platform independent, and language agnostic.
+
+If you plan to use the CLI to initialize new Appwrite Functions, ensure that [Git is installed](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your machine.
+
+## Install with npm {% #install-with-npm %}
+
+If you have npm set up, run the command below to install the CLI.
+
+```sh
+npm install -g appwrite-cli
+```
+
+## Install with script {% #install-with-script %}
+
+For a completely dependency-free installation, the CLI also ships with a convenient installation script for your operating system
+
+{% tabs %}
+{% tabsitem #macos title="macOS" %}
+
+Using [Homebrew](https://brew.sh/)
+
+```sh
+brew install appwrite
+```
+
+or terminal
+
+```sh
+curl -sL https://appwrite.io/cli/install.sh | bash
+```
+{% /tabsitem %}
+
+{% tabsitem #windows title="Windows" %}
+
+Using [Powershell](https://learn.microsoft.com/en-us/powershell/)
+
+```sh
+iwr -useb https://appwrite.io/cli/install.ps1 | iex
+```
+
+or [Scoop](https://scoop.sh/)
+
+```sh
+scoop install https://raw.githubusercontent.com/appwrite/sdk-for-cli/master/scoop/appwrite.config.json
+```
+{% /tabsitem %}
+
+{% tabsitem #linux title="Linux" %}
+```sh
+curl -sL https://appwrite.io/cli/install.sh | bash
+```
+{% /tabsitem %}
+
+{% /tabs %}
+
+# Update your CLI {% #update-your-cli %}
+
+{% tabs %}
+{% tabsitem #npm title="npm" %}
+```sh
+npm install -g appwrite-cli
+```
+{% /tabsitem %}
+
+{% tabsitem #macos title="macOS" %}
+
+Using [Homebrew](https://brew.sh/)
+
+```sh
+brew install appwrite
+```
+
+or terminal
+
+```sh
+curl -sL https://appwrite.io/cli/install.sh | bash
+```
+{% /tabsitem %}
+
+{% tabsitem #windows title="Windows" %}
+```sh
+iwr -useb https://appwrite.io/cli/install.ps1 | iex
+```
+{% /tabsitem %}
+
+{% tabsitem #linux title="Linux" %}
+```sh
+curl -sL https://appwrite.io/cli/install.sh | bash
+```
+{% /tabsitem %}
+
+{% tabsitem #scoop title="Scoop" %}
+```sh
+scoop install https://raw.githubusercontent.com/appwrite/sdk-for-cli/master/scoop/appwrite.config.json
+```
+{% /tabsitem %}
+
+{% /tabs %}
+
+## Verify installation {% #verify-installation %}
+
+After the installation or the update is complete, you can verify the Appwrite CLI is available by checking its version number.
+
+```sh
+appwrite -v
+```
+
+# Login {% #login %}
+
+Before you can use the CLI, you need to login to your Appwrite account using
+
+```sh
+appwrite login
+```
+
+Add the `--endpoint` flag if you're using a self-hosted instance of Appwrite. This flag requires you to add the URL string you're using for your self-hosted instance after the `--endpoint` flag. Self-hosted instances do not currently support OAuth-based CLI authentication, so the CLI will prompt for your email and password instead.
+
+```sh
+appwrite login --endpoint "https://appwrite.example.com/v1"
+```
+
+Include the `/v1` API path. The CLI validates and normalizes custom endpoints before prompting for credentials, and suggests the correct URL when the API path is missing. A trailing slash is optional.
+
+The CLI signs you in through your browser using device authorization. It displays a code and a URL, then waits for approval.
+
+![Appwrite CLI login in the terminal](/images/docs/command-line/cli-login-terminal.avif)
+
+Press `Enter` to open the URL in your default browser, or copy the URL and open it manually. In the browser, confirm that the device code matches the code shown in your terminal, then click **Continue**.
+
+{% only_dark %}
+![Confirm your device code](/images/docs/command-line/dark/cli-login-confirm-code.avif)
+{% /only_dark %}
+{% only_light %}
+![Confirm your device code](/images/docs/command-line/cli-login-confirm-code.avif)
+{% /only_light %}
+
+Review the permissions requested by the CLI, then click **Authorize**.
+
+{% only_dark %}
+![Authorize Appwrite CLI](/images/docs/command-line/dark/cli-login-authorize.avif)
+{% /only_dark %}
+{% only_light %}
+![Authorize Appwrite CLI](/images/docs/command-line/cli-login-authorize.avif)
+{% /only_light %}
+
+Once authorized, the browser confirms that your device is connected. Return to your terminal, where the CLI continues automatically and completes the login.
+
+{% only_dark %}
+![Device connected](/images/docs/command-line/dark/cli-login-device-connected.avif)
+{% /only_dark %}
+{% only_light %}
+![Device connected](/images/docs/command-line/cli-login-device-connected.avif)
+{% /only_light %}
+
+You can log in to multiple accounts or change the **current** account by re-running the command. You can revoke the CLI's access anytime in your account settings.
+
+If changing the client endpoint leaves a previously signed-in account inactive, switch back to any saved account without signing in again:
+
+```sh
+appwrite login --switch
+```
+
+The CLI lists the available accounts and endpoints for you to choose from. You can also run `appwrite whoami` to see the active account or get recovery instructions when another saved account is available.
+
+{% info title="Seeing an email and password prompt instead?" %}
+Older CLI versions, and CLI sessions pointed at a self-hosted Appwrite instance, do not support the OAuth device authorization flow and fall back to asking for your email and password. Run `appwrite update` to get the latest version, or pass the Appwrite Cloud endpoint explicitly:
+
+```sh
+appwrite login --endpoint="https://cloud.appwrite.io/v1"
+```
+
+If the CLI still points at a self-hosted instance, clear the saved preferences by deleting `prefs.json`. On macOS and Linux it lives at `~/.appwrite/prefs.json`, on Windows at `%USERPROFILE%\.appwrite\prefs.json`.
+{% /info %}
+
+{% info title="CI and scripting" %}
+The browser-based login flow does not affect API key based authentication. Non-interactive mode with API keys continues to work as before and remains the recommended way to authenticate the CLI in CI workflows. [Learn more about CI mode](/docs/tooling/command-line/non-interactive)
+{% /info %}
+
+# Initialization {% #initialization %}
+
+After you're logged in, the CLI needs to be initialized with your Appwrite project. You can initialize the CLI using:
+
+```sh
+appwrite init project
+```
+
+This will create your `appwrite.config.json` file, where you will configure your various services like tables, functions, teams, topics, and buckets.
+
+```json
+{
+    "projectId": "<PROJECT_ID>",
+    "endpoint": "https://<REGION>.cloud.appwrite.io/v1"
+}
+```
+
+The CLI will also auto-detect your project configuration and automatically install relevant [Appwrite agent skills](/docs/tooling/ai/skills).
+
+You can run your first CLI command after logging in. Try fetching information about your Appwrite project.
+
+```sh
+appwrite projects get --project-id "<PROJECT_ID>"
+```
+
+# Multi-file configuration {% #multi-file-configuration %}
+
+By default, the Appwrite CLI stores your project settings and resource definitions in one `appwrite.config.json` file. In CLI version 20.0.0 and later, you can split top-level resource arrays into separate JSON files with the `includes` field.
+
+Use this when your project has many functions, sites, buckets, teams, topics, tables, or other deployable resources and you want to keep each resource type in its own file.
+
+```json
+{
+    "projectId": "<PROJECT_ID>",
+    "endpoint": "https://<REGION>.cloud.appwrite.io/v1",
+    "includes": {
+        "functions": "./appwrite/functions.json",
+        "sites": "./appwrite/sites.json",
+        "buckets": "./appwrite/buckets.json",
+        "teams": "./appwrite/teams.json",
+        "topics": "./appwrite/topics.json"
+    }
+}
+```
+
+Each included file contains the JSON array that would normally live under that key in `appwrite.config.json`.
+
+```json
+[
+    {
+        "$id": "<FUNCTION_ID>",
+        "name": "api",
+        "runtime": "node-22",
+        "path": "functions/api",
+        "entrypoint": "src/main.js",
+        "commands": "npm install",
+        "execute": [],
+        "events": [],
+        "schedule": "",
+        "timeout": 15,
+        "enabled": true,
+        "logging": true,
+        "ignore": [
+            "node_modules",
+            ".git"
+        ],
+        "scopes": [],
+        "vars": []
+    }
+]
+```
+
+The CLI resolves resource paths relative to the file that defines the resource. For example, if `functions` is included from `./appwrite/functions.json`, the function `path` above resolves from `./appwrite/`, not from the folder that contains the root `appwrite.config.json`.
+
+The single-file format continues to work. You can split any supported resource arrays over time and keep other arrays in the root config.
+
+Supported include keys are `functions`, `sites`, `databases`, `tablesDB`, `tables`, `topics`, `teams`, `buckets`, `webhooks`, and `messages`.
+
+Include paths must be local JSON files inside your project. They must be relative paths, end in `.json`, and cannot use parent-directory segments, absolute paths, URLs, URL-like schemes, null bytes, or JSON pointer fragments.
+
+{% info title="Self-signed certificates" %}
+By default, requests to domains with self-signed SSL certificates (or no certificates) are disabled. If you trust the domain, you can bypass the certificate validation using
+
+```sh
+appwrite client --self-signed true
+```
+{% /info %}
+
+## Next steps {% #next-steps %}
+
+You can use the CLI to create and deploy tables, functions, teams, topics, and buckets. Deployment commands allow you to configure your Appwrite project programmatically and replicate functions and table schemas across Appwrite projects.
+
+[Learn more about deployment](/docs/tooling/command-line/tables)
+
+Besides utility commands, the CLI can be used to execute commands like a Server SDK.
+
+[Find a full list of commands](/docs/tooling/command-line/commands)
+
+You can choose to use the CLI in a headless and non-interactive mode without the need for config files or sessions. This is useful for CI or scripting use cases.
+
+[Learn more about CI mode](/docs/tooling/command-line/non-interactive)
+
+# Help {% #help %}
+
+If you get stuck anywhere, you can always use the `help` command to get the usage examples.
+
+```sh
+appwrite help
+```
+
+# Configuration {% #configuration %}
+
+At any point, if you would like to change your server's endpoint, API key, or self-signed certificate acceptance, use the `client` command. When the endpoint matches a saved signed-in account, the CLI switches to that account. For a new endpoint, the current account remains saved and can be restored with `appwrite login --switch`.
+
+```sh
+appwrite client --endpoint https://<REGION>.cloud.appwrite.io/v1
+appwrite client --key 23f24gwrhSDgefaY
+appwrite client --self-signed true
+appwrite client --debug
+```
+
+Use `appwrite client --reset` to clear the CLI configuration. If the reset would sign out saved accounts, the CLI asks for confirmation. For scripts and other non-interactive environments, explicitly confirm the reset with:
+
+```sh
+appwrite client --reset --force
+```
+
+# Uninstall {% #uninstall %}
+
+If you installed Appwrite CLI using NPM, you can use the following command to uninstall it.
+
+```sh
+npm uninstall -g appwrite-cli
+```
+
+If you installed the Appwrite CLI with brew or the installation script for your operating system, use the following command to uninstall it.
+
+{% tabs %}
+{% tabsitem #macos title="macOS" %}
+
+Using [Homebrew](https://brew.sh/)
+
+```sh
+brew uninstall appwrite
+```
+
+or terminal
+
+```sh
+rm -f /usr/local/bin/appwrite | bash
+```
+{% /tabsitem %}
+
+{% tabsitem #windows title="Windows" %}
+
+Using [Powershell](https://learn.microsoft.com/en-us/powershell/)
+
+```sh
+$APPWRITE_INSTALL_DIR = Join-Path -Path $env:LOCALAPPDATA -ChildPath "Appwrite"; Remove-Item -Force -Path $APPWRITE_INSTALL_DIR
+```
+
+or [Scoop](https://scoop.sh/)
+
+```sh
+scoop uninstall appwrite.config
+```
+{% /tabsitem %}
+
+{% tabsitem #linux title="Linux" %}
+```sh
+rm -f /usr/local/bin/appwrite | bash
+```
+{% /tabsitem %}
+
+{% /tabs %}
+
+You can also remove the configuration, cookies, and API Keys the Appwrite CLI stored. To remove those, run the following command.
+
+{% tabs %}
+{% tabsitem #macos title="macOS" %}
+```sh
+rm -rf ~/.appwrite | bash
+```
+{% /tabsitem %}
+
+{% tabsitem #windows title="Windows" %}
+
+Using [Powershell](https://learn.microsoft.com/en-us/powershell/)
+
+```sh
+$APPWRITE_CONFIG_DIR = Join-Path -Path $env:UserProfile -ChildPath ".appwrite"; Remove-Item -Recurse -Force -Path $APPWRITE_CONFIG_DIR
+```
+
+or [Scoop](https://scoop.sh/)
+
+```sh
+appwrite client --reset
+```
+
+{% /tabsitem %}
+
+{% tabsitem #linux title="Linux" %}
+```sh
+rm -rf ~/.appwrite | bash
+```
+{% /tabsitem %}
+
+{% /tabs %}

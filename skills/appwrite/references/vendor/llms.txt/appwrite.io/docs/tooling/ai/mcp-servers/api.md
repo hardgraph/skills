@@ -1,0 +1,85 @@
+---
+layout: article
+title: Appwrite MCP server
+description: Enable LLMs and code-generation tools to interact with the Appwrite API and documentation
+---
+
+The Appwrite MCP server allows LLMs and code-generation tools to interact with the Appwrite platform and perform various operations on your Appwrite resources, such as creating users, managing databases, and more, using natural language commands. It also gives them access to the Appwrite documentation, so they can look up the latest guidance for Appwrite's APIs and SDKs while they work.
+
+Here are some of the key benefits of using the MCP server:
+
+- **Direct API interaction**: Enables LLMs to perform actions directly on your Appwrite project
+- **Real-time data access**: Allows LLMs to fetch and manipulate live data from your Appwrite instance
+- **Documentation search**: Lets LLMs semantically search the Appwrite documentation for accurate, up-to-date context
+- **Simplified workflows**: Facilitates complex operations through simple natural language prompts
+- **Automatic service discovery**: All supported Appwrite services are automatically registered, no configuration needed
+- **No local setup**: Runs as a hosted HTTP service, so there is nothing to install or keep updated
+
+# Connection details {% #connection-details %}
+
+The Appwrite MCP server is a remote server that uses the HTTP transport. It is available at the following URL:
+
+```
+https://mcp.appwrite.io/
+```
+
+The server uses OAuth for authentication. When you add the server to an AI tool and connect for the first time, your browser opens so you can sign in to your Appwrite account and authorize access. You don't need to create or manage API keys.
+
+# Pre-requisites {% #pre-requisites %}
+
+Before connecting to the MCP server, you must [set up an Appwrite project](https://cloud.appwrite.io) on Appwrite Cloud. No additional software needs to be installed on your system.
+
+# Installation {% #installation %}
+
+
+
+## How it works
+
+The MCP server starts in a compact workflow where only a small set of MCP tools is exposed to the model:
+
+- `appwrite_get_context` - Returns a summary of your workspace, including your account, organization, and projects
+- `appwrite_search_tools` - Searches the full Appwrite tool catalog at runtime
+- `appwrite_call_tool` - Calls a specific Appwrite tool by name
+- `appwrite_search_docs` - Semantically searches the Appwrite documentation
+
+The full Appwrite tool catalog stays internal and is searched at runtime, using less of the model's context.
+
+# Self-hosted Appwrite {% #self-hosted %}
+
+The hosted MCP server authenticates against Appwrite Cloud. If you are running a [self-hosted Appwrite instance](/docs/advanced/self-hosting), use the local MCP server instead. It runs on your machine over the stdio transport and connects to your instance with an API key. Follow the [self-hosted MCP server documentation](/docs/advanced/self-hosting/mcp) to set it up.
+
+# Usage {% #usage %}
+
+Once configured, your AI assistant will have access to your Appwrite project. You can ask questions like:
+
+## Example 1: List users
+
+Run the following prompt in your preferred code editor/LLM after enabling the MCP server: 
+
+```
+List users in my Appwrite project
+```
+
+## Example 2: Search a site
+
+Run the following prompt in your preferred code editor/LLM after enabling the MCP server: 
+
+```
+Get the details of my portfolio site from Appwrite
+```
+
+## Example 3: Create a user
+
+Run the following prompt in your preferred code editor/LLM after enabling the MCP server:
+
+```
+Add a user john.doe@example.com to the Appwrite project
+```
+
+## Example 4: Search the documentation
+
+Run the following prompt in your preferred code editor/LLM after enabling the MCP server:
+
+```
+Show me how to set up real-time subscriptions that trigger on creation of a user
+```
