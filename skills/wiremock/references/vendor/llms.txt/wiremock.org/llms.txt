@@ -1,0 +1,13 @@
+# WireMock
+
+> WireMock is a flexible API mocking tool for fast, robust and comprehensive testing.
+
+## Documentation Sets
+
+- [Abridged documentation](https://wiremock.org/llms-small.txt): a compact version of the documentation for WireMock, with non-essential content removed
+- [Complete documentation](https://wiremock.org/llms-full.txt): the full documentation for WireMock
+
+## Notes
+
+- The complete documentation includes all content from the official documentation
+- The content is automatically generated from the same source as the official documentation

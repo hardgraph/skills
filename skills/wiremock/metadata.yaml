@@ -1,0 +1,114 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - wiremock
+    - api-mocking
+    - mocking
+    - stubbing
+    - testing
+    - java
+    - jvm
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - qa-engineers
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: wiremock-llms-index
+    kind: llms.txt
+    url: "https://wiremock.org/llms.txt"
+    allowed_hosts:
+      - wiremock.org
+    allowed_extensions:
+      - .md
+    follow_index_depth: 1
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: wiremock
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: wiremock
+    intensity: 10
+  - type: keyword
+    value: wiremock cloud
+    intensity: 9
+  - type: keyword
+    value: wiremock.net
+    intensity: 9
+  - type: keyword
+    value: stub mapping
+    intensity: 8
+  - type: keyword
+    value: response templating
+    intensity: 8
+  - type: keyword
+    value: record and playback
+    intensity: 8
+  - type: keyword
+    value: api mocking
+    intensity: 9
+  - type: keyword
+    value: wiremock junit
+    intensity: 8
+  - type: keyword
+    value: wiremock standalone jar
+    intensity: 7
+  - type: vector
+    value: Stub an HTTP dependency so a Java or JVM test runs fast, deterministic, and offline.
+    intensity: 10
+  - type: vector
+    value: Match incoming mock requests by URL, method, headers, query, or body pattern in WireMock.
+    intensity: 10
+  - type: vector
+    value: Return a dynamic mock response using Handlebars response templating in WireMock.
+    intensity: 9
+  - type: vector
+    value: Record real HTTP traffic into a live service and replay it as WireMock stubs.
+    intensity: 9
+  - type: vector
+    value: Choose between the WireMock JVM core, WireMock .NET, and WireMock Cloud for a mocking task.
+    intensity: 8
+  - type: vector
+    value: Inject delays, faults, and chunked dribble into a WireMock stub to test client resilience.
+    intensity: 8
+provenance:
+  summary: >-
+    WireMock reference. Packages the official wiremock.org llms.txt index (https://wiremock.org/llms.txt) plus a reproducible verbatim mirror of the documentation it links to on wiremock.org, under references/vendor/. The seed llms.txt is a small pointer index to two nested documentation indexes; at follow_index_depth 1 the complete WireMock documentation is delivered as the single concatenated llms-full.txt markdown file, so the vendored file count is intentionally small while the content is the full docs. Covers stubbing and request matching, response templating (Handlebars), record/playback and proxying, simulating faults and delays, stateful scenarios, the standalone JAR and Docker images, the JUnit 5 extension, the Spring Boot test starter, WireMock .NET, WireMock Cloud, and the extension/response-transformer APIs.
+  sources:
+    - title: WireMock llms.txt index
+      url: https://wiremock.org/llms.txt
+      authors:
+        - WireMock / the WireMock community
+      inspected_at: "2026-08-08"
+      adopted:
+        - Pointer index listing two nested documentation indexes (complete llms-full.txt and abridged llms-small.txt) plus direct .md page links
+        - Nested indexes followed at follow_index_depth 1, with the complete documentation delivered as the concatenated llms-full.txt file
+    - title: WireMock documentation (mirrored .md)
+      url: https://wiremock.org
+      authors:
+        - WireMock / the WireMock community
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of the wiremock.org documentation the seed and nested indexes link to, including the complete llms-full.txt
+        - Stubbing, request matching, response templating, record/playback, proxying, faults, standalone JAR/Docker, JUnit 5, Spring Boot, WireMock .NET, and WireMock Cloud pages
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 3
+  sources:
+    - id: wiremock-llms-index
+      kind: llms.txt
+      url: https://wiremock.org/llms.txt
+      seed_path: wiremock.org/llms.txt
+  failures: []

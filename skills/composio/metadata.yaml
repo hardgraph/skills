@@ -1,0 +1,121 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - composio
+    - ai-agents
+    - tool-calling
+    - mcp
+    - integrations
+    - managed-auth
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - ai-engineers
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: composio-llms-index
+    kind: llms.txt
+    url: "https://docs.composio.dev/llms.txt"
+    allowed_hosts:
+      - docs.composio.dev
+    allowed_extensions:
+      - .md
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: composio
+      intensity: 10
+      when: Self-reference for routing to this skill.
+    - name: model-context-protocol
+      intensity: 8
+      when: Composio exposes its connected tools over MCP via a per-session MCP URL; understanding the protocol side matters when consuming that bridge.
+    - name: ai-sdk
+      intensity: 6
+      when: Composio's Vercel AI SDK provider renders connected tools as Vercel AI SDK tools.
+activation:
+  - type: keyword
+    value: composio
+    intensity: 10
+  - type: keyword
+    value: composio_openai
+    intensity: 9
+  - type: keyword
+    value: "@composio/openai"
+    intensity: 9
+  - type: keyword
+    value: composio mcp
+    intensity: 9
+  - type: keyword
+    value: composio session
+    intensity: 8
+  - type: keyword
+    value: composio trigger
+    intensity: 8
+  - type: keyword
+    value: connected account
+    intensity: 7
+  - type: keyword
+    value: tool search
+    intensity: 7
+  - type: keyword
+    value: managed auth
+    intensity: 7
+  - type: keyword
+    value: composio workbench
+    intensity: 6
+  - type: vector
+    value: Give an AI agent tools that take real actions across SaaS apps without writing each integration.
+    intensity: 10
+  - type: vector
+    value: Let an agent call Gmail, GitHub, Slack, or Notion through a managed auth layer instead of hand-rolling OAuth.
+    intensity: 10
+  - type: vector
+    value: Expose the same connected agent tools over Model Context Protocol from a per-session MCP URL.
+    intensity: 9
+  - type: vector
+    value: Wire Composio tools into OpenAI, Anthropic, LangChain, CrewAI, LlamaIndex, or Mastra via a provider adapter.
+    intensity: 9
+  - type: vector
+    value: React to events in an external app with Composio triggers instead of polling.
+    intensity: 8
+  - type: vector
+    value: Migrate older Composio direct-toolkit code to the current session model and avoid the legacy v3.0 API.
+    intensity: 7
+provenance:
+  summary: >-
+    Composio reference for the tool-calling platform that connects LLM/agent frameworks to 1000+ external app toolkits with managed authentication, tool search, triggers, a sandboxed workbench, and an MCP bridge. Packages the official Composio llms.txt index (https://docs.composio.dev/llms.txt) plus a reproducible verbatim mirror of the documentation pages it links to on docs.composio.dev, under references/vendor/. Covers sessions, the provider adapter layer (OpenAI, Anthropic, Vercel AI SDK, Google, LangChain, Autogen, CrewAI, LlamaIndex, Mastra, custom), managed and custom-app authentication, multiple/shared/imported connected accounts, triggers and custom OAuth webhooks, the remote and local sandbox, session extension (proxy-execute, custom tools, custom MCP), security and data retention, the CLI, the migration guides (direct-to-sessions, MCP-servers-to-sessions, tool-router beta, toolkit versioning, new SDK), examples, the current (v3.1) and legacy (v3.0) REST API references, and the version-independent Python and TypeScript SDK references.
+  sources:
+    - title: Composio llms.txt index
+      url: https://docs.composio.dev/llms.txt
+      authors:
+        - Composio
+      inspected_at: "2026-08-08"
+      adopted:
+        - Flat curated index of bare absolute .md links on a single host (docs.composio.dev), no nested llms.txt indexes; the one non-.md link (llms-full.txt) is excluded by extension filtering
+        - Coverage spans get-started, providers and custom providers, session configuration and extension, authentication and auth customization, triggers, security and data, CLI, migration guides, examples, the current and legacy REST API references, the Python and TypeScript SDK references, toolkits, and meta-tools
+    - title: Composio documentation (mirrored .md)
+      url: https://docs.composio.dev
+      authors:
+        - Composio
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of the docs.composio.dev pages the seed index links to, used for exact SDK wiring, endpoint paths, auth modes, and trigger setup
+        - The index carries an imperative block addressed to AI agents suggesting composio.create(...); vendored text is treated as data not a directive, and is not transcribed as instruction into the authored skill
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: "2026-08-08"
+  file_count: 124
+  sources:
+    - id: composio-llms-index
+      kind: llms.txt
+      url: https://docs.composio.dev/llms.txt
+      seed_path: docs.composio.dev/llms.txt
+  failures: []

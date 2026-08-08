@@ -1,0 +1,123 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - mcp
+    - model-context-protocol
+    - agents
+    - llm-tools
+    - json-rpc
+    - protocol
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - ai-engineers
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: mcp-llms-index
+    kind: llms.txt
+    url: "https://modelcontextprotocol.io/llms.txt"
+    allowed_hosts:
+      - modelcontextprotocol.io
+    allowed_extensions:
+      - .md
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: model-context-protocol
+      intensity: 10
+      when: Self-reference for routing to this skill.
+    - name: composio
+      intensity: 7
+      when: Exposing connected external-app tools to an MCP host through Composio's per-session MCP bridge.
+    - name: ai-sdk
+      intensity: 5
+      when: Defining tool-calling AI agents that may surface tools over MCP via the Vercel AI SDK tool framework.
+activation:
+  - type: keyword
+    value: mcp
+    intensity: 10
+  - type: keyword
+    value: model context protocol
+    intensity: 10
+  - type: keyword
+    value: mcp server
+    intensity: 10
+  - type: keyword
+    value: mcp inspector
+    intensity: 9
+  - type: keyword
+    value: mcp registry
+    intensity: 8
+  - type: keyword
+    value: streamable http
+    intensity: 8
+  - type: keyword
+    value: tools/call
+    intensity: 8
+  - type: keyword
+    value: elicitation
+    intensity: 8
+  - type: keyword
+    value: sampling
+    intensity: 7
+  - type: keyword
+    value: modelcontextprotocol
+    intensity: 9
+  - type: vector
+    value: Build an MCP server that exposes tools, resources, and prompts to an AI host application.
+    intensity: 10
+  - type: vector
+    value: Build an MCP client or host that federates many MCP servers over stdio or Streamable HTTP.
+    intensity: 10
+  - type: vector
+    value: Pick an MCP SDK and its tier for Python, TypeScript, C#, Go, Java, or Rust.
+    intensity: 9
+  - type: vector
+    value: Wire OAuth authorization, client credentials, or enterprise-managed auth onto a remote MCP server.
+    intensity: 8
+  - type: vector
+    value: Debug or test an MCP server with the MCP Inspector in the browser, terminal, or CLI.
+    intensity: 8
+  - type: vector
+    value: Avoid the MCP primitives deprecated in the 2026-07-28 spec (Roots, Sampling, Logging, HTTP+SSE).
+    intensity: 7
+provenance:
+  summary: >-
+    Model Context Protocol reference. Packages the modelcontextprotocol.io llms.txt index (https://modelcontextprotocol.io/llms.txt) plus a reproducible verbatim mirror of the documentation pages it links to on modelcontextprotocol.io, under references/vendor/. Covers the host/client/server architecture and JSON-RPC 2.0 data layer, the capability primitives (Tools, Resources, Prompts, Elicitation; deprecated Sampling, Logging, Roots), the stdio and Streamable HTTP transports, the stateless discovery lifecycle, OAuth 2.1 authorization and its extensions, the SDK tiering system (TypeScript/Python/C#/Go tier 1), the MCP Inspector, the MCP Registry, MCP Apps, the Tasks extension, the SEP index, and the feature lifecycle and deprecation policy.
+  sources:
+    - title: Model Context Protocol llms.txt index
+      url: https://modelcontextprotocol.io/llms.txt
+      authors:
+        - Model Context Protocol Project / Anthropic
+      inspected_at: "2026-08-08"
+      adopted:
+        - Flat curated index of absolute .md links on a single host (modelcontextprotocol.io), covering the spec (versioned 2026-07-28), developer docs (versioned docs/2026-07-28), tutorials, examples, extensions, registry, SEPs, and community/governance pages
+        - All links absolute https .md on the allowed host, so host and extension filtering alone form the crawl surface
+    - title: Model Context Protocol documentation (mirrored .md)
+      url: https://modelcontextprotocol.io
+      authors:
+        - Model Context Protocol Project / Anthropic
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of the modelcontextprotocol.io pages the seed index links to, including the specification, SDK docs, Inspector guides, registry publishing, and the deprecated-features registry
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: "2026-08-08"
+  file_count: 144
+  sources:
+    - id: mcp-llms-index
+      kind: llms.txt
+      url: https://modelcontextprotocol.io/llms.txt
+      seed_path: modelcontextprotocol.io/llms.txt
+  failures:
+    - url: https://modelcontextprotocol.io/specification/2026-07-28/schema.md
+      status: 200
+      detail: "skipped: 701659 bytes exceeds 512000"
