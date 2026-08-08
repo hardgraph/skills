@@ -1,0 +1,119 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - knip
+    - dead-code
+    - unused-dependencies
+    - tooling
+    - typescript
+    - javascript
+    - monorepo
+visibility:
+  audiences:
+    - frontend-devs
+    - backend-devs
+    - tooling-engineers
+lifecycle:
+  status: draft
+  created: '2026-08-08'
+  updated: '2026-08-08'
+# Knip finds and fixes unused dependencies, exports, and files in JS/TS projects.
+# Its canonical documentation lives in the repository at packages/docs (an
+# Astro/Starlight site, source MDX/MD), also published to knip.dev. There is no
+# public llms.txt and the site does not serve .md, so this is a repos crawl.
+# Reproducibility note: the knip repository publishes releases without a stable
+# version git tag for the docs/knip package (only @knip/vscode-knip and 0.0.0-*
+# prerelease tags exist). The crawl is therefore pinned to the default branch
+# `main`, where the documentation source is continuously updated. This is a
+# documented deviation from the "pin a tag" guidance.
+crawl:
+  - id: knip-repo
+    kind: repos
+    url: 'https://github.com/webpro-nl/knip'
+    ref: 'main'
+    include:
+      - 'packages/knip/README.md'
+      - 'packages/docs/src/content/docs/**/*.md'
+      - 'packages/docs/src/content/docs/**/*.mdx'
+    exclude:
+      - '**/node_modules/**'
+      - 'packages/docs/src/content/docs/blog/**'
+      - '**/package.json'
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: knip
+      intensity: 10
+      when: Self-reference for routing to this skill.
+    - name: ast-grep
+      intensity: 6
+      when: Structural code search/transformation to act on the dead code or patterns knip reports.
+activation:
+  - type: keyword
+    value: knip
+    intensity: 10
+  - type: keyword
+    value: unused dependencies
+    intensity: 9
+  - type: keyword
+    value: unused exports
+    intensity: 8
+  - type: keyword
+    value: dead code
+    intensity: 8
+  - type: keyword
+    value: unused files
+    intensity: 7
+  - type: keyword
+    value: knip.json
+    intensity: 7
+  - type: keyword
+    value: remove unused npm packages
+    intensity: 7
+  - type: keyword
+    value: tree shaking audit
+    intensity: 6
+  - type: vector
+    value: Find and remove unused dependencies, exports, and files in a JavaScript or TypeScript project.
+    intensity: 10
+  - type: vector
+    value: Audit a codebase for dead code and unused npm packages before a release or in CI.
+    intensity: 9
+  - type: vector
+    value: Configure knip entry files, plugins, and ignore lists for a framework or monorepo.
+    intensity: 8
+  - type: vector
+    value: Auto-fix unused files and exports reported by knip and review the diff.
+    intensity: 7
+provenance:
+  summary: >-
+    Reference for Knip, a tool that finds and fixes unused dependencies, exports, and files in JavaScript and TypeScript projects. Covers the entry/plugin graph model, knip.json configuration, production mode, monorepos and workspaces, running in CI, reporters, auto-fix, namespace imports, and troubleshooting. Packages a reproducible mirror of the knip repository's documentation corpus under references/vendor/.
+  sources:
+    - title: knip repository and documentation
+      url: 'https://github.com/webpro-nl/knip'
+      authors:
+        - Lars den Bakker (webpro)
+      inspected_at: '2026-08-08'
+      adopted:
+        - Documentation under packages/docs/src/content/docs/ (overview, reference, guides, features, explanations)
+    - title: Knip website
+      url: 'https://knip.dev'
+      inspected_at: '2026-08-08'
+      adopted:
+        - Confirms the documentation source in packages/docs is published verbatim to knip.dev
+  notes: >-
+    No public llms.txt is published and knip.dev does not serve .md, so the repository documentation source is the mirrorable source of truth. Pinned to the default branch `main`: the knip repository publishes no stable version git tag for the docs/knip package (only @knip/vscode-knip and 0.0.0-* prerelease tags exist), so a branch pin is the only reproducible option and the documentation source is kept current on main. Status is `draft` until the corpus is crawled and the authored guidance reviewed against it.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 51
+  sources:
+    - id: knip-repo
+      kind: repos
+      url: https://github.com/webpro-nl/knip
+      seed_path: github.com/webpro-nl/knip
+  failures: []
