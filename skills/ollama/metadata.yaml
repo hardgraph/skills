@@ -1,0 +1,109 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - llm
+    - local-inference
+    - openai-compatible
+    - cli
+    - rest-api
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - ai-engineers
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: ollama-docs-llms-index
+    kind: llms.txt
+    url: "https://ollama.com/llms.txt"
+    allowed_hosts:
+      - docs.ollama.com
+    append_extension: ".md"
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: ollama
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: ollama
+    intensity: 10
+  - type: keyword
+    value: ollama api
+    intensity: 10
+  - type: keyword
+    value: ollama cli
+    intensity: 9
+  - type: keyword
+    value: Modelfile
+    intensity: 9
+  - type: keyword
+    value: OLLAMA_HOST
+    intensity: 8
+  - type: keyword
+    value: openai compatible
+    intensity: 8
+  - type: keyword
+    value: ollama cloud
+    intensity: 8
+  - type: keyword
+    value: localhost:11434
+    intensity: 9
+  - type: keyword
+    value: /api/generate
+    intensity: 8
+  - type: keyword
+    value: run llm locally
+    intensity: 7
+  - type: vector
+    value: Run an open large language model locally with a CLI and a REST API.
+    intensity: 10
+  - type: vector
+    value: Use Ollama as a drop-in OpenAI-compatible API by changing the base URL.
+    intensity: 10
+  - type: vector
+    value: Build a custom Ollama model from a base model with a Modelfile.
+    intensity: 9
+  - type: vector
+    value: Choose between running a model on local hardware and Ollama Cloud.
+    intensity: 8
+  - type: vector
+    value: Point an Ollama client or library at a non-default host with OLLAMA_HOST.
+    intensity: 7
+provenance:
+  summary: Ollama reference. Packages the official Ollama llms.txt index (https://ollama.com/llms.txt) plus a reproducible verbatim mirror of the documentation pages it links to on docs.ollama.com, under references/vendor/. Covers the CLI, the local REST API (/api/generate, /api/chat, embeddings), the OpenAI-compatible /v1 surface, Modelfiles, the local-vs-cloud routing model, and OLLAMA_HOST.
+  sources:
+    - title: Ollama llms.txt index
+      url: https://ollama.com/llms.txt
+      authors:
+        - Ollama
+      inspected_at: "2026-08-08"
+      adopted:
+        - Curated link index spanning quickstart, API reference, OpenAI compatibility, and integrations
+        - Routing model where the same API is served locally (localhost:11434) and on Ollama Cloud (ollama.com)
+    - title: Ollama documentation (mirrored .md)
+      url: https://docs.ollama.com
+      authors:
+        - Ollama
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of the docs.ollama.com pages the seed index links to, served as .md via append_extension
+        - CLI usage, REST API endpoints, OpenAI compatibility, and integration guidance
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 5
+  sources:
+    - id: ollama-docs-llms-index
+      kind: llms.txt
+      url: https://ollama.com/llms.txt
+      seed_path: ollama.com/llms.txt
+  failures: []

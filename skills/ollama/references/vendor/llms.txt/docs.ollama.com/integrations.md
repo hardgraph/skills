@@ -1,0 +1,45 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.ollama.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Overview
+
+Use Ollama from coding agents, personal assistants, and editors.
+
+Run `ollama launch` to see the latest integrations you can run from the terminal.
+
+## Code in the terminal
+
+<CardGroup cols={2}>
+  <Card title="Claude Code" icon="https://mintcdn.com/ollama-9269c548/VdS6E00liu8o_Gkj/images/launch-icons/claude-code.svg?fit=max&auto=format&n=VdS6E00liu8o_Gkj&q=85&s=edd8f01fa1844a0eca0a9e00be74a8a3" href="/integrations/claude-code" width="24" height="24" data-path="images/launch-icons/claude-code.svg">
+    Terminal coding agent with tools, vision, web search, and long context.
+  </Card>
+
+  <Card title="OpenCode" icon="https://mintcdn.com/ollama-9269c548/VdS6E00liu8o_Gkj/images/launch-icons/opencode.svg?fit=max&auto=format&n=VdS6E00liu8o_Gkj&q=85&s=ffa7d783e8ddf476a376ebbedaa064ae" href="/integrations/opencode" width="512" height="512" data-path="images/launch-icons/opencode.svg">
+    Open-source coding agent that edits, runs, and iterates on code.
+  </Card>
+</CardGroup>
+
+## Connect an assistant
+
+Assistants with memory, skills, and messaging app access.
+
+<CardGroup cols={2}>
+  <Card title="OpenClaw" icon="https://mintcdn.com/ollama-9269c548/VdS6E00liu8o_Gkj/images/launch-icons/openclaw.svg?fit=max&auto=format&n=VdS6E00liu8o_Gkj&q=85&s=41b25b9a809d087e9e55b1b7bdb76cae" href="/integrations/openclaw" width="500" height="500" data-path="images/launch-icons/openclaw.svg">
+    Personal assistant for messaging apps and everyday tasks.
+  </Card>
+
+  <Card title="Hermes Agent" icon="https://mintcdn.com/ollama-9269c548/VdS6E00liu8o_Gkj/images/launch-icons/hermes-agent.svg?fit=max&auto=format&n=VdS6E00liu8o_Gkj&q=85&s=23dcf989a34d894a97bdb847c3831057" href="/integrations/hermes" width="1000" height="1000" data-path="images/launch-icons/hermes-agent.svg">
+    Open-source agent with self-improving skills, memory, and messaging.
+  </Card>
+</CardGroup>
+
+## Work in your editor
+
+Use Ollama models inside your editor.
+
+<CardGroup cols={2}>
+  <Card title="VS Code" icon="https://mintcdn.com/ollama-9269c548/VdS6E00liu8o_Gkj/images/launch-icons/vscode.svg?fit=max&auto=format&n=VdS6E00liu8o_Gkj&q=85&s=a2ba239e0b0f44900813a438537a1c98" href="/integrations/vscode" width="160" height="160" data-path="images/launch-icons/vscode.svg">
+    Use Ollama models in VS Code Chat.
+  </Card>
+</CardGroup>
