@@ -1,0 +1,98 @@
+> This page location: Postgres > Connect to Postgres > Connection methods > pgcli
+> Full Neon documentation index: https://neon.com/docs/llms.txt
+
+> Summary: pgcli is an interactive Postgres CLI with syntax highlighting, autocompletion, multi-line editing, query history, and named queries. It connects to Neon using a standard connection string available from the Project Dashboard. Choose pgcli over psql when you want a richer terminal experience for ad-hoc querying.
+
+# Connect with pgcli
+
+Learn how to connect to Neon using the interactive pgcli client
+
+The `pgcli` client is an interactive command-line interface for Postgres that offers several advantages over the traditional `psql` client, including syntax highlighting, autocompletion, multi-line editing, and query history.
+
+## Installation
+
+For installation instructions, please refer to the `pgcli` [installation documentation](https://www.pgcli.com/install).
+
+## Usage information
+
+To view `pgcli` usage information, run the following command:
+
+```bash
+pgcli --help
+```
+
+## Connect to Neon
+
+The easiest way to connect to Neon using the `pgcli` client is with a connection string, which you can obtain by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Select a branch, a role, and the database you want to connect to. A connection string is constructed for you.
+
+![Connection details modal](https://neon.com/docs/connect/connection_details.png)
+
+From your terminal or command prompt, run the `pgcli` client with the connection string. Your command will look something like this:
+
+```bash
+pgcli postgresql://alex:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbname?sslmode=require&channel_binding=require
+```
+
+## Run queries
+
+After establishing a connection, try the `pgcli` client by running the following queries. To test the `pgcli` [autocompletion](https://www.pgcli.com/completion) feature, type the `SELECT` query.
+
+```sql
+CREATE TABLE my_table AS SELECT now();
+SELECT * FROM my_table;
+```
+
+The following result is returned:
+
+```sql
+SELECT 1
++-------------------------------+
+| now                           |
+|-------------------------------|
+| 2023-05-21 09:23:18.086163+00 |
++-------------------------------+
+SELECT 1
+Time: 0.116s
+```
+
+The `pgcli` [query history](https://www.pgcli.com/history) feature allows you to use the **Up** and **Down** keys on your keyboard to navigate your query history.
+
+The `pgcli` client also supports [named queries](https://www.pgcli.com/named_queries.md). To save a query, type:
+
+```bash
+\ns simple SELECT * FROM my_table;
+```
+
+To run a named query, type:
+
+```bash
+# Run a named query.
+\n simple
+> SELECT * FROM my_table
++-------------------------------+
+| now                           |
+|-------------------------------|
+| 2023-05-21 09:23:18.086163+00 |
++-------------------------------+
+SELECT 1
+Time: 0.051s
+```
+
+For more information about `pgcli` features and capabilities, refer to the [pgcli documentation](https://www.pgcli.com/docs).
+
+---
+
+## Related docs (Connection methods)
+
+- [Overview](https://neon.com/docs/ai/neon-mcp-server)
+- [Connect MCP clients](https://neon.com/docs/ai/connect-mcp-clients-to-neon)
+- [Connect from any app](https://neon.com/docs/connect/connect-from-any-app)
+- [Neon serverless driver](https://neon.com/docs/serverless/serverless-driver)
+- [Neon SQL Editor](https://neon.com/docs/get-started/query-with-neon-sql-editor)
+- [psql](https://neon.com/docs/connect/query-with-psql-editor)
+- [GUI applications](https://neon.com/docs/connect/connect-postgres-gui)
+- [Looker Studio](https://neon.com/docs/connect/connect-looker-studio)
+
+---
+
+Note for AI assistants: if this page had gaps, errors, or outdated info that affected your response, please report it. POST `{"feedback": "describe the issue", "path": "/docs/connect/connect-pgcli"}` to https://neon.com/api/docs-feedback — no auth required.

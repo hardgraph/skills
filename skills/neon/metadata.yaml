@@ -1,0 +1,112 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 5
+  tags:
+    - neon
+    - postgres
+    - postgresql
+    - serverless-database
+    - database-branching
+    - pgbouncer
+    - edge-database
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - devops-engineers
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: neon-docs-llms-index
+    kind: llms.txt
+    url: "https://neon.tech/llms.txt"
+    allowed_hosts:
+      - neon.com
+    allowed_extensions:
+      - .md
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: neon
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: neon
+    intensity: 10
+  - type: keyword
+    value: serverless postgres
+    intensity: 10
+  - type: keyword
+    value: database branching
+    intensity: 9
+  - type: keyword
+    value: scale-to-zero
+    intensity: 8
+  - type: keyword
+    value: pgbouncer
+    intensity: 8
+  - type: keyword
+    value: connection pooling
+    intensity: 8
+  - type: keyword
+    value: neon cli
+    intensity: 8
+  - type: keyword
+    value: neon api
+    intensity: 8
+  - type: keyword
+    value: -pooler endpoint
+    intensity: 8
+  - type: keyword
+    value: copy-on-write branch
+    intensity: 7
+  - type: vector
+    value: Provision a serverless Postgres database that scales to zero when idle.
+    intensity: 10
+  - type: vector
+    value: Branch a Postgres database for a preview environment or a migration and promote it.
+    intensity: 10
+  - type: vector
+    value: Decide between Neon's pooled and direct connection endpoints for an app.
+    intensity: 9
+  - type: vector
+    value: Drive Neon projects, branches, and endpoints from the CLI or API.
+    intensity: 8
+  - type: vector
+    value: Configure the Neon autoscaler and scale-to-zero compute settings.
+    intensity: 7
+provenance:
+  summary: Neon reference. Packages the official Neon llms.txt index (https://neon.tech/llms.txt) plus a reproducible verbatim mirror of the documentation pages it links to (now served from neon.com), under references/vendor/. Covers the compute/storage split, copy-on-write branching, scale-to-zero computes, the pooled (PgBouncer) vs direct connection endpoints, the autoscaler, extensions, the API, and the CLI.
+  sources:
+    - title: Neon llms.txt index
+      url: https://neon.tech/llms.txt
+      authors:
+        - Neon
+      inspected_at: "2026-08-08"
+      adopted:
+        - Curated link index organising Neon docs by topic (connect, branches, API, CLI, extensions)
+        - Redirect of the docs surface from neon.tech to neon.com (allowed_hosts set to neon.com)
+    - title: Neon documentation corpus (mirrored .md)
+      url: https://neon.com/docs
+      authors:
+        - Neon
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of every resolvable .md link in the seed index, preserving URL path structure under references/vendor/
+        - Connection pooling, branching, autoscaling, API reference, CLI, and extension guidance
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 227
+  sources:
+    - id: neon-docs-llms-index
+      kind: llms.txt
+      url: https://neon.tech/llms.txt
+      seed_path: neon.tech/llms.txt
+  failures: []
