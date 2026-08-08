@@ -1,0 +1,116 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - eve
+    - ai-agents
+    - agent-framework
+    - durable-agents
+    - vercel
+    - typescript
+visibility:
+  audiences:
+    - backend-devs
+    - ai-engineers
+lifecycle:
+  status: draft
+  created: '2026-08-08'
+  updated: '2026-08-08'
+# Vercel eve is a filesystem-first framework for durable backend AI agents.
+# Its canonical documentation lives in the repository docs/ directory (MDX + MD),
+# which also ships inside the installed package at node_modules/eve/docs. There is
+# no public llms.txt, so this is a repos crawl. Pinned to release tag eve@0.31.3
+# for reproducibility. Include globs select the docs/ content plus the root
+# README; excludes drop source, e2e fixtures, research notes, and nested SKILL.md.
+crawl:
+  - id: eve-repo
+    kind: repos
+    url: 'https://github.com/vercel/eve'
+    ref: 'eve@0.31.3'
+    include:
+      - README.md
+      - 'docs/**/*.md'
+      - 'docs/**/*.mdx'
+    exclude:
+      - '**/node_modules/**'
+      - 'e2e/**'
+      - 'packages/**'
+      - 'research/**'
+      - 'skills/**'
+      - '**/SKILL.md'
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: eve
+      intensity: 10
+      when: Self-reference for routing to this skill.
+    - name: model-context-protocol
+      intensity: 6
+      when: Connecting eve agents to external capability servers or exposing them as MCP.
+    - name: ai-sdk
+      intensity: 5
+      when: Underlying model-provider SDK patterns that eve builds on.
+activation:
+  - type: keyword
+    value: eve
+    intensity: 10
+  - type: keyword
+    value: eve framework
+    intensity: 9
+  - type: keyword
+    value: durable AI agent
+    intensity: 8
+  - type: keyword
+    value: filesystem-first agent
+    intensity: 7
+  - type: keyword
+    value: defineAgent
+    intensity: 7
+  - type: keyword
+    value: defineTool
+    intensity: 7
+  - type: keyword
+    value: agent schedules
+    intensity: 6
+  - type: keyword
+    value: human in the loop agent
+    intensity: 6
+  - type: vector
+    value: Build a durable backend AI agent whose instructions, tools, skills, channels, and schedules are files in a project directory.
+    intensity: 10
+  - type: vector
+    value: Scaffold an AI agent framework project and wire up typed tools, on-demand skills, and message channels.
+    intensity: 9
+  - type: vector
+    value: Add recurring scheduled jobs and human-in-the-loop approval prompts to a long-running agent.
+    intensity: 8
+  - type: vector
+    value: Run and operate a filesystem-first agent that resumes durably across restarts.
+    intensity: 7
+provenance:
+  summary: >-
+    Reference for Vercel eve, a filesystem-first framework for durable backend AI agents. Covers the project layout (instructions, tools, skills, channels, subagents, schedules), the defineAgent/defineTool primitives, durable execution with human-in-the-loop and spend guards, sandboxes, extensions, and the bundled docs that ship with the package. Packages a reproducible mirror of the eve repository's documentation corpus under references/vendor/.
+  sources:
+    - title: eve repository and documentation
+      url: 'https://github.com/vercel/eve'
+      authors:
+        - Vercel
+      inspected_at: '2026-08-08'
+      adopted:
+        - Documentation under docs/ (installation, getting-started, project-structure, agent-config, instructions, skills, tools, subagents, schedules, sandbox, extensions, responsible-use)
+        - Tutorial series (first-agent, connect-a-warehouse, query-sample-data, run-analysis, guard-the-spend, how-it-runs, remember-definitions, team-playbooks, ship-it)
+  notes: >-
+    No public llms.txt is published; the docs site is a SPA, so the repository docs/ directory is the mirrorable source of truth (it also ships inside the installed package). Pinned to release tag eve@0.31.3. Status is `draft` until the corpus is crawled and the authored guidance reviewed against it.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 84
+  sources:
+    - id: eve-repo
+      kind: repos
+      url: https://github.com/vercel/eve
+      seed_path: github.com/vercel/eve
+  failures: []
