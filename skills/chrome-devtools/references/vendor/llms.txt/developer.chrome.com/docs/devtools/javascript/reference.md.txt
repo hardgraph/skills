@@ -1,0 +1,557 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Discover new debugging workflows with this comprehensive reference of Chrome
+DevTools debugging features.
+
+See [Get Started With Debugging JavaScript In Chrome DevTools](https://developer.chrome.com/docs/devtools/javascript) to learn the
+basics of debugging.
+
+## Pause code with breakpoints
+
+Set a breakpoint so that you can pause your code in the middle of its execution.
+To learn how to set breakpoints, see [Pause Your Code With Breakpoints](https://developer.chrome.com/docs/devtools/javascript/breakpoints).
+
+### Check values when paused
+
+While the execution is paused, the debugger evaluates all variables, constants,
+and objects within the current function up to a breakpoint. The debugger shows
+the current values inline next to the corresponding declarations.
+
+![Inline evaluations displayed next to declarations.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/inline-evaluations-displa-bd735a448b7.png)
+
+You can use the [**Console**](https://developer.chrome.com/docs/devtools/console) to query the evaluated
+variables, constants, and objects.
+
+![Using the Console to query the evaluated variables, constants and objects.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/using-console-query-ev-4dcca52cffe33.png)
+
+> [!IMPORTANT]
+> **Key Point:** While the execution is paused, you can [restart the current function](https://developer.chrome.com/docs/devtools/javascript/reference#restart-frame) and [live-edit](https://developer.chrome.com/docs/devtools/javascript/reference#live-edit) it.
+
+### Preview class and function properties on hover
+
+While the execution is paused, hover over a class or function name to preview
+its properties.
+
+![Preview class and function properties.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/preview-classfunction-pr-052cff15dfec1.png)
+
+## Step through code
+
+Once your code is paused, step through it, one expression at a time, investigating control flow and property values along the way.
+
+### Step over line of code
+
+When paused on a line of code containing a function that's not relevant to the
+problem you're debugging, click **Step over**
+step_over to execute the function
+without stepping into it.
+
+![Select Step over.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/selecting-step-3a92f1bacb54d.svg)
+
+For example, suppose you're debugging the following code:
+
+    function updateHeader() {
+      var day = new Date().getDay();
+      var name = getName(); // A
+      updateName(name); // D
+    }
+    function getName() {
+      var name = app.first + ' ' + app.last; // B
+      return name; // C
+    }
+
+You're paused on `A`. Once you've pressed
+step_over, DevTools executes all
+the code in the function that you're stepping over, which is `B` and `C`.
+DevTools then pauses on `D`.
+
+### Step into line of code
+
+When paused on a function call that is related to the problem you're debugging,
+click **Step into**
+![](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/step-into-1dabdb9e27682.png) to
+investigate that function.
+
+![Select 'Step into'.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/selecting-step-605ffed2173af.svg)
+
+For example, suppose you're debugging the following code:
+
+    function updateHeader() {
+      var day = new Date().getDay();
+      var name = getName(); // A
+      updateName(name);
+    }
+    function getName() {
+      var name = app.first + ' ' + app.last; // B
+      return name;
+    }
+
+You're paused on `A`. By pressing **Step into** , DevTools executes this line of
+code, then pauses on `B`.
+
+### Step out of line of code
+
+When paused inside of a function that is not related to the problem you're
+debugging, click step_out to
+execute the rest of the function's code.
+
+![Selecting 'Step out'.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/selecting-step-59192b9a5a411.svg)
+
+For example, suppose you're debugging the following code:
+
+    function updateHeader() {
+      var day = new Date().getDay();
+      var name = getName();
+      updateName(name); // C
+    }
+    function getName() {
+      var name = app.first + ' ' + app.last; // A
+      return name; // B
+    }
+
+You're paused on `A`. By clicking step_out,
+DevTools executes the rest of the code in `getName()`, which is just `B` in
+this example, and then pauses on `C`.
+
+### Run all code up to a certain line
+
+When debugging a long function, there may be a lot of code that is not related
+to the problem you're debugging.
+
+You *could* step through all the lines, but that can be tedious. You *could* set
+a line-of-code breakpoint on the line you're interested in and then press
+resume, but there's a
+faster way.
+
+Right-click the line of code that you're interested in, and select
+**Continue to here**. DevTools runs all of the code up to that point, and then
+pauses on that line.
+
+![Selecting 'Continue to here'.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/selecting-continue-here-8f051d7484145.png)
+
+### Resume script execution
+
+To continue your script's execution after a pause, click
+resume. DevTools
+executes the script up until the next breakpoint, if any.
+
+![Selecting 'Resume script execution'.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/selecting-resume-script-cfc4e570de91b.svg)
+
+#### Force script execution
+
+To ignore all breakpoints and force your script to resume execution, click and
+hold **Resume Script Execution**
+resume
+and then select **Force script execution**
+play_arrow.
+
+![Selecting 'Force script execution'.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/selecting-force-script-e-9147787fef419.png)
+
+### Change thread context
+
+When working with web workers or service workers, click a context listed in
+the **Threads** pane to switch to that context. The blue arrow icon represents
+which context is selected.
+![The Threads pane.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/the-threads-pane-9b843009c236a.svg) The **Threads** pane is outlined in blue.
+
+For example, suppose that you're paused on a breakpoint in both your main script
+and your service worker script. You want to view the local and global properties
+for the service worker context, but the Sources panel is showing the main script
+context. By clicking on the service worker entry in the Threads pane, you'd be
+able to switch to that context.
+
+### Step through comma-separated expressions
+
+> [!IMPORTANT]
+> **Key Point:** Starting from Chrome version 108, the **Debugger** can step through both semicolon-separated and comma-separated expressions.
+
+You can debug minified code by stepping through comma-separated expressions. For
+example, consider the following code:
+
+    function foo() {}
+
+    function bar() {
+      foo();
+      foo();
+      return 42;
+    }
+
+    bar();
+
+When minified, it contains a comma-separated `foo(),foo(),42` expression:
+
+    function foo(){}function bar(){return foo(),foo(),42}bar();
+
+The **Debugger** steps through such expressions just the same.
+
+![Stepping through a comma-separated expression.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/stepping-through-comma-s-ffae201d0f85e.png)
+
+Therefore, the stepping behavior is identical:
+
+- Between minified and authored code.
+- When using [source maps](https://developer.chrome.com/blog/sourcemaps) to debug the minified code in terms of the original code. In other words, when you see semicolons, you can always expect to step through them even if the source you're debugging is minified.
+
+## View and edit local, closure, and global properties
+
+While paused on a line of code, use the **Scope** pane to view and edit the
+values of properties and variables in the local, closure, and global scopes.
+
+- Double-click a property value to change it.
+- Non-enumerable properties are greyed out.
+
+![The Scope pane.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/the-scope-pane-6ad87e163ba17.svg) The **Scope** pane is outlined in blue.
+
+## View the current call stack
+
+While paused on a line of code, use the **Call Stack** pane to view the call stack that got you to this
+point.
+
+Select an entry to jump to the line of code where that function was called.
+The blue arrow icon represents which function DevTools is highlighting.
+![The Call Stack pane.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/the-call-stack-pane-c752cfdcab6dc.svg) The **Call Stack** pane is outlined in blue.
+
+> [!NOTE]
+> **Note:** When not paused on a line of code, the **Call Stack** pane is empty.
+
+### Restart a function (frame) in a call stack
+
+To observe the behavior of a function and re-run it without having to restart
+the entire debugging flow, you can restart the execution of a single function
+when this function is paused. In other words, you can restart the function's
+frame in the call stack.
+
+To restart a frame:
+
+1. [Pause function execution at a breakpoint](https://developer.chrome.com/docs/devtools/javascript/reference#breakpoints). The **Call Stack** pane records the order of function calls.
+2. In the **Call Stack** pane, right-click a function and select
+   **Restart frame** from the drop-down menu.
+   ![Selecting Restart frame from the drop-down menu.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/selecting-restart-frame-939a0d2863ec5.png)
+
+   > [!NOTE]
+   > **Note:** You can restart any function frame in the **Call Stack**, except for WebAssembly, async, and generator functions.
+
+To understand how **Restart frame** works, consider the following:
+
+    function foo(value) {
+      console.log(value);
+      bar(value);
+    }
+
+    function bar(value) {
+      value++;
+      console.log(value);
+      debugger;
+    }
+
+    foo(0);
+
+The `foo()` function takes `0` as an argument, logs it, and calls the `bar()`
+function. The `bar()` function, in turn, increments the argument.
+
+Try restarting the frames of both functions as follows:
+
+1. Copy the example code to a
+   [new snippet](https://developer.chrome.com/docs/devtools/javascript/snippets#createsources) and
+   [run it](https://developer.chrome.com/docs/devtools/javascript/snippets#runsources). The execution stops
+   at the `debugger` [line-of-code breakpoint](https://developer.chrome.com/docs/devtools/javascript/breakpoints#debugger).
+
+   > [!CAUTION]
+   > **Caution:** When the execution is paused, don't programmatically change the order of the call stack frames. This may cause unexpected errors.
+
+2. Notice that the debugger shows you the current value next to function
+   declaration: `value = 1`.
+   ![The current value next to function declaration.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/the-current-value-next-f-5a4c1232a8637.png)
+
+3. Restart the `bar()` frame.
+   ![Restarting the bar() frame.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/restarting-bar-frame-202596ef09d5f.png)
+
+4. Step through the value increment statement by pressing `F9`.
+   ![Incrementing current value.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/incrementing-current-valu-8a372276b4319.png)
+   Notice that the current value increases: `value = 2`.
+
+5. Optionally, in the **Scope** pane, double-click the value to edit it and set the desired value.
+   ![Editing the value in the Scopes pane.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/editing-value-the-scope-7cd179addd2aa.png)
+
+6. Try restarting the `bar()` frame and stepping through the increment statement
+   several more times. The value continues to increase.
+   ![Restarting the bar() frame again.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/restarting-bar-frame-a-3eebfc0867927.png)
+
+   > [!IMPORTANT]
+   > **Key Point:** The value is *not* reset to `0`, as frame restart doesn't reset the arguments. In other words, the restart doesn't restore the initial state at function call. Instead, it moves the execution pointer to the start of the function. Therefore, the current argument value persists in memory across restarts of the same function.
+
+7. Restart the `foo()` frame in the **Call Stack** .
+   ![Restarting the foo() frame.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/restarting-foo-frame-ab31f8079b722.png)
+   Notice that the value is `0` again.
+   ![](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/alttexthere-f0473f8211e25.png)
+
+   > [!IMPORTANT]
+   > **Key Point:** The value reset to `0`. In JavaScript, changes to arguments aren't visible (reflected) outside the function. Nested functions receive values, not their locations, in memory.
+
+8. Resume script execution (`F8`) to complete this tutorial.
+
+### Show ignore-listed frames
+
+By default, the **Call Stack** pane shows only the frames that are relevant to
+your code and omits any scripts added to
+settings
+[**Settings** \> **Ignore List**](https://developer.chrome.com/docs/devtools/settings/ignore-list).
+
+![Call stack.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/call-stack-aa90f670afdb6.png)
+
+To view the full call stack including third-party frames, enable
+**Show ignore-listed frames** under the **Call Stack** section.
+
+![Show ignore-listed frames.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/show-ignore-listed-frames-b51540c553e7f.png)
+
+Try it in this [demo](https://ng-devtools.netlify.app/):
+
+1. In the **Sources** panel, open the `src` \> `app` \> `app.component.ts` file.
+2. Set a breakpoint at the `increment()` function.
+3. In the **Call Stack** section, check or clear the **Show ignore-listed frames** checkbox and observe the relevant or full list of frames in the call stack.
+
+### View async frames
+
+If supported by the framework you are using, DevTools can trace async operations
+by linking both parts of the async code together.
+
+In this case, the **Call Stack** shows the entire call history including async call frames.
+
+![Async call frames.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/async-call-frames-a17711ba4dbc9.png)
+
+Key Point DevTools implements this "Async Stack Tagging" feature based on the
+`console.createTask()` API method. It's up to frameworks to implement the API.
+For example, [Angular supports this feature](https://developer.chrome.com/blog/devtools-better-angular-debugging#the_async_stack_tagging_api_in_angular).
+
+### Copy stack trace
+
+Right-click anywhere in the **Call Stack** pane and select **Copy stack trace**
+to copy the current call stack to the clipboard.
+
+![Selecting 'Copy Stack Trace'.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/selecting-copy-stack-tra-2b0cd6372210b.png)
+
+Here is an example of the output:
+
+    getNumber1 (get-started.js:35)
+    inputsAreEmpty (get-started.js:22)
+    onClick (get-started.js:15)
+
+## Navigate the file tree
+
+Use the [**Page** pane](https://developer.chrome.com/docs/devtools/javascript/sources#files) to navigate
+the file tree.
+
+### Group authored and deployed files in the file tree
+
+> [!WARNING]
+> **Experimental:** This preview feature experimental, available from Chrome version 104.
+
+When developing web applications using frameworks (for example,
+[React](https://reactjs.org/) or [Angular](https://angular.io/)), it can be
+difficult to navigate sources due to the minified files generated by the build
+tools (for example, [webpack](https://webpack.js.org/) or
+[Vite](https://vitejs.dev/)).
+
+To help you navigate sources, the **Sources** \> **Page** pane can group the
+files into two categories:
+
+- code **Authored**. Similar to the source files you view in your IDE. DevTools generates these files based on source maps provided by your build tools.
+- ![](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/deployed-icon-7c8cddbcfe43c.svg) **Deployed**. The actual files that the browser reads. Usually these files are minified.
+
+To enable grouping, click more_vert \>
+**Group files by Authored/Deployed** ![](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/experimental-91b98e72b0b83.svg) option,
+under the menu at the top of the file tree.
+
+![Grouping files by Authored / Deployed.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/grouping-files-authored-ff4eef7c01846.png)
+
+### Hide ignore-listed sources from the file tree
+
+> [!WARNING]
+> **Experimental:** This is a preview feature available from Chrome version 106.
+
+To help you focus only on the code you create, the **Sources** \> **Page** pane
+grays out all scripts or directories added to
+settings
+**Settings** \> [**Ignore List**](https://developer.chrome.com/docs/devtools/settings/ignore-list) by default.
+
+To hide such scripts altogether, select **Sources** \> **Page** \> more_vert \> **Hide ignore-listed sources** ![Experimental.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/experimental-2bb1edea3e377.svg).
+
+![Before and after hiding ignore-listed sources.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/before-after-hiding-igno-3bf3895de9ba1.png)
+
+## Ignore a script or pattern of scripts
+
+Ignore a script to skip it while debugging. When ignored, a script is
+obscured in the **Call Stack** pane, and you never step into the script's
+functions when you step through your code.
+
+For example, suppose you're stepping through this code:
+
+    function animate() {
+      prepare();
+      lib.doFancyStuff(); // A
+      render();
+    }
+
+`A` is a third-party library that you trust. If you're confident that the
+problem you're debugging is not related to the third-party library, then it
+makes sense to ignore the script.
+
+### Ignore a script or a directory from the file tree
+
+To ignore an individual script or an entire directory:
+
+1. In **Sources** \> **Page**, right-click a directory or a script file.
+2. Select **Add directory/script to ignore list**.
+
+![Ignore options for a directory or script file.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/ignore-options-a-directo-6b7d2d527739f.png)
+
+If you didn't [hide ignore-listed sources](https://developer.chrome.com/docs/devtools/javascript/reference#hide-ignore-listed), you can select
+such a source in the file tree and, on the
+warning warning banner, click
+**Remove from ignored list** or **Configure**.
+
+![A selected ignored file shows Remove and Configure buttons.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/a-selected-ignored-file-s-59f3eaa745fc4.png)
+
+Otherwise, you can remove hidden and ignored directories and scripts from the
+list in settings
+[**Settings** \> **Ignore List**](https://developer.chrome.com/docs/devtools/settings/ignore-list).
+
+### Ignore a script from the Editor pane
+
+To ignore a script from the **Editor** pane:
+
+1. Open the file.
+2. Right-click anywhere.
+3. Select **Add script to ignore list**.
+
+![Ignoring a script from the Editor pane.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/ignoring-script-the-edi-cd197ba6b6a58.png)
+
+You can remove a script from the list of ignored from
+settings
+[**Settings** \> **Ignore List**](https://developer.chrome.com/docs/devtools/settings/ignore-list).
+
+### Ignore a script from the Call Stack pane
+
+To ignore a script from the **Call Stack** pane:
+
+1. Right-click on a function from the script.
+2. Select **Add script to ignore list**.
+
+![Ignoring a script from the Call Stack pane.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/ignoring-script-the-cal-1a1dc12c85d84.png)
+
+You can remove a script from the list of ignored from
+settings
+[**Settings** \> **Ignore List**](https://developer.chrome.com/docs/devtools/settings/ignore-list).
+
+### Ignore a script from Settings
+
+See settings
+[**Settings** \> **Ignore List**](https://developer.chrome.com/docs/devtools/settings/ignore-list).
+
+## Run snippets of debug code from any page
+
+If you find yourself running the same debug code in the Console over and over,
+consider Snippets. Snippets are executable scripts that you author, store, and
+run within DevTools.
+
+See [Run Snippets of Code From Any Page](https://developer.chrome.com/docs/devtools/javascript/snippets) to learn more.
+
+## Watch the values of custom JavaScript expressions
+
+Use the Watch pane to watch the values of custom expressions. You can watch any valid JavaScript
+expression.
+
+![The Watch pane.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/the-watch-pane-0349f09a23fe8.svg)
+
+- Click **Add Expression** add to create a new watch expression.
+- Click **Refresh** refresh to refresh the values of all existing expressions. Values automatically refresh while stepping through code.
+- Hover over an expression and click **Delete Expression** ![Delete expression](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/delete-expression-14a2b9e1992cd.png) to delete it.
+
+## Inspect and edit scripts
+
+When you open a script in the [**Page**](https://developer.chrome.com/docs/devtools/javascript/reference#file-tree) pane, DevTools shows you its contents in the **Editor** pane. In the **Editor** pane, you can browse and edit your code.
+
+Additionally, you can [override](https://developer.chrome.com/docs/devtools/overrides) the contents locally or create a [workspace](https://developer.chrome.com/docs/devtools/workspaces) and save the changes you make in DevTools directly to your local sources.
+
+### Make a minified file readable
+
+By default, the **Sources** panel pretty-prints minified files. When pretty-printed, the **Editor** may show a single long code line in multiple lines, with `-` to indicate that it's the line continuation.
+
+![A pretty-printed long code line shown in multiple lines, with '-' to indicate line continuation.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/a-pretty-printed-long-cod-0628204ae28fe.png)
+
+To see the minified filed as it was loaded, click
+data_object in the bottom left corner of the **Editor**.
+
+### Fold code blocks
+
+To fold a code block, hover over the line number in the left column and click
+arrow_drop_down **Collapse**.
+
+To unfold the code block, click `{...}` next to it.
+
+To configure this behavior, see settings
+[**Settings** \> **Preferences** \> **Sources**](https://developer.chrome.com/docs/devtools/settings/preferences#sources).
+
+### Edit a script
+
+When fixing a bug, you often want to test out some changes to your JavaScript.
+You don't need to make the changes in an external browser and then reload the
+page. You can edit your script in DevTools.
+
+To edit a script:
+
+1. Open the file in the **Editor** pane of the **Sources** panel.
+2. Make your changes in the **Editor** pane.
+3. Press <kbd>Command</kbd>+<kbd>S</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>S</kbd>
+   (Windows, Linux) to save. DevTools patches the entire JavaScript file into
+   Chrome's JavaScript engine.
+
+   ![The Editor pane.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/the-editor-pane-348a896941a9d.svg) The **Editor** pane is outlined in blue.
+
+### Edit a paused function live
+
+> [!NOTE]
+> **Note:** This feature is available from Chrome version 105.
+
+While the execution is paused, you can edit the current function and apply
+changes live with the following limitations:
+
+- You can edit only the top-most function in the **Call Stack**.
+- There must be no recursive calls to the same function further down the stack.
+
+> [!IMPORTANT]
+> **Key Point:** When you apply changes, the debugger [restarts the function](https://developer.chrome.com/docs/devtools/javascript/reference#restart-frame) automatically. So, the limitations of a function restart also apply. You can't restart WebAssembly, async, and generator functions.
+
+To live-edit a function:
+
+1. [Pause the execution with a breakpoint](https://developer.chrome.com/docs/devtools/javascript/reference#breakpoints).
+2. Edit the paused function.
+3. Press <kbd>Command</kbd> / <kbd>Control</kbd> + <kbd>S</kbd> to apply changes. The debugger [restarts the function](https://developer.chrome.com/docs/devtools/javascript/reference#restart-frame) automatically.
+4. Continue the execution.
+
+Watch the video to learn this workflow.
+
+In this example, the `addend1` and `addend2` variables initially have an
+incorrect `string` type. So, instead of adding numbers, the strings are
+concatenated. To fix it, the `parseInt()` functions are added during live
+editing.
+
+### Search and replace text in a script
+
+To search for text in a script:
+
+1. Open the file in the **Editor** pane of the **Sources** panel.
+2. To open a built-in search bar, press <kbd>Command</kbd>+<kbd>F</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>F</kbd> (Windows, Linux).
+3. In the bar, enter your query. ![Search.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/search-70d8f34197263.png) Optionally, you can:
+   - Click ![](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/match-case-64ef058b2aec3.png) **Match Case** to make your query case-sensitive.
+   - Click ![](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/regex-button-315e081885e16.png) **Use Regular Expression** to search using a RegEx expression.
+4. Press <kbd>Enter</kbd>. To jump to previous or next search result, press the up or down button.
+
+To replace the text you found:
+
+1. On the search bar, click ![](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/replace-1946eb4d0491.png) **Replace** . ![Replace.](https://developer.chrome.com/static/docs/devtools/javascript/reference/image/replace-842e94d817041.png)
+2. Type the text to replace with, then click **Replace** or **Replace all**.
+
+## Disable JavaScript
+
+See [Disable JavaScript With Chrome DevTools](https://developer.chrome.com/docs/devtools/javascript/disable).

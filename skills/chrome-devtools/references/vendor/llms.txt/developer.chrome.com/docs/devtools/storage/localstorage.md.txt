@@ -1,0 +1,57 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+This guide shows you how to use [Chrome DevTools](https://developer.chrome.com/docs/devtools) to view, edit, and delete [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage)
+key-value pairs. Local storage saves data across browser sessions.
+
+[Video](https://www.youtube.com/watch?v=5o8krh_Qduk)
+
+## View `localStorage` keys and values
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) on the website you want to inspect.
+
+2. Navigate to **Application** \> **Storage** and expand **Local Storage**. Click a domain to view its key-value pairs.
+
+   ![The key-value pairs of youtube.com.](https://developer.chrome.com/static/docs/devtools/storage/localstorage/image/the-key-value-pairs-yout-49ffa01e91c7d.png)
+3. To preview the value below the table, select a pair.
+
+   ![Viewing the value of the selected key.](https://developer.chrome.com/static/docs/devtools/storage/localstorage/image/viewing-value-the-selec-54e9bd2e4128c.png)
+
+To manually refresh the key-value pairs, click ![Refresh.](https://developer.chrome.com/static/docs/devtools/storage/localstorage/image/refresh-icon.svg) **Refresh** in the action bar at the top.
+
+## Filter key-value pairs
+
+To quickly find a key-value pair you need, type into the filter box at the top a string that either the key or value contains.
+
+![Filtering out key-value pairs that don't contain the string 'has'.](https://developer.chrome.com/static/docs/devtools/storage/localstorage/image/filtering-key-value-pair-83c0014422c55.png)
+
+## Create a new `localStorage` key-value pair
+
+1. [View the domain's `localStorage` key-value pairs](https://developer.chrome.com/docs/devtools/storage/localstorage#view). For example, on this [demo page](https://jec.fish/demo/storage).
+2. Double-click the empty part of the table. DevTools creates a new row and focuses your cursor in the **Key** column.
+3. Enter a new key-value pair.
+
+## Edit `localStorage` keys or values
+
+1. [View a domain's `localStorage` key-value pairs](https://developer.chrome.com/docs/devtools/storage/localstorage#view). For example, on this [demo page](https://jec.fish/demo/storage).
+2. Double-click a cell in the **Key** or **Value** column to edit that key or value.
+3. Refresh the page to apply.
+
+## Delete `localStorage` key-value pairs
+
+1. [View a domain's `localStorage` key-value pairs](https://developer.chrome.com/docs/devtools/storage/localstorage#view). For example, on this [demo page](https://jec.fish/demo/storage).
+2. Click a key-value pair to select it.
+3. Click ![Delete.](https://developer.chrome.com/static/docs/devtools/storage/localstorage/image/delete-75012ab892bc8.svg) **Delete** in the action bar at the top to remove the selected pair. ![Deleting the selected key-value pair.](https://developer.chrome.com/static/docs/devtools/storage/localstorage/image/deleting-selected-key-va-d9ec359b9713e.png)
+4. Alternatively, click ![Clear all.](https://developer.chrome.com/static/docs/devtools/storage/localstorage/image/clear-51577efd777e5.svg) **Clear all** to remove all pairs.
+
+## Interact with `localStorage` from the Console
+
+Since you can run JavaScript in the **Console** , and since the **Console** has access to the page's
+JavaScript contexts, it's possible to interact with `localStorage` from the **Console**.
+
+1. In DevTools, open the **Console**.
+2. If you want to access the `localStorage` key-value pairs of a domain other than the page you're on, [select the JavaScript context](https://developer.chrome.com/docs/devtools/console/reference#context) you need from the context drop-down menu in the action bar at the top.
+3. Run your `localStorage` expressions in the **Console**, the same as you would in your JavaScript.
+
+![Interacting with `localStorage` from the Console](https://developer.chrome.com/static/docs/devtools/storage/localstorage/image/interacting-localstorag-aef036db61af3.png)

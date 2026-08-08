@@ -1,0 +1,102 @@
+![Yang Guo](https://web.dev/images/authors/yangguo.jpg) Yang Guo [X](https://twitter.com/hashseed) [GitHub](https://github.com/hashseed) [LinkedIn](https://www.linkedin.com/in/ouggnay) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem) ![Jecelyn Yeen](https://web.dev/images/authors/jecelynyeen.jpg) Jecelyn Yeen [X](https://twitter.com/jecfish) [GitHub](https://github.com/jecfish) [Bluesky](https://bsky.app/profile/jec.fish) [Homepage](https://jec.fish/)
+
+<br />
+
+Ask Gemini to provide insights right in the DevTools **Console**, so you can better understand errors and warnings.
+
+See also [How your data is used](https://developer.chrome.com/docs/devtools/console/understand-messages#data-use) and [Known issues](https://developer.chrome.com/docs/devtools/console/understand-messages#known-issues).
+
+## Requirements
+
+To use the **console insights** feature, make sure that you:
+
+<br />
+
+
+> [!TIP]
+> Your location () is supported.
+
+<br />
+
+- Are at least 18 years old and are in one of the supported locations.
+- Are using the latest version of Chrome.
+- Are signed into Chrome with your Google Account.
+- Have **English (US)** selected in **Settings** \> **Preferences** \> **Appearance** \> **Language** in DevTools.
+- Have enabled [**Settings** \> **AI Innovations**](https://developer.chrome.com/docs/devtools/settings/ai-innovations) in DevTools.
+
+## Turn on console insights
+
+If you haven't yet turned on the console insights, the first time you use the feature, it will prompt you to do so and provide a link to **Settings** \> [**AI innovations**](https://developer.chrome.com/docs/devtools/settings/ai-innovations). Expand the **Console Insights** section, read the considerations, and turn on the corresponding toggle.
+
+![The console insights toggle in settings.](https://developer.chrome.com/static/docs/devtools/console/understand-messages/image/turn-on-insights.png)
+
+If you can't turn on the toggle, make sure to sign in to Chrome with your Google Account.
+
+## Get explanations for console messages
+
+To get an explanation, do the following in Chrome:
+
+1. Visit this [demo page](https://bubble-jingle.web.app/).
+2. [Open DevTools](https://developer.chrome.com/docs/devtools/open) and inspect the page.
+3. [Open the **Console**](https://developer.chrome.com/docs/devtools/console/reference#open) to inspect console messages.
+4. On the demo page, click inside the search box. The drop-down menu fails to fetch and the **Console** shows an error.
+
+   ![An error in the Console when a drop-down menu fails to fetch.](https://developer.chrome.com/static/docs/devtools/console/understand-messages/image/error.png)
+5. Hover over the CORS error message. An ![Lightbulb spark in the console.](https://developer.chrome.com/static/docs/devtools/console/understand-messages/image/lightbulb-spark.svg) **Understand this error** button appears to the right of the error message.
+
+   ![The 'Understand this error' button.](https://developer.chrome.com/static/docs/devtools/console/understand-messages/image/explain-button.png)
+6. To get an explanation of the error, click ![Lightbulb spark.](https://developer.chrome.com/static/docs/devtools/console/understand-messages/image/lightbulb-spark.svg) **Understand this error**.
+
+   If you are launching console insights for the first time, it will prompt you to [turn on the feature in settings](https://developer.chrome.com/docs/devtools/console/understand-messages#turn-on-understand-messages).
+7. After a few seconds, an explanation will appear below the console error.
+
+   ![AI-generated explanation of the error.](https://developer.chrome.com/static/docs/devtools/console/understand-messages/image/explanation.png)
+
+To see a list of links to sources and related content that Gemini used to generate the answer, expand the **Sources and related content** section.
+
+![The expanded 'Sources and related content' section.](https://developer.chrome.com/static/docs/devtools/console/understand-messages/image/references.png)
+
+> [!NOTE]
+> **Note:** The **Sources and related content** section is shown to all non-enterprise users who don't reside in Europe.
+
+To see what data Gemini used to generate an explanation, expand the **Data used to understand this message** section.
+
+![The expanded 'Data used to understand this message' section.](https://developer.chrome.com/static/docs/devtools/console/understand-messages/image/used-data.png)
+
+If you don't think the explanation is satisfactory, you can click **Use search instead** to open a new tab with search results for the error.
+
+> [!NOTE]
+> **Note:** To report the generated content, click **Report legal issue** and follow instructions in a new tab.
+
+## How your data is used
+
+This notice and our [privacy notice](https://policies.google.com/privacy) describe how Chrome DevTools handles your data. Read them carefully.
+
+Chrome DevTools uses the console message, associated stack trace, related source code, and the associated network headers as input data. When you use **Understand this message**, Google collects this input data, generated output, related feature usage information, and your feedback. Google uses this data to provide, improve, and develop Google products and services and machine learning technologies, including Google's enterprise products such as Google Cloud.
+
+To help with quality and improve our products, human reviewers may read, annotate, and process the above-mentioned input data, generated output, related feature usage information, and your feedback. Don't include sensitive (for example, confidential) or personal information that can be used to identify you or others in your prompts or feedback. Your data will be stored in a way where Google cannot tell who provided it and can no longer fulfill any deletion requests and will be retained for up to 18 months. We may not collect data to improve our product if your Google Account is managed by an organization.
+
+As you try **Understand this message**, here are key things to know:
+
+- Chrome DevTools uses console message, associated stack trace, related source code, and the associated network headers to provide answers.
+- Chrome DevTools uses experimental technology, and may generate inaccurate or offensive information that doesn't represent Google's views. Voting on the responses will help make this feature better.
+- This feature is experimental and subject to future changes.
+- [Use generated code snippets with caution](https://support.google.com/legal/answer/13505487).
+
+To use the feature, you need to agree that your use of **Understand this message** is subject to the [Google Terms of Service](https://policies.google.com/terms).
+
+## Known issues
+
+Chrome DevTools uses Google's large language models to generate an explanation. Large language models, or LLMs, are a new and active area of research. The responses that LLMs generate are sometimes questionable or even outright wrong. It is important that you understand that the results may be inaccurate or misleading, so always double check!
+
+### Wrong explanation
+
+LLMs generate content that sounds likely and plausible. In most cases, this content contains truthful and useful insights that can help you understand an error or warning in the relevant context. Modern web development and debugging is a challenging craft with a high level of complexity that requires years of experience to become proficient in. Sometimes, the responses that LLMs produce sound convincing but are actually misleading or meaningless to a human web developer. We are doing our best to continuously improve the quality and correctness of generated insights. You can help us by submitting feedback when you encounter wrong explanations.
+
+### Prompt injection
+
+Many of LLM applications are susceptible to a form of abuse known as prompt injection. This feature is no different. It is possible to trick the LLM into accepting instructions that are not intended by the developers.
+
+See the following harmless example:
+
+![An example of a prompt injection.](https://developer.chrome.com/static/docs/devtools/console/understand-messages/image/prompt-injection.png)

@@ -1,0 +1,66 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+[Video](https://www.youtube.com/watch?v=mSMb-aH6sUw)
+
+This guide shows you how to use [Chrome DevTools](https://developer.chrome.com/docs/devtools) to inspect [Cache](https://developer.mozilla.org/docs/Web/API/Cache) data.
+
+If you're trying to inspect [HTTP cache](https://developer.mozilla.org/docs/Web/HTTP/Caching) data, this is not the guide you want. The **Size**
+column of the **Network Log** has the information you're looking for. See [Log network activity](https://developer.chrome.com/docs/devtools/network#load).
+
+## View cache data
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) \> **Application** \> **Storage**.
+
+2. To view available caches, expand ![Expand.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/expand-e8a9c61c99c21.svg) **Cache Storage**.
+
+   ![Available caches.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/available-caches-edb1a6c17b196.png)
+3. Click a cache to view its contents.
+
+   ![Viewing a cache's contents.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/viewing-caches-contents-d8f5daa92cf44.png)
+4. Click a resource to view its HTTP headers in the section below the table.
+
+   ![Viewing a resource's HTTP headers.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/viewing-resources-http-7ab3484155b01.png)
+5. Open the **Preview** tab to view a resource's content.
+
+   ![Viewing a resource's content.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/viewing-resources-conte-a63b79c240c.png)
+
+## Refresh a resource
+
+1. [View a cache's data](https://developer.chrome.com/docs/devtools/storage/cache#view).
+2. Select the resource that you want to refresh. DevTools highlights it blue to indicate that it's
+   selected.
+
+   ![Selecting a resource.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/selecting-resource-2bbf13760e0af.png)
+3. Click **Refresh** .
+
+## Filter resources
+
+1. [View a cache's data](https://developer.chrome.com/docs/devtools/storage/cache#view).
+2. Use the **Filter by Path** text box to filter out any resources that do not match the path that you provide.
+
+![Filtering out resources that do not match the specified path.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/filtering-resources-do-60c3d293f759a.png)
+
+This example filters out resources that don't contain `script` in their path.
+
+## Delete a resource
+
+1. [View a cache's data](https://developer.chrome.com/docs/devtools/storage/cache#view).
+2. Click the resource that you want to delete. DevTools highlights it blue to indicate that it's
+   selected.
+
+   ![Selecting a resource to delete.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/selecting-resource-dele-fac7562b900ba.png)
+3. Click **Delete Selected** ![Delete selected.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/delete-selected-1ecfa4dd2c31e.svg).
+
+## Delete all cache data
+
+1. Open **Application** \> **Storage**.
+2. In the **Cache** section, make sure ![Checkbox.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/checkbox-3c18cf054ead8.svg) **Cache Storage** is enabled.
+
+3. Click **Clear site data**.
+
+   ![The Cache Storage checkbox and the Clear site data button.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/the-cache-storage-checkbo-fc0e3720fd4a9.png)
+
+   > [!NOTE]
+   > **Note:** **Tip** : Next to **Clear site data** , enable ![Checkbox.](https://developer.chrome.com/static/docs/devtools/storage/cache/image/checkbox-7941d8e1d1e74.svg) **including third-party cookies** to clear those as well.

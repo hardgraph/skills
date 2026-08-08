@@ -1,0 +1,158 @@
+![Jecelyn Yeen](https://web.dev/images/authors/jecelynyeen.jpg) Jecelyn Yeen [X](https://twitter.com/jecfish) [GitHub](https://github.com/jecfish) [Bluesky](https://bsky.app/profile/jec.fish) [Homepage](https://jec.fish/) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Take a glance at the new **Recorder** panel (preview feature) with the video below.
+
+[Video](https://www.youtube.com/watch?v=rMUayh1QPYs)
+
+Complete this tutorial to learn how to use the **Recorder** panel to record, replay, and measure user flows.
+
+> [!NOTE]
+> **Note:** This is a preview feature in Chrome 97. Our team is actively working on this feature and we are looking for your [feedback](https://goo.gle/recorder-feedback) for further enhancements.
+
+For more information on how to share the recorded user flows, edit them and their steps, see the [Recorder features reference](https://developer.chrome.com/docs/devtools/recorder/reference).
+
+> [!NOTE]
+> **Note:** This feature is available only in Chrome, not Chromium.
+
+## Open the Recorder panel
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Click on **More options** ![More.](https://developer.chrome.com/static/docs/devtools/recorder/image/more-1d063a33c8171.png) \> **More tools** \> **Recorder**.
+
+   ![Recorder in the menu.](https://developer.chrome.com/static/docs/devtools/recorder/image/recorder-the-menu-308a546e9f1ed.png)
+
+   Alternatively, use the [Command Menu](https://developer.chrome.com/docs/devtools/command-menu) to open the **Recorder** panel.
+
+   ![Show Recorder command in the Command menu.](https://developer.chrome.com/static/docs/devtools/recorder/image/show-recorder-command-th-a58e3568520f3.png)
+
+## Introduction
+
+We will be using this [coffee ordering](https://coffee-cart.app/) demo page. Checkout is a common user flow among shopping websites.
+
+In the next sections, we will walk you through how to record, replay and audit the following checkout flow with the **Recorder** panel:
+
+1. Add a coffee to the cart.
+2. Add another coffee to the cart.
+3. Go to the cart page.
+4. Remove one coffee from the cart.
+5. Start the checkout process.
+6. Fill in payment details.
+7. Check out.
+
+## Record a user flow
+
+1. Open this [demo](https://coffee-cart.app/) page. Click on the **Start new recording** button to begin.
+2. Enter "coffee checkout" in the **Recording name** textbox. ![Start a new recording.](https://developer.chrome.com/static/docs/devtools/recorder/image/start-new-recording-45ab1d48941aa.png)
+
+   > [!NOTE]
+   > **Note:** The **Selector attribute** textbox and **Selector types to record** checkboxes are optional. For this tutorial, leave the defaults as they are. For more information, see [Understand selectors](https://developer.chrome.com/docs/devtools/recorder/reference#selector).
+
+3. Click on the **Start a new recording** button. The recording is started. The panel is showing **Recording...** indicating the recording is in progress. ![recording in progress.](https://developer.chrome.com/static/docs/devtools/recorder/image/recording-progress-d012bcae3563f.png)
+4. Click on *Cappuccino* to add it to the cart.
+5. Click on *Americano* to add it to the cart. Notice that the **Recorder** shows the steps that you have performed so far. ![Steps in the Recorder panel.](https://developer.chrome.com/static/docs/devtools/recorder/image/steps-the-recorder-panel-0fa9476dc87ad.png)
+6. Go to the cart page and remove *Americano* from the cart.
+
+   > [!NOTE]
+   > **Note:** Optionally, you can remove *Americano* on the menu page by hovering over the **Total** button and clicking **-** next to *Americano* in the pop-up menu. However, you'll have to [add the hover step manually](https://developer.chrome.com/docs/devtools/recorder/reference#add-steps) after you finish the recording because the **Recorder** doesn't automatically capture hover events.
+
+7. Click on the *Total: $19.00* button to start the checkout process.
+8. In the payment details form, fill in the *Name* and *Email* textboxes, and check the *I would like to receive order updates and promotional messages.* checkbox. ![Payment details form.](https://developer.chrome.com/static/docs/devtools/recorder/image/payment-details-form-99070ae256ded.png)
+9. Click on the *Submit* button to complete the checkout process.
+
+   > [!NOTE]
+   > **Note:** You can manually [edit steps](https://developer.chrome.com/docs/devtools/recorder#edit-steps) and [add assertions](https://developer.chrome.com/docs/devtools/recorder/reference#add-assertions) even before you end the recording.
+
+10. In the **Recorder** panel, click ![End recording.](https://developer.chrome.com/static/docs/devtools/recorder/image/end-recording-adf314d86e87a.svg) **End recording** button to end the recording.
+
+## Replay a user flow
+
+After recording a user flow, you can replay it by clicking on the ![Replay.](https://developer.chrome.com/static/docs/devtools/recorder/image/replay-56a36a5395ee9.svg)**Replay** button.
+
+You can see the user flow replay on the page. The replay progress is shown in the **Recorder** panel as well.
+
+If you made a misclick during recording or something doesn't work, you can [debug your user flow](https://developer.chrome.com/docs/devtools/recorder/reference#debug-user-flows): slow down its replay, set a breakpoint, and execute it step by step.
+
+> [!IMPORTANT]
+> **Key point:** When replaying a user flow recording, the **Recorder** waits until the element is visible or clickable in the viewport or tries to automatically scroll the element into the viewport before replaying the corresponding step.
+
+### Simulate slow network
+
+You can simulate a slow network connection by configuring the **Replay settings** . For example, expand the **Replay settings** , select **Slow 3G** in the **Network** drop-down.
+
+![Replay settings.](https://developer.chrome.com/static/docs/devtools/recorder/image/replay-settings-a0a249a86f0db.png)
+
+More settings might be supported in the future. [Share with us](https://goo.gle/recorder-feedback) the replay settings you would like to have!
+
+## Measure a user flow
+
+You can measure the performance of a user flow by clicking on the **Measure performance** button. For example, checkout is a critical user flow of a shopping website. With the **Recorder** panel, you can record the checkout flow once and measure it regularly.
+
+Clicking on the **Measure performance** button will first trigger a replay of the user flow, then open the performance trace in the **Performance** panel.
+
+Learn how to [analyze your page's runtime performance](https://developer.chrome.com/devtools/evaluate-performance) with the **Performance** panel. You can enable the [Web Vitals checkbox](https://developer.chrome.com/blog/new-in-devtools-88#web-vitals) in the **Performance** panel, to view the [Web Vitals](https://web.dev/articles/vitals) metrics, identify opportunities to improve your user browsing experience.
+
+![Performance panel.](https://developer.chrome.com/static/docs/devtools/recorder/image/performance-panel-4fe62780eab3.png)
+
+## Edit steps
+
+Let's walk through the basic options to edit the steps within the recorded workflow.
+
+For a comprehensive list of editing options, see [Edit steps](https://developer.chrome.com/docs/devtools/recorder/reference#edit-steps) in features reference.
+
+### Expand steps
+
+Expand each step to see the details of the action. For example, expand the *Click Element "Cappuccino"* step.
+
+![In the recorder panel, the Cappuccino element has been expanded to reveal type, target, selectors, offset X, and offset Y.](https://developer.chrome.com/static/docs/devtools/recorder/image/in-recorder-panel-capp-431c0ac26000e.png)
+
+The step above shows two **selectors** . For more information, see [Understand the recording's selector](https://developer.chrome.com/docs/devtools/recorder/reference#selector).
+
+When replaying the user flow, the **Recorder** tries to query the element with one of the selectors by sequence.
+For example, if the **Recorder** successfully queries the element with the first selector, it will skip the second selector and proceed to the next step.
+
+### Add and remove selectors from a step
+
+You can add or remove any selectors. For example, you can remove the *selector #2* because just `aria/Cappuccino` is sufficient in this case. Hover over the *selector #2* and click on **`-`** to remove it.
+
+![The DevTools recorder panel shows an option to remove a selector.](https://developer.chrome.com/static/docs/devtools/recorder/image/the-devtools-recorder-pan-93ad05cfb8532.png)
+
+### Edit selectors in a step
+
+The **selector** is editable too. For example, if you want to select *Mocha* instead of *Cappuccino*, you can:
+
+1. Edit the selector value to *aria/Mocha* instead.
+
+   ![Edit a selector.](https://developer.chrome.com/static/docs/devtools/recorder/image/edit-selector-17ca9c4d826ae.png)
+
+   Alternatively, click the **Select** ![Select button.](https://developer.chrome.com/static/docs/devtools/recorder/image/select-button-4534671f8dc3f.png) button and then click *Mocha* on the page.
+2. [Replay](https://developer.chrome.com/docs/devtools/recorder#replay) the flow now, it should select *Mocha* instead of *Cappuccino*.
+
+3. Try to edit other step properties such as **type** , **target** , **value** and more.
+
+### Add and remove steps
+
+There are options to add and remove steps too. This is useful if you want to add an extra step or remove an accidentally added step. Instead of re-recording the user flow, you can just edit it:
+
+1. Right-click the step you want to edit or click the ![Three-dot menu.](https://developer.chrome.com/static/docs/devtools/recorder/image/three-dot-menu-0eda4a58ce878.svg) three-dot icon next to it.
+
+   ![The drop-down menu of a step with options to remove and add a steps before or after.](https://developer.chrome.com/static/docs/devtools/recorder/image/the-drop-down-menu-a-ste-4735f0a5afd2d.png)
+2. You can select **Remove step** to remove it. For example, the *Scroll* event after the *Mocha* step is not necessary.
+
+3. Say, you want to **wait until the 9 coffees** display on the page before performing any steps. In the *Mocha* step menu, select **Add step before** .
+   ![A new step named Assert Element was added and can now be edited.](https://developer.chrome.com/static/docs/devtools/recorder/image/a-step-named-assert-elem-86abb16473b35.png)
+
+4. In *Assert Element*, edit the new step with the following details:
+
+   - type: **waitForElement**
+   - selector #1: **.cup**
+   - operator: **==** (click **add operator** button)
+   - count: **9** (click **add count** button) ![The new step for coffee checkout has been updated with the aforementioned details.](https://developer.chrome.com/static/docs/devtools/recorder/image/the-step-coffee-checkou-8bc7be767b648.png)
+5. ![Replay.](https://developer.chrome.com/static/docs/devtools/recorder/image/replay-a07275e43056b.svg)[Replay](https://developer.chrome.com/docs/devtools/recorder#replay) the flow now to see the changes.
+
+## Next steps
+
+Congratulations, you have completed the tutorial!
+
+To explore more features and workflows (for example, import and export) related to the **Recorder** , see the [Recorder features reference](https://developer.chrome.com/docs/devtools/recorder/reference).

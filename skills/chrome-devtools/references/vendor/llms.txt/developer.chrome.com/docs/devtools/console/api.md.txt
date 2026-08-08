@@ -1,0 +1,246 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Use the Console API to write messages to the Console from your JavaScript. See [Get started with
+logging messages to the Console](https://developer.chrome.com/docs/devtools/console/log) for an interactive introduction to the topic.
+
+[Video](https://www.youtube.com/watch?v=76U0gtuV9AY)
+
+> [!IMPORTANT]
+> **Key point:** DevTools assigns a severity level to most of the `console.*` methods. These levels allow you to filter logged messages. For more information, see [Filter by log level](https://developer.chrome.com/docs/devtools/console/reference#level).
+
+See [Console utilities API reference](https://developer.chrome.com/docs/devtools/console/utilities) if you're looking for the convenience methods like `debug(function)` or
+`monitorEvents(node)` which are only available from the Console.
+
+## console.assert(expression, object)
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Error`
+
+Writes an [error](https://developer.chrome.com/docs/devtools/console/api#error) to the console when `expression` evaluates to `false`.
+
+    const x = 5;
+    const y = 3;
+    const reason = 'x is expected to be less than y';
+    console.assert(x < y, {x, y, reason});
+
+![The result of the console.assert() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consolea-da55a23b35561.png)
+
+## console.clear()
+
+Clears the console.
+
+    console.clear();
+
+If [**Preserve Log**](https://developer.chrome.com/docs/devtools/console/reference#persist) is enabled, `console.clear()` is disabled.
+
+Alternatively, you can [Clear the Console](https://developer.chrome.com/docs/devtools/console/reference#clear) by clicking the ![ALT_TEXT_HERE](https://developer.chrome.com/static/docs/devtools/console/api/image/alttexthere-03849da35a84e.svg) icon.
+
+## console.count(\[label\])
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Info`
+
+Writes the number of times that `count()` has been invoked at the same line and with the same
+`label`. Call [`console.countReset([label])`](https://developer.chrome.com/docs/devtools/console/api#countreset) to reset the count.
+
+    console.count();
+    console.count('coffee');
+    console.count();
+    console.count();
+
+![The result of the console.count() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consolec-6204ede77c5f4.png)
+
+## console.countReset(\[label\])
+
+Resets a count.
+
+    console.countReset();
+    console.countReset('coffee');
+
+## console.createTask(name)
+
+> [!IMPORTANT]
+> **Key point:** This method is known as the Async Stack Tagging API. If you use a framework or abstraction for scheduling and async execution that already uses this API under the hood, you don't need to call this API directly.
+
+Returns a `Task` instance that associates the current stack trace with the created `task` object. You can later use this `task` object to run a function (`f` in the following example). The `task.run(f)` executes an arbitrary payload and forwards the return value back to the caller.
+
+    // Task creation
+    const task = console.createTask(name);
+
+    // Task execution
+    task.run(f); // instead of f();
+
+The `task` forms a link between the creation context and the context of the async function. This link lets DevTools show better stack traces for async operations. For more information, see [Linked Stack Traces](https://developer.chrome.com/blog/devtools-modern-web-debugging#linked_stack_traces).
+
+## console.debug(object \[, object, ...\])
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Verbose`
+
+Identical to [`console.log(object [, object, ...])`](https://developer.chrome.com/docs/devtools/console/api#log) except different log level.
+
+    console.debug('debug');
+
+![The result of the console.debug() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consoled-7423f935aeec2.png)
+
+## console.dir(object)
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Info`
+
+Prints a JSON representation of the specified object.
+
+    console.dir(document.head);
+
+![The result of the console.dir() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consoled-e78c6d6869a14.png)
+
+## console.dirxml(node)
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Info`
+
+Prints an XML representation of the descendants of `node`.
+
+    console.dirxml(document);
+
+![The result of the console.dirxml() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consoled-9c8e1488e3a93.png)
+
+## console.error(object \[, object, ...\])
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Error`
+
+Prints `object` to the Console, formats it as an error, and includes a stack trace.
+
+    console.error("I'm sorry, Dave. I'm afraid I can't do that.");
+
+![The result of the console.error() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consolee-0343ccd08a048.png)
+
+## console.group(label)
+
+Visually groups messages together until `console.groupEnd(label)` is called. Use
+`console.groupCollapsed(label)` to collapse the group when it's initially logged to the Console.
+
+    const label = 'Adolescent Irradiated Espionage Tortoises';
+    console.group(label);
+    console.info('Leo');
+    console.info('Mike');
+    console.info('Don');
+    console.info('Raph');
+    console.groupEnd(label);
+
+![The result of the console.group() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consoleg-776ad95204ea1.png)
+
+Additionally, you can nest groups.
+
+    const timeline1 = 'New York 2012';
+    const timeline2 = 'Camp Lehigh 1970';
+    console.group(timeline1);
+    console.info('Mind');
+    console.info('Time');
+    console.group(timeline2);
+    console.info('Space');
+    console.info('Extra Pym Particles');
+    console.groupEnd(timeline2);
+    console.groupEnd(timeline1);
+
+![Nested groups.](https://developer.chrome.com/static/docs/devtools/console/api/image/nested-groups-b33070a206428.png)
+
+## console.groupCollapsed(label)
+
+Same as [`console.group(label)`](https://developer.chrome.com/docs/devtools/console/api#group), except the group is initially collapsed when it's logged to
+the **Console**.
+
+## console.groupEnd(label)
+
+Stops visually grouping messages. See [`console.group`](https://developer.chrome.com/docs/devtools/console/api#group).
+
+## console.info(object \[, object, ...\])
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Info`
+
+Identical to [`console.log(object [, object, ...])`](https://developer.chrome.com/docs/devtools/console/api#log).
+
+    console.info('info');
+
+![The result of the console.info() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consolei-2d6e3caa7c6d5.png)
+
+## console.log(object \[, object, ...\])
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Info`
+
+Prints a message to the Console.
+
+    console.log('log');
+
+![The result of the console.log() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consolel-3503077b72fe7.png)
+
+## console.table(array \[, columns\])
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Info`
+
+Logs an array of objects as a table.
+
+    var people = [
+      {
+        first: 'René',
+        last: 'Magritte',
+      },
+      {
+        first: 'Chaim',
+        last: 'Soutine',
+        birthday: '18930113',
+      },
+      {
+        first: 'Henri',
+        last: 'Matisse',
+      }
+    ];
+    console.table(people);
+
+![The result of the console.table() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consolet-deafe365f75ef.png)
+
+By default, `console.table()` logs all table data. To display a single column or a subset of columns, you can use the second optional parameter and specify column name or names as a string or an array of strings. For example:
+
+    console.table(people, ['last', 'birthday']);
+
+![A subset of columns in a table logged with console.table().](https://developer.chrome.com/static/docs/devtools/console/api/image/a-subset-columns-a-tabl-d09038277395f.png)
+
+## console.time(\[label\])
+
+Starts a new timer. Call `console.timeEnd([label])` to stop the timer and print the elapsed time to
+the Console.
+
+    console.time();
+    for (var i = 0; i < 100000; i++) {
+      let square = i ** 2;
+    }
+    console.timeEnd();
+
+![The result of the console.time() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-console-2603011443558.png)
+
+## console.timeEnd(\[label\])
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Info`
+
+Stops a timer. See [`console.time()`](https://developer.chrome.com/docs/devtools/console/api#time).
+
+## console.trace()
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Info`
+
+Prints a stack trace to the Console.
+
+    const first = () => { second(); };
+    const second = () => { third(); };
+    const third = () => { fourth(); };
+    const fourth = () => { console.trace(); };
+    first();
+
+![The result of the console.trace() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consolet-526ce53ae5c57.png)
+
+## console.warn(object \[, object, ...\])
+
+[Log level](https://developer.chrome.com/docs/devtools/console/reference#level): `Warning`
+
+Prints a warning to the Console.
+
+    console.warn('warn');
+
+![The result of the console.warn() example above.](https://developer.chrome.com/static/docs/devtools/console/api/image/the-result-the-consolew-2de7ba6ff12cc.png)

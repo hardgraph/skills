@@ -1,0 +1,164 @@
+Use the **AI assistance** panel for performance to understand performance
+profiles recorded in the [Performance
+panel](https://developer.chrome.com/docs/devtools/performance/overview).
+
+## Open the "AI assistance" panel
+
+The **AI assistance** panel opens [in the
+drawer](https://developer.chrome.com/docs/devtools/console/reference#drawer).
+
+![The AI assistance panel opened in its default state.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/open-default.png)
+
+### From the Performance panel
+
+To open **AI assistance** from the Performance panel, first [record a
+performance
+profile](https://developer.chrome.com/docs/devtools/performance/overview#record_a_performance_profile).
+Depending on what you want to investigate, you can either open the **AI
+assistance** panel from individual performance insights or for activities in the
+performance trace view.
+
+#### Performance insights
+
+In the **Insights** tab, open an insight, for example, **LCP
+by phase** , then click the **Ask AI** button.
+
+#### List of insights you can ask AI about
+
+- LCP by phase
+- LCP request discovery
+- Render-blocking requests
+- Layout shift culprits
+- Document request latency
+![The 'Ask AI' button highlighted under the LCP performance insight.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/performance/ask-ai-performance-insights.png)
+
+DevTools opens the **AI assistance** panel with this performance insight
+pre-selected as context for the conversation.
+
+#### Performance trace view
+
+To open **AI assistance** from the trace view, right-click an activity and
+select the **Ask AI** option.
+
+![The activity context menu with 'Ask AI' highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/performance/open-context-menu.png)
+
+In this case, this activity is pre-selected as context for the
+conversation.
+
+> [!NOTE]
+> **Note:** When opening **AI assistance** with the following methods, make sure to select [Conversation context](https://developer.chrome.com/docs/devtools/ai-assistance/performance#conversation_context) as outlined above.
+
+### From the command menu
+
+To open **AI assistance** from the command menu, type `AI` and then run the
+**Show AI assistance** command, which has the **Drawer** badge next to it.
+
+![The opened ommand menu with 'Show AI assistance' highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/open-command-menu.png)
+
+### From the "More tools" menu
+
+Alternatively, in the top right corner, select **More options** \> **More tools** \> **AI assistance**.
+
+![The opened more tools menu.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/open-more-tools.png)
+
+## Conversation context
+
+The selected performance activity is used as context for your conversation with
+**AI assistance**. A reference to this activity is shown in the bottom left
+corner of the panel.
+
+![The AI assistance panel with the context activity highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/performance/conversation-context.png)
+
+### Performance insights
+
+If you clicked **Ask AI** for a specific performance insight, you will see this insight as selected context.
+You can click **Ask AI** under other insights to change your selection.
+![The LCP performance insight as conversation context for AI Assistance.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/performance/ask-ai-performance-insights-context.png)
+
+After starting a conversation, expand the `Analyzing insight: ...` section to see the raw data used by AI assistance.
+
+![The AI assistance panel with the context insight highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/performance/ask-ai-performance-insights-context-details.png)
+
+### Trace view
+
+You can select different items in the performance trace and the context will
+change accordingly.
+
+**AI assistance** is using timings from the selected call tree to answer your
+prompt.
+
+Click the
+button in the `Analyzing call tree` chip after starting a conversation to see
+the raw data used by **AI assistance**.
+
+![The AI assistance panel with the Analyzing call tree chip highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/performance/data-usage.png)
+
+## Prompting
+
+When starting a new conversation, **AI assistance** for performance offers
+example prompts to help you get started quickly.
+
+![The AI assistance panel with the example prompts highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/performance/example-prompts.png)
+
+Click any of the prompts to prefill the prompt input field at the bottom of the
+panel.
+
+Alternatively, type your own prompt or question into the input field.
+
+To send a prompt, either press `Enter` or click the arrow on the right hand side
+of the input field.
+
+### No answer given
+
+**AI assistance** might not provide answers due to various reasons.
+
+![The AI assistance panel with a refused conversation.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/answer-refused.png)
+
+If you think your prompt is something **AI assistance** should be able to
+discuss, [file a bug](https://goo.gle/devtools-bug).
+
+### Conversation history
+
+Once you start a conversation, every next answer is based on your previous
+interactions between you and the AI.
+
+AI assistance saves your conversation history between sessions, so you can access your previous chats even after DevTools or Chrome reload.
+
+Use the controls in the top-left corner of the panel to control your conversation
+history.
+
+![The AI assistance panel with the history controls highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/history.png)
+
+#### Start new
+
+To start a new conversation with the currently selected
+[conversation context](https://developer.chrome.com/docs/devtools/ai-assistance/performance#conversation_context), click the button.
+
+#### Continue
+
+To continue a past conversation, click the button and select it from the context menu.
+
+> [!NOTE]
+> **Note:** [Conversation context](https://developer.chrome.com/docs/devtools/ai-assistance/performance#conversation_context) is not automatically updated as it might have vanished since the conversation stopped.
+
+#### Delete
+
+To delete a conversation from history, click the button.
+
+## Rate answers and provide feedback
+
+**AI assistance** is an experimental feature. Therefore we are actively looking
+for your feedback to learn how we can improve answer quality and the overall
+experience.
+
+![The AI assistance panel with rating controls highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/rate-answers.png)
+
+### Vote answers
+
+Rate an answer using the
+**Thumbs up** and
+**Thumbs down** buttons below the answer.
+
+### Report answers
+
+To report inappropriate content, click the button next to the voting buttons.

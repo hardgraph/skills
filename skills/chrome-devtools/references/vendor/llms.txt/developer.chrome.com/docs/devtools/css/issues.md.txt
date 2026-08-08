@@ -1,0 +1,165 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+[Video](https://www.youtube.com/watch?v=iuZx0kHS0Xs)
+
+This guide assumes that you're familiar with inspecting CSS in Chrome DevTools. See [View and change CSS](https://developer.chrome.com/docs/devtools/css) to learn the basics.
+
+## Inspect the CSS you author
+
+Suppose that you added some CSS to an element and want to make sure the new styles are
+applied properly. When you refresh the page, the element looks the same as before. Something is wrong.
+
+The first thing to do is [inspect the element](https://developer.chrome.com/docs/devtools/css/reference#select) and make sure that your new CSS is actually applied to the element.
+
+Sometimes, you'll see your new CSS in the **Elements** \> **Styles** pane but your new CSS is in pale text, non-editable, crossed out, or has a warning or hint icon next to it.
+
+## Understand CSS in the Styles pane
+
+The **Styles** pane recognizes many kinds of CSS issues and highlights them in different ways.
+
+### Matched and unmatched selectors
+
+The **Styles** pane shows matched selectors in regular text and unmatched ones in pale text.
+
+![Matched selector in regular text and unmatched selectors in pale text.](https://developer.chrome.com/static/docs/devtools/css/issues/image/matched-selector-regular-8c47f921f111e.png)
+
+### Invalid values and declarations
+
+The **Styles** pane crosses out and displays ![Warning.](https://developer.chrome.com/static/docs/devtools/css/issues/image/warning-7d7b6b929255c.svg) warning icons next to the following:
+
+- An entire CSS declaration (property and value) when the CSS property is invalid or unknown.
+- Just the value when the CSS property is valid but the value is invalid.
+
+![Invalid property name and invalid property value.](https://developer.chrome.com/static/docs/devtools/css/issues/image/invalid-property-name-in-0f4bf1c05953d.png)
+
+### Overridden
+
+The **Styles** pane crosses out properties that are overridden by other properties according to the [Cascading order](https://developer.mozilla.org/docs/Web/CSS/Cascade#cascading_order).
+
+In this example, the `width: 300px;` style attribute on the element overrides `width: 100%` on the `.youtube` class.
+
+### Inactive
+
+The **Styles** pane displays in pale text and puts ![Information.](https://developer.chrome.com/static/docs/devtools/css/issues/image/information-f0094269c82e4.svg) information icons next to properties that are valid but have no effect because of other properties.
+
+These pale properties are inactive because of CSS logic, not the [Cascading order](https://developer.mozilla.org/docs/Web/CSS/Cascade#cascading_order).
+
+> [!IMPORTANT]
+> **Key point:** The pale inactive properties differ from pale [non-inherited properties](https://developer.chrome.com/docs/devtools/css/issues#inherited-and-non-inherited). Inactive properties have icons. Hover over the ![Information](https://developer.chrome.com/static/docs/devtools/css/issues/image/information-95ffae1c9a74a.svg) icon to get a hint at what went wrong.
+
+![Inactive CSS declaration with a hint.](https://developer.chrome.com/static/docs/devtools/css/issues/image/inactive-css-declaration-c8c5f4206892a.png)
+
+In this example, the `display: block;` property disables `justify-content` and `align-items` that control flex or grid layouts.
+
+### Inherited and non-inherited
+
+The **Styles** pane lists properties in `Inherited from <element-name>` sections depending on their [default inheritance](https://developer.mozilla.org/docs/Web/CSS/inheritance):
+
+- Inherited by default are in regular text.
+- Non-inherited by default are in pale text.
+
+> [!IMPORTANT]
+> **Key point:**
+>
+> - The pale non-inherited properties differ from pale [inactive properties](https://developer.chrome.com/docs/devtools/css/issues#inactive). Non-inherited properties don't have icons and are in the corresponding sections.
+> - [Overriding default inheritance](https://developer.mozilla.org/docs/Web/CSS/inheritance#overriding_inheritance_an_example) *doesn't* affect the way the **Styles** pane displays the properties: pale or not.
+
+![The 'Inherited from body' section listing inherited and non-inherited CSS.](https://developer.chrome.com/static/docs/devtools/css/issues/image/the-inherited-body-sec-b5b477dedcb8e.png)
+
+### Shorthand
+
+[Shorthand (concise) properties](https://developer.mozilla.org/docs/Web/CSS/Shorthand_properties) let you set multiple CSS properties at once and can make your stylesheet more readable. However, due to the short nature of such properties, you may miss a longhand (precise) property that overrides a property implied by the shorthand.
+
+The **Styles** pane displays shorthand properties as ![Drop-down.](https://developer.chrome.com/static/docs/devtools/css/issues/image/drop-down-2011c2e59961a.svg) drop-down lists that contain all the properties that are shortened.
+
+![The shorthand property with a drop-down list.](https://developer.chrome.com/static/docs/devtools/css/issues/image/the-shorthand-property-a-6421ad6004565.png)
+
+In this example, two of four shortened properties are actually overridden.
+
+### Non-editable
+
+The **Styles** pane displays properties that can't be edited in *italic text*. For example, the CSS from the following sources can't be edited:
+
+- `user agent stylesheet`---Chrome's default stylesheet.
+
+  ![The CSS from user agent stylesheet.](https://developer.chrome.com/static/docs/devtools/css/issues/image/the-css-user-agent-style-dffd870a01792.png)
+- Style-related HTML attributes on the element, for example, height, width, color, etc. You can edit them in the DOM tree and this updates the CSS in the **Styles** pane, but not the other way around.
+
+  In this example, the `height="48"` attribute on an `<svg>` element is set to `50`. This updates the corresponding property under `svg[Attributes Style]` in the **Styles** pane.
+
+## Inspect an element that still isn't styled the way you think
+
+To try to find what goes wrong, you may want to check:
+
+- [CSS documentation](https://developer.chrome.com/docs/devtools/css/reference#view-docs) and [selector specificity](https://developer.chrome.com/docs/devtools/css/reference#selector-specificity) in the tooltips in the **Styles** pane.
+- The **Computed** pane to see the "final" [CSS applied to an element](https://developer.chrome.com/docs/devtools/css/reference#computed) and compare to that you declared.
+
+The **Elements** \> **Styles** pane displays the exact set of CSS rules as they are written in various stylesheets. On the other hand, the **Elements** \> **Computed** pane lists resolved CSS values that Chrome uses to render an element:
+
+- CSS derived from [inheritance](https://developer.mozilla.org/docs/Web/CSS/inheritance)
+- [Cascade](https://developer.mozilla.org/docs/Web/CSS/Cascade) winners
+- Longhand properties (precise), not shorthand (concise)
+- Computed values, for example, `font-size: 14px` instead of `font-size: 70%`
+
+## Understand CSS in the Computed pane
+
+The **Computed** pane also displays various properties differently.
+
+### Declared and inherited
+
+The **Computed** pane lists the properties declared in any stylesheet in regular font, both element's own and inherited. Click the ![Expand.](https://developer.chrome.com/static/docs/devtools/css/issues/image/expand-296462198cd89.svg) expand icon next to them to see their source.
+
+![Declared properties.](https://developer.chrome.com/static/docs/devtools/css/issues/image/declared-properties-2781fedd563d8.png)
+
+To see the declaration in the **Styles** pane, hover over the expanded property and click the ![Arrow right.](https://developer.chrome.com/static/docs/devtools/css/issues/image/arrow-right-2fd7d78b49687.svg) arrow button.
+
+![The arrow button next to the property.](https://developer.chrome.com/static/docs/devtools/css/issues/image/the-arrow-button-next-th-eaa7152cc8cf7.png)
+
+To see the declaration in the **Sources** pane, click the link to the source file.
+
+![The link to the source file.](https://developer.chrome.com/static/docs/devtools/css/issues/image/the-link-the-source-file-24cf8d4643b49.png)
+
+For properties with multiple sources, the **Computed** pane shows the [Cascade winner](https://developer.mozilla.org/docs/Web/CSS/Cascade#cascading_order) first.
+
+![A property with multiple sources.](https://developer.chrome.com/static/docs/devtools/css/issues/image/a-property-multiple-sour-da4390fdec8a2.png)
+
+### Runtime
+
+The **Computed** pane lists property values calculated at runtime in pale text.
+
+![Property values calculated at runtime.](https://developer.chrome.com/static/docs/devtools/css/issues/image/property-values-calculate-9cb4b49640b23.png)
+
+In this example, Chrome calculated the following for the `<ul>` element:
+
+- The `width` relative its parent, `<div>`
+- The `height` relative to its children, the two `<li>` elements
+
+### Non-inherited and custom
+
+To make the **Computed** pane show *all* properties and their values, check ![Checkbox.](https://developer.chrome.com/static/docs/devtools/css/issues/image/checkbox-a3ba33d2fb833.svg) **Show all**. All properties include:
+
+- [Initial values for non-inherited properties](https://developer.mozilla.org/docs/Web/CSS/inheritance) in pale text.
+- [Custom properties](https://developer.mozilla.org/docs/Web/CSS/Using_CSS_custom_properties)---with a `--` prefix in regular text. Such properties are inherited by default.
+
+> [!IMPORTANT]
+> **Key point:** [Overriding default inheritance](https://developer.mozilla.org/docs/Web/CSS/inheritance#overriding_inheritance_an_example) *doesn't* affect the way the **Computed** pane displays the properties: pale or not.
+
+To break this big list into categories, check ![Checkbox.](https://developer.chrome.com/static/docs/devtools/css/issues/image/checkbox-38ef891d1fd79.svg) **Group**.
+
+![All properties grouped.](https://developer.chrome.com/static/docs/devtools/css/issues/image/all-properties-grouped-0b16414ddbfc6.png)
+
+This example shows the initial values for non-inherited properties under **Animation** and custom properties under **CSS Variables**.
+
+## Search for duplicates
+
+To investigate a specific property and its potential duplicates, type that property name in the **Filter** textbox. You can do this both in the **Styles** and **Computed** panes.
+
+![The Filter textboxes on Styles and Computed panes.](https://developer.chrome.com/static/docs/devtools/css/issues/image/the-filter-textboxes-sty-4bc5968283286.png)
+
+See [Search and filter an element's CSS](https://developer.chrome.com/docs/devtools/css/reference#filter).
+
+## Find unused CSS
+
+See [Coverage: Find unused JavaScript and CSS](https://developer.chrome.com/docs/devtools/coverage).

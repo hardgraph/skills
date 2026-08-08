@@ -1,0 +1,50 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+![Settings.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/settings-5712f3ab4684e.svg) [**Settings**](https://developer.chrome.com/docs/devtools/settings#open) \> **Ignore List** lets you configure the list of scripts the [debugger](https://developer.chrome.com/docs/devtools/javascript) ignores.
+
+To enable or disable all ignore listing for the debugger:
+
+1. [Open Settings](https://developer.chrome.com/docs/devtools/settings#open).
+2. In the **Ignore List** tab, check or clear ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/settings-e2cd1395d457e.svg) **Settings** \> ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/checkbox-1897b60b022f.svg) **Enable Ignore Listing**. This is the main switch for all ignore-listing capabilities.
+
+![The Enable Ignore Listing checkbox.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/enable-ignore-listing.png)
+
+With ignore-listing enabled, you can further customize the list of scripts to ignore.
+
+## Ignore Chrome Extensions scripts
+
+When using the **Sources** panel of Chrome DevTools to [step through code](https://developer.chrome.com/docs/devtools/javascript#code-stepping), sometimes you pause on code that you don't recognize. You're probably paused on the code of one of the Chrome Extensions that you've installed.
+
+In ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/settings-ef4769dc014f3.svg) **Settings** \> **Ignore List**, enable two checkboxes:
+
+- ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/checkbox-460eb7bd1aa99.svg) **Enable Ignore Listing**
+  - ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/checkbox-d2569f2399f1f.svg) **Add content scripts to ignore list**.
+
+![Settings DevTools to ignore extensions code.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/settings-devtools-ignore-81f83fc1283ee.png)
+
+## Ignore known third-party scripts
+
+To make the debugger skip known third-party scripts, check ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/settings-9b63358e85a12.svg) **Settings** \> **Ignore List** \> ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/checkbox-7007fbd43b88d.svg) **Automatically add known third-party scripts to ignore list**.
+
+DevTools adds third-party scripts to the ignore list based on the [ignoreList](https://developer.chrome.com/articles/x-google-ignore-list) property in source maps. Frameworks and bundlers need to supply this information.
+
+For example, frameworks like Angular and Nuxt support this feature.
+
+## Ignore a custom list of scripts
+
+By default, the **Debugger** ignores scripts from `/node_modules/` and `/bower_components/`. To ignore an additional single script or a custom pattern of scripts:
+
+1. Check ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/settings-fe10fff820da1.svg) **Settings** \> **Ignore List** \> ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/checkbox-7a88c0555bda2.svg) **Enable Ignore Listing**.
+2. In the **Custom exclusion rules** section, click **Add pattern** . ![Adding a custom pattern to the Ignore List.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/adding-custom-pattern.png)
+3. Specify the script name or a regular expression of script names to ignore.
+4. Click **Add** to save changes.
+
+## Manage a custom list of ignored scripts
+
+To enable or disable ignoring of a specific script or pattern of script names, in ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/settings-8c3e4ef931a9f.svg) **Settings** \> **Ignore List** \> **Custom exclusion rules** , check or clear the ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/checkbox-4a6f533ccad58.svg) checkbox next to the script or pattern.
+
+![A custom ignore list with a pattern or script names enabled.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/a-custom-ignore-list-a-p-fdb1b69a60ee9.png)
+
+To edit or remove a script or a pattern of script names, click ![Edit.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/edit-d25d9730bde2.svg) or ![Delete.](https://developer.chrome.com/static/docs/devtools/settings/ignore-list/image/delete-8c3239e3e9006.svg) buttons that appear on hover.

@@ -1,0 +1,44 @@
+![Dale St. Marthe](https://web.dev/images/authors/dalestmarthe.jpg) Dale St. Marthe [LinkedIn](https://www.linkedin.com/in/dale-st-marthe)
+
+<br />
+
+Use the **Elements** panel to inspect and edit DOM elements.
+
+> [!IMPORTANT]
+> **Key Point:** You can also use **AI assistance** to understand your website's styling and element layout. See [AI assistance for styling](https://developer.chrome.com/docs/devtools/ai-assistance/chat#styling).
+
+## Overview
+
+The **Elements** panel provides a robust interface to inspect and manipulate the DOM. You can use the DOM tree, which resembles an HTML document, to select specific DOM nodes and modify them with other tools.
+
+The **Elements** panel also has the following tabs that contain relevant tools:
+
+- **Styles**:
+
+  - [View and debug](https://developer.chrome.com/docs/devtools/css) CSS rules applied to an element from all style sheets.
+  - Find any [invalid, overridden, inactive, or other CSS](https://developer.chrome.com/docs/devtools/css/issues) that don't work as intended.
+  - Edit elements by [adding a declaration](https://developer.chrome.com/docs/devtools/css#declarations), [applying a class](https://developer.chrome.com/docs/devtools/css#classes), and by interacting with the [**Box model**](https://developer.chrome.com/docs/devtools/css#box-model).
+  - Access container editing options with [Badges](https://developer.chrome.com/docs/devtools/elements/badges) found in the DOM tree.
+- **Computed** : [Lists resolved properties](https://developer.chrome.com/docs/devtools/css/issues#css-in-computed) applied to an element as they are rendered by Chrome.
+
+- **Layout** : Contains options to modify [grid](https://developer.chrome.com/docs/devtools/css/grid#options) and [flexbox](https://developer.chrome.com/docs/devtools/css/flexbox#layout) overlays.
+
+- **Event listeners** : Lists all event listeners and their attributes. Lets you [find the source of event listeners](https://developer.chrome.com/blog/easily-jump-to-event-listeners) and [filter for passive or blocking listeners](https://developer.chrome.com/blog/devtools-digest-2016-09#passive_event_listeners).
+
+- **DOM breakpoints** : Lists DOM change breakpoints [added from the Elements panel](https://developer.chrome.com/docs/devtools/javascript/breakpoints#dom) and lets you enable, disable, remove, or reveal them.
+
+- **Properties** : Select a DOM node to inspect and sort the object's [own and inherited properties](https://developer.chrome.com/docs/devtools/dom/properties#own-and-inherited).
+
+- **Accessibility** : Lists elements that have ARIA labels and their properties. Lets you toggle and inspect the page's [accessibility tree](https://developer.chrome.com/docs/devtools/accessibility/reference#tab).
+
+## Open the Elements panel
+
+By default, when you [open DevTools](https://developer.chrome.com/docs/devtools/open) the Elements panel opens. You can also [inspect a node](https://developer.chrome.com/docs/devtools/dom#inspect) anywhere on the page to automatically open the **Elements** panel.
+
+To manually open the **Elements** panel:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Open the **Command menu** by pressing:
+   - macOS: <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+   - Windows, Linux, ChromeOS: <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> ![Command Menu with](https://developer.chrome.com/static/docs/devtools/elements/image/command-menu-elements.png)
+3. Start typing `Elements`, select **Show Elements** , and press <kbd>Enter</kbd>. DevTools displays the **Elements** panel in the **Drawer** at the bottom of your DevTools window.

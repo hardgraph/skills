@@ -1,0 +1,74 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Use the **Search** panel to find text across all loaded resources.
+
+> [!NOTE]
+> **Note:** The **Search** panel doesn't show results from network headers and responses. To search across them, follow the steps in [Search network headers and responses](https://developer.chrome.com/docs/devtools/network#search).
+
+Alternatively, use [built-in search bars](https://developer.chrome.com/docs/devtools/search#built-in-search-bars) to find text in a resource opened in a specific tool.
+
+## Overview
+
+The **Search** panel lets you find text across all loaded resources with the option to use regular expressions or case-sensitivity. Once you find the text, you can view its source in the **Sources** panel.
+
+## Open the Search panel
+
+You can open the **Search** panel in several ways. First, [open DevTools](https://developer.chrome.com/docs/devtools/open), then do one of the following:
+
+- In the top-right corner of DevTools, select ![Customize and control DevTools](https://developer.chrome.com/static/docs/devtools/search/image/customize-control-devtoo-e40a578fee514.svg) **Customize and control DevTools** \> **More tools** \> **Search**.
+- Press <kbd>Esc</kbd> to open [**Drawer**](https://developer.chrome.com/docs/devtools/customize#drawer), and in the top-left corner, select ![Customize and control DevTools](https://developer.chrome.com/static/docs/devtools/search/image/customize-control-devtoo-5091bb9d1fd31.svg) **More Tools** \> **Search**.
+- Press <kbd>Command</kbd>+<kbd>Option</kbd>+<kbd>F</kbd> (Mac) or <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> (Windows/Linux).
+
+## Search for text across all loaded resources
+
+To search for text across all loaded resources, in the search bar on the **Search** panel, type your query and press <kbd>Enter</kbd>.
+
+![Search results.](https://developer.chrome.com/static/docs/devtools/search/image/search-results-46ff41cadeabb.png)
+
+When DevTools finds several matches in a single line, the search results list all of them with the same line number.
+Click a search result and DevTools opens the line in **Sources** and scrolls the match into view.
+
+To make your query case-sensitive, toggle the **Match case** button.
+
+![Match case button.](https://developer.chrome.com/static/docs/devtools/search/image/match-case-button-1864319c7b09.png)
+
+To search for text that matches a regular expression, toggle the **Regular expression** button.
+
+![Regular expression button.](https://developer.chrome.com/static/docs/devtools/search/image/regex-button-81b2dac958871.png)
+
+> [!TIP]
+> **Tip:** You don't need to wrap your regular expression query in forward slashes.
+
+### Rerun a query, expand, and clear results
+
+To rerun your search query, click ![Refresh.](https://developer.chrome.com/static/docs/devtools/search/image/refresh.svg) **Refresh**.
+
+To expand all search results:
+
+- On Windows / Linux, press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>{</kbd> or <kbd>}</kbd>
+- On macOS, press <kbd>Command</kbd>+<kbd>Option</kbd>+<kbd>{</kbd> or <kbd>}</kbd>
+
+To clear your search results, click ![Clear.](https://developer.chrome.com/static/docs/devtools/search/image/clear-9dfe3810437b5.svg) **Clear**.
+
+## Search for text in a specific tool
+
+To narrow your search scope to a resource opened in a specific tool, you can use a built-in search bar if the tool supports it.
+
+Search bars have up and down buttons to jump to previous and next search results.
+
+To open a built-in search bar in a specific tool, press <kbd>Command</kbd>+<kbd>F</kbd> (Mac) or <kbd>Control</kbd>+<kbd>F</kbd> (Windows/Linux).
+
+Not all DevTools panels and tabs have a built-in search bar but those that do, often provide tool-specific features. Below is a list of tools with search bars and their features.
+
+| Panel or tab | Case-sensitive | RegEx | Scope | Tool-specific features |
+|---|---|---|---|---|
+| [Elements](https://developer.chrome.com/docs/devtools/dom#search) |   |   | DOM tree | Search by selector and XPath |
+| [Console](https://developer.chrome.com/docs/devtools/console/reference#search) | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-98bd9c2629fc.svg) | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-cbcdd3b1f7071.svg) | Log messages |   |
+| [Sources](https://developer.chrome.com/docs/devtools/javascript/reference#search) | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-37c04c86f495d.svg) | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-9d008be2c537f.svg) | Current source file | Replace |
+| [Network](https://developer.chrome.com/docs/devtools/network#search) | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-a1c9cd88130ae.svg) | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-42c0fd621614a.svg) | Network headers, payloads, and responses |   |
+| [Performance](https://developer.chrome.com/docs/devtools/performance/reference#search) | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-d50b26576ce6.svg) | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-5f84899cd111f.svg) | Activities in the **Main** track and requests in the **Network** track |   |
+| Memory | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-d374dcb66241e.svg) |   | Profiles | Search sampling profiles by cost, name, and file |
+| JavaScript Profiler | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-7c868bd6dbfd3.svg) |   | CPU profiles | Search by cost, name, and file |
+| Quick Source | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-3a11326859997.svg) | ![Check.](https://developer.chrome.com/static/docs/devtools/search/image/check-07512af5b6931.svg) | Current source file | Replace |

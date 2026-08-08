@@ -1,0 +1,48 @@
+![Meggin Kearney](https://web.dev/images/authors/megginkearney.jpg) Meggin Kearney
+
+<br />
+
+Use the **Allocation timeline** tool to find objects that aren't being properly garbage collected, and continue to retain memory.
+
+## How the tool works
+
+An **Allocation timeline** report combines the detailed snapshot information of the [heap profiler](https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots)
+with the incremental updating and tracking of the [Timeline panel](https://developer.chrome.com/docs/devtools/evaluate-performance). Similar to these tools, tracking heap allocation involves starting a recording, performing a sequence of actions, then stop the recording for analysis.
+
+The tool takes heap snapshots periodically throughout the recording (as frequently as every 50 ms!) and one final snapshot at the end of the recording.
+
+![An Allocation timeline example recording.](https://developer.chrome.com/static/docs/devtools/memory-problems/allocation-profiler/image/allocation-profiler.png)
+
+> [!NOTE]
+> **Note:** The number after the @ is an object ID that persists among multiple snapshots taken. This allows precise comparison between heap states. Displaying an object's address makes no sense, as objects are moved during garbage collections.
+
+## Record an Allocation timeline report
+
+To begin using the **Allocation timeline** tool, follow these steps:
+
+1. Open the **Memory** panel in DevTools.
+2. Enable the **Allocations on timeline** profile.
+3. Press the **Start** button to begin recording.
+
+![Record allocations on a timeline' option highlighted.](https://developer.chrome.com/static/docs/devtools/memory-problems/allocation-profiler/image/record-heap-allocations.png)
+
+## Read a heap allocation profile
+
+The heap allocation profile shows where objects are being created and identifies the retaining path. In the following snapshot, the bars at the top indicate when new objects are found in the heap.
+
+The height of each bar corresponds to the size of the recently allocated objects, and the color of the bars indicate whether or not those objects are still live in the final heap snapshot. Blue bars indicate objects that are still live at the end of the timeline, Gray bars indicate objects that were allocated during the timeline, but have since been garbage collected:
+
+![Allocation timeline recording example.](https://developer.chrome.com/static/docs/devtools/memory-problems/allocation-profiler/image/allocation-profiler-snapshot.png)
+
+You can zoom in to filter the **Constructor** pane to only show objects that were allocated during the specified timeframe. To zoom in, drag your mouse across the timeframe you'd like to focus on in the timeline.
+
+![Timeline zoomed in to a single bar.](https://developer.chrome.com/static/docs/devtools/memory-problems/allocation-profiler/image/zoom-on-snapshot.png)
+
+Clicking on a specific constructor in the **Constructor** pane will show its retaining tree in the **Retainers** pane. Examining the retaining path to the object should give you enough information to
+understand why the object was not collected, and you can make the necessary code changes to remove
+the unnecessary reference.
+
+## View memory allocation by function
+
+You can also view memory allocation by JavaScript function. See [Investigate memory allocation by
+function](https://developer.chrome.com/docs/devtools/memory-problems#allocation-profile) for more information.

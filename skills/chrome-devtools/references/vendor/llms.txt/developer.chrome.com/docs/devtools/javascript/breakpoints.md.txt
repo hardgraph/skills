@@ -1,0 +1,343 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+[Video](https://www.youtube.com/watch?v=JyHjoaUhAus)
+
+Use breakpoints to pause your JavaScript code. This guide explains each type of breakpoint that's
+available in DevTools, as well as when to use and how to set each type. For an interactive tutorial of the debugging process, see [Get Started with Debugging JavaScript in Chrome DevTools](https://developer.chrome.com/docs/devtools/javascript).
+
+## Overview of when to use each breakpoint type
+
+The most well-known type of breakpoint is line-of-code. But line-of-code breakpoints can be
+inefficient to set, especially if you don't know exactly where to look, or if you are working with a
+large codebase. You can save yourself time when debugging by knowing how and when to use the other
+types of breakpoints.
+
+| Breakpoint Type | Use this when you want to ... |
+|---|---|
+| [Line-of-code](https://developer.chrome.com/docs/devtools/javascript/breakpoints#loc) | Pause on an exact region of code. |
+| [Conditional line-of-code](https://developer.chrome.com/docs/devtools/javascript/breakpoints#conditional-loc) | Pause on an exact region of code, but only when some other condition is true. |
+| [Logpoint](https://developer.chrome.com/docs/devtools/javascript/breakpoints#log-loc) | Log a message to the **Console** without pausing the execution. |
+| [DOM](https://developer.chrome.com/docs/devtools/javascript/breakpoints#dom) | Pause on the code that changes or removes a specific DOM node, or its children. |
+| [XHR](https://developer.chrome.com/docs/devtools/javascript/breakpoints#xhr) | Pause when an XHR URL contains a string pattern. |
+| [Event listener](https://developer.chrome.com/docs/devtools/javascript/breakpoints#event-listeners) | Pause on the code that runs after an event, such as `click`, is fired. |
+| [Exception](https://developer.chrome.com/docs/devtools/javascript/breakpoints#exceptions) | Pause on the line of code that is throwing a caught or uncaught exception. |
+| [Function](https://developer.chrome.com/docs/devtools/javascript/breakpoints#function) | Pause whenever a specific function is called. |
+| [Trusted Type](https://developer.chrome.com/docs/devtools/javascript/breakpoints#trusted-type) | Pause on [Trusted Type](https://www.w3.org/TR/trusted-types/) violations. |
+
+## Line-of-code breakpoints
+
+Use a line-of-code breakpoint when you know the exact region of code that you need to investigate.
+DevTools *always* pauses before this line of code is executed.
+
+To set a line-of-code breakpoint in DevTools:
+
+1. Click the **Sources** panel.
+2. Open the file containing the line of code you want to break on.
+3. Go to the line of code.
+4. To the left of the line of code is the line number column. Click it. A blue icon appears on top of the line number column.
+
+![A line-of-code breakpoint.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/a-line-code-breakpoint-5534a230be67.png)
+
+This example shows a line-of-code breakpoint set on line **29**.
+
+### Line-of-code breakpoints in your code
+
+Call `debugger` from your code to pause on that line. This is equivalent to a [line-of-code
+breakpoint](https://developer.chrome.com/docs/devtools/javascript/breakpoints#loc), except that the breakpoint is set in your code, not in the DevTools UI.
+
+    console.log('a');
+    console.log('b');
+    debugger;
+    console.log('c');
+
+### Conditional line-of-code breakpoints
+
+Use a conditional line-of-code breakpoint when you want to stop the execution but only when some condition is true.
+
+Such breakpoints are useful when you want to skip breaks that are irrelevant to your case, especially in a loop.
+
+To set a conditional line-of-code breakpoint:
+
+1. Open the **Sources** panel.
+2. Open the file containing the line of code you want to break on.
+3. Go to the line of code.
+4. To the left of the line of code is the line number column. Right-click it.
+5. Select **Add conditional breakpoint**. A dialog displays underneath the line of code.
+6. Enter your condition in the dialog.
+7. Press <kbd>Enter</kbd> to activate the breakpoint. An orange icon with a question mark appears on top of the line number column.
+
+![A conditional line-of-code breakpoint.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/a-conditional-line-code-0f8fbc862d151.png)
+
+This example shows a conditional line-of-code breakpoint that fired only when the `x` exceeded `10` in a loop at iteration `i=6`.
+
+### Log line-of-code breakpoints
+
+Use log line-of-code breakpoints (logpoints) to log messages to the **Console** without pausing the execution and without cluttering up your code with `console.log()` calls.
+
+To set a logpoint:
+
+1. Open the **Sources** panel.
+2. Open the file containing the line of code you want to break on.
+3. Go to the line of code.
+4. To the left of the line of code is the line number column. Right-click it.
+5. Select **Add logpoint**. A dialog displays underneath the line of code.
+6. Enter your log message in the dialog. You can use the same syntax as you would with a [`console.log(message)`](https://developer.mozilla.org/docs/Web/API/Console/log) call.
+
+   For example, you can log:
+
+       "A string " + num, str.length > 1, str.toUpperCase(), obj
+
+   In this case, the logged message is:
+
+       // str = "test"
+       // num = 42
+       // obj = {attr: "x"}
+       A string 42 true TEST {attr: 'x'}
+
+7. Press <kbd>Enter</kbd> to activate the breakpoint. A pink icon with two dots appears on top of the line number column.
+
+![A logpoint that logs a string and a variable value to the Console.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/a-logpoint-logs-string-303a9cfac9ce6.png)
+
+This example shows a logpoint at line 30 that logs a string and a variable value to the **Console**.
+
+### Edit line-of-code breakpoints
+
+Use the **Breakpoints** section to disable, edit, or remove line-of-code breakpoints.
+
+#### Edit groups of breakpoints
+
+The **Breakpoints** section groups the breakpoints by file and orders them by line and column numbers. You can do the following with groups:
+
+- To collapse or expand a group, click its name.
+- To enable or disable a group or breakpoint individually, click ![Checkbox.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/checkbox-6eb6fa78c3d88.svg) next to the group or the breakpoint.
+- To remove a group, hover over it and click ![Close.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/close-3ecaf27a71f6.svg).
+
+This video shows how to collapse groups and disable or enable breakpoints one by one or by groups. When you disable a breakpoint, the **Sources** panel makes its marker next to the line number transparent.
+
+Groups have context menus. In the **Breakpoints** section, right-click a group and choose:
+
+![The context menu of a group.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/the-context-menu-a-group-5ef74384895d4.png)
+
+- Remove all breakpoints in file (group).
+- Disable all breakpoints in file.
+- Enable all breakpoints in file.
+- Remove all breakpoints (in all files).
+- Remove other breakpoints (in other groups).
+
+#### Edit breakpoints
+
+To edit a breakpoint:
+
+- Click ![Checkbox.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/checkbox-d1fa478d74b11.svg) next to a breakpoint to enable or disable it. When you disable a breakpoint, the **Sources** panel makes its marker next to the line number transparent.
+- Hover over a breakpoint and click ![Edit.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/edit-48c4fb5302013.svg) to edit and ![Close.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/close-d3e0c6cf71951.svg) to remove it.
+- When editing a breakpoint, change its type from the drop-down list in the inline editor.
+
+  ![Changing the type of a breakpoint.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/changing-type-a-breakpo-d9dc696dbedb.png)
+- Right-click a breakpoint to see its context menu and choose one of the options:
+
+  ![The context menu of a breakpoint.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/breakpoint-context-menu.png)
+  - Reveal location.
+  - Edit condition or logpoint.
+  - Enable all breakpoints.
+  - Disable all breakpoints.
+  - Remove breakpoint.
+  - Remove other breakpoints (in all files).
+  - Remove all breakpoints (in all files).
+
+Watch the video to see various breakpoint edits in action: disable, remove, edit condition, reveal location from the menu, and change type.
+
+### Skip breakpoints with 'Never pause here'
+
+Use a **Never pause here** line-of-code breakpoint to skip pauses that would happen for other reasons. This can be useful when you have turned on [exception breakpoints](https://developer.chrome.com/docs/devtools/javascript/breakpoints#exceptions) but the debugger keeps stopping on a particularly noisy exception that you are not interested in debugging.
+
+To mute a break location:
+
+1. In the **Sources** panel, open the source file and find the line you *don't* want to break on.
+2. Right-click the line number in the line number column on the left, next to the statement that causes the break.
+3. From the drop-down menu, select **Never pause here**. An orange (conditional) breakpoint appears next to the line.
+
+You can also mute breakpoint while the execution is paused. Watch the next video to learn the workflow.
+
+With **Never pause here** , you can mute debugger statements and every other breakpoint type except line-of-code breakpoints and **Event listener breakpoints**.
+
+**Never pause here** may fail on a line with multiple statements if the statement that shouldn't pause is different from the statement that causes the pause. In [source mapped code](https://developer.chrome.com/docs/devtools/javascript/source-maps), not every breakpoint location corresponds to the original statement that causes the break.
+
+> [!IMPORTANT]
+> **Key Point:** Line-of-code breakpoints override other break reasons originating from the same statement. This means that, to prevent stopping, you can also use logpoints and conditional breakpoints whose condition evaluates to false. In fact, a **Never pause here** breakpoint is just a conditional breakpoint with a `false` condition.
+
+## DOM change breakpoints
+
+Use a DOM change breakpoint when you want to pause on the code that changes a DOM node or its
+children.
+
+To set a DOM change breakpoint:
+
+1. Click the **Elements** tab.
+2. Go to the element that you want to set the breakpoint on.
+3. Right-click the element.
+4. Hover over **Break on** then select **Subtree modifications** , **Attribute modifications** , or **Node removal**.
+
+![The context menu for creating a DOM change breakpoint.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/the-context-menu-creating-d9641028a2002.png)
+
+This example shows the context menu for creating a DOM change breakpoint.
+
+You can find a list of DOM change breakpoints in:
+
+- **Elements** \> **DOM Breakpoints** pane.
+- **Sources** \> **DOM Breakpoints** side pane.
+
+![Lists of DOM Breakpoints in the Elements and Sources panels.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/lists-dom-breakpoints-t-35c876e24277.png)
+
+There you can:
+
+- Enable or disable them with ![Checkbox.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/checkbox-61d0f7ab74325.svg).
+- Right-click \> **Remove** or **Reveal** them in the DOM.
+
+### Types of DOM change breakpoints
+
+- **Subtree modifications**. Triggered when a child of the currently-selected node is removed or added, or the contents of a child are changed. Not triggered on child node attribute changes, or on any changes to the currently-selected node.
+- **Attributes modifications**: Triggered when an attribute is added or removed on the currently-selected node, or when an attribute value changes.
+- **Node Removal**: Triggered when the currently-selected node is removed.
+
+## XHR/fetch breakpoints
+
+Use an XHR/fetch breakpoint when you want to break when the request URL of an XHR contains a specified
+string. DevTools pauses on the line of code where the XHR calls `send()`.
+
+One example of when this is helpful is when you see that your page is requesting an incorrect URL,
+and you want to quickly find the AJAX or Fetch source code that is causing the incorrect request.
+
+To set an XHR/fetch breakpoint:
+
+1. Click the **Sources** panel.
+2. Expand the **XHR Breakpoints** pane.
+3. Click ![Add.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/add-29eba6b6f22d1.svg) **Add breakpoint**.
+4. Enter the string which you want to break on. DevTools pauses when this string is present anywhere in an XHR's request URL.
+5. Press <kbd>Enter</kbd> to confirm.
+
+![Creating an XHR/fetch breakpoint.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/creating-xhrfetch-break-aeae2b78a6fde.png)
+
+This example shows how to create an XHR/fetch breakpoint in the **XHR/fetch Breakpoints** for any request that contains
+`org` in the URL.
+
+## Event listener breakpoints
+
+Use event listener breakpoints when you want to pause on the event listener code that runs after an
+event is fired. You can select specific events, such as `click`, or categories of events, such as
+all mouse events.
+
+1. Click the **Sources** panel.
+2. Expand the **Event Listener Breakpoints** pane. DevTools shows a list of event categories, such as **Animation**.
+3. Check one of these categories to pause whenever any event from that category is fired, or expand the category and check a specific event.
+
+![Creating an event listener breakpoint.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/creating-event-listener-95ca4c9069209.png)
+
+This example shows how to create an event listener breakpoint for `deviceorientation`.
+
+Additionally, the **Debugger** pauses on events that happen in [web workers](https://developer.mozilla.org/docs/Web/API/Web_Workers_API#worker_types) or [worklets](https://developer.mozilla.org/docs/Web/API/Worklet) of any type, including the [Shared Storage Worklets](https://developer.chrome.com/docs/privacy-sandbox/shared-storage#how-does-shared-storage-work).
+
+![The Debugger paused on a service worker's event.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/event-in-worker.png)
+
+This example shows the **Debugger** paused on a `setTimer` event that happened in a service worker.
+
+You can also find a list of event listeners in the **Elements** \> **Event Listeners** pane.
+
+## Exception breakpoints
+
+Use exception breakpoints when you want to pause on the line of code that's throwing a caught or
+uncaught exception. You can pause on both such exceptions independently in any debug session other than [Node.js](https://nodejs.org/).
+
+> [!IMPORTANT]
+> **Key point:** Currently, in a Node.js debug session, you can pause on caught exceptions only if you also pause on uncaught ones. See [Chromium bug #1382762](https://crbug.com/1382762) for details.
+
+In the **Breakpoints** section of the **Sources** panel, enable one of the following options or both, then execute the code:
+
+- Check ![Checkbox.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/checkbox-75772df4bcbd5.svg) **Pause on uncaught exceptions**.
+
+  ![Paused on an uncaught exception when the corresponding checkbox is enabled.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/paused-an-uncaught-excep-1664635a39aa5.png)
+
+  In this example, the execution is paused on an uncaught exception.
+- Check ![Checkbox.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/checkbox-940f5b848f33d.svg) **Pause on caught exceptions**.
+
+  ![Paused on a caught exception when the corresponding checkbox is enabled.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/paused-a-caught-exceptio-2bc036027907f.png)
+
+  In this example, the execution is paused on a caught exception.
+
+### Exceptions in asynchronous calls
+
+With either or both caught and uncaught checkboxes turned on, the **Debugger** attempts to pause on the corresponding exceptions in both synchronous and asynchronous calls. In the asynchronous case, the **Debugger** looks for rejection handlers across promises to determine when to stop.
+
+### Caught exceptions and ignored code
+
+With [Ignore List](https://developer.chrome.com/blog/new-in-chrome-117) turned on, the **Debugger** pauses on exceptions caught either in non-ignored frames or passing through such a frame in the call stack.
+
+The next example shows the **Debugger** paused on a caught exception thrown by the ignored `library.js` that passes through non-ignored `mycode.js`.
+
+![Paused on a caught exception that passes through a non-ignored frame in the call stack.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/passing-through-non-ignored-code.png)
+
+To learn more about **Debugger** behavior in edge cases, test a collection of scenarios on this [demo page](https://chrome.dev/devtools-ignore-list-stories/).
+
+## Function breakpoints
+
+Call `debug(functionName)`, where `functionName` is the function you want to debug, when you want to
+pause whenever a specific function is called. You can insert `debug()` into your code (like a
+`console.log()` statement) or call it from the DevTools Console. `debug()` is equivalent to setting
+a [line-of-code breakpoint](https://developer.chrome.com/docs/devtools/javascript/breakpoints#loc) on the first line of the function.
+
+    function sum(a, b) {
+      let result = a + b; // DevTools pauses on this line.
+      return result;
+    }
+    debug(sum); // Pass the function object, not a string.
+    sum();
+
+### Make sure the target function is in scope
+
+DevTools throws a `ReferenceError` if the function you want to debug is not in scope.
+
+    (function () {
+      function hey() {
+        console.log('hey');
+      }
+      function yo() {
+        console.log('yo');
+      }
+      debug(yo); // This works.
+      yo();
+    })();
+    debug(hey); // This doesn't work. hey() is out of scope.
+
+Ensuring the target function is in scope can be tricky if you're calling `debug()` from the DevTools
+Console. Here's one strategy:
+
+1. Set a [line-of-code breakpoint](https://developer.chrome.com/docs/devtools/javascript/breakpoints#loc) somewhere where the function is in scope.
+2. Trigger the breakpoint.
+3. Call `debug()` in the DevTools Console while the code is still paused on your line-of-code breakpoint.
+
+## Trusted Type breakpoints
+
+The [Trusted Type API](https://developer.mozilla.org/docs/Web/API/Trusted_Types_API) provides protection against security
+exploits known as [cross-site scripting](https://owasp.org/www-community/attacks/xss/) (XSS) attacks.
+
+> [!IMPORTANT]
+> **Key term:** DOM-based cross-site scripting happens when data from a user controlled *source* (like username, or redirect URL taken from the URL fragment) reaches a *sink* , which is a function like `eval()` or a property setter like `.innerHTML`, that can execute arbitrary JavaScript code.
+
+In the **Breakpoints** section of the **Sources** panel, go to the **CSP Violation Breakpoints** section and enable one of the following options or both, then execute the code:
+
+- Check ![Checkbox.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/checkbox-6cd8eeb8b32b8.svg) **Sink Violations**.
+
+  ![Paused on a sink violation when the corresponding checkbox is enabled.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/paused-a-sink-violation-a7b4c40a9f3fe.png)
+
+  In this example, the execution is paused on a sink violation.
+- Check ![Checkbox.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/checkbox-18aa90ecefb0b.svg) **Policy Violations**.
+
+  ![Paused on a policy violation when the corresponding checkbox is enabled.](https://developer.chrome.com/static/docs/devtools/javascript/breakpoints/image/paused-a-policy-violatio-2119ca3e493ca.png)
+
+  In this example, the execution is paused on a policy violation. Trusted Type policies are set up using [`trustedTypes.createPolicy`](https://developer.mozilla.org/docs/Web/API/TrustedTypePolicyFactory/createPolicy).
+
+You can find more information about using the API:
+
+- To further your security aims, visit [Prevent DOM-based cross-site scripting vulnerabilities with Trusted Types](https://web.dev/articles/trusted-types).
+- For debugging, visit [Implementing CSP and Trusted Types debugging in Chrome DevTools](https://developer.chrome.com/blog/csp-issues#debugging_trusted_types_problems).

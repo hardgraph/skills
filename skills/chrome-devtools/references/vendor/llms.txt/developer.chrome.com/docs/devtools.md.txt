@@ -1,0 +1,163 @@
+[Video](https://www.youtube.com/watch?v=wBNCPp5gdqg)
+
+### DevTools
+
+Chrome DevTools is a set of web developer tools built directly into the Google Chrome browser. DevTools lets you edit pages on-the-fly and diagnose problems quickly, which helps you build better websites, faster. [Get started](http://developer.chrome.com/docs/devtools/overview) [Release notes](http://developer.chrome.com/docs/devtools/release-notes)
+
+## Debug with AI
+
+Explore how [AI innovations](https://developer.chrome.com/docs/devtools/settings/ai-innovations) in DevTools let you do more, faster. Use [DevTools for agents](https://developer.chrome.com/docs/devtools/agents/get-started) to connect the power of DevTools to your favorite coding agents. [Video](https://www.youtube.com/watch?v=DanTBy6Qazg)
+
+### [AI innovations](http://developer.chrome.com/docs/devtools/ai-assistance)
+
+Let Gemini help you analyze and improve your website's styling, network, sources, and performance. Get help with console errors, and code suggestions in the Console and Sources panels. [Explore AI innovations](http://developer.chrome.com/docs/devtools/ai-assistance) [Video](https://www.youtube.com/watch?v=4nTryYYZDAs)
+
+### [DevTools for agents](http://developer.chrome.com/docs/devtools/agents/get-started)
+
+Give your coding agents the same trusted tools you use to inspect network activity, record traces, and troubleshoot web applications, within your AI workflow.  
+
+Connect the **Chrome DevTools MCP** (Model Context Protocol) server to your tool of choice: Antigravity, Claude Code, Cline, Copilot, and more.  
+
+[Learn more](http://developer.chrome.com/docs/devtools/agents/get-started) [![](http://developer.chrome.com/static/docs/devtools/images/lp-hero-performance.jpg)](https://developer.chrome.com/docs/devtools#performance)
+
+### [Understand performance](https://developer.chrome.com/docs/devtools#performance)
+
+Get a comprehensive and actionable view of your page's performance. [![](http://developer.chrome.com/static/docs/devtools/images/lp-hero-sources.jpg)](https://developer.chrome.com/docs/devtools#sources)
+
+### [Inspect resources](https://developer.chrome.com/docs/devtools#sources)
+
+Learn how to inspect resources loaded by your page and edit them from your browser. [![](http://developer.chrome.com/static/docs/devtools/images/lp-hero-network.jpg)](https://developer.chrome.com/docs/devtools#network)
+
+### [Analyze network](https://developer.chrome.com/docs/devtools#network)
+
+Analyze and overwrite network requests and responses on the fly.
+
+## Developer Tooling Tips
+
+Explore our monthly video series taking you through common debugging scenarios in DevTools in a playful way. [Video](https://www.youtube.com/watch?v=kFi1yuGlCcA)
+
+### Emulate user experiences with coding agents
+
+Chrome DevTools for agents lets your agent verify responsive layouts, test location-aware APIs, and simulate varied CPU or network speeds. [Video](https://www.youtube.com/watch?v=2q9d7ANaXeA)
+
+### Automate Lighthouse audits with coding agents
+
+Lighthouse in Chrome DevTools for agents lets your coding agent evaluate website quality by performing live health checks for accessibility, SEO, best practices, and agentic browsing. [Video](https://www.youtube.com/watch?v=3haeDqv7Dzc)
+
+### Performance optimization Pitstop
+
+Get a tour through the updated Performance panel, showing you how to measure Core Web Vitals (LCP, CLS, INP) and how to get tailored advice from Gemini. [Video](https://www.youtube.com/watch?v=n0bzBBaZhUQ)
+
+### Pixel Pirate
+
+Set sail with DevTools and become a debugging pirate! Discover techniques for emulating focus styles, testing forms with autofill, and resolving backend errors with network overrides.
+
+## Get performance insights
+
+A wide range of tools to help you measure and optimize different aspects of your runtime performance: the Performance panel, Lighthouse, and more. [![](http://developer.chrome.com/static/docs/devtools/images/lp-hero-performance.jpg)](http://developer.chrome.com/docs/devtools/performance/overview)
+
+### [Performance tool overview](http://developer.chrome.com/docs/devtools/performance/overview)
+
+Learn about all the features in the Performance panel: how to record a performance trace, how to view and analyze the trace, and more. [![](http://developer.chrome.com/static/blog/devtools-grounded-real-world/images/hero.png)](http://developer.chrome.com/blog/devtools-grounded-real-world)
+
+### [Monitor your local and real-user Core Web Vitals performance in DevTools](http://developer.chrome.com/blog/devtools-grounded-real-world)
+
+Learn about new DevTools features like CPU throttling calibration to help you base your performance debugging decisions on data from the real world [![](http://developer.chrome.com/static/blog/devtools-insights-sidebar/images/hero.png)](http://developer.chrome.com/blog/devtools-insights-sidebar)
+
+### [Insights sidebar in the DevTools Performance panel](http://developer.chrome.com/blog/devtools-insights-sidebar)
+
+Learn about the new performance insights, the power of Lighthouse directly in the DevTools Performance panel.
+
+## News \& updates
+
+## Inspect and edit resources
+
+[![](http://developer.chrome.com/static/docs/devtools/images/lp-hero-sources.jpg)](http://developer.chrome.com/docs/devtools/sources)
+
+### [Feature reference](http://developer.chrome.com/docs/devtools/sources)
+
+Learn about all the features in the Sources panel: how to view and edit files, debug JavaScript, and set up a workspace. [Get started](http://developer.chrome.com/docs/devtools/sources) [Video](https://www.youtube.com/watch?v=Zu9CdbnS5ps)
+
+### [Set up a workspace](http://developer.chrome.com/docs/devtools/workspaces)
+
+Workspace lets you to save changes that you make within DevTools to source code that's stored on your computer. Learn how to set up a workspace in your own projects. [Read tutorial](http://developer.chrome.com/docs/devtools/workspaces)
+
+## Analyze network activity
+
+[![](http://developer.chrome.com/static/docs/devtools/images/lp-hero-network.jpg)](http://developer.chrome.com/docs/devtools/network/overview)
+
+### [Network panel](http://developer.chrome.com/docs/devtools/network/overview)
+
+Learn about all the features in the Network panel: inspect response and request bodies, overwrite headers, and more. [Get started](http://developer.chrome.com/docs/devtools/network/overview) [Video](https://www.youtube.com/watch?v=e1gAyQuIFQo)
+
+### [Inspect network activity](http://developer.chrome.com/docs/devtools/network)
+
+A hands-on tutorial to guide you through common tasks inside the Network panel. [Read tutorial](http://developer.chrome.com/docs/devtools/network)
+
+## More tools
+
+Discover all the other features and capabilities in DevTools.
+
+### [Elements](http://developer.chrome.com/docs/devtools/dom)
+
+Learn how to view and change a page's DOM.
+
+### [Styles](http://developer.chrome.com/docs/devtools/css)
+
+Learn how to view and change a page's CSS.
+
+### [Changes](http://developer.chrome.com/docs/devtools/changes)
+
+Track changes to HTML, CSS, and JavaScript.
+
+### [Console](http://developer.chrome.com/docs/devtools/console)
+
+Log messages and run JavaScript.
+
+### [Performance](http://developer.chrome.com/docs/devtools/performance/overview)
+
+Evaluate website performance.
+
+### [Memory](http://developer.chrome.com/docs/devtools/memory)
+
+Find memory issues that affect page performance, including memory leaks, and more.
+
+### [Application](http://developer.chrome.com/docs/devtools/progressive-web-apps)
+
+Inspect, modify, and debug web apps, test cache, view storage, and more.
+
+### [Animations](http://developer.chrome.com/docs/devtools/animations)
+
+Inspect and modify animations.
+
+### [Recorder](http://developer.chrome.com/docs/devtools/recorder/overview)
+
+Record, replay, measure user flows, and edit their steps.
+
+### [Rendering](http://developer.chrome.com/docs/devtools/rendering)
+
+Discover a collection of options that affect web content rendering.
+
+### [Autofill](http://developer.chrome.com/docs/devtools/autofill)
+
+Inspect and debug saved addresses.
+
+### [Issues](http://developer.chrome.com/docs/devtools/issues)
+
+Find and fix problems with your website.
+
+### [Privacy \& Security](http://developer.chrome.com/docs/devtools/security)
+
+Make sure that a page is fully protected by HTTPS.
+
+### [Media](http://developer.chrome.com/docs/devtools/media-panel)
+
+View information and debug media players per browser tab.
+
+### [Sensors](http://developer.chrome.com/docs/devtools/sensors)
+
+Emulate device sensors.
+
+### [WebAuthn](http://developer.chrome.com/docs/devtools/webauthn)
+
+Emulate authenticators.

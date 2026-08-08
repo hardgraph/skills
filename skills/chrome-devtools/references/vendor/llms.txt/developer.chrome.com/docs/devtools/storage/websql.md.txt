@@ -1,0 +1,68 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques)
+
+<br />
+
+> [!WARNING]
+> **Warning:** The Web SQL specification is [not being maintained](https://www.w3.org/TR/webdatabase/#status-of-this-document) and does not have [cross-browser support](https://caniuse.com/sql-storage).
+
+This guide shows you how to use [Chrome DevTools](https://developer.chrome.com/docs/devtools) to inspect Web SQL data.
+
+## View Web SQL Data
+
+1. Click the **Sources** tab to open the **Application** panel. Expand the **Web SQL** section to view databases and tables. In **Figure 1** below
+   **html5meetup** is a database and **rooms** is a table.
+
+   ![The Web SQL pane.](https://developer.chrome.com/static/docs/devtools/storage/websql/image/the-web-sql-pane-2c792de609ba8.png)
+
+   **Figure 1**. The Web SQL pane.
+2. Click a table to view that table's data.
+
+   ![Viewing the data of a Web SQL table.](https://developer.chrome.com/static/docs/devtools/storage/websql/image/viewing-data-a-web-sql-28f3ad43af91d.png)
+
+   **Figure 2** . Viewing the data of the **rooms** Web SQL table.
+
+## Edit Web SQL data
+
+You can't edit Web SQL data when viewing a Web SQL table, such as in **Figure 2** above. But you can
+run statements from the Web SQL Console that edit or delete tables. See [Run Web SQL queries](https://developer.chrome.com/docs/devtools/storage/websql#run).
+
+## Run Web SQL queries
+
+1. Click a database to open a console for that database.
+2. Type a Web SQL statement, then press Enter to run it.
+
+   ![Using the Web SQL Console to delete a row from a table.](https://developer.chrome.com/static/docs/devtools/storage/websql/image/using-web-sql-console-d-d97e227569a1d.png)
+
+   **Figure 3** . Using the Web SQL Console to delete a row from the **rooms** table.
+
+## Refresh a Web SQL table
+
+DevTools does not update tables in real-time. To update the data in a table:
+
+1. [View a Web SQL table's data](https://developer.chrome.com/docs/devtools/storage/websql#view).
+2. Click **Refresh** ![Refresh](https://developer.chrome.com/static/docs/devtools/storage/websql/image/refresh-62ae47acc43b7.png).
+
+## Filter out columns in a Web SQL table
+
+1. [View a Web SQL table's data](https://developer.chrome.com/docs/devtools/storage/websql#view).
+2. Use the **Visible columns** text box to specify what columns you want to show. Provide the
+   column names as a CSV list.
+
+   ![Using the Visible Columns text box to reduce the number of columns shown.](https://developer.chrome.com/static/docs/devtools/storage/websql/image/using-visible-columns-te-3201170fac912.png)
+
+   **Figure 4** . Using the **Visible Columns** text box to only show the `room_name` and
+   `last_updated` columns.
+
+## Delete all Web SQL data
+
+1. Open the **Clear Storage** pane.
+2. Make sure that the **Web SQL** checkbox is enabled.
+
+   ![The Web SQL checkbox.](https://developer.chrome.com/static/docs/devtools/storage/websql/image/the-web-sql-checkbox-115c7af1348ca.png)
+
+   **Figure 5** . The **Web SQL** checkbox.
+3. Click **Clear site data**.
+
+   ![The Clear Site Data button.](https://developer.chrome.com/static/docs/devtools/storage/websql/image/the-clear-site-data-butto-112c9d28a24d3.png)
+
+   **Figure 6** . The **Clear Site Data** button.

@@ -1,0 +1,113 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Jecelyn Yeen](https://web.dev/images/authors/jecelynyeen.jpg) Jecelyn Yeen [X](https://twitter.com/jecfish) [GitHub](https://github.com/jecfish) [Bluesky](https://bsky.app/profile/jec.fish) [Homepage](https://jec.fish/) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+[Video](https://www.youtube.com/watch?v=X65TAP8a530)
+
+There are many ways to open Chrome DevTools. Choose your favorite way from this comprehensive reference.
+
+You can access DevTools using Chrome UI or keyboard:
+
+- From [drop-down menus in Chrome](https://developer.chrome.com/docs/devtools/open#chrome-menu).
+- With dedicated [shortcuts](https://developer.chrome.com/docs/devtools/open#shortcuts) that open **Elements** , **Console**, or the last panel you used.
+
+Additionally, learn how to [auto-open DevTools for every new tab](https://developer.chrome.com/docs/devtools/open#auto).
+
+## Open DevTools from Chrome menus
+
+If you prefer UI, you can access DevTools from drop-down menus in Chrome.
+
+### Open the Elements panel to inspect the DOM or CSS
+
+To inspect, right-click an element on a page and select **Inspect**.
+
+![The Inspect option in a drop-down menu in Chrome.](https://developer.chrome.com/static/docs/devtools/open/image/the-inspect-option-a-dro-e98bce489fabb.png)
+
+DevTools opens the **Elements** panel and selects the element in the DOM tree. In the **Styles** tab, you can see CSS rules applied to the selected element.
+
+![An element selected in the Elements panel.](https://developer.chrome.com/static/docs/devtools/open/image/an-element-selected-the-45e3ba473a721.png)
+
+### Open the last panel you used from Chrome's main menu
+
+To open the last DevTools panel, click the button to the right of the address bar and select **More Tools** \> **Developer Tools**.
+
+![The Developer Tools option selected from the three-dot menu.](https://developer.chrome.com/static/docs/devtools/open/image/the-developer-tools-optio-2d9d9b7c0ac96.png)
+
+Alternatively, you can open the last panel with a shortcut. See the next section to learn more.
+
+## Open panels with shortcuts: Elements, Console, or your last panel
+
+If you prefer keyboard, press a shortcut in Chrome depending on your operating system:
+
+| OS | Elements | Console | Your last panel |
+|---|---|---|---|
+| Windows or Linux | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + **C** | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + **J** | <kbd>F12</kbd> <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + **I** |
+| Mac | <kbd>Cmd</kbd> + <kbd>Option</kbd> + **C** | <kbd>Cmd</kbd> + <kbd>Option</kbd> + **J** | <kbd>Fn</kbd> + <kbd>F12</kbd> <kbd>Cmd</kbd> + <kbd>Option</kbd> + **I** |
+
+Here's an easy way to memorize the shortcuts:
+
+- **C** stands for CSS.
+- **J** for JavaScript.
+- **I** designates your choice.
+
+The **C** shortcut opens the **Elements** panel in inspector mode. This mode shows you helpful tooltips when you hover over elements on a page. You can also click any element to view its CSS in the **Elements** \> **Styles** tab.
+
+![The Elements panel in inspector mode with a tooltip.](https://developer.chrome.com/static/docs/devtools/open/image/the-elements-panel-inspe-6e5ff3c13f7a3.png)
+
+For the full list of DevTools shortcuts, see [Keyboard shortcuts](https://developer.chrome.com/docs/devtools/shortcuts).
+
+## With DevTools open, reload the page with or without cache
+
+With DevTools open, you can reload your page in three ways. In the main action bar of the Chrome window, long-press the **Reload** button and choose one of the options:
+
+![Three reload options with DevTools open.](https://developer.chrome.com/static/docs/devtools/open/image/reload-options.png)
+
+- **Normal Reload**. Uses cache to speed up reload time.
+
+  Shortcut: <kbd>Cmd</kbd>+<kbd>R</kbd> (macOS) or <kbd>Ctrl</kbd>+<kbd>R</kbd> (Windows/Linux).
+
+  > [!NOTE]
+  > **Note:** [**Disable cache** in the **Network** panel](https://developer.chrome.com/docs/devtools/network/reference#disable-cache) forces all normal reloads not to use cache.
+
+- **Hard Reload**. Bypasses cache but doesn't empty it.
+
+  Shortcut: <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> (macOS) or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> (Windows/Linux).
+- **Empty cache and hard reload** . Empties cache for *all* sites before reloading.
+
+## Auto-open DevTools on every new tab
+
+Run Chrome from the command line and pass the `--auto-open-devtools-for-tabs` flag:
+
+1. Quit any running Chrome instance.
+
+   > [!IMPORTANT]
+   > **Key point:** This flag works only for the first Chrome instance you open. If it doesn't work for you, for example, on Windows, make sure to end any residing Chrome processes from the Task Manager.
+
+2. Run your favorite terminal or command line application.
+
+3. Depending on your operating system, run the following command:
+
+- macOS:
+
+      open -a "Google Chrome" --args --auto-open-devtools-for-tabs
+
+- Windows:
+
+      start chrome --auto-open-devtools-for-tabs
+
+- Linux:
+
+      google-chrome --auto-open-devtools-for-tabs
+
+DevTools will automatically open for every new tab until you close Chrome.
+
+## What's next?
+
+> [!TIP]
+> **Success:** Congratulations! You've successfully unlocked the power of Chrome DevTools.
+
+Next, watch the following video to learn some useful shortcuts and settings for quicker DevTools navigation.
+
+[Video](https://www.youtube.com/watch?v=xHusjrb_34A)
+
+For a more hands-on learning experience, see [how to customize DevTools](https://developer.chrome.com/docs/devtools/customize).

@@ -1,0 +1,64 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Use the **Developer Resources** panel to check if DevTools loads source maps successfully. If required, you can load them manually.
+
+[Video](https://www.youtube.com/watch?v=SkUcO4ML5U0)
+
+> [!IMPORTANT]
+> **Key point:** To learn how source maps can make debugging easier for you, see [Debug your original code instead of deployed with source maps](https://developer.chrome.com/docs/devtools/javascript/source-maps).
+
+## Overview
+
+When you open DevTools, it attempts to load source maps, if any. In case of failure, the **Console** logs an error similar to the following.
+
+![The source map load error in the Console.](https://developer.chrome.com/static/docs/devtools/developer-resources/image/the-source-map-load-error-d7772c1e02837.png)
+
+In the **Developer Resources** panel, you can view the source map load status and even load source maps manually.
+
+## Open Developer Resources and check status
+
+To check the load statuses of source maps:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open), make sure to [enable source maps](https://developer.chrome.com/docs/devtools/javascript/source-maps#enable_source_maps_in_settings), and navigate to \> **More tools** \> **Developer Resources**.
+2. In the table, check the values in the following columns:
+
+   - **Status** to see if the source map loading was a success or failure.
+   - **Error** to read the error message, if any.
+
+![The Status and Error columns.](https://developer.chrome.com/static/docs/devtools/developer-resources/image/the-status-error-columns.png)
+
+## Filter resources by URL or Error
+
+To focus on source maps that interest you, enter text in the textbox at the top to filter out source maps that don't contain this text in URLs or error messages.
+
+![Filtering out source maps that don't contain 'js' in URL.](https://developer.chrome.com/static/docs/devtools/developer-resources/image/filtering-source-maps.png)
+
+## Troubleshoot loading source maps
+
+By default, DevTools requests source maps rather than the website. Such requests may be treated as [cross-origin](https://developer.mozilla.org/docs/Web/HTTP/CORS) and might not get through.
+
+To make the website request source maps first, in the top right corner of **Developer Resources** , check ![Checkbox.](https://developer.chrome.com/static/docs/devtools/developer-resources/image/checkbox-79c6241426686.svg) **Load through website**.
+
+![The 'Load through website' checkbox](https://developer.chrome.com/static/docs/devtools/developer-resources/image/load-through-website.png)
+
+If you still have issues with loading source maps, try to load them manually as described next.
+
+## Load a source map manually
+
+If you encounter load failures or, for example, want to [debug your original code](https://developer.chrome.com/docs/devtools/javascript/source-maps) on a website in production that lacks source maps, you can load them manually:
+
+1. [Generate source maps using tools that support them](https://developer.chrome.com/docs/devtools/javascript/source-maps#use_a_supported_preprocessor).
+2. Host the source maps locally.
+3. [Open DevTools](https://developer.chrome.com/docs/devtools/open) on your page and make sure to [enable source maps](https://developer.chrome.com/docs/devtools/javascript/source-maps#enable_source_maps_in_settings).
+4. Open the deployed (processed) file in **Sources** , right-click it in the **Editor** , and select **Add source map** from the menu.
+
+   ![Selecting 'Add source maps' from the menu.](https://developer.chrome.com/static/docs/devtools/developer-resources/image/selecting-add-source-map-340969e5e9367.png)
+5. In the textbox, specify the source map URL and click **Add**.
+
+   ![Specifying the source map URL.](https://developer.chrome.com/static/docs/devtools/developer-resources/image/specifying-source-map-ur-f5a4745dacc62.png)
+6. Check if the source map appeared in **Developer Resources** and the original file (mapped from the deployed one) in the file tree.
+
+   ![A manually loaded source map makes the original file appear in the file tree.](https://developer.chrome.com/static/docs/devtools/developer-resources/image/a-manually-loaded-source-5ae5ca35eec1c.png)
+7. Proceed to [debug your original file](https://developer.chrome.com/docs/devtools/javascript/source-maps#debugging_with_source_maps).

@@ -1,0 +1,229 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+The **Background services** section of Chrome DevTools is a collection of tools for the JavaScript
+APIs that enables your website to send and receive updates even when a user does not have your
+website open. A background service is functionally similar to a [background process](https://en.wikipedia.org/wiki/Background_process).
+
+The **Background services** section lets you debug the following background services:
+
+- [Background fetch](https://developer.chrome.com/docs/devtools/javascript/background-services#fetch)
+- [Background sync](https://developer.chrome.com/docs/devtools/javascript/background-services#sync)
+- [Notifications](https://developer.chrome.com/docs/devtools/javascript/background-services#notifications)
+- [Speculative loads](https://developer.chrome.com/docs/devtools/javascript/background-services#speculative-loads)
+- [Push messages](https://developer.chrome.com/docs/devtools/javascript/background-services#push)
+
+Chrome DevTools can log fetch, sync, and notification events for three days, even when DevTools is not open. This can help you make sure that events are being sent and received as expected.
+
+In addition to background service events, DevTools can:
+
+- Show you [reports](https://developer.chrome.com/docs/capabilities/web-apis/reporting-api) that Chrome already sent or is about to send using the [Reporting API](https://developer.chrome.com/docs/devtools/javascript/background-services#reporting-api).
+- Let you debug and [test back/forward cache](https://developer.chrome.com/docs/devtools/application/back-forward-cache) with a click.
+
+## Background fetch
+
+The [Background Fetch API](https://developer.chrome.com/blog/background-fetch) enables a [service worker](https://web.dev/service-workers-cache-storage/) to reliably download large resources,
+like movies or podcasts, as a background service. To log background fetch events for three days, even
+when DevTools isn't open:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) on a page using the Background Fetch API.
+2. Navigate to **Application** \> **Background services** \> **Background fetch** , and click ![Record.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/record-f9de797a87d6a.svg) **Record**.
+
+   ![The Background fetch tab.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/the-background-fetch-pane-070867927e6.png)
+3. On your page, trigger some background fetch activity. DevTools logs the events to the table.
+
+   ![A log of events in the Background fetch tab.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/a-log-events-the-backgr-3591d1df366d5.png)
+4. Click an event to view its details in the space below the table.
+
+5. You can close DevTools and leave the recording run for up to three days. To stop recording, click ![Stop.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/stop-f7a664887d8c5.svg) **Stop**.
+
+## Background sync
+
+The [Background Sync API](https://developer.chrome.com/blog/background-sync) enables an offline [service worker](https://web.dev/service-workers-cache-storage/) to send data to a server once
+it has re-established a reliable internet connection. To log background sync events for three days, even
+when DevTools isn't open:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open), for example, on this [demo page](https://jakearchibald.github.io/isserviceworkerready/demos/sync/).
+2. Navigate to **Application** \> **Background services** \> **Background sync** and click ![Record.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/record-0be38dd722d78.svg) **Record**.
+
+   ![The Background sync tab.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/the-background-sync-pane-f41f19a341d6b.png)
+3. On the demo page, click **Register background sync** to register the respective service worker and click **Allow** when prompted.
+
+   > [!NOTE]
+   > **Note:** To learn how to debug service workers in DevTools, see [Service workers](https://developer.chrome.com/docs/devtools/progressive-web-apps#service-workers).
+
+   Service worker registration is a background sync activity. DevTools logs the events to the table.
+
+   ![A log of events in the Background sync tab.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/a-log-events-the-backgr-f7877e3708b1.png)
+4. Click an event to view its details in the space below the table.
+
+5. You can close DevTools and leave the recording run for up to three days. To stop recording, click ![Stop.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/stop-100010600a42.svg) **Stop**.
+
+## (Experimental) Bounce tracking mitigations
+
+> [!NOTE]
+> **Note:** This is an experimental feature available from Chrome version 115.
+
+[Bounce tracking mitigations](https://privacycg.github.io/nav-tracking-mitigations/#bounce-tracking-mitigations) experiment in Chrome lets you identify and delete the state of sites that appear to perform cross-site tracking using the bounce tracking technique. You can manually force tracking mitigations and see a list of sites whose states were deleted.
+
+To force tracking mitigations:
+
+1. [Block third-party cookies in Chrome](https://support.google.com/chrome/answer/95647?co=GENIE.Platform%3DAndroid&sjid=2048967673261319866-EU#zippy=%2Callow-or-block-cookies). Navigate to and enable ![Three-dot menu.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/three-dot-menu-436a15fbe9f56.svg) \> **Settings** \> ![Security.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/security-1506228bcfbbd.svg) **Privacy and security** \> **Cookies and other site data** \> ![Radio button checked.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/radio-button-checked-80c96b89aee45.svg) **Block third-party cookies**.
+2. In `chrome://flags`, set the **Bounce tracking mitigations** experiment to **Enabled With Deletion**.
+3. [Open DevTools](https://developer.chrome.com/docs/devtools/open) and navigate to **Application** \> **Background services** \> **Bounce tracking mitigations**.
+4. Click a bounce link and wait (10 seconds) for Chrome to record the bounce. The **Issues** tab warns you about the upcoming state deletion.
+5. Click **Force run** to delete the state immediately.
+
+![Bounce tracking mitigations lists a state deletion.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/bounce-tracking-mitigatio-a3d7f13269c15.png)
+
+## Notifications
+
+After a [service worker](https://web.dev/service-workers-cache-storage/) has received a [Push Message](https://developer.mozilla.org/docs/Web/API/Push_API) from a server, the service worker
+uses the [Notifications](https://developer.mozilla.org/docs/Web/API/Notifications_API) API to display the data to a user. To log Notifications for three days,
+even when DevTools isn't open:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open)
+2. Navigate to **Application** \> **Background services** \> **Notifications** and click ![Record.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/record-12eb7b4df27c3.svg) **Record**.
+
+   ![The Notifications tab.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/the-notifications-pane-081e9b0205f48.png)
+3. Click **Schedule Notification** and **Allow** when prompted.
+
+4. Wait for the notification to appear. DevTools logs the notification events to the table.
+
+   ![A log of events in the Notifications tab.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/a-log-events-the-notifi-5ca7f65e79b55.png)
+5. Click an event to view its details in the space below the table.
+
+6. You can close DevTools and leave the recording run for up to three days. To stop recording, click ![Stop.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/stop-2c5bd40f0b164.svg) **Stop**.
+
+## Speculative loads
+
+[Speculative loads](https://developer.chrome.com/blog/prerender-pages) allow a [near-instant page load](https://developer.chrome.com/blog/prerender-pages#impact-of-prerendering) based on speculation rules that you [define](https://developer.chrome.com/blog/prerender-pages#the-speculation-rules-api). This lets your website prefetch and prerender most navigated-to pages.
+
+Prefetch fetches a resource in advance and prerender goes a step beyond and renders the whole page in a hidden background renderer process.
+
+You can debug speculative loads in the **Application** \> **Background services** \> **Speculative loads** section. The section contains three views:
+
+- **Speculative loads**. Contains the speculative status for the current page, current URL, pages that the current page attempts to load speculatively, and their statuses.
+- **Rules** . Contains the rule sets on the current page in the **Elements** panel and the overall status of speculations.
+- **Speculations**. Contains a table with information on speculative loading attempts and their statuses. If an attempt failed, you can click it in the table to see detailed information and failure reason.
+
+Try debugging speculative loads on this [prerender demo page](https://chrome.dev/prerender-demos/):
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) on the page and navigate to **Application** \> **Background services** \> **Speculative loads**. If you can't see any speculative loads initiated by the page, reload it.
+
+   ![The URLs speculatively loaded by this page, two successes and one failure.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/speculative-loads-section.png)
+2. The starting page of the demo prerenders two pages and fails to prerender one. Click **View all speculations**.
+
+3. In **Speculations** , select the speculation with the **Failure** status to see the **Failure reason** the section with detailed information at the bottom.
+
+   ![The failed speculation selected.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/speculations-section.png)
+
+   In this case, the prerender failed because there's no `/next3.html` page on the website.
+4. Optionally, to filter the table in the **Speculations** tab, in the filter bar at the top, freely type a value or use one of the keyed filters: `url:``VALUE`, `action:``VALUE`, or `action:``VALUE`.
+
+   ![Speculations table filter bar.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/speculations-filter.png)
+5. Open the **Rules** section and click the **Status** to see the rule set at the bottom. Clicking on the **Rule set** link takes you to the **Elements** panel and shows you where the speculation rule is defined.
+
+   ![The Rules section with the link to the Rule set.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/rules-section.png)
+
+   > [!TIP]
+   > **Tip:** You can't fix the rule on this screen or in the **Elements** panel because DevTools doesn't persist arbitrary DOM changes across page loads. You have to [fix the rule at the source](https://developer.chrome.com/docs/devtools/workspaces#sources) by [setting up a workspace](https://developer.chrome.com/docs/devtools/workspaces) or mock the change by [overriding the content](https://developer.chrome.com/docs/devtools/overrides#make-changes).
+
+For a more detailed walkthrough, see [Debugging speculation rules](https://developer.chrome.com/docs/devtools/application/debugging-speculation-rules).
+
+## Push messaging
+
+To display a push notification to a user, a [service worker](https://web.dev/service-workers-cache-storage/) must first use the [Push
+Message](https://developer.mozilla.org/docs/Web/API/Push_API) API to receive data from a server. When the service worker is ready to display the
+notification, it uses the [Notifications](https://developer.mozilla.org/docs/Web/API/Notifications_API) API. To log push messages for three days, even when
+DevTools isn't open:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open), for example, on this [demo page](https://simple-push-demo.vercel.app/).
+2. Navigate to **Application** \> **Background services** \> **Push Messaging** and click ![Record.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/record-acdc7e7330abc.svg) **Record**.
+
+   ![The Push Messaging tab.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/the-push-messaging-pane-3de9f3cc1d8d9.png)
+3. On the demo page, toggle **Enable push notifications** , click **Allow** when prompted, type a message, and send it. DevTools logs push notification events to the table.
+
+   ![A log of events in the Push Messaging tab.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/a-log-events-the-push-m-cc0dff41ce523.png)
+
+   > [!NOTE]
+   > **Note:** Additionally, in **Application** \> [**Service Workers**](https://developer.chrome.com/docs/devtools/progressive-web-apps#service-workers), you can click **Push** to send test notifications from DevTools.
+
+4. Click an event to view its details in the space below the table.
+
+5. You can close DevTools and leave the recording run for up to three days. To stop recording, click ![Stop.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/stop-400773acdb582.svg) **Stop**.
+
+## Reporting API
+
+Some errors happen only in production. You never see them locally or during development because real users, networks, and devices change the game.
+
+For example, say your new site relies on third-party software that uses `document.write()` to load critical scripts. New users all over the world open your site but they might have slower connections than you tested with. Unknown to you, your site starts breaking for them because [Chrome intervenes against](https://developer.chrome.com/docs/lighthouse/best-practices/no-document-write) `document.write()` on slow networks. Alternatively, you might want to keep an eye on deprecated or soon-to-be-deprecated APIs your codebase may be using.
+
+The **Reporting API** is designed to help you monitor deprecated API calls, security violations of your page, and more. You can set up reporting as described in [Monitor your web application with the Reporting API](https://developer.chrome.com/docs/capabilities/web-apis/reporting-api#using_the_reporting_api).
+
+To view the reports generated by a page:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) and navigate to **Application** \> **Background services** \> **Reporting API**.
+
+   ![Reports listed in the Reporting API](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/reports-listed-the-repor-eb328f8f97ec7.png)
+
+The **Reporting API** tab is divided into three parts:
+
+- The **Reports** table with the following information on each report:
+  - **URL** that caused the report generation
+  - Violation **Type**
+  - [Report **Status**](https://developer.chrome.com/docs/devtools/javascript/background-services#report-status)
+  - **Destination** endpoint
+  - **Generated at** timestamp
+  - Report **Body**
+- The **Report body** preview section. To preview a report body, click a report in the table of reports.
+- The **Endpoints** section with an overview of all the endpoints configured in the `Reporting-Endpoints` header.
+
+### Report status
+
+The **Status** column tells you whether Chrome sent the report successfully, is about to send it, or failed.
+
+| Status | Description |
+|---|---|
+| `Success` | The browser has sent the report and the endpoint replied with a success code (`200` or another success response code `2xx`). |
+| `Pending` | The browser is making an attempt to send the report. |
+| `Queued` | The report has been generated and the browser is not trying to send it yet. A report appears as `Queued` in one of these two cases: - The report is new and the browser is waiting to see if more reports arrive before trying to send it. - The report is not new; the browser has already tried to send this report and has failed, and is waiting before trying again. |
+| `MarkedForRemoval` | After retrying for a while (`Queued`), the browser has stopped trying to send the report and will soon remove it from its list of reports to send. |
+
+Reports are removed after a while, whether or not they're successfully sent.
+
+> [!IMPORTANT]
+> **Key point:** The `Queued` status isn't always informative, because it doesn't precisely indicate whether sending has failed or has not been attempted yet. Using [short reporting delays](https://developer.chrome.com/docs/capabilities/web-apis/reporting-api#save_time) helps: a report that remains `Queued` in that case likely indicates that sending is failing.
+
+### Crash report context
+
+With [Reporting API](https://developer.mozilla.org/docs/Web/API/Reporting_API), you can configure your website to [report crashes](https://developer.mozilla.org/docs/Web/API/CrashReport) to a `crash-reporting` or `default` server endpoint. A crash report can include a [`CrashReportContext`](https://developer.mozilla.org/docs/Web/API/CrashReportContext) interface that lets you record arbitrary crash-related data in key-value pairs for the current top-level browsing context.
+
+In the **Application** \> **Background services** \> **Reporting API** \> **Crash Report Context** tab, you can inspect your crash context data and filter by key or value in the filter bar at the top.
+
+![The Crash Report Context tab.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/crash-report-context.png)
+
+## Device bound sessions
+
+[Device Bound Session Credentials (DBSC)](https://w3c.github.io/webappsec-dbsc/) is a Web API and a protocol between user agents and servers that aims to prevent cookie theft by allowing a user agent to assert possession of a securely-stored private key.
+
+To view the device bound sessions, their definitions, and events:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) on a page that uses DBSC.
+2. Navigate to **Application** \> **Background services** \> **Device bound sessions**.
+3. In the sidebar on the left, expand a site to view its active sessions. Select a session to view its definition.
+
+   ![The Device bound sessions tab.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/device-bound-sessions.png)
+4. The **Events** table logs the DBSC events: creation, refresh, challenge, and termination. To keep the list of events across page navigations, check check_box **Preserve log**.
+
+5. In the **Events** table, select an event to view its details.
+
+6. If an event fails, you will see the `Error` message in the **Result** column. Select the failed event to see its details, response error code, and the cause of failure.
+
+   ![The 'Device bound sessions' tab with an error event selected.](https://developer.chrome.com/static/docs/devtools/javascript/background-services/image/device-bound-sessions-error.png)
+
+The **Device bound sessions** section in the sidebar may highlight the following issues:
+
+- **Terminated sessions**: Indicated by a strikethrough and a database-off icon in the sidebar.
+- **Failed events** : Highlighted with a warning icon. The **No session** element captures failed events that were linked to a site but not to a known session.

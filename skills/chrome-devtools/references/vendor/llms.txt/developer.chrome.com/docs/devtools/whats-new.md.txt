@@ -1,0 +1,39 @@
+![Dale St. Marthe](https://web.dev/images/authors/dalestmarthe.jpg) Dale St. Marthe [LinkedIn](https://www.linkedin.com/in/dale-st-marthe)
+
+<br />
+
+The **What's new** panel in DevTools features highlights from our [What's new in DevTools](https://developer.chrome.com/docs/devtools/news) blog series.
+
+## Overview
+
+With each update to Chrome DevTools, we release a new article in our blog series [What's new in DevTools](https://developer.chrome.com/docs/devtools/news).
+The **What's new** panel features some of the more interesting changes from the update. Each change has a short description for your quick reference.
+
+> [!NOTE]
+> **Note:** The **What's new** *panel* in Chrome DevTools focuses on *DevTools* features only. The 'What's new' *tab* in Chrome showcases general Chrome updates instead.
+
+![DevTools with What's New panel open](https://developer.chrome.com/static/docs/devtools/whats-new/image/whats-new-in-devtools-panel.png)
+
+Click any of the titles to open the relevant section in the newest blog in a new tab.
+The **See all new features** button at the top takes you to the latest article from this series.
+
+The video banner will take you to a video with important highlights from previous versions.
+
+## Open the What's new panel in DevTools
+
+By default, the **What's new** panel in DevTools opens automatically after each Chrome update.
+
+To prevent the **What's new** panel from opening automatically in DevTools, clear the following checkbox in DevTools settings: [**Preferences** \> **Appearance**](https://developer.chrome.com/docs/devtools/settings/preferences#appearance) \> **Show what's new after each update**.
+
+To manually open the **What's new** panel:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Open the **Command menu** by pressing:
+   - macOS: <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+   - Windows, Linux, ChromeOS: <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> ![Command Menu with](https://developer.chrome.com/static/docs/devtools/whats-new/image/command-menu-whats-new.png)
+3. Start typing `what's new`, select **Show what's new** , and press <kbd>Enter</kbd>. DevTools displays the **What's new** panel in the **Drawer** at the bottom of your DevTools window.
+
+Alternatively, you can open the **What's new** panel in the following ways:
+
+- In the action bar at the top, click **More panels** and select **What's new** from the drop-down list.
+- In the top right corner, select **Customize and control DevTools** \> **More tools** \> **What's new**.

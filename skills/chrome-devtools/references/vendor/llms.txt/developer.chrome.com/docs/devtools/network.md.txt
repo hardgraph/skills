@@ -1,0 +1,274 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques)
+
+<br />
+
+This is a hands-on tutorial of some of the most commonly-used DevTools features related to
+inspecting a page's network activity.
+
+See [Network Reference](https://developer.chrome.com/docs/devtools/network/reference) if you'd like to browse features instead.
+
+Read on, or watch the video version of this tutorial:
+
+[Video](https://www.youtube.com/watch?v=e1gAyQuIFQo)
+
+## When to use the Network panel
+
+In general, use the **Network** panel when you need to make sure that resources are being downloaded or
+uploaded as expected. The most common use cases for the **Network** panel are:
+
+- Making sure that resources are actually being uploaded or downloaded at all.
+- Inspecting the properties of an individual resource, such as its HTTP headers, content, size, and so on.
+
+If you're looking for ways to improve page load performance, *don't* start with the **Network** panel.
+There are many types of load performance issues that aren't related to network activity. Start with
+the Lighthouse panel because it gives you targeted suggestions on how to improve your page. See
+[Optimize Website Speed](https://developer.chrome.com/docs/devtools/lighthouse).
+
+## Open the Network panel
+
+To get the most out of this tutorial, open up the demo and try out the features on the demo page.
+
+1. Open the [Get Started Demo](https://chrome.dev/devtools-network-activity/getstarted.html).
+
+   ![The demo website.](https://developer.chrome.com/static/docs/devtools/network/image/the-demo.png)
+
+   You might prefer to move the demo to a separate window.
+
+   ![The demo in one window and this tutorial in a different window.](https://developer.chrome.com/static/docs/devtools/network/image/dual-windows.png)
+2. [Open DevTools](https://developer.chrome.com/docs/devtools/open) by pressing Control+Shift+J or Command+Option+J (Mac). The **Console** panel
+   opens.
+
+   ![The Console panel in Devtools.](https://developer.chrome.com/static/docs/devtools/network/image/the-console.png)
+
+   You might prefer to [dock DevTools to the bottom of your window](https://developer.chrome.com/docs/devtools/customize#placement).
+
+   ![DevTools docked to the bottom of the window.](https://developer.chrome.com/static/docs/devtools/network/image/console-docked-bottom.png)
+3. Click the **Network** tab. The **Network** panel opens.
+
+   ![Devtools Network panel docked to the bottom of the window.](https://developer.chrome.com/static/docs/devtools/network/image/network-docked-bottom.png)
+
+Right now the **Network** panel is empty. That's because DevTools only logs network activity while it's
+open and no network activity has occurred since you opened DevTools.
+
+## Log network activity
+
+To view the network activity that a page causes:
+
+1. Reload the page. The **Network** panel logs all network activity in the **Network Log**.
+
+   ![The Network Log with 5 requests.](https://developer.chrome.com/static/docs/devtools/network/image/the-network-log.png)
+
+   Each row of the **Network Log** represents a resource. By default the resources are listed
+   chronologically. The top resource is usually the main HTML document. The bottom resource is
+   whatever was requested last.
+
+   Each column represents information about a resource. The default columns are:
+   - **Status**: The HTTP response code.
+   - **Type**: The resource type.
+   - **Initiator**: What caused a resource to be requested. Clicking a link in the Initiator column takes you to the source code that caused the request.
+   - **Size**: Resource amount transferred over the network.
+   - **Time**: How long the request took.
+
+   > [!NOTE]
+   > **Note:** The graph above the Network Log is called the Overview. You won't be using it in this tutorial, so you can hide it if you prefer. See [Hide the Overview track](https://developer.chrome.com/docs/devtools/network/reference#hide-overview).
+
+2. So long as you've got DevTools open, it will record network activity in the **Network Log** . To
+   demonstrate this, first look at the bottom of the **Network Log** and take note of the
+   last activity.
+
+3. Now, click the **Get Data** button in the demo.
+
+4. Look at the bottom of the **Network Log** again. There's a new resource called
+   `getstarted.json`. Clicking the **Get Data** button caused the page to request this file.
+
+   ![A new resource in the Network Log.](https://developer.chrome.com/static/docs/devtools/network/image/new-resource-in-log.png)
+
+## Show more information
+
+The columns of the **Network Log** are configurable. You can hide columns that you're not using. There
+are also many columns that are hidden by default which you may find useful.
+
+1. Right-click the header of the **Network Log** table and select **Domain**. The domain of each
+   resource is now shown.
+
+   ![Enabling the Domain column.](https://developer.chrome.com/static/docs/devtools/network/image/enabling-domain-column.png)
+
+> [!TIP]
+> **Tip:** You can see the full URL of a resource by hovering over its cell in the **Name** column.
+
+## Simulate a slower network connection
+
+The network connection of the computer that you use to build sites is probably faster than the
+network connections of the mobile devices of your users. By throttling the page you can get a better
+idea of how long a page takes to load on a mobile device.
+
+1. Click the **Throttling** drop-down, which is set to **No throttling** by default.
+
+   ![The throttling drop-down in the Network panel.](https://developer.chrome.com/static/docs/devtools/network/image/enable-throttling.png)
+2. Select **3G**.
+
+   ![Selecting 3G in the Network panel.](https://developer.chrome.com/static/docs/devtools/network/image/enable-3g.png)
+3. Long-press **Reload** and then select **Empty Cache And Hard Reload**.
+
+   ![Empty Cache And Hard Reload.](https://developer.chrome.com/static/docs/devtools/network/image/empty-cache-hard-reload.png)
+
+   On repeat visits, the browser usually serves some files from its [cache](https://developer.mozilla.org/docs/Web/HTTP/Caching), which speeds up the
+   page load. **Empty Cache And Hard Reload** forces the browser to go to the network for all
+   resources. This is helpful when you want to see how a first-time visitor experiences a page
+   load.
+
+   > [!NOTE]
+   > **Note:** The **Empty Cache And Hard Reload** workflow is only available when DevTools is open.
+
+## Capture screenshots
+
+Screenshots capture how your page looks at different times while it loads, and reports what resources are loaded at each interval.
+
+To capture screenshots, follow these steps:
+
+1. Click **Network Settings** .
+
+2. Enable the **Screenshots** checkbox.
+
+3. Reload the page again using the **Empty Cache And Hard Reload** workflow. See [Simulate a slower
+   connection](https://developer.chrome.com/docs/devtools/network#throttle) if you need a reminder on how to do this. The **Screenshots** tab provides
+   thumbnails of how the page looked at various points during the loading process.
+
+   ![Screenshots of the page load in the Network panel.](https://developer.chrome.com/static/docs/devtools/network/image/screenshots-of-page-load.png)
+4. Click the first thumbnail. DevTools shows you what network activity was occurring at that moment
+   in time.
+
+   ![The network activity that was happening during the first screenshot.](https://developer.chrome.com/static/docs/devtools/network/image/screenshot-network-activity.png)
+5. Toggle the **Screenshots** checkbox to close the Screenshots tab.
+
+6. Reload the page again.
+
+## Inspect a resource's details
+
+Click a resource to learn more information about it. Try it now:
+
+1. Click `getstarted.html`. The **Headers** tab is shown. Use this tab to inspect HTTP headers.
+
+   ![The Headers tab in the Network panel.](https://developer.chrome.com/static/docs/devtools/network/image/the-headers-tab.png)
+2. Click the **Preview** tab to view a basic HTML rendering.
+
+   ![The Preview tab in the Network panel.](https://developer.chrome.com/static/docs/devtools/network/image/the-preview-tab.png)
+
+   This tab is helpful when an API returns an error code in HTML and it's easier to read the
+   rendered HTML than the HTML source code, or when inspecting images.
+3. Click the **Response** tab to view the HTML source code.
+
+   ![The Response tab in the Network panel.](https://developer.chrome.com/static/docs/devtools/network/image/the-response-tab.png)
+
+   > [!TIP]
+   > **Tip:** When a file is minified, clicking the **Format** button at the bottom of the **Response** tab re-formats the file's contents for readability.
+
+4. Click the **Initiator** tab to view a tree that maps the request initiator chain.
+
+   ![The Initiator tab in the Network panel.](https://developer.chrome.com/static/docs/devtools/network/image/the-initiator-tab.png)
+5. Click the **Timing** tab to view a breakdown of the network activity for this resource.
+
+   ![The Timing tab in the Network panel.](https://developer.chrome.com/static/docs/devtools/network/image/the-timing-tab.png)
+6. Click **Close** to view the **Network Log** again.
+
+   ![The Close button for the details tab.](https://developer.chrome.com/static/docs/devtools/network/image/the-close-button.png)
+
+## Search network headers and responses
+
+Use the **Search** tab when you need to search the HTTP headers and responses of all resources for
+a certain string or regular expression.
+
+For example, suppose you want to check if your resources are using reasonable [cache policies](https://web.dev/uses-long-cache-ttl/).
+
+1. Click **Search** in the panel's action bar or press <kbd>Command</kbd> + <kbd>F</kbd> (macOS) or <kbd>Control</kbd> + <kbd>F</kbd> (Windows / Linux).
+
+   The **Search** tab opens to the left of the **Network log**.
+
+   ![The Search tab to the left of the Network log.](https://developer.chrome.com/static/docs/devtools/network/image/the-search-tab.png)
+2. Type `Cache-Control` and press Enter. The **Search** tab lists all instances of `Cache-Control`
+   that it finds in resource headers or content.
+
+   ![Search results for Cache-Control.](https://developer.chrome.com/static/docs/devtools/network/image/search-results-cache-control.png)
+3. Click a result to view it. If the query was found in a header, the Headers tab opens. If the
+   query was found in content, the **Response** tab opens.
+
+   ![A search result highlighted in the Headers tab.](https://developer.chrome.com/static/docs/devtools/network/image/search-result-highlight.png)
+4. Close the **Search** tab and the **Headers** tab.
+
+   ![The Close buttons.](https://developer.chrome.com/static/docs/devtools/network/image/the-close-buttons.png)
+
+## Filter resources
+
+DevTools provides numerous workflows for filtering out resources that aren't relevant to the task at
+hand.
+
+![The Filters toolbar.](https://developer.chrome.com/static/docs/devtools/network/image/the-filters-toolbar.png)
+
+The **Filters** toolbar should be enabled by default. If not:
+
+1. Click **Filter** to show it.
+
+### Filter by string, regular expression, or property
+
+The **Filter** input box supports many different types of filtering.
+
+1. Type `png` into the **Filter** input box. Only the files that contain the text `png` are shown.
+   In this case the only files that match the filter are the PNG images.
+
+   ![String filtering results in the Network log.](https://developer.chrome.com/static/docs/devtools/network/image/a-string-filter.png)
+2. Type `/.*\.[cj]s+$/`. DevTools filters out any resource with a filename that doesn't end with a
+   `j` or a `c` followed by 1 or more `s` characters.
+
+   ![Regular expression filter results in the Network log.](https://developer.chrome.com/static/docs/devtools/network/image/a-regular-expression-filter.png)
+3. Type `-main.css`. DevTools filters out `main.css`. If any other file matched the pattern they
+   would also be filtered out.
+
+   ![Negative filtering results in the Network log.](https://developer.chrome.com/static/docs/devtools/network/image/a-negative-filter.png)
+4. Type `domain:raw.githubusercontent.com` into the **Filter** text box. DevTools filters out any
+   resource with a URL that does not match this domain.
+
+   ![Property filtering results in the Network log.](https://developer.chrome.com/static/docs/devtools/network/image/a-property-filter.png)
+
+   See [Filter requests by properties](https://developer.chrome.com/docs/devtools/network/reference#filter-by-property) for the full list of filterable properties.
+5. Clear the **Filter** input box of any text.
+
+### Filter by resource type
+
+To focus in on a certain type of file, such as stylesheets:
+
+1. Click **CSS**. All other file types are filtered out.
+
+   ![Network panel showing CSS files only.](https://developer.chrome.com/static/docs/devtools/network/image/showing-css-files-only.png)
+2. To also see scripts, hold Control or Command (Mac) and then click **JS**.
+
+   ![Network panel showing CSS and JS files only.](https://developer.chrome.com/static/docs/devtools/network/image/showing-css-js-files-only.png)
+3. Click **All** to remove the filters and see all resources again.
+
+See [Filter requests](https://developer.chrome.com/docs/devtools/network/reference#filter) for other filtering workflows.
+
+## Block requests
+
+How does a page look and behave when some of its resources aren't available? Does it fail
+completely, or is it still somewhat functional? Block requests to find out:
+
+1. Press Control+Shift+P or Command+Shift+P (Mac) to open the **Command Menu**.
+
+   ![The Command Menu in the Network panel.](https://developer.chrome.com/static/docs/devtools/network/image/the-command-menu.png)
+2. Type `block`, select **Show Request Blocking**, and press Enter.
+
+   ![The 'Show Request Blocking' option.](https://developer.chrome.com/static/docs/devtools/network/image/show-request-blocking.png)
+3. Click the **Add Pattern** button.
+
+4. Type `main.css`.
+
+   ![Blocking main.css in Network panel](https://developer.chrome.com/static/docs/devtools/network/image/blocking-maincss.png)
+5. Click **Add**.
+
+6. Reload the page. As expected, the page's styling is slightly messed up because its main
+   style sheet has been blocked. Note the `main.css` row in the Network Log. The red text means that
+   the resource is blocked.
+
+   ![main.css has been blocked.](https://developer.chrome.com/static/docs/devtools/network/image/maincss-has-been-blocked.png)
+7. Clear the **Enable request blocking** checkbox.
+
+To discover more DevTools features related to inspecting network activity, check out the [Network Reference](https://developer.chrome.com/docs/devtools/network/reference).

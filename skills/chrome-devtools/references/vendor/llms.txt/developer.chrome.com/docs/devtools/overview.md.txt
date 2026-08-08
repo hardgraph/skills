@@ -1,0 +1,169 @@
+Chrome DevTools is a set of web developer tools built directly into the [Google Chrome](https://www.google.com/chrome/) browser.
+DevTools can help you edit pages on-the-fly and diagnose problems quickly, which ultimately helps
+you build better websites, faster.
+
+[Video](https://www.youtube.com/watch?v=t1c5tNPpXjs)
+
+Check out the video for live demonstrations of core DevTools workflows, including debugging CSS,
+prototyping CSS, debugging JavaScript, and analyzing load performance.
+
+## Open DevTools
+
+There are many ways to open DevTools, because different users want quick access to different parts
+of the DevTools UI.
+
+- To work with the DOM or CSS, right-click an element on the page and select **Inspect** to jump into the **Elements** panel. Or press <kbd>Command</kbd>+<kbd>Option</kbd>+<kbd>C</kbd> (Mac) or <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> (Windows, Linux, ChromeOS).
+- To see logged messages or run JavaScript, press <kbd>Command</kbd>+<kbd>Option</kbd>+<kbd>J</kbd> (Mac) or <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd> (Windows, Linux, ChromeOS) to jump straight into the **Console** panel.
+
+See [Open Chrome DevTools](https://developer.chrome.com/docs/devtools/open) for more details and workflows.
+
+## Get started
+
+If you're a more experienced web developer, here are the recommended starting points for learning
+how DevTools can improve your productivity:
+
+- [View and change the DOM](https://developer.chrome.com/docs/devtools/dom)
+- [View and change CSS](https://developer.chrome.com/docs/devtools/css)
+- [Debug JavaScript](https://developer.chrome.com/docs/devtools/javascript)
+- [View messages and run JavaScript in the Console](https://developer.chrome.com/docs/devtools/console)
+- [Optimize website speed](https://developer.chrome.com/docs/devtools/speed/get-started)
+- [Inspect network activity](https://developer.chrome.com/docs/devtools/network)
+
+## Discover DevTools
+
+The DevTools UI can be a little overwhelming... there are so many tabs! But, if you take some time
+to get familiar with each tab to understand what's possible, you may discover that DevTools can
+seriously boost your productivity.
+
+> [!NOTE]
+> **Note:** In the DevTools docs, the top-level tabs are called panels.
+
+### Device Mode
+
+![Device mode turned on in viewport.](https://developer.chrome.com/static/docs/devtools/overview/image/device-mode-turned-in-vi-3efb54e6005ec.png)
+
+Simulate mobile devices.
+
+- [Device mode](https://developer.chrome.com/docs/devtools/device-mode)
+- [Emulate device sensors](https://developer.chrome.com/docs/devtools/sensors)
+
+### Elements panel
+
+![Elements panel.](https://developer.chrome.com/static/docs/devtools/overview/image/elements-panel-546127ed29eac.png)
+
+View and change the DOM and CSS.
+
+- [Get started with viewing and changing the DOM](https://developer.chrome.com/docs/devtools/dom)
+- [Get started with viewing and changing CSS](https://developer.chrome.com/docs/devtools/css)
+- [Edit CSS](https://developer.chrome.com/docs/devtools/css/reference#change)
+- [Edit the DOM](https://developer.chrome.com/docs/devtools/dom#edit)
+- [Find invalid, overridden, inactive, and other CSS](https://developer.chrome.com/docs/devtools/css/issues)
+- [Identify potential CSS improvements](https://developer.chrome.com/docs/devtools/css-overview)
+- [Emulate light/dark themes, contrast, and other CSS media features](https://developer.chrome.com/docs/devtools/rendering)
+- [Find unused CSS](https://developer.chrome.com/docs/devtools/coverage)
+- [Inspect animations](https://developer.chrome.com/docs/devtools/css/animations)
+
+### Console panel
+
+![Console panel.](https://developer.chrome.com/static/docs/devtools/overview/image/console-panel-f3236b570bfb2.png)
+
+View messages and run JavaScript from the Console.
+
+- [Get started with the Console](https://developer.chrome.com/docs/devtools/console)
+- [Console Utilities API reference](https://developer.chrome.com/docs/devtools/console/utilities)
+- [Console API reference](https://developer.chrome.com/docs/devtools/console/api)
+
+### Sources panel
+
+![Sources panel.](https://developer.chrome.com/static/docs/devtools/overview/image/sources-panel-d8b2950a6c659.png)
+
+Debug JavaScript, persist changes made in DevTools across page reloads, save and run snippets of
+JavaScript, and save changes that you make in DevTools to local sources.
+
+- [Get started with debugging JavaScript](https://developer.chrome.com/docs/devtools/javascript)
+- [Pause your code with breakpoints](https://developer.chrome.com/docs/devtools/javascript/breakpoints)
+- [Edit and save files in a workspace](https://developer.chrome.com/docs/devtools/workspaces)
+- [Run snippets of JavaScript](https://developer.chrome.com/docs/devtools/javascript/snippets)
+- [JavaScript debugging reference](https://developer.chrome.com/docs/devtools/javascript/reference)
+- [Override web content and HTTP response headers locally](https://developer.chrome.com/docs/devtools/overrides)
+
+### Network panel
+
+![Network panel.](https://developer.chrome.com/static/docs/devtools/overview/image/network-panel-7a0e068626e53.png)
+
+View and debug network activity.
+
+- [Inspect network activity](https://developer.chrome.com/docs/devtools/network)
+- [Network features reference](https://developer.chrome.com/docs/devtools/network/reference)
+- [View page resources](https://developer.chrome.com/docs/devtools/resources)
+
+### Recorder panel
+
+![Recorder panel.](https://developer.chrome.com/static/docs/devtools/overview/image/recorder-panel-556dfff284124.png)
+
+Record, replay, and measure user flows.
+
+- [Record, replay, and measure user flows](https://developer.chrome.com/docs/devtools/recorder)
+- [Customize the Recorder with extensions](https://developer.chrome.com/docs/devtools/recorder/extensions)
+- [Recorder features reference](https://developer.chrome.com/docs/devtools/recorder/reference)
+
+### Performance panel
+
+![Performance panel.](https://developer.chrome.com/static/docs/devtools/overview/image/performance-panel-2d62e202b1d5e.png)
+
+Find ways to improve load and runtime performance.
+
+- [Optimize website speed](https://developer.chrome.com/docs/devtools/speed/get-started)
+- [Analyze runtime performance](https://developer.chrome.com/docs/devtools/evaluate-performance)
+- [Performance features reference](https://developer.chrome.com/docs/devtools/evaluate-performance/reference)
+
+### Memory panel
+
+![Memory panel.](https://developer.chrome.com/static/docs/devtools/overview/image/memory-panel-630ed88f03a3c.png)
+
+Find and fix memory issues that affect page performance, for example, memory leaks.
+
+- [Fix memory problems](https://developer.chrome.com/docs/devtools/memory-problems)
+
+### Application panel
+
+![The Application panel with the Service workers section opened.](https://developer.chrome.com/static/docs/devtools/overview/image/the-application-panel-th-c4e7482ef8e4c.png)
+
+Inspect all resources that are loaded, including IndexedDB or Web SQL databases, local and session
+storage, cookies, Application Cache, images, fonts, and stylesheets.
+
+- [Debug Progressive Web Apps](https://developer.chrome.com/docs/devtools/progressive-web-apps)
+- [View and edit local storage](https://developer.chrome.com/docs/devtools/storage/localstorage)
+- [View, add, edit, and delete cookies](https://developer.chrome.com/docs/devtools/storage/cookies)
+- [View origin trial information](https://developer.chrome.com/docs/web-platform/origin-trials#devtools)
+
+### Security panel
+
+![Security panel.](https://developer.chrome.com/static/docs/devtools/overview/image/security-panel-76f88c9c89cf6.png)
+
+Debug mixed content issues, certificate problems, and more.
+
+- [Understand security issues](https://developer.chrome.com/docs/devtools/security)
+
+## Community
+
+File bug reports and feature requests in Crbug, which is the engineering team's bug tracker.
+
+[Crbug](https://crbug.com/new)
+
+If you want to alert us to a bug or feature request but don't have much time, you're welcome to send
+a tweet to @ChromeDevTools. We reply and send announcements from the account regularly.
+
+[Twitter](https://twitter.com/ChromeDevTools)
+
+For help with using DevTools, Stack Overflow is the best channel.
+
+[Stack Overflow](https://stackoverflow.com/questions/ask?tags=google-chrome-devtools)
+
+To file bugs or feature requests on the DevTools docs, open a GitHub issue.
+
+[Docs Issues](https://github.com/GoogleChrome/developer.chrome.com/issues/new/choose)
+
+DevTools also has a Slack channel, but the team doesn't monitor it consistently.
+
+[Slack](https://chromiumdev.slack.com/messages/devtools/)

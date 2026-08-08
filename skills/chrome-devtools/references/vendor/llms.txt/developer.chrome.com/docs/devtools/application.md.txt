@@ -1,0 +1,56 @@
+![Dale St. Marthe](https://web.dev/images/authors/dalestmarthe.jpg) Dale St. Marthe [LinkedIn](https://www.linkedin.com/in/dale-st-marthe)
+
+<br />
+
+Use the **Application** panel to inspect, modify, and debug many aspects of your web app including its manifest, service workers, storage, and cache data.
+
+## Overview
+
+The **Application** panel is divided into four sections containing sub-menus. Following are these sections and sub-menus:
+
+**Application**: Contains over-arching information about the app including its manifest, service workers, and storage.
+
+- The [**Manifest**](https://developer.chrome.com/docs/devtools/progressive-web-apps#manifest) tab presents information from `manifest.json` in a user-friendly way. It also displays errors and warnings, if any, in the corresponding section.
+- The [**Service workers**](https://developer.chrome.com/docs/devtools/progressive-web-apps#service-workers) tab lets you inspect and debug service workers by emulating push events, updating a service, and more.
+- The **Storage** tab contains a pie chart showing the distribution of memory used by cache storage, IndexedDB, and service workers. You can also clear site data and simulate a custom storage quota.
+- The [**WebMCP**](https://developer.chrome.com/docs/devtools/application/webmcp) tab lets you inspect, debug, and test the client-side AI tools your website exposes to AI agents.
+
+**Storage**: View and edit the different storage methods used by a web app.
+
+- [**Local**](https://developer.chrome.com/docs/devtools/storage/localstorage) and [**Session storage**](https://developer.chrome.com/docs/devtools/storage/sessionstorage) lists let you select an origin and edit the key-value pairs of the associated storage methods.
+- The [**IndexedDB**](https://developer.chrome.com/docs/devtools/storage/indexeddb) list contains databases and lets you inspect object stores from the browser.
+- The [**Cookies**](https://developer.chrome.com/docs/devtools/application/cookies) list lets you select an origin and edit the key-value pairs.
+- **Private state tokens** and **Interest groups** let you inspect the corresponding [tokens](https://developers.google.com/privacy-sandbox/protections/private-state-tokens) and [groups](https://developers.google.com/privacy-sandbox/relevance/protected-audience#what_is_an_interest_group), if any.
+- The [**Shared storage**](https://developers.google.com/privacy-sandbox/relevance/shared-storage) list lets you select an origin and inspect and edit associated key-value pairs.
+- The [**Cache storage**](https://developer.chrome.com/docs/devtools/storage/cache) list contains available caches and lets you inspect, filter, and delete their resources.
+
+**Background services**: Inspect, test, and debug background services.
+
+- The [**Back/forward cache**](https://developer.chrome.com/docs/devtools/application/back-forward-cache) tab lets you run tests on back/forward cache in the browser. It also reports issues that may be preventing back/forward caching.
+- The [**Background fetch**](https://developer.chrome.com/docs/devtools/javascript/background-services#fetch) tab lets you record activity from the [Background Fetch API](https://developer.chrome.com/blog/background-fetch) for up to three days.
+- The [**Background sync**](https://developer.chrome.com/docs/devtools/javascript/background-services#sync) tab lets you record activity from the [Background Sync API](https://developer.chrome.com/blog/background-sync) for up to three days.
+- The [**Bounce tracking mitigations**](https://developer.chrome.com/docs/devtools/javascript/background-services#bounce-tracking) tab lets you identify and delete the state of sites that appear to perform cross-site tracking using the bounce tracking technique.
+- The [**Notifications**](https://developer.chrome.com/docs/devtools/javascript/background-services#notifications) tab lets you record push messages for up to three days.
+- The **Payment handler** tab lets you record Payment Handler events for up to three days.
+- The **Periodic background sync** tab lets you record key events for up to three days in the periodic background sync lifecycle, such as registering for sync, performing a background sync, and unregistering.
+- The [**Speculative loads**](https://developer.chrome.com/docs/devtools/javascript/background-services#speculative-loads) tab lets you debug [Speculative Loads](https://developer.chrome.com/blog/prerender-pages). It shows the speculative status, rule sets, and speculative loading attempts.
+- The [**Push messaging**](https://developer.chrome.com/docs/devtools/javascript/background-services#push) tab lets you record push messages for up to three days and logs them.
+- The [**Reporting API**](https://developer.chrome.com/docs/devtools/javascript/background-services#reporting-api) tab monitors your site and reports deprecated API calls and security violations.
+- The [**Device bound sessions**](https://developer.chrome.com/docs/devtools/javascript/background-services#device-bound-sessions) tab lets you view information on device bound sessions and inspect associated events.
+
+[**Frames**](https://developer.chrome.com/docs/devtools/application/frames): Divides pages and resources into multiple views, and displays relevant information, such as **Security \& Isolation** , **Content Security Policy** , **API availability**, and more.
+
+## Open the Application panel
+
+To open the **Application** panel:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Open the **Command menu** by pressing:
+   - macOS: <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+   - Windows, Linux, ChromeOS: <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> ![Command Menu with](https://developer.chrome.com/static/docs/devtools/application/image/command-menu-application-panel.png)
+3. Start typing `application`, select **Show Application** , and press <kbd>Enter</kbd>. DevTools displays the **Application** panel at the top of your DevTools window.
+
+Alternatively, you can open the **Application** panel in the following ways:
+
+- In the action bar at the top, click **More panels** and select **Application** from the drop-down list.
+- In the top right corner, select **More options** \> **More tools** \> **Application**.

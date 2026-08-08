@@ -1,0 +1,86 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+The **Coverage** panel helps you find unused JavaScript and
+CSS code. Removing unused code can speed up your page load and save the mobile data of your users.
+
+![Analyzing code coverage.](https://developer.chrome.com/static/docs/devtools/coverage/image/analyzing-code-coverage.png)
+
+> [!CAUTION]
+> **Caution:** Finding unused code is relatively easy. In contrast, refactoring the codebase so that each page contains only the necessary JavaScript and CSS can be difficult. This guide doesn't cover how to refactor your codebase to avoid unused code. Such refactoring highly depends on your technology stack.
+
+## Overview
+
+Shipping unused JavaScript or CSS is a common problem in web development.
+For example, suppose that you want to use [Bootstrap's button component](https://getbootstrap.com/docs/4.3/components/buttons/)
+on your page. To use the button component you need to add a link to
+Bootstrap's style sheet in your HTML, like this:
+
+    ...
+    <head>
+      ...
+      <link rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous">
+      ...
+    </head>
+    ...
+
+This style sheet doesn't just include the code for the button component. It
+contains the CSS for *all* of Bootstrap's components. But you're not using
+any of the other Bootstrap components. So your page is downloading a bunch of
+CSS that it doesn't need. This extra CSS is a problem for the following
+reasons:
+
+- The extra code slows down your page load. See [Render-Blocking CSS](https://web.dev/critical-rendering-path-render-blocking-css/).
+- If a user accesses the page on a mobile device, the extra code uses up their mobile data.
+
+The **Coverage** panel lets you record your page and view a report of the total used and unused bytes of CSS and Javascript resources, and track the code in the **Sources** panel.
+
+## Open the Coverage panel
+
+1. [Open Devtools](https://developer.chrome.com/docs/devtools/open).
+2. [Open the Command Menu](https://developer.chrome.com/docs/devtools/command-menu).
+3. Start typing `coverage`, select the **Show Coverage** command, and then
+   press <kbd>Enter</kbd> to run the command. The **Coverage** panel opens in
+   the **Drawer**.
+
+   ![The Coverage panel.](https://developer.chrome.com/static/docs/devtools/coverage/image/coverage.png)
+
+Alternatively, in the top right corner, select more_vert **More options** \> **More tools** \> **Coverage**.
+
+## Record code coverage
+
+To capture code coverage:
+
+1. To set the coverage scope, in the action bar at the top of the **Coverage** panel, select **Per function** or **Per block** from the drop-down list.
+
+2. To start the recording, click **Reload** button at the center of the panel. The **Coverage** panel reloads the page, captures the code needed to load the page, and continues the recording while you interact with the page.
+
+3. To stop recording code coverage, click **Stop instrumenting coverage and show results** on the panel's action bar.
+
+## Analyze code coverage
+
+The table in the **Coverage** panel shows you what resources were analyzed, and how much code is used within each resource.
+
+Click a row to open that resource in the **Sources** panel and see a line-by-line breakdown of used code and unused code. Any unused lines of code are marked with vertical gray lines next to column with line numbers on the left.
+
+![A code coverage report.](https://developer.chrome.com/static/docs/devtools/coverage/image/code-coverage-report.png)
+
+- The **URL** column is the URL of the resource that was analyzed.
+- The **Type** column says whether the resource contains CSS, JavaScript, or both.
+- The **Total Bytes** column is the total size of the resource in bytes.
+- The **Unused Bytes** column is the number of bytes that weren't used.
+- The **Usage Visualization** column is a visualization of the **Total Bytes** and **Unused Bytes** columns. The gray section of the bar is unused bytes. The green section is used bytes.
+
+To filter the report by URL, specify it in the filter in the action bar.
+
+The status bar at the bottom of the **Coverage** panel shows you the percentage of code used. The status bar takes filtering into account.
+
+Next to the filter bar, from the drop-down list, you can select **All** , or only **CSS** or **JavaScript** to show in your report.
+
+To include extension code into your report, turn on **Content scripts**.
+
+To export your report, click **Export coverage**.

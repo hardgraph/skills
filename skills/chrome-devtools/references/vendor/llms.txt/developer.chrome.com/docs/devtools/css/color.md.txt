@@ -1,0 +1,145 @@
+![Jecelyn Yeen](https://web.dev/images/authors/jecelynyeen.jpg) Jecelyn Yeen [X](https://twitter.com/jecfish) [GitHub](https://github.com/jecfish) [Bluesky](https://bsky.app/profile/jec.fish) [Homepage](https://jec.fish/) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+The **Color Picker** provides a GUI for changing `color` and `*-color` declarations and lets you create, convert, and debug non-HD and [HD colors](https://developer.chrome.com/docs/css-ui/high-definition-css-color-guide) with a click.
+
+[Video](https://www.youtube.com/watch?v=TuR27BxCRVk)
+
+> [!IMPORTANT]
+> **Key point:** This video shows Chrome DevTools version earlier than 112. In later versions, the **Styles** pane supports 12 new color spaces and 7 new gamuts from the [CSS Color Level 4](https://www.w3.org/TR/css-color-4/) specification, and the [`color-mix()`](https://developer.chrome.com/docs/css-ui/css-color-mix) function from [CSS Color Level 5](https://www.w3.org/TR/css-color-5/#color-mix).
+
+For a deep dive on the new color spaces, see [High Definition CSS Color Guide](https://developer.chrome.com/docs/css-ui/high-definition-css-color-guide).
+
+## Open the Color Picker and change colors
+
+Use the **Color Picker** to change color values with a click:
+
+1. [Select an element](https://developer.chrome.com/docs/devtools/css/reference#select) in the **Elements** panel.
+2. In the **Styles** pane, find the `color` or `*-color` declaration you want to change.
+
+   To the left of each `color` or `*-color` value, there is a small square icon with a preview of that color.
+
+   ![Color preview.](https://developer.chrome.com/static/docs/devtools/css/color/image/color-preview-0e7555e38e27.png)
+
+   <br />
+
+   > [!NOTE]
+   > **Note:** This example shows two intersected circles next to the [`color-mix()`](https://developer.mozilla.org/docs/Web/CSS/color_value/color-mix) function: ![Color-mix preview.](https://developer.chrome.com/static/docs/devtools/css/color/image/color-mix-preview-b6c0ffdcdb726.png). The intersection is a preview of the resulting color.
+   >
+   > <br />
+   >
+To inspect the computed value, [use the **Computed** pane](https://developer.chrome.com/docs/devtools/css/issues#computed).
+
+![The computed value of color-mix().](https://developer.chrome.com/static/docs/devtools/css/color/image/the-computed-value-color-20fa370a2a2ee.png)
+
+1. Click the preview square next to a color to open the **Color Picker**.
+2. To change the color, use any of the UI elements of the **Color Picker**.
+
+## Color Picker elements
+
+Here's a description of each of the UI elements of the **Color Picker**:
+
+![The Color Picker, annotated.](https://developer.chrome.com/static/docs/devtools/css/color/image/the-color-picker-annotat-122947f8b75df.png)
+
+1. **Shades**.
+2. **Eyedropper** . See [Sample a color anywhere with the Eyedropper](https://developer.chrome.com/docs/devtools/css/color#eyedropper).
+3. **Copy to clipboard** . Copy the **Display value** to your clipboard.
+4. **Display value**. Arguments of the chosen color space.
+5. **Contrast ratio** . Available only for `color` values. It's the difference between `color` and `background-color`.
+6. **Color palette**. Click a square to change the color to that of the square.
+7. **Gamut boundary** . This line is available only for the new color spaces and the [`color()`](https://developer.chrome.com/docs/css-ui/high-definition-css-color-guide#the-color-function) function. They can produce both HD and non-HD colors. The line lets you distinguish between HD and non-HD.
+8. **Color circle**. Drag this circle across the shades to change the display value.
+9. **Hue slider**.
+10. **Opacity slider**.
+11. **Display value switcher** . Pick a color space from the drop-down list. See [Convert colors](https://developer.chrome.com/docs/devtools/css/color#convert-colors).
+
+    > [!NOTE]
+    > **Note:** Alternatively, to open the drop-down menu directly, hold down <kbd>Shift</kbd> and click the color preview icon next to the color value.
+
+12. **Expand contrast ratio** . Opens the corresponding section that lets you [Fix contrast](https://developer.chrome.com/docs/devtools/css/color#fix-contrast).
+13. **Color palette switcher**. Click it to toggle between:
+
+    - [**Material** Design palette](https://m2.material.io/design/color/the-color-system.html#color-usage-and-palettes).
+    - **Custom** palette. To manually add the current color to this palette, click ![Add.](https://developer.chrome.com/static/docs/devtools/css/color/image/add-2405c1e3a066c.svg).
+    - **CSS Variables** palette. Lists all custom CSS variables (appended with `--`) on your page.
+    - **Page colors** palette. To generate this palette, DevTools looks for all the colors in your stylesheets.
+
+## Choose a color space
+
+To choose a color space:
+
+1. <kbd>Shift-click</kbd> the preview icon next a color value. A drop-down list opens.
+
+   > [!NOTE]
+   > **Note:** Alternatively, click the **Display value switcher** in the **Color Picker**.
+
+   ![The drop-down list with all the supported color spaces.](https://developer.chrome.com/static/docs/devtools/css/color/image/the-drop-down-list-all-39ad14a236d73.png)
+2. Choose one of the following color spaces:
+
+   - [`#<hex-color>`](https://developer.mozilla.org/docs/Web/CSS/hex-color)
+   - [`rgb(X X X / .X)`](https://developer.mozilla.org/docs/Web/CSS/color_value/rgb).
+   - [`hsl(X X X / X)`](https://developer.mozilla.org/docs/Web/CSS/color_value/hsl).
+   - [`hwb(X X X / .X)`](https://developer.mozilla.org/docs/Web/CSS/color_value/hwb).
+
+   Or one of the new spaces:
+   - [`lch(X X X / .X)`](https://developer.mozilla.org/docs/Web/CSS/color_value/lch)
+   - [`oklch(X X X / .X)`](https://developer.mozilla.org/docs/Web/CSS/color_value/oklch)
+   - [`lab(X X X / .X)`](https://developer.mozilla.org/docs/Web/CSS/color_value/lab)
+   - [`oklab(X X X / .X)`](https://developer.mozilla.org/docs/Web/CSS/color_value/oklab)
+
+   Or a space defined by the [`color(<color_space> X X X)`](https://developer.chrome.com/docs/css-ui/high-definition-css-color-guide#the_color_function) function.
+
+### Convert colors
+
+When you switch between color spaces with the **Display value switcher**, DevTools automatically converts the values.
+
+> [!CAUTION]
+> **Caution:** When converting from HD to non-HD, DevTools clips gamuts to fit the space and marks clipped values with ![Warning.](https://developer.chrome.com/static/docs/devtools/css/color/image/warning-a3292b814acb3.svg) warning icons.
+
+Hover over the icon to see the original value.
+
+![A warning icon indicating a gamut clipping and a tooltip with the original value.](https://developer.chrome.com/static/docs/devtools/css/color/image/a-warning-icon-indicating-307b699cb2b6b.png)
+
+The next video shows conversions in action.
+
+## Fix contrast
+
+> [!IMPORTANT]
+> **Key point:** The **Color Picker** calculates contrast ratios only for the `color` values and relative to the respective `background-color` values. So, only the `color` values have **Contrast ratio** sections.
+
+To fix a contrast issue for a `color` declaration:
+
+1. Open the **Color Picker** next to the `color` value.
+2. Expand the **Contrast ratio** ![Expand.](https://developer.chrome.com/static/docs/devtools/css/color/image/expand-507c726034708.svg) section.
+3. Use the suggested color that complies with a guideline:
+
+   - Click ![Use suggested color.](https://developer.chrome.com/static/docs/devtools/css/color/image/use-suggested-color-e6b5fb39ae17b.png) next to the guideline.
+   - In the **Shades** preview at the top, drag the **Color circle** below the corresponding line.
+
+![The expanded contrast ratio section with WebAIM or APCA guidelines.](https://developer.chrome.com/static/docs/devtools/css/color/image/the-expanded-contrast-rat-41583b0de6d57.png)
+
+> [!NOTE]
+> **Note:** By default, the **Color Picker** suggests you to follow the [WebAIM guidelines](https://webaim.org/standards/wcag/). Alternatively, you can set it to suggest values compliant with [APCA](https://web.dev/articles/color-and-contrast-accessibility#advanced_perceptual_contrast_algorithm_apca): In ![Settings.](https://developer.chrome.com/static/docs/devtools/css/color/image/settings-81d721b84c7bf.svg) [**Settings** \> **Experiments**](https://developer.chrome.com/docs/devtools/settings/experiments), check ![Checkbox.](https://developer.chrome.com/static/docs/devtools/css/color/image/checkbox-d2d407d0d2dbc.svg) **Enable new Advanced Perceptual Contrast Algorithm (APCA)...**
+
+To get a list of all contrast issues in one go, follow the [Make your website more readable](https://developer.chrome.com/docs/devtools/accessibility/contrast) guide.
+
+## Sample a color anywhere with the Eyedropper
+
+The ![Eyedropper.](https://developer.chrome.com/static/docs/devtools/css/color/image/eyedropper-ba242e0508e51.svg) **Eyedropper** can sample colors both from the page and from anywhere on the screen.
+
+To pick a color from anywhere on the screen:
+
+1. [Open the **Color Picker**](https://developer.chrome.com/docs/devtools/css/color#change-colors) and do one of the following:
+   - Click the ![Eyedropper.](https://developer.chrome.com/static/docs/devtools/css/color/image/eyedropper-ab0fa3eaaf07f.svg) button.
+   - Press <kbd>C</kbd> to activate the **Eyedropper** . To deactivate, press <kbd>Escape</kbd>.
+2. With the **Eyedropper** active, hover over the target color and click to sample.
+
+> [!NOTE]
+> **Note:** The **Eyedropper** samples colors only in the sRGB color space. When you sample outside this space, the **Eyedropper** clips the color to the closest one. See [Convert colors](https://developer.chrome.com/docs/devtools/css/color#convert-colors).
+
+![Using the Eyedropper anywhere on the screen.](https://developer.chrome.com/static/docs/devtools/css/color/image/using-eyedropper-anywher-defb6cb4def9e.png)
+
+<br />
+
+In this example, the **Color Picker** shows a current color value of `rgb(224 255 255 / 15%)`. This color changes to pink once you click outside Chrome.

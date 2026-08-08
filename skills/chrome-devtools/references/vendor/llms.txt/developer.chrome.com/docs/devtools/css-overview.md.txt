@@ -1,0 +1,67 @@
+![Jecelyn Yeen](https://web.dev/images/authors/jecelynyeen.jpg) Jecelyn Yeen [X](https://twitter.com/jecfish) [GitHub](https://github.com/jecfish) [Bluesky](https://bsky.app/profile/jec.fish) [Homepage](https://jec.fish/)
+
+<br />
+
+[Video](https://www.youtube.com/watch?v=OAP_Sr0zb5I)
+
+Use the **CSS Overview** panel to better understand your page's CSS and identify potential improvements.
+
+> [!NOTE]
+> **Note:** This is a preview feature in Chrome 96. Our team is actively working on this feature and we are looking for your [feedback](https://goo.gle/css-overview-feedback) for further enhancements.
+
+## Overview
+
+The **CSS overview** panel creates a report of your website's CSS statistics. This report collects data on all CSS occurrences and even unused declarations. The **CSS overview** panel helps you investigate occurrences further with page highlighting or by linking directly to the affected code in the **Elements** panel.
+
+See how to [Run and re-run a CSS Overview report](https://developer.chrome.com/docs/devtools/css-overview#run) and [Understand the CSS Overview report](https://developer.chrome.com/docs/devtools/css-overview#report).
+
+## Open the CSS Overview panel
+
+1. Open any web page, such as [this page](https://developer.chrome.com/discover).
+2. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+3. Select ![More.](https://developer.chrome.com/static/docs/devtools/css-overview/image/more-08bc5a2f624ac.svg) **Customize and control DevTools** \> **More tools** \> **CSS Overview**.
+
+   ![CSS Overview in the menu.](https://developer.chrome.com/static/docs/devtools/css-overview/image/css-overview-the-menu-f3ef2aaf18e75.png)
+
+   Alternatively, use the [Command Menu](https://developer.chrome.com/docs/devtools/command-menu) to open the **CSS Overview** panel.
+
+   ![Show CSS Overview command in the Command menu.](https://developer.chrome.com/static/docs/devtools/css-overview/image/show-css-overview-command-9e250260adc21.png)
+
+## Run and re-run a CSS Overview report
+
+1. Click the **Capture overview** button to generate a CSS Overview report of your page.
+
+   ![Capture CSS Overview.](https://developer.chrome.com/static/docs/devtools/css-overview/image/capture-css-overview-8e5987ade03eb.png)
+2. To re-run a CSS Overview, click the ![Clear.](https://developer.chrome.com/static/docs/devtools/css-overview/image/clear-5dab063f188a2.svg) **Clear overview** icon and repeat the first step.
+
+   ![Clear overview.](https://developer.chrome.com/static/docs/devtools/css-overview/image/clear-overview-9027a6591e697.png)
+
+## Understand the CSS Overview report
+
+The report consists of five sections:
+
+1. **Overview summary** . A high level summary of your page's CSS. ![Overview summary.](https://developer.chrome.com/static/docs/devtools/css-overview/image/overview-summary-0926d3de96f52.png)
+2. **Colors**. All the colors on your page. The colors are grouped by types, such as background colors, text colors, etc. This sections also shows you texts that have low contrast issues.
+
+   ![Colors.](https://developer.chrome.com/static/docs/devtools/css-overview/image/colors-4e9bcaf388448.png)
+
+   Each color is clickable. For example, suppose the `#DADCE0` border color doesn't match the color scheme of your site. To get a list of elements that use this color, click the color.
+
+   ![A list of elements that use the color.](https://developer.chrome.com/static/docs/devtools/css-overview/image/a-list-elements-use-co-366529686af6a.png)
+
+   To highlight the element on the page, hover over the element in the list.
+
+   ![Hover over an element to highlight the element on the page.](https://developer.chrome.com/static/docs/devtools/css-overview/image/hover-an-element-highli-a3fbd448a6a28.png)
+
+   To open the element in the **Elements** panel, click the element in the list.
+3. **Font info** . All the fonts on your page and their occurrences, grouped by different font size, font weight, and line height. Similar to the **Colors** section, to view the list of affected elements, click their occurrences.
+
+   ![Font info.](https://developer.chrome.com/static/docs/devtools/css-overview/image/font-info-5325e4e179895.png)
+4. **Unused declarations**. All the styles that have no effect, grouped by reason.
+
+   ![Unused declarations.](https://developer.chrome.com/static/docs/devtools/css-overview/image/unused-declarations-ea01b8bc72572.png)
+
+   For example, the two declarations above are unused because the content determines the height and width of an inline element. To view the corresponding elements, click the occurrences.
+5. **Media queries**. All the media queries defined on your page, sorted by number of occurrences in descending order. To view the list of affected elements, click their occurrences.
+
+   ![Media queries.](https://developer.chrome.com/static/docs/devtools/css-overview/image/media-queries-4d2a940ed77e7.png)

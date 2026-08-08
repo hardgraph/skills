@@ -1,0 +1,179 @@
+Ewa Gasperowicz [X](https://twitter.com/devnook)
+
+<br />
+
+Workspace is a powerful feature that lets you directly edit your website's source files from within Chrome DevTools, eliminating the need to constantly switch between your code editor and the browser.
+
+## Overview
+
+A **Workspace** in Chrome DevTools maps files served by a web server to files in a local folder on your computer. When you enable a workspace for a local project, any changes you make to the files in the DevTools' **Sources** panel are automatically saved to your local project files. This provides a seamless editing experience, making it feel like you're working directly on your project's codebase while benefiting from DevTools' real-time insights.
+
+## Advantages of automatic workspace connection
+
+Automatic workspace connection enhances the workspace setup by eliminating manual configuration. Instead of manually adding project folders to DevTools, your local development server can provide a special `devtools.json` file that Chrome DevTools automatically detects. This offers several benefits:
+
+- **Faster debugging:** Edit files in DevTools and see updates instantly without leaving the browser or manually saving.
+- **Real-time changes:** Changes are immediately reflected in your local files and the browser, improving development speed.
+- **No manual setup:** Automates the mapping of project files, reducing setup time, especially for new projects or when onboarding team members.
+
+## How does automatic workspace connection work?
+
+Automatic workspace connection works by having your local development server expose a specific JSON file at a predefined path. When Chrome DevTools is open and you are navigating a website served from `localhost`, it automatically sends a request to:
+
+`/.well-known/appspecific/com.chrome.devtools.json`
+
+If your server responds with a valid `devtools.json` file, DevTools uses the information within it to automatically connect to your project's source folders. The `devtools.json` file typically contains:
+
+    {
+      "workspace": {
+        "root": "/Users/yourname/path/to/your/project",
+        "uuid": "a-random-version-4-uuid"
+      }
+    }
+
+- `workspace.root`: The absolute path to your project's root directory on your local file system.
+- `workspace.uuid`: A unique identifier (UUID v4) for your project. This helps DevTools distinguish between different projects.
+
+Once DevTools receives and processes this file, it offers a **Connect** button in the **Sources** \> **Workspaces** panel.
+
+## Designed for local development and debugging
+
+The automatic workspace discovery mechanism through `devtools.json` is designed exclusively for **local development environments** and only works when your application is served from `localhost`. Chrome DevTools sends the `/.well-known/appspecific/com.chrome.devtools.json` request only in development mode when you are debugging a local project. This feature is not intended for production environments.
+
+## Grant permission to access local files
+
+For security reasons, Chrome requires explicit user permission for a website to access files on your local network or machine. When DevTools attempts to connect to your local project using `devtools.json`, you will be prompted to grant permission for Chrome to access your project's directory. This permission request adheres to [Chrome's Local Network Access](https://developer.chrome.com/blog/local-network-access) policies, which restrict requests from public networks to local destinations unless permission is granted. The ability to request this permission is limited to secure contexts (HTTPS). For local development, this usually means `localhost` is treated as a secure context.
+
+## Create and serve a `devtools.json` file
+
+For a typical frontend project running on a local development server, you need to configure your server to respond to the `/.well-known/appspecific/com.chrome.devtools.json` request with the correct JSON content.
+
+Here's how you can generally approach this:
+
+1. **Generate a UUID:** You'll need a UUID v4. You can generate one using online tools or a script.
+2. **Determine project root:** Get the absolute path to your project's root directory.
+3. **Create an endpoint:** Configure your development server to handle GET requests to `/.well-known/appspecific/com.chrome.devtools.json`.
+4. **Serve the JSON:** When this endpoint is hit, serve a JSON response with the `Content-Type: application/json` header and the `devtools.json` content.
+
+> [!NOTE]
+> **Note:** Path depends on the local system and setup.
+
+The `workspace.root` path specified in your `devtools.json` file must be an **absolute path** to your project's root directory on the local file system. This means the path will vary depending on your operating system (for example, `/Users/yourname/projects/my-app` on macOS or Linux or `C:\Users\yourname\projects\my-app` on Windows) and your specific project setup. Consider adding it to your ignored files (e.g. to .gitignore list) to avoid checking in this file for production environment.
+
+It's important that your server generates or serves this path dynamically or that you configure it correctly for your development environment. Consider adding it to your ignored files (for example, to `.gitignore` list) to avoid checking in this file for production environment.
+
+## Examples
+
+There are many ways you can provide `devtools.json` file, depending on your project's tech stack.
+
+### Node.js and Express
+
+This script runs a minimal Express server. It serves a JSON file at `/.well-known/appspecific/com.chrome.devtools.json` that contains the path to the `projectRoot.` It points to the folder where the server is run from. Adjust `projectRoot` variable to correctly point to your project's actual root directory, not necessarily where your server script resides.
+
+    const express = require('express');
+    const path = require('path');
+    const { v4: uuidv4 } = require('uuid');
+
+    const app = express();
+    const port = 3000;
+
+    if (process.env.NODE_ENV !== 'production') {
+      app.get('/.well-known/appspecific/com.chrome.devtools.json', (req, res) => {
+        const projectRoot = path.resolve(__dirname);
+        const workspaceUuid = uuidv4();
+
+        res.json({
+          workspace: {
+            root: projectRoot,
+            uuid: workspaceUuid,
+          },
+        });
+      });
+    }
+
+    app.listen(port, () => {
+      console.log(`Development server listening at http://localhost:${port}`);
+    });
+
+### Use `devtools-json-generator` script
+
+You can use `generate-devtools-json` to generate the `devtools.json` for you.
+
+To generate the `devtools.json` file in the current directory, run:
+
+    npx generate-devtools-json
+
+Or, to generate the file in a specific directory, pass the directory as an argument:
+
+    npx generate-devtools-json /path/to/your/project
+
+Read more about [devtools-json-generator in the project\`s homepage](https://github.com/googlechromelabs/devtools-json-generator).
+
+### Integrations
+
+Some frontend frameworks and build tools offer plugins or configurations to simplify this process.
+
+#### Vite
+
+For Vite-based projects (including SvelteKit), the `vite-plugin-devtools-json` is a solution. It automates the generation and serving of the `devtools.json` file on-the-fly within.
+
+To use it, install the plugin:
+
+`npm install -D vite-plugin-devtools-json`
+
+Then, add it to your `vite.config.js` (or `vite.config.ts`):
+
+    // vite.config.js
+    import { defineConfig } from 'vite';
+    import devtoolsJson from 'vite-plugin-devtools-json';
+
+    export default defineConfig({
+      plugins: [
+        devtoolsJson({
+          // Optional: specify a custom root path if different from Vite's root
+          // root: '/path/to/your/project/root',
+        }),
+      ],
+    });
+
+#### Angular
+
+If you use `ng serve` to run your Angular project locally (and your `@angular/cli` version is at least 19.0.0) the Angular CLI provides middleware that serves the correct `devtools.json` file for you automatically.
+
+For example, to create and run a new application:
+
+    npm install -g @angular/cli
+    ng new my-first-angular-app
+    ng serve
+
+When you navigate to `https://localhost:4200/.well-known/appspecific/com.chrome.devtools.json`, you can see the generated JSON file.
+
+### Troubleshooting
+
+You can solve the typical issues related to automatic workspace connection following the tips in this section.
+
+#### Remove a folder from Workspaces
+
+If a project folder has already been automatically connected, you can manually remove it from your DevTools workspace settings:
+
+- Open [Chrome DevTools](https://developer.chrome.com/docs/devtools/open).
+- Go to the **Sources** tab.
+- In the left-hand panel, select the **Workspaces** sub-tab.
+- Right-click on the unwanted project folder and select **Remove from Workspace**.
+
+#### Ignore 404 Errors on Server
+
+If you don't want to use this feature for a particular project and see 404 errors for the `/.well-known/appspecific/com.chrome.devtools.json` request in your server logs, you can ignore these errors. The request is harmless if the file isn't served. Alternatively, you could configure your server to respond with a 404 status for this specific path without logging an error.
+
+#### How to disable this feature in Chrome DevTools
+
+If you need to disable the automatic workspace discovery feature in Chrome DevTools, you need to set the appropriate [Chrome flag](https://developer.chrome.com/docs/chrome-flags):
+
+- Open Chrome and navigate to `chrome://flags`.
+- Search for "**DevTools Project Settings** " and set it to **Disabled**.
+- You might also find a related flag called "**DevTools Automatic Workspace Folders**" and can disable that as well.
+- Relaunch Chrome for the changes to take effect.
+
+## Summary
+
+By understanding and utilizing the `devtools.json` mechanism, you can significantly enhance your local development workflow with Chrome DevTools.

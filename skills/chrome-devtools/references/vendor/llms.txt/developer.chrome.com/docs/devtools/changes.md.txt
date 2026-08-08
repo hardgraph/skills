@@ -1,0 +1,73 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Use the **Changes** panel to track code changes made within DevTools.
+
+## Overview
+
+With the **Changes** panel, track the changes you make to:
+
+- HTML in [**Sources**](https://developer.chrome.com/docs/devtools/javascript/sources#edit) with enabled [Local overrides](https://developer.chrome.com/blog/new-in-devtools-65#overrides)
+- CSS in [**Elements** \> **Styles**](https://developer.chrome.com/docs/devtools/css#declarations) or [**Sources**](https://developer.chrome.com/docs/devtools/javascript/sources#edit)
+- JavaScript in [**Sources**](https://developer.chrome.com/docs/devtools/javascript/sources#edit)
+
+The **Changes** panel shows only the changes you make within DevTools. If you reload either DevTools or your page, the changes disappear.
+
+To make DevTools persist changes across page loads, follow the steps in [Local overrides](https://developer.chrome.com/blog/new-in-devtools-65#overrides).
+
+To make DevTools write changes to your local sources, follow the steps in [Edit and save files with Workspaces](https://developer.chrome.com/docs/devtools/workspaces).
+
+## Open the Changes panel
+
+To open the **Changes** panel:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+
+2. Press <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (Mac) or <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (Windows, Linux, ChromeOS) to open the **Command Menu**.
+
+3. Start typing `changes`, select **Show Changes** , and press <kbd>Enter</kbd>.
+
+   ![Run the Show Changes command](https://developer.chrome.com/static/docs/devtools/changes/image/run-show-changes-command-23263ba7e2577.png)
+
+Alternatively, in the upper right corner, click ![](https://developer.chrome.com/static/docs/devtools/changes/image/N7wEDmtW9lnrSxPRupMa.svg) **Customize and control DevTools** \> **More tools** \> **Changes**.
+
+![Changes option focused in More tools dropdown](https://developer.chrome.com/static/docs/devtools/changes/image/more-tools-changes-f8b7202b524b.png)
+
+By default, DevTools displays the **Changes** panel at the bottom of your DevTools window, in the **Drawer**.
+
+## View and understand your changes
+
+To view your changes:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Make changes to your sources:
+
+   - HTML: First, enable [Local overrides](https://developer.chrome.com/blog/new-in-devtools-65#overrides), then make changes in **Sources**
+   - CSS in [**Elements** \> **Styles**](https://developer.chrome.com/docs/devtools/css#declarations) or [**Sources**](https://developer.chrome.com/docs/devtools/javascript/sources#edit)
+   - JavaScript in [**Sources**](https://developer.chrome.com/docs/devtools/javascript/sources#edit)
+3. [Open the **Changes** panel](https://developer.chrome.com/docs/devtools/changes#open-changes) and select a file in the right-hand side of the panel.
+
+4. Observe a `diff` output that highlights the following:
+
+![Highlighted diff in the Changes panel](https://developer.chrome.com/static/docs/devtools/changes/image/highlighted-diff-the-cha-5ac66c9170d43.png)
+
+The **Changes** panel pretty-prints the `diff` output automatically, so you don't have to scroll horizontally to see the changes in a single line.
+
+## Copy CSS changes
+
+If you made changes to CSS in [**Elements** \> **Styles**](https://developer.chrome.com/docs/devtools/css#declarations), you can copy all of them with a single button:
+
+1. [Open the **Changes** panel](https://developer.chrome.com/docs/devtools/changes#open-changes) and, in the right-hand side of the panel, select the CSS file you made changes to.
+
+   ![Copy.](https://developer.chrome.com/static/docs/devtools/changes/image/copy-e107336946db8.png)
+2. Click the ![Copy.](https://developer.chrome.com/static/docs/devtools/changes/image/copy-ec072678afe73.svg) **Copy** button at the bottom of the **Changes panel**.
+
+## Revert all changes made to a file
+
+To revert changes made to a file:
+
+1. On left-hand side of the **Changes** panel, select a file with changes to revert.
+2. On the action bar at the bottom, click ![Undo](https://developer.chrome.com/static/docs/devtools/changes/image/undo-20a57d3c05e16.svg) **Revert all changes to current file**.
+
+![Revert button](https://developer.chrome.com/static/docs/devtools/changes/image/revert-button-becf5cafcf8bf.png)

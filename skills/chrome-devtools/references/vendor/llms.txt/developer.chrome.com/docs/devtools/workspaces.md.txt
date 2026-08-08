@@ -1,0 +1,171 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Save changes you make in DevTools back to source files on your computer by setting up a workspace. You can automatically connect a workspace folder to DevTools by serving a configuration file, or you can manually add a workspace location in the **Sources** panel.
+
+## Overview
+
+An automatic (or manual) connection to a workspace folder lets you save a change that you make in DevTools to a local copy of the same file on your computer. For example, suppose:
+
+- You have the source code for your site on your desktop.
+- You're running a local web server from the source code directory, so that the site is accessible at `localhost:PORT` and that also serves a simple JSON file with metadata (described later).
+- You've got `localhost:PORT` open in Google Chrome, and you're using DevTools to change the site's CSS.
+
+With a workspace folder connected, the changes that you make in the **Sources** panel to CSS, HTML, and JavaScript files are saved to the source code on your computer. However, DevTools doesn't save changes to DOM that you make in the **Elements** panel.
+
+Moreover, DevTools is usually able to map the optimized code back to your original source code with the help of source maps.
+
+## Generate metadata for a connection
+
+To let DevTools discover your workspace folder automatically, generate a random version 4 UUID and put it in the following JSON file:
+
+    {
+      "workspace": {
+        "uuid": "UUID",
+        "root": "path/to/project/root/folder"
+      }
+    }
+
+Then place the JSON file in `path/to/project/root/folder/.well-known/appspecific/com.chrome.devtools.json`.
+
+Lastly, run your local HTTP server and make sure to serve the JSON file too.
+
+Alternatively, you can skip this step and [manually set up a folder connection](https://developer.chrome.com/docs/devtools/workspaces#manual-connection).
+
+## Connect a workspace folder
+
+> [!NOTE]
+> **Note:** This and next steps use the [Automatic Workspace Folders Demo](https://chromium.googlesource.com/devtools/devtools-frontend/+/main/docs/ecosystem/automatic_workspace_folders.md) to showcase the feature.
+
+To connect a folder:
+
+1. In Chrome, navigate to your locally-hosted page (in this example, at `localhost:8000`) and [open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. In **Sources** \> **Workspace** , click **Connect** next to your folder.
+
+   ![The Connect button next to the folder in the Workspace tab.](https://developer.chrome.com/static/docs/devtools/workspaces/image/connect.png)
+3. When prompted, click **Edit files** to allow DevTools access to your folder.
+
+   ![Prompt to let DevTools access the folder.](https://developer.chrome.com/static/docs/devtools/workspaces/image/access-prompt.png)
+4. Once connected, you can open the folder in the **Workspaces** tab.
+
+   ![A workspace folder, connected and opened.](https://developer.chrome.com/static/docs/devtools/workspaces/image/connected-folder.png)
+
+The **Workspace** tab shows you a green dot next to HTML, CSS, and JavaScript files. These green dots mean that DevTools has established a mapping between the network resources of the page, and the files in the folder.
+
+## Save a change back to source folder
+
+You can save changes to any CSS, HTML, and JavaScript files in the connected workspace folder.
+
+### Save changes to CSS
+
+> [!TIP]
+> **Tip:** With a connected workspace folder, the **AI assistance** panel can [automatically save CSS changes to your sources](https://developer.chrome.com/docs/devtools/ai-assistance/styling#auto-workspace).
+
+To save changes to CSS:
+
+1. Open a CSS file from your connected workspace folder in **Sources** \> **Workspaces**.
+2. Make a change to your CSS.
+
+   > [!NOTE]
+   > **Note:** A change applies to the page live but not to the source yet.
+
+3. Save the change, for example, by pressing <kbd>Ctrl</kbd> / <kbd>Cmd</kbd> + <kbd>S</kbd> and see the applied change back in your source file. The **Sources** panel shows you a green dot next to the filename.
+
+   > [!NOTE]
+   > **Note:** You don't need to reload the page to apply and save CSS changes.
+
+To learn the workflow, watch the video:
+
+### Save changes to HTML
+
+To save changes to HTML:
+
+1. Open an HTML file from your connected workspace folder in **Sources** \> **Workspaces**.
+2. Make a change to your HTML.
+
+   > [!NOTE]
+   > **Note:** A change doesn't apply neigther to the page live, nor to the source yet.
+
+3. Save the change, for example, by pressing <kbd>Ctrl</kbd> / <kbd>Cmd</kbd> + <kbd>S</kbd> and see the applied change back in your source file. The **Sources** panel shows you a green dot next to the filename.
+
+4. Reload the page to see the change take effect.
+
+To learn the workflow, watch the video:
+
+> [!NOTE]
+> **Note:** You can apply and save an HTML change from the **Sources** panel but not the **Elements** panel.
+
+#### Why can't you change HTML from the **Elements** panel?
+
+- The tree of nodes that you see on the **Elements** panel represents the page's [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction).
+- To display a page, a browser fetches HTML over the network, parses the HTML, and then converts it into a tree of DOM nodes.
+- If the page has any JavaScript, that JavaScript may add, delete, or change DOM nodes. CSS can change the DOM, too, with the [`content`](https://developer.mozilla.org/docs/Web/CSS/content) property.
+- The browser eventually uses the DOM to determine what content it should present to browser users.
+- Therefore, the final state of the page that users see may be very different from the HTML that the browser fetched.
+- This makes it difficult for DevTools to resolve where a change made in the **Elements** panel should be saved, because the DOM is affected by HTML, JavaScript, and CSS.
+
+In short, the **DOM Tree** `!==` HTML.
+
+### Save changes to JavaScript
+
+To save changes to JavaScript:
+
+1. Open a JavaScript file from your connected workspace folder in **Sources** \> **Workspaces**.
+2. Make a change to your JavaScript.
+
+   > [!NOTE]
+   > **Note:** A change doesn't apply neither to the page live, nor to the source yet.
+
+3. Save the change, for example, by pressing <kbd>Ctrl</kbd> / <kbd>Cmd</kbd> + <kbd>S</kbd> and see the applied change back in your source file. The **Sources** panel shows you a green dot next to the filename.
+
+4. If your local HTTP server listens for live source file changes and reloads the page automatically, you'll see the changes applied once you save them in DevTools. Otherwise, redeploy your local server.
+
+To learn the workflow, watch the video:
+
+> [!TIP]
+> **Tip:** When changing JavaScript, sometimes you need to access other panels, such as the **Elements** panel or **Console** . To do this, you can use the [Drawer](https://developer.chrome.com/docs/devtools/customize#drawer) and [reorder panels](https://developer.chrome.com/docs/devtools/customize#reorder).
+
+## Remove a workspace folder connection
+
+To remove a workspace folder connection, in **Sources** \> **Workspace** , right-click the folder, select **Remove from workspace** from the drop-down menu, and click **Remove**.
+
+![The 'Remove from workspace' option in the drop-sown menu.](https://developer.chrome.com/static/docs/devtools/workspaces/image/remove-connection.png)
+
+> [!NOTE]
+> **Note:** Changing or deleting the folder's UUID in the metadata JSON file also disconnects the folder.
+
+## Manually connect a workspace folder
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) on your locally-hosted page.
+
+2. In **Sources** \> **Workspace** , click **Add folder manually**. Then select a folder with your source files.
+
+   ![The 'Add folder manually' button in the Workspace tab.](https://developer.chrome.com/static/docs/devtools/workspaces/image/add-folder-manually.png)
+
+   > [!NOTE]
+   > **Note:** you can also drag the folder into the **Sources** panel.
+
+3. Then follow step 3 and 4 in [Connect a workspace folder](https://developer.chrome.com/docs/devtools/workspaces#connect).
+
+## Limitations
+
+If you're using a modern framework, it probably transforms your source code from a format that's
+easy for you to maintain into a format that's optimized to run as quickly as possible. A workspace folder connection is
+usually able to map the optimized code back to your original source code with the help of [source
+maps](https://web.dev/source-maps/).
+
+The DevTools community works to support the capabilities provided by source maps across a [variety of frameworks and tools](https://developer.chrome.com/docs/devtools/javascript/source-maps#use_a_supported_preprocessor).
+If you run into issues while using a workspace with your framework of choice, or you get it working
+after some custom configuration, [start a thread in the mailing list](https://groups.google.com/forum/#!forum/google-chrome-developer-tools) or [ask a question
+on Stack Overflow](https://stackoverflow.com/questions/ask?tags=google-chrome-devtools) to share your knowledge with the rest of the DevTools community.
+
+## Next steps
+
+All the already set up folders you can manage under ![](https://developer.chrome.com/static/docs/devtools/workspaces/image/settings-d623df90dae36.svg) [**Settings** \> **Workspace**](https://developer.chrome.com/docs/devtools/settings#workspace).
+
+Next, learn how to use DevTools to [change CSS](https://developer.chrome.com/docs/devtools/css) and [debug JavaScript](https://developer.chrome.com/docs/devtools/javascript).
+
+## See also
+
+[Local overrides](https://developer.chrome.com/docs/devtools/overrides) is another DevTools somewhat similar feature that lets you mock web content or request headers. This way, you freely experiment with changes to a page without waiting for backend to catch up. With local overrides, the changes persist across page loads but don't map to your page's source code.

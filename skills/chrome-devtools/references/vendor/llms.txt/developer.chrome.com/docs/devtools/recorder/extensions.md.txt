@@ -1,0 +1,48 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem) ![Jecelyn Yeen](https://web.dev/images/authors/jecelynyeen.jpg) Jecelyn Yeen [X](https://twitter.com/jecfish) [GitHub](https://github.com/jecfish) [Bluesky](https://bsky.app/profile/jec.fish) [Homepage](https://jec.fish/)
+
+<br />
+
+[Video](https://www.youtube.com/watch?v=LBgzmqzp7ew)
+
+You can customize the **Recorder** and integrate it into your workflow by installing third-party extensions that suit the tools you use.
+
+Check out the [collection of extensions](https://chromewebstore.google.com/collection/customize_recorder).
+
+> [!IMPORTANT]
+> **Key point:** If you can't find an extension that suits your tools, consider [building your own](https://developer.chrome.com/docs/devtools/recorder/extensions#build-extension).
+
+## Install extensions
+
+To integrate the **Recorder** with your tools, install extensions:
+
+1. Choose an extension from the [collection](https://chromewebstore.google.com/collection/customize_recorder) and click it.
+2. In Chrome Web Store, click **Add to Chrome**.
+3. [Open DevTools](https://developer.chrome.com/docs/devtools/open) in a new tab and find new custom options in the **Recorder**.
+
+![Export and replay extensions.](https://developer.chrome.com/static/docs/devtools/recorder/extensions/image/export-replay-extensions-28bb381a0ee74.png)
+
+This screenshot shows custom export and replay options provided by the extensions.
+
+> [!NOTE]
+> **Note:** You can open the [collection of extensions](https://chromewebstore.google.com/collection/customize_recorder) from the **Recorder** . Select **Export** \> **Get extensions...** on the action bar at the top of the **Recorder** panel.
+
+## Troubleshooting
+
+If you don't see export or replay options after installing an extension, check or do the following:
+
+- The extension only works on web pages. For example, the export option is not available for `chrome://` pages like `chrome://extensions`.
+- Always open a new browser tab after installing the extension.
+- The administrator's policy. The extension can be blocked by the administrator policy and thus not showing up (see `runtime_blocked_hosts` list in `ExtensionSettings` at `chrome://policy/`).
+
+Known issues:
+
+- [Issue 1351416](https://crbug.com/1351416) in Chrome 104 and 105 prevents the display of the export option if you open the **Recorder** as the [first DevTools panel](https://developer.chrome.com/docs/devtools/open#last). As a workaround, open another panel first (for example, **Console** ), then open the **Recorder**. The issue is fixed in Chrome 106.
+
+## Build your own extension
+
+To further customize the **Recorder** to your needs, you can build your own extension:
+
+1. Check out [Customize and automate user flows beyond Chrome DevTools Recorder](https://developer.chrome.com/blog/extend-recorder).
+2. Explore the [chrome.devtools.recorder](https://developer.chrome.com/docs/extensions/reference/devtools_recorder) API.
+3. Check out [example extensions](https://github.com/puppeteer/replay/tree/main/examples).
+4. [Develop your extension](https://developer.chrome.com/docs/extensions/mv3/getstarted) and publish it at [Chrome Web Store](https://developer.chrome.com/docs/webstore/about).

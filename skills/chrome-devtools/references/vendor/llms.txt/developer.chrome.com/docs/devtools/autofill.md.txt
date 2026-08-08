@@ -1,0 +1,83 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Use the **Autofill** panel to inspect and debug address info saved to Chrome.
+
+## Overview
+
+[Chrome Autofill](https://web.dev/learn/forms/autofill) provides a convenient way to automatically fill forms on websites with saved addresses. The **Autofill** panel in DevTools lets you inspect the mapping between your form fields, predicted autofill values, and saved data.
+
+> [!NOTE]
+> **Note:** The **Autofill** panel lets you inspect only the address info.
+
+## Save address info to Chrome
+
+By default, Chrome prompts you to save address info you entered into a web form when you submit it.
+
+![A prompt to save address info.](https://developer.chrome.com/static/docs/devtools/autofill/image/autofill-prompt.png)
+
+If there's no such prompt, in Chrome's top right corner, navigate to **Customize and control Google Chrome** \> **Password and Autofill** \> **Addresses and more** and turn on **Save and fill addresses** . You can also [add new addresses](https://support.google.com/chrome/answer/142893) here.
+
+![The 'Addresses and more' menu option.](https://developer.chrome.com/static/docs/devtools/autofill/image/addresses-menu-option.png)
+
+If you don't have address data saved and don't want to save it, you can use [test address data](https://developer.chrome.com/docs/devtools/autofill#test-addresses) provided by the **Autofill** panel.
+
+## Open the Autofill panel
+
+By default, the **Autofill** panel automatically opens if DevTools is open and when you autofill a form on a website. To turn this off, open the panel manually and clear the **Automatically open this panel** checkbox.
+
+To manually open the **Autofill** panel:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Open the **Command menu** by pressing:
+
+   - macOS: <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+   - Windows, Linux, ChromeOS: <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+
+   ![Command Menu with](https://developer.chrome.com/static/docs/devtools/autofill/image/command-menu-autofill.png)
+3. Start typing `autofill`, select **Show Autofill** , and press <kbd>Enter</kbd>.
+
+   DevTools opens the panel in the **Drawer** at the bottom of your DevTools window by default. You can also [move it to the top](https://developer.chrome.com/docs/devtools/customize#reorder).
+
+Alternatively, you can open the **Autofill** panel in the following ways:
+
+- In the action bar at the top, click **More panels** and select **Autofill** from the drop-down list.
+- In the top right corner, select **Customize and control DevTools** \> **More tools** \> **Autofill**.
+
+## Inspect autofill data
+
+To inspect autofill data:
+
+1. Make sure [**Autofill** is turned on and you have address info saved](https://developer.chrome.com/docs/devtools/autofill#save-to-chrome) in Chrome. Alternatively, you can use test address data as described in the next section.
+2. [Open DevTools](https://developer.chrome.com/docs/devtools/open), for example, on this [demo page](https://rsolomakhin.github.io/autofill/).
+3. In the address web form on the demo page, focus a form field. Chrome shows a drop-down menu with autofill data options.
+4. Select an option from the menu. **Autofill** fills the form with saved data and DevTools opens the **Autofill** panel if [auto-open is turned on](https://developer.chrome.com/docs/devtools/autofill#open-autofill). Otherwise, open the **Autofill** panel manually.
+
+![An autofill data option selected.](https://developer.chrome.com/static/docs/devtools/autofill/image/autofill-data.png)
+
+### Use test address data
+
+If you don't have address data saved and don't want to save it, you can use test data that the **Autofill** panel provides.
+
+To use the test data:
+
+1. [Open the **Autofill** panel](https://developer.chrome.com/docs/devtools/autofill#open-autofill) and turn on **Show test address data in autofill menu** at the top of the panel.
+2. On the page, right-click an address form filed and select one of the options from the **Developer tools** menu.
+
+![The 'Developer tools' menu with test address data options.](https://developer.chrome.com/static/docs/devtools/autofill/image/test-address-data.png)
+
+## Data and its mapping
+
+The **Autofill** panel shows the data it inserted in the form fields and a table with mapping between the following:
+
+- **Form field** detected on the page.
+- **Predicted autofill value** , which **Autofill** determines using heuristics.
+- **Value** , if any, that **Autofill** inserted into fields it recognized.
+
+![The Autofill panel.](https://developer.chrome.com/static/docs/devtools/autofill/image/autofill-panel.png)
+
+> [!TIP]
+> **Tip:** Additionally, you can use the [**Issues**](https://developer.chrome.com/docs/devtools/issues) panel to find problems with autocomplete attributes and get fixing tips.
+
+![Autocomplete issues caught by the Issues panel.](https://developer.chrome.com/static/docs/devtools/autofill/image/autocomplete-issues.png)

@@ -1,0 +1,303 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Use device mode to approximate how your page looks and performs on a mobile device.
+
+[Video](https://www.youtube.com/watch?v=f7kokNyRe7U)
+
+## Overview
+
+Device mode is the name for a collection of features in Chrome DevTools that
+help you simulate mobile devices. These features include:
+
+- [Simulating a mobile viewport](https://developer.chrome.com/docs/devtools/device-mode#viewport)
+- [Throttling the CPU](https://developer.chrome.com/docs/devtools/device-mode#cpu)
+- [Throttling the network](https://developer.chrome.com/docs/devtools/device-mode#network)
+
+  > [!IMPORTANT]
+  > **Key point:** Alternatively, you can [throttle connection speed](https://developer.chrome.com/docs/devtools/network/reference#throttling) in the **Network** panel.
+
+- Additionally, in the [**Sensors** panel](https://developer.chrome.com/docs/devtools/sensors):
+  - [Simulating geolocation](https://developer.chrome.com/docs/devtools/device-mode#geolocation)
+  - [Setting orientation](https://developer.chrome.com/docs/devtools/device-mode#orientation)
+
+## Limitations
+
+Think of device mode as a [first-order approximation](https://en.wikipedia.org/wiki/Order_of_approximation#First-order) of how your page looks
+and feels on a mobile device. With device mode you don't actually run your code
+on a mobile device. You simulate the mobile user experience from your laptop
+or desktop.
+
+There are some aspects of mobile devices that DevTools will never be able to
+simulate. For example, the architecture of mobile CPUs is very different than
+the architecture of laptop or desktop CPUs. When in doubt, your best bet is to
+actually run your page on a mobile device. Use [Remote Debugging](https://developer.chrome.com/docs/devtools/remote-debugging) to view,
+change, debug, and profile a page's code from your laptop or desktop while it
+actually runs on a mobile device.
+
+## Open the device toolbar
+
+To open the device toolbar, follow these steps:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Click **Toggle device toolbar** located in the action bar at the top.
+
+![The device toolbar toggle button](https://developer.chrome.com/static/docs/devtools/device-mode/image/device-mode-toggle.png)
+
+## Simulate a mobile viewport
+
+By default, the device toolbar opens in viewport with **Dimensions** set to
+**Responsive** . Using the **Dimensions** drop-down, you can
+[simulate the dimensions of a specific mobile device](https://developer.chrome.com/docs/devtools/device-mode#device).
+
+![The device toolbar.](https://developer.chrome.com/static/docs/devtools/device-mode/image/the-device-toolbar-ffe4a87bfd6fc.png)
+
+### Responsive Viewport Mode
+
+Drag the handles to resize the viewport to whatever dimensions you need. Or, enter specific values
+in the width and height boxes. In this example, the width is set to `480` and the height is set to
+`415`.
+
+![The handles for changing the viewport's dimensions when in Responsive Viewport Mode.](https://developer.chrome.com/static/docs/devtools/device-mode/image/the-handles-changing-vi-30307613da478.png)
+
+Alternatively, use the width presets bar to set the width with a click to one of the following:
+
+![The width presets bar.](https://developer.chrome.com/static/docs/devtools/device-mode/image/the-width-presets-bar-a9268c79155a4.png)
+
+| Mobile S | Mobile M | Mobile L | Tablet | Laptop | Laptop L | 4K |
+|---|---|---|---|---|---|---|
+| 320px | 375px | 425px | 768px | 1024px | 1440px | 2560px |
+
+### Show media queries
+
+To show media query breakpoints above your viewport, click ![](https://developer.chrome.com/static/docs/devtools/device-mode/image/more-options-e9edff7b3a2c.svg) **More options** \> **Show media queries**.
+
+![Show media queries.](https://developer.chrome.com/static/docs/devtools/device-mode/image/show-media-queries-122a4a52ebf99.png)
+
+DevTools now displays two additional bars above the viewport:
+
+- The blue bar with `max-width` breakpoints.
+- The orange bar with `min-width` breakpoints.
+
+Click between breakpoints to change the viewport's width so that the breakpoint gets triggered.
+
+![Click between breakpoints to change the viewport's width.](https://developer.chrome.com/static/docs/devtools/device-mode/image/click-between-breakpoints-979988a9cd9a.png)
+
+To find the corresponding `@media` declaration, right-click between breakpoints and select **Reveal in source code** . DevTools opens the **Sources** panel at the corresponding line in the **Editor**.
+
+![Reveal in source code drop-down menu.](https://developer.chrome.com/static/docs/devtools/device-mode/image/reveal-source-code-drop-ce256fd100618.png)
+
+### Set device pixel ratio
+
+[Device pixel ratio (DPR)](https://developer.mozilla.org/docs/Web/API/Window/devicePixelRatio) is the ratio between physical pixels on the hardware screen and logical (CSS) pixels. In other words, DPR tells Chrome how many screen pixels to use to draw a CSS pixel. Chrome uses the DPR value when drawing on HiDPI (High Dots Per Inch) displays.
+
+To set a DPR value:
+
+1. Click **More options** ![](https://developer.chrome.com/static/docs/devtools/device-mode/image/more-options-d110a90e31e74.svg) \> **Add device pixel ratio**.
+
+   ![Add device pixel ratio.](https://developer.chrome.com/static/docs/devtools/device-mode/image/add-device-pixel-ratio-9cbfbc09b38a7.png)
+2. In the action bar at the top of the viewport, select a DPR value from the new **DPR** drop-down menu.
+
+   ![Setting the DPR value.](https://developer.chrome.com/static/docs/devtools/device-mode/image/setting-dpr-value-0cb63fcac2037.png)
+
+### Set the device type
+
+Use the **Device Type** list to simulate a mobile device or desktop device.
+
+![The Device Type list.](https://developer.chrome.com/static/docs/devtools/device-mode/image/the-device-type-list-3df0e185160e8.png)
+
+If you can't see the list on the action bar at the top, select **More options**
+![](https://developer.chrome.com/static/docs/devtools/device-mode/image/more-options-9f22cf474dba.svg) \> **Add device type**.
+
+The next table describes the differences between the options.
+**Rendering method** refers to whether Chrome renders the page as a mobile or
+desktop viewport. **Cursor icon** refers to what type of cursor you see when you
+hover over the page. **Events fired** refers to whether the page fires
+`touch` or `click` events when you interact with the page.
+
+| Option | Rendering method | Cursor icon | Events fired |
+|---|---|---|---|
+| Mobile | Mobile | Circle | touch |
+| Mobile (no touch) | Mobile | Normal | click |
+| Desktop | Desktop | Normal | click |
+| Desktop (touch) | Desktop | Circle | touch |
+
+### Device-specific mode
+
+To simulate the dimensions of a specific mobile device, select the device from the **Dimensions** list.
+
+![The Dimensions list.](https://developer.chrome.com/static/docs/devtools/device-mode/image/the-dimensions-list-c94d72e725e49.png)
+
+For more information, see [Add a custom mobile device](https://developer.chrome.com/docs/devtools/device-mode#custom).
+
+### Rotate the viewport to landscape orientation
+
+Click **Rotate** to rotate the viewport to landscape orientation.
+
+![Landscape orientation.](https://developer.chrome.com/static/docs/devtools/device-mode/image/landscape-orientation-cccdacce2c738.png)
+
+Note that the **Rotate** ![](https://developer.chrome.com/static/docs/devtools/device-mode/image/rotate-60a7ef231e8c.svg) button disappears if your **Device toolbar** is narrow.
+
+![The device toolbar.](https://developer.chrome.com/static/docs/devtools/device-mode/image/the-device-toolbar-bbe544ba69747.png)
+
+See also [Set orientation](https://developer.chrome.com/docs/devtools/device-mode#orientation).
+
+### Toggle dual-screen mode
+
+Some devices, for example, Surface Duo, have two screens and two ways to use them: with one or both screens active.
+
+To toggle between dual and single screen, click the **Toggle dual-screen mode** in the toolbar.
+
+![The dual-screen mode turned on.](https://developer.chrome.com/static/docs/devtools/device-mode/image/toggle-dual-screen.png)
+
+### Set device posture
+
+Some devices, for example, Asus Zenbook Fold, have foldable screens. Such screens have a posture: continuous or folded. The continuous posture refers to a "flat" position and folded forms an angle between sections of the display.
+
+To set the device posture, select **Continuous** or **Folded** from the corresponding drop-down menu in the toolbar.
+
+![Posture set to folded.](https://developer.chrome.com/static/docs/devtools/device-mode/image/posture.png)
+
+### Show device frame
+
+When simulating the dimensions of a specific mobile device like a Nest Hub, select **More options** ![](https://developer.chrome.com/static/docs/devtools/device-mode/image/more-options-39dfbd08d675.svg) \> **Show device frame** to show the physical device frame around the viewport.
+
+![Show device frame.](https://developer.chrome.com/static/docs/devtools/device-mode/image/show-device-frame-96a877fb65b69.png)
+
+> [!NOTE]
+> **Note:** If you don't see a device frame for a particular device, it probably means that DevTools just doesn't have art for that specific option.
+
+In this example, DevTools shows the frame for the Nest Hub.
+
+![The device frame for the Nest Hub.](https://developer.chrome.com/static/docs/devtools/device-mode/image/the-device-frame-the-nes-4cc890fc88ef7.png)
+
+### Add a custom mobile device
+
+To add a custom device:
+
+1. Click the **Device** list and then select **Edit**.
+
+   ![Edit.](https://developer.chrome.com/static/docs/devtools/device-mode/image/edit-0d599997ac609.png)
+2. On the **Settings** \> **Devices** tab, either choose a device from the list of supported ones or click **Add custom device** to add your own.
+
+3. If you're adding your own, enter a name, width, and height for the device, then click **Add**.
+
+   ![Creating a custom device.](https://developer.chrome.com/static/docs/devtools/device-mode/image/creating-custom-device-58f97fc1fae79.png)
+
+   The [device pixel ratio](https://developer.mozilla.org/docs/Web/API/Window/devicePixelRatio), [user agent string](https://developer.mozilla.org/docs/Glossary/User_agent), and [device type](https://developer.chrome.com/docs/devtools/device-mode#type) fields are optional. The device type field is the list that is set to **Mobile** by default.
+4. Back in the viewport, select the newly added device from the **Dimensions** list.
+
+### Show rulers
+
+Click **More options** ![](https://developer.chrome.com/static/docs/devtools/device-mode/image/more-options-4c4fd297af782.svg) \> **Show rulers** to see rulers. The sizing unit of the rulers is pixels.
+
+![Show rulers.](https://developer.chrome.com/static/docs/devtools/device-mode/image/show-rulers-3ad60e996024f.png)
+
+DevTools shows rulers at the top and to the left of the viewport.
+
+![Rulers above and to the left of the viewport.](https://developer.chrome.com/static/docs/devtools/device-mode/image/rulers-above-to-left-t-982c7034734bb.png)
+
+Click the rulers at specific marks to set the viewport's width and height.
+
+### Zoom the viewport
+
+Use the **Zoom** list to zoom in or out.
+
+![Zoom.](https://developer.chrome.com/static/docs/devtools/device-mode/image/zoom-40755de1a95c8.png)
+
+### Capture a screenshot
+
+To capture a screenshot of what you see in the viewport, click ![](https://developer.chrome.com/static/docs/devtools/device-mode/image/more-options-cfe1d097a59ca.svg) **More options** \> **Capture screenshot**.
+
+![The Capture screenshot option in the More options menu.](https://developer.chrome.com/static/docs/devtools/device-mode/image/the-capture-screenshot-op-766e9cfb41462.png)
+
+To capture a screenshot of the whole page including the content that isn't visible in the viewport, select **Capture a full size screenshot** from the same menu.
+
+To include a device frame when capturing a screenshot in [Device-specific mode](https://developer.chrome.com/docs/devtools/device-mode#device), first [Show device frame](https://developer.chrome.com/docs/devtools/device-mode#frame), and then click **Capture screenshot** as directed previously.
+
+![Taking a screenshot with a device frame included.](https://developer.chrome.com/static/docs/devtools/device-mode/image/device-screenshot.png)
+
+To learn other ways to take screenshots with DevTools, see [4 ways to capture screenshots with DevTools](https://developer.chrome.com/blog/devtools-tips-33).
+
+## Throttle the network and CPU
+
+To throttle both the network and CPU, select **Mid-tier mobile** or **Low-end mobile** from the
+**Throttle** list.
+
+![The Throttle list.](https://developer.chrome.com/static/docs/devtools/device-mode/image/device-mode-throttle-dropdown.png)
+
+**Mid-tier mobile** simulates fast 3G and throttles your CPU so that it is 4 times slower than
+normal. **Low-end mobile** simulates slow 3G and throttles your CPU 6 times slower than normal. Keep
+in mind that the throttling is relative to the normal capability of your laptop or desktop.
+
+Note that the **Throttle** list will be hidden if your **Device toolbar** is narrow.
+
+### Throttle the CPU only
+
+To throttle the CPU only and not the network, go to the **Performance** panel,
+click **Capture Settings** ![Capture settings.](https://developer.chrome.com/static/docs/devtools/device-mode/image/capture-settings-b5faa87e26fc9.svg), and
+then select **4x slowdown** , **6x slowdown** , or **20x slowdown** from the
+**CPU** list.
+
+![The CPU list.](https://developer.chrome.com/static/docs/devtools/device-mode/image/perf-cpu-slowdown.png)
+
+### Throttle the network only
+
+To throttle the network only and not the CPU, go the **Network** panel and
+select **Fast 3G** or **Slow 3G** from the **Throttle** list.
+
+![The Throttle list.](https://developer.chrome.com/static/docs/devtools/device-mode/image/the-throttle-list-1391eff42a4ea.png)
+
+Or press Command+Shift+P (Mac) or Control+Shift+P (Windows, Linux, ChromeOS) to
+open the Command Menu, type `3G`, and select **Enable fast 3G throttling** or
+**Enable slow 3G throttling**.
+
+![The Command Menu.](https://developer.chrome.com/static/docs/devtools/device-mode/image/the-command-menu-b3e6645ffb96f.png)
+
+You can also set network throttling from the **Performance** panel. Click **Capture Settings**
+![](https://developer.chrome.com/static/docs/devtools/device-mode/image/capture-settings-403b463568f42.svg)
+and then select **Fast 3G** or **Slow 3G** from the **Network** list.
+
+![Setting network throttling from the Performance panel.](https://developer.chrome.com/static/docs/devtools/device-mode/image/setting-network-throttlin-ffd95fd8cb166.png)
+
+## Emulate sensors
+
+Use the **Sensors** panel to override geolocation, simulate device orientation, force touch, and emulate idle state.
+
+The next sections provide a quick look on how to override geolocation and set device orientation. For a complete list of features, see [Emulate device sensors](https://developer.chrome.com/docs/devtools/sensors).
+
+### Override geolocation
+
+To open the geolocation overriding UI, click **Customize and control DevTools**
+![](https://developer.chrome.com/static/docs/devtools/device-mode/image/customize-control-devtoo-c6405bb233038.svg) and then select **More tools** \> **Sensors**.
+
+![Sensors](https://developer.chrome.com/static/docs/devtools/device-mode/image/sensors-b12471ed29cfd.png)
+
+Or press Command+Shift+P (Mac) or Control+Shift+P (Windows, Linux, ChromeOS) to open the Command
+Menu, type `Sensors`, and then select **Show Sensors**.
+
+![Show Sensors](https://developer.chrome.com/static/docs/devtools/device-mode/image/show-sensors-b1519aa0bba91.png)
+
+Select one of the presets from the **Location** list, or select **Other...** to enter your
+own coordinates, or select **Location unavailable** to test out how your page behaves when
+geolocation is in an error state.
+
+![Geolocation](https://developer.chrome.com/static/docs/devtools/device-mode/image/geolocation-f6b41543ee0ab.png)
+
+### Set orientation
+
+To open the orientation UI, click **Customize and control DevTools**
+![](https://developer.chrome.com/static/docs/devtools/device-mode/image/customize-control-devtoo-0c0351e1b4565.svg) and then select **More tools** \> **Sensors**.
+
+![Sensors](https://developer.chrome.com/static/docs/devtools/device-mode/image/sensors-45d0ddc6fc3a9.png)
+
+Or press Command+Shift+P (Mac) or Control+Shift+P (Windows, Linux, ChromeOS) to open the Command
+Menu, type `Sensors`, and then select **Show Sensors**.
+
+![Show Sensors](https://developer.chrome.com/static/docs/devtools/device-mode/image/show-sensors-5aa6ab9ff8bcc.png)
+
+Select one of the presets from the **Orientation** list or select **Custom orientation** to set your
+own alpha, beta, and gamma values.
+
+![Orientation](https://developer.chrome.com/static/docs/devtools/device-mode/image/orientation-e5e425238e395.png)

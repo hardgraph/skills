@@ -1,0 +1,52 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+![Settings.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/settings-ee128d4064785.svg) [**Settings**](https://developer.chrome.com/docs/devtools/settings#open) \> **Shortcuts** lists default shortcuts you can use while focused in DevTools to speed up your workflow.
+
+For a full list of default shortcuts, see [Keyboard shortcuts](https://developer.chrome.com/docs/devtools/shortcuts).
+
+> [!IMPORTANT]
+> **Key point:** You can use the Visual Studio Code alternatives to default shortcuts. Select `Visual Studio Code` from ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/settings-f73f283ef37c.svg) **Settings** \> **Shortcuts** \> ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/drop-down-370d0e1146483.svg) **Match shortcuts from preset**.
+
+![Visual Studio Code shortcut alternatives.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/visual-studio-code-shortc-14f21e8baa5ac.png)
+
+## Customize shortcuts
+
+> [!NOTE]
+> **Note:** This is a preview option. To enable it, check ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/settings-3e2b659b06b2a.svg) [**Settings** \> **Experiments**](https://developer.chrome.com/docs/devtools/settings/shortcuts#experiments) \> ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/checkbox-8b8a85d477b8d.svg) **Enable keyboard shortcut editor**.
+
+To customize keyboard shortcuts:
+
+1. [Open Settings](https://developer.chrome.com/docs/devtools/settings#open).
+2. In the **Shortcuts** tab, hover over any shortcut and click the ![Edit.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/edit-cfc4315cac291.svg) **Edit** button.
+
+   ![Edit shortcut.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/edit-shortcut-0af0ff33e64a9.png)
+3. Put the cursor in the text bar and press any convenient combination of keys (chord). DevTools notifies you if the combination is already in use.
+
+   ![A chord shortcut that is already in use.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/a-chord-shortcut-is-alre-b5a41c432ffe.png)
+4. Record a new combination and click the ![Check.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/check-51d97458bcc25.svg) **Check** button.
+
+   > [!IMPORTANT]
+   > **Key point:** To add an additional synonymous combination, click **Add a shortcut** and record another chord in a similar way.
+
+   ![Save the new shortcut.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/save-new-shortcut-794b1400886c1.png)
+
+To revert or delete changes, click ![Back.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/back-ec934f5610e46.svg) **Back** or ![Delete.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/delete-67ea494b22d65.svg) **Delete**.
+
+## Add shortcuts to unassigned actions
+
+> [!NOTE]
+> **Note:** This is a preview option. To enable it, check ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/settings-2fb6ead11229a.svg) [**Settings** \> **Experiments**](https://developer.chrome.com/docs/devtools/settings/shortcuts#experiments) \> ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/checkbox-ba846948e3b02.svg) **Enable keyboard shortcut editor**.
+
+By default, DevTools doesn't assign shortcuts to all available actions.
+
+For example, to toggle [light and dark theme preference](https://developer.chrome.com/docs/devtools/rendering/emulate-css#emulate_css_media_feature_prefers-color-scheme) with a keystroke, in the ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/settings-818ace0ee9924.svg) **Settings** \> **Shortcuts** \> **Rendering** section, set your own shortcut as described in [Customize shortcuts](https://developer.chrome.com/docs/devtools/settings/shortcuts#customize-shortcuts).
+
+![Toggle light and dark themes with keyboard shortcut.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/toggle-light-dark-themes-3e4e544945962.png)
+
+## Restore default shortcuts
+
+To bring back defaults, click **Restore default shortcuts** in the bottom-right corner of the ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/settings-8f58b21fdb781.svg) **Settings** \> **Shortcuts** tab.
+
+![Restore default shortcuts.](https://developer.chrome.com/static/docs/devtools/settings/shortcuts/image/restore-default-shortcuts-46703bfa2dbed.png)

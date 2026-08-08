@@ -1,0 +1,20 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+![Settings.](https://developer.chrome.com/static/docs/devtools/settings/experiments/image/settings-d8ac17726022.svg) [**Settings**](https://developer.chrome.com/docs/devtools/settings#open) \> **Experiments** let you enable and disable experimental features of Chrome DevTools.
+
+> [!CAUTION]
+> **Caution:** Chrome DevTools experiments may be unstable.
+
+To enable an experiment:
+
+1. [Open Settings](https://developer.chrome.com/docs/devtools/settings#open).
+2. In the **Experiments** tab, search for the experiment you would like to try in the **Filter** textbox.
+3. Enable the ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/experiments/image/checkbox-19aa473fcaa1f.svg) checkbox next to the experiment.
+4. Close ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/experiments/image/settings-c918a263a8f53.svg) **Settings**.
+5. If required, click **Reload DevTools** in the prompt at the top.
+
+The next time you open DevTools, the experiment is enabled. To disable an experiment, clear the corresponding checkbox.
+
+![The Experiments tab.](https://developer.chrome.com/static/docs/devtools/settings/experiments/image/the-experiments-tab-8640e1825d833.png)

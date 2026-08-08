@@ -1,0 +1,443 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+This page is a reference of features related to the Chrome DevTools Console. It assumes that you're
+already familiar with using the Console to view logged messages and run JavaScript. If not, see [Get
+Started](https://developer.chrome.com/docs/devtools/console).
+
+If you're looking for the API reference on functions like `console.log()` see [Console API
+Reference](https://developer.chrome.com/docs/devtools/console/api). For the reference on functions like `monitorEvents()` see [Console Utilities API
+Reference](https://developer.chrome.com/docs/devtools/console/utilities).
+
+## Open the Console
+
+You can open the Console as a [panel](https://developer.chrome.com/docs/devtools/console/reference#panel) or as a [tab in the Drawer](https://developer.chrome.com/docs/devtools/console/reference#drawer).
+
+### Open the Console panel
+
+Press <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>J</kbd> or
+<kbd>Command</kbd>+<kbd>Option</kbd>+<kbd>J</kbd> (Mac).
+
+![The Console.](https://developer.chrome.com/static/docs/devtools/console/reference/image/the-console-6f950bdc19aaf.png)
+
+To open the Console from the [Command Menu](https://developer.chrome.com/docs/devtools/command-menu), start typing `Console` and then run the **Show
+Console** command that has the **Panel** badge next to it.
+
+![The command for showing the Console panel.](https://developer.chrome.com/static/docs/devtools/console/reference/image/the-command-showing-con-f85c9a0f142ce.png)
+
+### Open the Console in the Drawer
+
+Press <kbd>Escape</kbd> or click **Customize And Control DevTools**
+![Customize And Controls DevTools.](https://developer.chrome.com/static/docs/devtools/console/reference/image/customize-controls-devto-a11c847ca4f1f.svg) and then
+select **Show Console Drawer**.
+
+![Show Console Drawer.](https://developer.chrome.com/static/docs/devtools/console/reference/image/show-console-drawer-59809ff304585.png)
+
+The Drawer pops up at the bottom of your DevTools window, with the **Console** tab open.
+
+![The Console tab in the Drawer.](https://developer.chrome.com/static/docs/devtools/console/reference/image/the-console-tab-the-draw-4018fc60af19b.png)
+
+To open the Console tab from the [Command Menu](https://developer.chrome.com/docs/devtools/command-menu), start typing `Console` and then run the **Show
+Console** command that has the **Drawer** badge next to it.
+
+![The command for showing the Console tab in the Drawer.](https://developer.chrome.com/static/docs/devtools/console/reference/image/the-command-showing-con-9f07d7c3a4bbd.png)
+
+### Open Console Settings
+
+Click ![Settings.](https://developer.chrome.com/static/docs/devtools/console/reference/image/settings-15d0f4489b69f.svg) **Console Settings** in the top-right corner of the **Console**.
+
+> [!IMPORTANT]
+> **Key point:** Not to be confused with ![Settings.](https://developer.chrome.com/static/docs/devtools/console/reference/image/settings-02c6e6051a9dd.svg) **DevTools Settings** above and next to the ![Three-dot menu.](https://developer.chrome.com/static/docs/devtools/console/reference/image/three-dot-menu-a5764db14d971.svg) three-dot menu.
+
+![Console Settings.](https://developer.chrome.com/static/docs/devtools/console/reference/image/console-settings-8f1c503823667.png)
+
+The links below explain each setting:
+
+- [**Hide network**](https://developer.chrome.com/docs/devtools/console/reference#network)
+- [**Preserve log**](https://developer.chrome.com/docs/devtools/console/reference#persist)
+- [**Selected context only**](https://developer.chrome.com/docs/devtools/console/reference#filtercontext)
+- [**Group similar messages in console**](https://developer.chrome.com/docs/devtools/console/reference#group)
+- [**Show CORS errors in console**](https://developer.chrome.com/docs/devtools/console/reference#cors-errors)
+- [**Log XMLHttpRequests**](https://developer.chrome.com/docs/devtools/console/reference#xhr)
+- [**Eager evaluation**](https://developer.chrome.com/docs/devtools/console/reference#eagereval)
+- [**Autocomplete from history**](https://developer.chrome.com/docs/devtools/console/reference#autocomplete)
+
+### Open the Console Sidebar
+
+Click **Show Console Sidebar**
+![Show Console Sidebar.](https://developer.chrome.com/static/docs/devtools/console/reference/image/show-console-sidebar-97d49cca04c9f.png) to show
+the Sidebar, which is useful for filtering.
+
+![Console Sidebar.](https://developer.chrome.com/static/docs/devtools/console/reference/image/console-sidebar-c42a801355417.png)
+
+## View messages
+
+This section contains features that change how messages are presented in the Console. See [View
+messages](https://developer.chrome.com/docs/devtools/console#view) for a hands-on walkthrough.
+
+### Disable message grouping
+
+[Open Console Settings](https://developer.chrome.com/docs/devtools/console/reference#settings) and disable **Group similar** to disable the Console's default message
+grouping behavior. See [Log XHR and Fetch requests](https://developer.chrome.com/docs/devtools/console/reference#xhr) for an example.
+
+### View messages from breakpoints
+
+The **Console** marks messages triggered by breakpoints in the following way:
+
+- `console.*` calls in [conditional breakpoints](https://developer.chrome.com/docs/devtools/javascript/breakpoints#conditional-loc) with an orange question mark `?`
+- [Logpoint](https://developer.chrome.com/docs/devtools/javascript/breakpoints#log-loc) messages with pink two dots `..`
+
+![The Console marks messages created by conditional breakpoints and logpoints.](https://developer.chrome.com/static/docs/devtools/console/reference/image/the-console-marks-message-1a9ce608a9866.png)
+
+To jump to the [inline breakpoint editor](https://developer.chrome.com/docs/devtools/javascript/breakpoints#edit-breakpoints) in the **Sources** panel, click the anchor link next to the breakpoint message.
+
+### View stack traces
+
+The **Console** automatically captures stack traces for errors and warnings. A stack trace is a history of function calls (frames) that led to the error or warning. The **Console** shows them in reverse order: the latest frame is at the top.
+
+To view a stack trace, click the ![Expand.](https://developer.chrome.com/static/docs/devtools/console/reference/image/expand-e745f93533c9a.svg) expand icon next to an error or warning.
+
+![Stack traces.](https://developer.chrome.com/static/docs/devtools/console/reference/image/stack-traces-b6505c8b94793.png)
+
+#### View error causes in stack traces
+
+The **Console** can show you chains of [error causes](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error/cause) in the stack trace, if any.
+
+To make debugging easier, you can [specify error causes](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error/cause#examples) when catching and rethrowing errors. As the **Console** walks up the cause chain, it prints each error stack with a `Caused by:` prefix, so you can find the original error.
+
+![A chain of error causes prefixed with 'Caused by:' in the stack trace.](https://developer.chrome.com/static/docs/devtools/console/reference/image/chain-of-causes.png)
+
+#### View async stack traces
+
+If supported by the framework you are using or when directly using browser scheduling primitives, such as `setTimeout`, DevTools can trace async operations by linking both parts of the async code together.
+
+In this case, the stack trace shows the "full story" of the async operation.
+
+![Async stack trace.](https://developer.chrome.com/static/docs/devtools/console/reference/image/async-stack-trace-a2ff4e3f55d8d.png)
+
+> [!IMPORTANT]
+> **Key point:** DevTools implements this "Async Stack Tagging" feature based on the `console.createTask()` API method. DevTools encourages frameworks and abstractions to use this API. For example, [Angular supports this feature](https://developer.chrome.com/blog/devtools-better-angular-debugging#the_async_stack_tagging_api_in_angular).
+
+#### Show known third-party frames in stack traces
+
+When source maps include the `ignoreList` field, by default, the **Console** hides from stack traces the third-party frames from sources generated by bundlers (for example, webpack) or frameworks (for example, Angular).
+
+To view the full stack trace including third-party frames, click **Show N more frames** at the bottom of the stack trace.
+
+![Show N more frames.](https://developer.chrome.com/static/docs/devtools/console/reference/image/show-n-more-frames-54f6f596dd5ba.png)
+
+To always view the full stack trace, disable the ![Settings.](https://developer.chrome.com/static/docs/devtools/console/reference/image/settings-0eb8492a23f31.svg) **Settings** \> **Ignore List** \> **Automatically add known third-party scripts to ignore list** setting.
+
+![Automatically add known third-party scripts to ignore list.](https://developer.chrome.com/static/docs/devtools/console/reference/image/automatically-add-known-t-9b48da4945eac.png)
+
+### Log XHR and Fetch requests
+
+[Open Console Settings](https://developer.chrome.com/docs/devtools/console/reference#settings) and enable **Log XMLHttpRequests** to log all `XMLHttpRequest` and
+`Fetch` requests to the Console as they happen.
+
+![Logging XMLHttpRequest and Fetch requests.](https://developer.chrome.com/static/docs/devtools/console/reference/image/logging-xmlhttprequest-f-402c461943e5f.png)
+
+The top message in the example above shows the Console's default grouping behavior. The example below shows
+how the same log looks after [disabling message grouping](https://developer.chrome.com/docs/devtools/console/reference#group).
+
+![How the logged XMLHttpRequest and Fetch requests look after ungrouping.](https://developer.chrome.com/static/docs/devtools/console/reference/image/how-logged-xmlhttpreques-7b7ad3bf3afc3.png)
+
+### Persist messages across page loads
+
+By default the Console clears whenever you load a new page. To persist messages across page loads,
+[Open Console Settings](https://developer.chrome.com/docs/devtools/console/reference#settings) and then enable the **Preserve Log** checkbox.
+
+### Hide network messages
+
+By default the browser logs network messages to the **Console**. For example, the top message in
+the following example represents a 404.
+
+![A 404 message in the Console.](https://developer.chrome.com/static/docs/devtools/console/reference/image/a-404-message-the-consol-b9d6dc3606ad.png)
+
+To hide network messages:
+
+1. [Open Console Settings](https://developer.chrome.com/docs/devtools/console/reference#settings).
+2. Enable the **Hide Network** checkbox.
+
+### Show or hide CORS errors
+
+The **Console** can show [CORS errors](https://developer.mozilla.org/docs/Web/HTTP/CORS/Errors) if network requests fail due to [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/docs/Web/HTTP/CORS).
+
+To show or hide CORS errors:
+
+1. [Open Console Settings](https://developer.chrome.com/docs/devtools/console/reference#settings).
+2. Check or clear the **Show CORS errors in the console** checkbox.
+
+![Show CORS errors in the console.](https://developer.chrome.com/static/docs/devtools/console/reference/image/show-cors-errors-the-con-897bd466a9a6f.png)
+
+If the console is set to show CORS errors and you encounter them, you can click the following buttons next to errors:
+
+![Network and Issues buttons.](https://developer.chrome.com/static/docs/devtools/console/reference/image/network-issues-buttons-3c573df61de8c.png)
+
+- ![Network.](https://developer.chrome.com/static/docs/devtools/console/reference/image/network-d77dd91a125b1.png) to open the request with a CORS-related `TypeError` in the **Network** panel.
+- ![Issues.](https://developer.chrome.com/static/docs/devtools/console/reference/image/issues-c6a3845ddedc9.png) to get a [potential solution on the **Issues** tab](https://developer.chrome.com/docs/devtools/issues#view-issues).
+
+## Filter messages
+
+There are many ways to filter out messages in the Console.
+
+### Filter out browser messages
+
+[Open the Console Sidebar](https://developer.chrome.com/docs/devtools/console/reference#sidebar) and click **User Messages** to only show messages that came from the
+page's JavaScript.
+
+![Viewing user messages.](https://developer.chrome.com/static/docs/devtools/console/reference/image/viewing-user-messages-fd80007bd49da.png)
+
+### Filter by log level
+
+DevTools assigns most of `console.*` methods severity levels.
+
+There are four levels:
+
+- `Verbose`
+- `Info`
+- `Warning`
+- `Error`
+
+For example, `console.log()` is in the `Info` group, whereas
+`console.error()` is in the `Error` group. The [Console API Reference](https://developer.chrome.com/docs/devtools/console/api) describes the severity
+level of each applicable method.
+
+Every message that the browser logs to the Console has a severity
+level too. You can hide any level of messages that you're not interested in. For example, if you're
+only interested in `Error` messages, you can hide the other 3 groups.
+
+Click the **Log Levels** drop-down to enable or disable `Verbose`, `Info`, `Warning` or `Error`
+messages.
+
+![The Log Levels drop-down.](https://developer.chrome.com/static/docs/devtools/console/reference/image/the-log-levels-drop-down-4b8620c9333db.png)
+
+You can also filter by log level by ![Show Console Sidebar.](https://developer.chrome.com/static/docs/devtools/console/reference/image/show-console-sidebar-9781ba1d8989.png) [opening the Console Sidebar](https://developer.chrome.com/docs/devtools/console/reference#sidebar) and then clicking **Errors** ,
+**Warnings** , **Info** , or **Verbose**.
+
+![Using the Sidebar to view warnings.](https://developer.chrome.com/static/docs/devtools/console/reference/image/using-sidebar-view-warn-6dcc0bf41b4ea.png)
+
+### Filter messages by URL
+
+Type `url:` followed by a URL to only view messages that came from that URL. After you type `url:`
+DevTools shows all relevant URLs.
+
+![A URL filter.](https://developer.chrome.com/static/docs/devtools/console/reference/image/a-url-filter-884c666b78573.png)
+
+Domains also work. For example, if `https://example.com/a.js` and
+`https://example.com/b.js` are logging messages, `url:https://example.com` enables you to focus on
+the messages from these 2 scripts.
+
+To hide all messages from a specified URL, type `-url:` followed by the URL, for example, `https://b.wal.co`. This is a negative URL filter.
+
+![A negative URL filter. DevTools is hiding all messages that match the specified URL.](https://developer.chrome.com/static/docs/devtools/console/reference/image/a-negative-url-filter-de-f075a3627a864.png)
+
+You can also show messages from a single URL by [opening the Console Sidebar](https://developer.chrome.com/docs/devtools/console/reference#sidebar), expanding the
+**User Messages** section, and then clicking the URL of the script containing the messages you want
+to focus on.
+
+![Viewing the messages from a specific script.](https://developer.chrome.com/static/docs/devtools/console/reference/image/viewing-messages-a-spec-4402844952b06.png)
+
+### Filter out messages from different contexts
+
+Suppose that you've got an ad on your page. The ad is embedded in an `<iframe>` and is generating a
+lot of messages in your Console. Because this ad is in a different [JavaScript context](https://developer.chrome.com/docs/devtools/console/reference#context), one way
+to hide its messages is to [open Console Settings](https://developer.chrome.com/docs/devtools/console/reference#settings) and enable the **Selected Context Only**
+checkbox.
+
+### Filter out messages that don't match a regular expression pattern
+
+Type a regular expression such as `/[foo]\s[bar]/` in the **Filter** text box to filter out any
+messages that don't match that pattern. Spaces are not supported, use `\s` instead. DevTools checks if the pattern is found in the message text
+or the script that caused the message to be logged.
+
+For example, the following filters out all messages that don't match `/[gm][ta][mi]/`.
+
+![Filtering out any messages that don't match /\[gm\]\[ta\]\[mi\]/.](https://developer.chrome.com/static/docs/devtools/console/reference/image/filtering-any-messages-82d76b2bac549.png)
+
+## Search for text in logs
+
+To search for text in log messages:
+
+1. To open a built-in search bar, press <kbd>Command</kbd>+<kbd>F</kbd> (Mac) or <kbd>Ctrl</kbd>+<kbd>F</kbd> (Windows, Linux).
+2. In the bar, type your query. In this example the query is `legacy`. ![Typing a query.](https://developer.chrome.com/static/docs/devtools/console/reference/image/typing-query-2bd59434cd993.png) Optionally, you can:
+   - Click ![Match case.](https://developer.chrome.com/static/docs/devtools/console/reference/image/match-case-f13fa89cd5c1d.png) **Match Case** to make your query case-sensitive.
+   - Click ![RegEx button.](https://developer.chrome.com/static/docs/devtools/console/reference/image/regex-button-7c7a899b3d964.png) **Use Regular Expression** to search using a RegEx expression.
+3. Press <kbd>Enter</kbd>. To jump to previous or next search result, press the up or down button.
+
+## Run JavaScript
+
+This section contains features related to running JavaScript in the Console. See [Run
+JavaScript](https://developer.chrome.com/docs/devtools/console#javascript) for a hands-on walkthrough.
+
+### String copy options
+
+The console outputs strings as valid JavaScript literals by default. Right-click an output and choose between three copy options:
+
+- **Copy as JavaScript literal**. Escapes appropriate special characters and wraps the string in either single quotes, double quotes, or backticks depending on the content.
+- **Copy string contents**. Copies the exact raw string to the clipboard, including new lines and other special characters.
+- **Copy as JSON literal**. Formats the string to valid JSON.
+
+![The copy options.](https://developer.chrome.com/static/docs/devtools/console/reference/image/the-copy-options-63b12751edae3.png)
+
+### Re-run previous expressions and clear history
+
+Press the <kbd>Up Arrow</kbd> key to cycle through the history of JavaScript expressions that you
+ran earlier in the **Console** . Press <kbd>Enter</kbd> to run that expression again.
+
+To clear the console history, right-click an empty space in the **Console** and select **Clear console history** from the context menu.
+
+### Clear, copy, and save messages
+
+To clear the **Console** window, do one of the following:
+
+- Click block **Clear console** in the action bar at the top.
+- Press <kbd>Ctrl</kbd>+<kbd>L</kbd> or <kbd>Cmd</kbd>+<kbd>K</kbd>.
+- Right-click an empty space in the **Console** and select **Clear console** from the context menu.
+
+![The right-click context menu.](https://developer.chrome.com/static/docs/devtools/console/reference/image/clear-console.png)
+
+From the context menu, you can also:
+
+- **Copy console** : Copy all current messages to clipboard, but not the [history of previous commands](https://developer.chrome.com/docs/devtools/console/reference#history).
+- **Save as...** : Save all current messages to a plaintext `.log` file.
+
+### Watch an expression's value in real-time with Live Expressions
+
+If you find yourself typing the same JavaScript expression in the Console repeatedly, you might find
+it easier to create a **Live Expression** . With **Live Expressions** , you type an expression once and
+then pin it to the top of your Console. The value of the expression updates in near real-time. See
+[Watch JavaScript Expression Values In Real-Time With Live Expressions](https://developer.chrome.com/docs/devtools/console/live-expressions).
+
+### Disable Eager Evaluation
+
+As you type JavaScript expressions in the Console, **Eager Evaluation** shows a preview of that
+expression's return value. [Open Console Settings](https://developer.chrome.com/docs/devtools/console/reference#settings) and disable the **Eager Evaluation** checkbox
+to turn off the return value previews.
+
+### Trigger user activation with evaluation
+
+[User activation](https://developer.chrome.com/blog/user-activation) is the state of a browsing session that depends on user actions. An "active" state means the user is currently interacting with the page or has interacted since page load.
+
+To trigger user activation with any evaluation, [open Console Settings](https://developer.chrome.com/docs/devtools/console/reference#settings) and
+check ![Checkbox.](https://developer.chrome.com/static/docs/devtools/console/reference/image/checkbox-7c5de7ca3499a.svg) **Treat code evaluation as user action**.
+
+### Disable autocomplete from history
+
+As you type out an expression, the Console's autocomplete popup shows expressions that you ran
+earlier. These expressions are prepended with the `>` character. In the following example, DevTools earlier evaluated `document.querySelector('a')` and `document.querySelector('img')`.
+
+![The autocomplete popup showing expressions from history.](https://developer.chrome.com/static/docs/devtools/console/reference/image/the-autocomplete-popup-sh-d3de9cbaf1506.png)
+
+[Open Console Settings](https://developer.chrome.com/docs/devtools/console/reference#settings) and
+disable the **Autocomplete From History** checkbox to stop showing expressions from your history.
+
+### Select JavaScript context
+
+By default the **JavaScript Context** drop-down is set to **top** , which represents the main
+document's [browsing context](https://developer.mozilla.org/docs/Glossary/Browsing_context).
+
+![The JavaScript Context drop-down.](https://developer.chrome.com/static/docs/devtools/console/reference/image/the-javascript-context-dr-83ecda0d539c.png)
+
+Suppose you have an ad on your page embedded in an `<iframe>`. You want to run JavaScript in order
+to tweak the ad's DOM. To do this, you first need to select the ad's browsing context from the
+**JavaScript Context** drop-down.
+
+![Selecting a different JavaScript context.](https://developer.chrome.com/static/docs/devtools/console/reference/image/selecting-different-java-26cfea133c9d3.png)
+
+## Inspect object properties
+
+The **Console** can display an interactive list of properties of a JavaScript object you specify.
+
+To browse the list, type the object name into the **Console** and press <kbd>Enter</kbd>.
+
+To inspect the properties of DOM objects, follow the steps in [View the properties of DOM objects](https://developer.chrome.com/docs/devtools/dom/properties).
+
+### Spot own and inherited properties
+
+The **Console** sorts own object properties first and highlights them in bold font.
+
+![Displaying object properties.](https://developer.chrome.com/static/docs/devtools/console/reference/image/displaying-object-propert-bd8db852a5889.png)
+
+Properties inherited from the prototype chain are in regular font. The **Console** displays them on the object itself by evaluating the corresponding native accessors of built-in objects.
+
+![Displaying inherited properties.](https://developer.chrome.com/static/docs/devtools/console/reference/image/displaying-inherited-prop-bf6fdacca9697.png)
+
+### Evaluate custom accessors
+
+By default, DevTools doesn't evaluate accessors you create.
+![Custom accessor.](https://developer.chrome.com/static/docs/devtools/console/reference/image/custom-accessor-4d4daa1a09a6f.png)
+To evaluate a custom accessor on an object, click `(...)`.
+![Evaluated custom accessor.](https://developer.chrome.com/static/docs/devtools/console/reference/image/evaluated-custom-accessor-8829433f2e52c.png)
+
+### Spot enumerable and non-enumerable properties
+
+Enumerable properties are bright in color. Non-enumerable properties are muted.
+![Enumerable and non-enumerable properties.](https://developer.chrome.com/static/docs/devtools/console/reference/image/enumerable-non-enumerabl-3837a25650013.png)
+Enumerable properties can be iterated over with the `for ... in` loop or `Object.keys()` method.
+
+### Spot private properties of class instances
+
+The **Console** designates [private properties](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Classes/Public_class_fields) of class instances with a `#` prefix.
+
+![Private property of a class instance.](https://developer.chrome.com/static/docs/devtools/console/reference/image/private-property-a-class-a302d4ca8a28b.png)
+
+The **Console** can also autocomplete private properties even when you evaluate them ouside the class scope.
+
+![Private property autocompletion.](https://developer.chrome.com/static/docs/devtools/console/reference/image/private-property-autocomp-ab8bb3964dfe.png)
+
+### Inspect internal JavaScript properties
+
+Borrowing the [ECMAScript notation](https://tc39.es/ecma262/#sec-object-internal-methods-and-internal-slots), the **Console** encloses some properties internal to JavaScript in double square brackets. You can't interact with such properties in your code. However, it might be useful to inspect them.
+
+You might see the following internal properties on different objects:
+
+- Any object has a `[[Prototype]]`. ![Object prototype.](https://developer.chrome.com/static/docs/devtools/console/reference/image/object-prototype-d70846e61d721.png)
+- Primitive wrappers have a `[[PrimitiveValue]]` property. ![Primitive values.](https://developer.chrome.com/static/docs/devtools/console/reference/image/primitive-values-51d1434a7cc8a.png)
+- [`ArrayBuffer` objects](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) have the following properties:
+  - [`[[Int8Array]]`, `[[Uint8Array]]`, `[[Int16Array]]`, `[[Int32Array]]`](https://tc39.es/ecma262/#table-the-typedarray-constructors)
+  - [`[[ArrayBufferByteLength]]`, `[[ArrayBufferData]]`](https://tc39.es/ecma262/#sec-properties-of-the-arraybuffer-instances) ![ArrayBuffer and view objects.](https://developer.chrome.com/static/docs/devtools/console/reference/image/arraybuffer-view-objects-2189af3ff2a89.png)
+
+    > [!IMPORTANT]
+    > **Key point:** To [inspect a JavaScripts ArrayBuffer](https://developer.chrome.com/docs/devtools/memory-inspector) that a view object refers to, click the ![Memory icon.](https://developer.chrome.com/static/docs/devtools/console/reference/image/memory-icon-f453712cca57d.svg) button.
+
+- In addition to `ArrayBuffer`-specific properties, `WebAssembly.Memory` objects have a `[[WebAssemblyMemory]]` property. ![WebAssemblyMemory object.](https://developer.chrome.com/static/docs/devtools/console/reference/image/webassemblymemory-object-2ba8b7fce18de.png)
+- [Keyed collections](https://tc39.es/ecma262/#sec-keyed-collections) (maps and sets) have an `[[Entries]]` property that contains their keyed entries. ![Keyed collections.](https://developer.chrome.com/static/docs/devtools/console/reference/image/keyed-collections-c349565c5c276.png)
+- [`Promise` objects](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) have the following properties:
+  - [`[[PromiseState]]`](https://tc39.es/ecma262/#sec-properties-of-the-promise-prototype-object): pending, fulfilled, or rejected
+  - [`[[PromiseResult]]`](https://tc39.es/ecma262/#sec-properties-of-the-promise-prototype-object): `undefined` if pending, `<value>` if fulfilled, `<reason>` if rejected ![Promise object.](https://developer.chrome.com/static/docs/devtools/console/reference/image/promise-object-4f1dbb08568e2.png)
+- [`Proxy` objects](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Proxy) have the following properties: `[[Handler]]` object, `[[Target]]` object, and `[[isRevoked]]` (switched off or not). ![Proxy object.](https://developer.chrome.com/static/docs/devtools/console/reference/image/proxy-object-a629ca66c8f9a.png)
+
+### Inspect functions
+
+In JavaScript, functions are also objects with properties. However, if you type a function name into the **Console**, DevTools calls it instead of displaying its properties.
+
+To view function properties internal to JavaScript, use the [console.dir()](https://developer.chrome.com/docs/devtools/console/api#dir) command.
+
+![Inspecting properties of a function.](https://developer.chrome.com/static/docs/devtools/console/reference/image/inspecting-properties-a-9a5db0dd363c9.png)
+
+Functions have the following properties:
+
+- `[[FunctionLocation]]`. A link to the line with the function definition in a source file.
+- `[[Scopes]]`. Lists values and expressions the function has access to. To inspect function scopes during debugging, see [View and edit local, closure, and global properties](https://developer.chrome.com/docs/devtools/javascript/reference#scope).
+- [Bound functions](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_objects/Function/bind) have the following properties:
+  - `[[TargetFunction]]`. The target of `bind()`.
+  - `[[BoundThis]]`. The value of `this`.
+  - `[[BoundArgs]]`. An array of function arguments. ![Bound function.](https://developer.chrome.com/static/docs/devtools/console/reference/image/bound-function-d7efcafc4e44a.png)
+- [Generator functions](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function*) are marked with a `[[IsGenerator]]: true` property. ![Generator function.](https://developer.chrome.com/static/docs/devtools/console/reference/image/generator-function-87084b5308578.png)
+- Generators return iterator objects and they have following properties:
+  - `[[GeneratorLocation]]`. A link to a line with the generator definition in a source file.
+  - `[[GeneratorState]]`: `suspended`, `closed`, or `running.`
+  - `[[GeneratorFunction]]`. The generator that returned the object.
+  - `[[GeneratorReceiver]]`. An object that receives the value. ![Iterator object.](https://developer.chrome.com/static/docs/devtools/console/reference/image/iterator-object-3140d0593e6f.png)
+
+## Clear the Console
+
+You can use any of the following workflows to clear the Console:
+
+- Click **Clear Console** ![Clear.](https://developer.chrome.com/static/docs/devtools/console/reference/image/clear-fbf5ccade18c4.svg).
+- Right-click a message and then select **Clear Console**.
+- Type `clear()` in the Console and then press <kbd>Enter</kbd>.
+- Call `console.clear()` from your webpage's JavaScript.
+- Press <kbd>Control</kbd>+<kbd>L</kbd> while the Console is in focus.

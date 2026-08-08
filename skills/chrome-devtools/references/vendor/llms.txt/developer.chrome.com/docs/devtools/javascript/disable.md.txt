@@ -1,0 +1,34 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+To see how a web page looks and behaves when JavaScript is disabled:
+
+1. [Open Chrome DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Depending on your operating system, press one of the following:
+
+   - On Window or Linux, <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+   - On MacOS, <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+
+   ![The Command Menu.](https://developer.chrome.com/static/docs/devtools/javascript/disable/image/the-command-menu-6a5d68b955e31.png)
+
+   The **Command Menu** opens.
+3. Start typing `javascript`, select **Disable JavaScript**, and then press Enter to run the
+   command. JavaScript is now disabled.
+
+   ![Selecting 'Disable JavaScript' in the Command Menu.](https://developer.chrome.com/static/docs/devtools/javascript/disable/image/selecting-disable-javasc-78366e94532b5.png)
+
+To remind you that JavaScript is disabled, Chrome shows the corresponding ![Disabled JavaScript.](https://developer.chrome.com/static/docs/devtools/javascript/disable/image/disabled-javascript-d2d171d8858c8.png) icon in the address bar and DevTools shows a warning ![Warning.](https://developer.chrome.com/static/docs/devtools/javascript/disable/image/warning-f5446d214a0a2.svg) icon next to **Sources**.
+
+![An icon in the address bar and a warning icon next to Sources in DevTools.](https://developer.chrome.com/static/docs/devtools/javascript/disable/image/an-icon-the-address-bar-d51fb4180a5e1.png)
+
+JavaScript will remain disabled in this tab so long as you have DevTools open.
+
+You may want to reload the page to see if and how the page depends on JavaScript while loading.
+
+Alternatively, you can disable JavaScript in ![Settings.](https://developer.chrome.com/static/docs/devtools/javascript/disable/image/settings-682ede632e6b8.svg) [Settings](https://developer.chrome.com/docs/devtools/settings#debugger).
+
+To re-enable JavaScript:
+
+- Open the Command Menu again and run the **Enable JavaScript** command.
+- Close DevTools.

@@ -1,0 +1,75 @@
+![Dale St. Marthe](https://web.dev/images/authors/dalestmarthe.jpg) Dale St. Marthe [LinkedIn](https://www.linkedin.com/in/dale-st-marthe)
+
+<br />
+
+Use **Inspect mode** to focus and analyze specific elements on your web page.
+
+## Overview
+
+Activating DevTools **Inspect mode** (selector picker) lets you hover over elements on your page and view style and accessibility information. Clicking an element while **Inspect mode** is active will highlight the corresponding DOM element in the **Elements** panel DOM tree, and list the relevant styles in the **Styles** tab.
+
+## Activate Inspect mode
+
+To activate **Inspect mode**:
+
+1. Open [DevTools](https://developer.chrome.com/docs/devtools/open)
+2. Click the **Inspect mode** button in the action bar.
+
+![The Inspect mode button in the action bar.](https://developer.chrome.com/static/docs/devtools/inspect-mode/image/inspect-mode-button.png)
+
+The selector picker is active when the **Inspect mode** icon is blue.
+
+You can also use a shortcut in Chrome to open the **Elements** panel in **Inspect mode**. Press either of the following:
+
+- macOS: <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>C</kbd>
+- Windows, Linux, ChromeOS: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>
+
+## Use Inspect mode to view style and accessibility information
+
+When **Inspect mode** is active, hover over elements on your page, this will highlight the element and display a tooltip overlay. The **Elements** panel will automatically expand the DOM tree to highlight the element that you are hovering over.
+
+![An element on the Devtools homepage highlighted with a tooltip overlay visible.](https://developer.chrome.com/static/docs/devtools/inspect-mode/image/elements-highlight.png)
+
+Depending on the element, the **Inspect mode** tooltip will display the following style properties:
+
+- The selectors of the element.
+- The element's dimensions, in pixels.
+- The element's background color.
+- The element's text color.
+- The element's font properties.
+- The element's padding, in pixels.
+- The element's margin, in pixels.
+
+Additionally, elements that use [CSS grid](https://developer.chrome.com/docs/devtools/css/grid) or [CSS flexbox](https://developer.chrome.com/docs/devtools/css/flexbox) will have a different icon appear next to the element's name.
+
+![A tooltip overlay with a flex icon in the top left corner](https://developer.chrome.com/static/docs/devtools/inspect-mode/image/inspect-flex.png)
+
+The accessibility section of the tooltip will display the following information:
+
+- The name and role of the element reported to assistive technology.
+- Whether the element is keyboard-focusable.
+
+Hovering over text headers in particular will display a contrast ratio, which measures the difference in brightness between the foreground (text color) and background colors.
+
+![A tooltip displays a contrast ratio of 1.7 measured for a header.](https://developer.chrome.com/static/docs/devtools/inspect-mode/image/contrast-ratio.png)
+
+A good contrast ratio is vital for readable text. Find out how to [fix low contrast text](https://developer.chrome.com/docs/devtools/accessibility/contrast#fix-low-contrast).
+
+## Persist and hide the Inspect mode tooltip
+
+To persist the **Inspect mode** tooltip while being able to move your mouse pointer elsewhere, press and hold:
+
+- macOS: <kbd>Ctrl</kbd>+<kbd>Option</kbd>
+- Windows, Linux, ChromeOS: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>
+
+To temporarily hide the inspect tooltip while you move the mouse pointer, press and hold <kbd>Ctrl</kbd>.
+
+## Inspect non-accessible elements
+
+Elements with the CSS property `pointer-events: none;` can't be targeted by **Inspect mode** initially.
+
+![An inert element not highlighted by selector picker.](https://developer.chrome.com/static/docs/devtools/inspect-mode/image/inert-true.png)
+
+To inspect non-accessible elements, press <kbd>Shift</kbd> while hovering over the element.
+
+![An inert element highlighted by selector picker.](https://developer.chrome.com/static/docs/devtools/inspect-mode/image/inert-shift.png)

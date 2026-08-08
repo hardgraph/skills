@@ -1,0 +1,142 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Use the **Sources** panel to view and edit your website's resources, such as stylesheets, Javascript files, and images.
+
+> [!IMPORTANT]
+> **Key Point:** You can also use **AI assistance** to understand files loaded and used by your website. See [AI assistance for sources](https://developer.chrome.com/docs/devtools/ai-assistance/chat#sources).
+
+## Overview
+
+The **Sources** panel lets you do the following:
+
+- [View files](https://developer.chrome.com/docs/devtools/sources#files).
+- [Edit CSS and JavaScript](https://developer.chrome.com/docs/devtools/sources#edit).
+- [Create and save **Snippets** of JavaScript](https://developer.chrome.com/docs/devtools/sources#snippets), which you can run on any page. **Snippets** are similar to bookmarklets.
+- [Debug JavaScript](https://developer.chrome.com/docs/devtools/sources#debug).
+- [Set up a Workspace](https://developer.chrome.com/docs/devtools/sources#workspace), so that changes you make in DevTools get saved to the code on your file system.
+
+## Open the Sources panel
+
+To open the Sources panel, follow these steps:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Open the **Command menu** by pressing:
+   - macOS: <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+   - Windows, Linux, ChromeOS: <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+3. Start typing `sources`, select **Show Sources panel** , and press <kbd>Enter</kbd>.
+
+Alternatively, in the top right corner, select more_vert **More options** \> **More tools** \> **Sources**.
+
+## View files
+
+Click the **Page** tab to view all of the resources that the page has loaded.
+
+![The Page tab.](https://developer.chrome.com/static/docs/devtools/sources/image/the-page-pane-49968ac6336d8.png)
+
+How the **Page** tab is organized:
+
+- The top-level, such as `top` on the screenshot above, represents an [HTML frame](https://www.w3.org/TR/html401/present/frames.html). You'll find `top` on every page that you visit. `top` represents the main document frame.
+- The second-level, such as `developers.google.com` on the screenshot above, represents an [origin](https://html.spec.whatwg.org/multipage/origin.html#origin).
+- The third-level, fourth-level, and so on, represent directories and resources that were loaded from that origin. For example, on the screenshot above, the full path to the resource `devsite-googler-button` is `developers.google.com/_static/19aa27122b/css/devsite-googler-button`.
+
+Click a file in the **Page** tab to view its contents in the **Editor** tab. You can view any type
+of file. For images, you see a preview of the image.
+
+![Viewing a file in the Editor tab.](https://developer.chrome.com/static/docs/devtools/sources/image/viewing-file-the-editor-a7b15a0d4e7d5.png)
+
+> [!NOTE]
+> **Note:** Note that the **Page** tab lists only the loaded and deployed stylesheets.
+
+## Edit CSS and JavaScript
+
+Click the **Editor** tab to edit CSS and JavaScript. DevTools updates the page to run your new code.
+
+The **Editor** also helps you debug. For example, it underlines and shows inline error tooltips next to syntax errors and other issues, such as failed CSS `@import` and `url()` statements, and HTML `href` attributes with invalid URLs.
+
+![An inline syntax error tooltip.](https://developer.chrome.com/static/docs/devtools/sources/image/an-inline-syntax-error-to-cb1195595eebb.png)
+
+If you edit the `background-color` of an element, you'll see that the change takes effect
+immediately.
+
+![Editing CSS in the Editor tab.](https://developer.chrome.com/static/docs/devtools/sources/image/editing-css-the-editor-p-b6f00591b7d8e.gif)
+
+For JavaScript changes to take effect, press <kbd>Command</kbd>+<kbd>S</kbd> (Mac) or <kbd>Control</kbd>+<kbd>S</kbd> (Windows, Linux). DevTools doesn't re-run a script, so the only JavaScript changes that take effect are those that you make inside of functions. For example, note how `console.log('A')` doesn't run, whereas `console.log('B')` does.
+
+![Editing JavaScript in the Editor tab.](https://developer.chrome.com/static/docs/devtools/sources/image/editing-javascript-the-e-d989a1a5c3704.gif)
+
+If DevTools re-ran the entire script after making the change, then the text `A` would have been logged to the
+**Console**.
+
+DevTools erases your CSS and JavaScript changes when you reload the page. See [Set up a
+Workspace](https://developer.chrome.com/docs/devtools/sources#workspace) to learn how to save the changes to your file system.
+
+## Create, save, and run Snippets
+
+Snippets are scripts which you can run on any page. Imagine that you repeatedly type out the
+following code in the **Console** , in order to insert the jQuery library into a page, so that you
+can run jQuery commands from the **Console**:
+
+    let script = document.createElement('script');
+    script.src = 'https://code.jquery.com/jquery-3.2.1.min.js';
+    script.crossOrigin = 'anonymous';
+    script.integrity = 'sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=';
+    document.head.appendChild(script);
+
+Instead, you can save this code in a **Snippet** and run it with a couple of button clicks, any time
+you need it. DevTools saves the **Snippet** to your file system. For example, examine a **Snippet**
+that inserts the jQuery library into a page.
+
+![A Snippet that inserts the jQuery library into a page.](https://developer.chrome.com/static/docs/devtools/sources/image/a-snippet-inserts-jquer-699d1e95396d5.png)
+
+To run a **Snippet**:
+
+- Open the file in the **Snippets** tab, and click **Run** ![The Run button.](https://developer.chrome.com/static/docs/devtools/sources/image/the-run-button-bca877bd0432d.svg) on the action bar at the bottom.
+- Open the [**Command Menu**](https://developer.chrome.com/docs/devtools/command-menu), delete the `>` character, type `!`, type the name of your **Snippet**, then press Enter.
+
+See [Run Snippets Of Code From Any Page](https://developer.chrome.com/docs/devtools/javascript/snippets) to learn more.
+
+## Debug JavaScript
+
+Rather than using `console.log()` to infer where your JavaScript is going wrong, consider using the
+Chrome DevTools debugging tools, instead. The general idea is to set a breakpoint, which is an
+intentional stopping place in your code, and then step through your code's execution, one line at a
+time.
+
+![Pausing at a breakpoint.](https://developer.chrome.com/static/docs/devtools/sources/image/pausing-a-breakpoint-b05705f84cde.png)
+
+As you step through the code, you can view and change the values of all currently-defined
+properties and variables, run JavaScript in the **Console**, and more.
+
+See [Get Started With Debugging JavaScript](https://developer.chrome.com/docs/devtools/javascript) to learn the basics of debugging in DevTools.
+
+### Focus only on your code
+
+> [!NOTE]
+> **Note:** The following features are available from Chrome version 106.
+
+Chrome DevTools lets you focus only on the code you author by filtering out the noise generated by frameworks and build tools you leverage when building web applications.
+
+To provide you with the modern web debugging experience, DevTools does the following:
+
+- **Separates authored and deployed code** . To help you find your code quicker, [the **Sources** panel separates the code](https://developer.chrome.com/docs/devtools/javascript/reference#group-authored-and-deployed) you create from the bundled and minified code.
+- **Ignores known third-party code** :
+  - [The **Sources** panel hides such sources](https://developer.chrome.com/docs/devtools/javascript/reference#hide-ignore-listed) from the file tree on the **Page** tab.
+  - [The **Console** hides such frames from stack traces](https://developer.chrome.com/docs/devtools/console/reference#show-third-party).
+  - [The **Open File** menu hides such files from search results](https://developer.chrome.com/docs/devtools/command-menu#open-ignore-listed-files).
+
+Additionally, if supported by frameworks, the [**Call Stack** in the debugger](https://developer.chrome.com/docs/devtools/javascript/reference#async-frames) and [stack traces in the **Console**](https://developer.chrome.com/docs/devtools/console/reference#async-stack-traces) show the full history of asynchronous operations.
+
+To learn more, see:
+
+- [Modern web debugging in Chrome DevTools](https://developer.chrome.com/blog/devtools-modern-web-debugging)
+- [Case Study: Better Angular Debugging with DevTools](https://developer.chrome.com/blog/devtools-better-angular-debugging)
+
+## Set up a Workspace
+
+By default, when you edit a file in the **Sources** panel, those changes are lost when you reload
+the page. **Workspaces** enable you to save the changes that you make in DevTools to your file
+system. Essentially, this lets you use DevTools as your code editor.
+
+See [Edit Files With Workspaces](https://developer.chrome.com/docs/devtools/workspaces) to get started.

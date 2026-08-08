@@ -1,0 +1,33 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+![Settings.](https://developer.chrome.com/static/docs/devtools/settings/workspace/image/settings-f86748ee39527.svg) [**Settings**](https://developer.chrome.com/docs/devtools/settings#open) \> [**Workspace**](https://developer.chrome.com/docs/devtools/workspaces) lets you save changes that you make within DevTools to source code that's stored on your computer.
+
+> [!IMPORTANT]
+> **Key point:** DevTools automatically maps your local sources to network resources using source maps. This way, you can make changes to sources in DevTools and immediately see the effect on the website you host locally and view in Chrome.
+
+To configure your workspaces, open ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/workspace/image/settings-a41a15bc48fa5.svg) [Settings](https://developer.chrome.com/docs/devtools/settings#open) \> **Workspace**.
+
+## Customize exclusions
+
+The **Folder exclude pattern** is the default global RegEx pattern that lists common and third-party folders and file types that DevTools excludes from workspaces so you can focus only on your code.
+![Folder exclude pattern in the Workspace tab.](https://developer.chrome.com/static/docs/devtools/settings/workspace/image/folder-exclude-pattern-t-fce3770bb0868.png)
+You can manually add new folders or file types to the pattern. Pattern changes take effect after reloading DevTools.
+
+To change the default global list of excluded folders and files, edit the ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/workspace/image/settings-334dfa81d01e6.svg) **Settings** \> **Workspace** \> **Folder exclude pattern** textbox.
+
+## Manage Workspaces
+
+The **Workspace** tab lists folders you have set up as **Workspaces** and, for each folder, subfolders you manually excluded.
+![A workspace folder with excluded subfolders.](https://developer.chrome.com/static/docs/devtools/settings/workspace/image/a-workspace-folder-exclu-76e518d0e44f9.png)
+Changes to files in subfolders listed as excluded don't persist. Excluded subfolders are workplace-specific, not global.
+
+To add a new **Workspace**:
+
+1. [Open Settings](https://developer.chrome.com/docs/devtools/settings#open).
+2. In the **Workspace** tab, click **Add folder**.
+3. Select the folder with your sources.
+4. Click **Allow** in the prompt at the top to let DevTools make changes to sources. ![The prompt requesting full access to sources for DevTools.](https://developer.chrome.com/static/docs/devtools/settings/workspace/image/the-prompt-requesting-ful-6bc9e108fd653.png)
+
+To remove a workspace, click ![Close.](https://developer.chrome.com/static/docs/devtools/settings/workspace/image/close-d6dbbfe5bbe44.svg) next to the corresponding folder.

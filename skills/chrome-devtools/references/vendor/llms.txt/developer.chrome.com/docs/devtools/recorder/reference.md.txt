@@ -1,0 +1,420 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem) ![Jecelyn Yeen](https://web.dev/images/authors/jecelynyeen.jpg) Jecelyn Yeen [X](https://twitter.com/jecfish) [GitHub](https://github.com/jecfish) [Bluesky](https://bsky.app/profile/jec.fish) [Homepage](https://jec.fish/)
+
+<br />
+
+[Video](https://www.youtube.com/watch?v=LBgzmqzp7ew)
+
+Discover ways to share user flows, edit them and their steps in this comprehensive features reference of the Chrome DevTools **Recorder** panel.
+
+To learn the basics of working with the **Recorder** panel, see [Record, replay, and measure user flows](https://developer.chrome.com/docs/devtools/recorder).
+
+## Learn and customize shortcuts
+
+Use shortcuts to navigate the **Recorder** faster. For a list of default shortcuts, see [Recorder panel keyboard shortcuts](https://developer.chrome.com/docs/devtools/shortcuts#recorder).
+
+To open a hint that lists all the shortcuts right in the **Recorder** , click **Show shortcuts** in the top right corner.
+
+![The Show shortcuts button.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/the-show-shortcuts-button-f0594f2e7e55b.png)
+
+To customize **Recorder** shortcuts:
+
+1. Open ![Settings.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/settings-78023895978e6.svg) [**Settings** \> **Shortcuts**](https://developer.chrome.com/docs/devtools/settings/shortcuts).
+2. Scroll down to the **Recorder** section.
+3. Follow the steps in [Customize shortcuts](https://developer.chrome.com/docs/devtools/settings/shortcuts#customize-shortcuts).
+
+## Edit user flows
+
+![DevTools Recorder panel has a drop-down menu in the header which allows you to select a user flow to edit.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/devtools-recorder-panel-h-0b57a0a41477d.png)
+
+On the top of the **Recorder** panel, there are options for you to:
+
+1. **Add a new recording** ![Add.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/add-c2ab1d557ac1.svg). Click on the **+** icon to [add a new recording](https://developer.chrome.com/docs/devtools/recorder#record).
+2. **View all recordings** ![Expand more.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/expand-more-d711ca407170d.svg). The drop-down shows the list of saved recordings. Select the **N recording(s)** option to expand and manage the list of saved recordings. ![View all recordings.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/view-recordings-c25eda928bbfa.png)
+3. **Export a recording** ![File download.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/file-download-716c007acba4b.svg). To further customize the script or share it for bug reporting purposes, you can export the user flow in one of the following formats:
+
+   - JSON file.
+   - [@puppeteer/replay](https://github.com/puppeteer/replay) script.
+   - [Puppeteer](https://developer.chrome.com/docs/puppeteer) script.
+   - [Puppeteer (for Firefox)](https://hacks.mozilla.org/2024/08/puppeteer-support-for-firefox/) script.
+   - [Puppeteer](https://developer.chrome.com/docs/puppeteer) (including [Lighthouse](https://developer.chrome.com/docs/lighthouse) analysis).
+
+   For more information on the formats, see [Export a user flow](https://developer.chrome.com/docs/devtools/recorder/reference#export-flows).
+4. **Import a recording** ![File upload.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/file-upload-b46790eb29a7f.svg). Only in JSON format.
+
+5. **Delete a recording** ![Delete.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/delete-9b69fdfcd02c7.svg). Delete the selected recording.
+
+You can also edit the recording's name by clicking the edit button ![Edit.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/edit-3acf5108ffe14.svg) next to it.
+
+## Share user flows
+
+You can export and import user flows in the Recorder. This is useful for bug reporting because you can share an exact record of the steps that reproduce a bug. You can also export and replay it with external libraries.
+
+### Export a user flow
+
+To export a user flow:
+
+1. Open the user flow you want to export.
+2. Click **Export** at the top of the **Recorder** panel.
+
+   ![A list of format options in the Export menu.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/export-format-options.png)
+3. Select one of the following formats from the drop-down list:
+
+   - **JSON file**. Download the recording as a JSON file.
+   - **@puppeteer/replay** . Download the recording as a [Puppeteer Replay](https://github.com/puppeteer/replay) script.
+   - **Puppeteer** . Download the recording as a [Puppeteer](https://developer.chrome.com/docs/puppeteer) script.
+   - **Puppeteer (for Firefox)** . Download the recording as a [Puppeteer for Firefox](https://hacks.mozilla.org/2024/08/puppeteer-support-for-firefox/) script.
+   - **Puppeteer (including Lighthouse analysis)** . Download the recording as a [Puppeteer](https://developer.chrome.com/docs/puppeteer) script with an embedded [Lighthouse](https://developer.chrome.com/docs/lighthouse) analysis.
+   - One or more options provided by the Recorder's [Export extensions](https://developer.chrome.com/docs/devtools/recorder/extensions#export-extensions).
+4. Save the file.
+
+You can do the following with each default export option:
+
+- **JSON** . Edit the human-readable JSON object and [import](https://developer.chrome.com/docs/devtools/recorder/reference#import-flows) the JSON file back to the **Recorder**.
+- **@puppeteer/replay** . Replay the script with the [Puppeteer Replay](https://github.com/puppeteer/replay) library. When exporting as a @puppeteer/replay script, the steps remain a JSON object. This option is perfect if you want to integrate with your CI/CD pipeline but still have the flexibility to edit the steps as JSON, later convert and import them back into the **Recorder**.
+- **Puppeteer script** . Replay the script with [Puppeteer](https://developer.chrome.com/docs/puppeteer). Because the steps are converted into JavaScript, you can have more fine-grained customization, for example, looping the steps. One caveat, you can't import this script back into the **Recorder**.
+- **Puppeteer (for Firefox)** . As part of [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/) support, you can run this Puppeteer script on both Chrome and Firefox.
+- **Puppeteer (including Lighthouse analysis)** . This export option is the same as the previous one but it includes code that generates a [Lighthouse](https://developer.chrome.com/docs/lighthouse) analysis.
+
+  Run the script and check out the output in a `flow.report.html` file:
+
+      # npm i puppeteer lighthouse
+      node your_export.js
+
+  ![The Lighthouse report opened in Chrome.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/the-lighthouse-report-ope-a6aacf158d473.png)
+
+### Export in a custom format by installing an extension
+
+See [Recorder extensions](https://developer.chrome.com/docs/devtools/recorder/extensions).
+
+### Import a user flow
+
+To import a user flow:
+
+1. Click the **Import** ![File upload.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/file-upload-665836defd9b9.svg) button at the top of the **Recorder** panel. ![Import recording.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/import-recording-b72f34ead229e.png)
+2. Select the JSON file with the recorded user flow.
+3. Click the ![Replay.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/replay-b6572a56792a1.svg)**Replay** button to run the imported user flow.
+
+### Replay with external libraries
+
+The [Puppeteer Replay](https://github.com/puppeteer/replay) is an open source library maintained by the Chrome DevTools team. It is built on top of [Puppeteer](https://developer.chrome.com/docs/puppeteer). It is a command line tool, you can replay JSON files with it.
+
+Apart from that, you can transform and replay JSON files with the following 3rd party libraries.
+
+Transform JSON user flows to custom scripts:
+
+- [Cypress Chrome Recorder](https://github.com/cypress-io/cypress-chrome-recorder). You can use it to convert user flow JSON files to Cypress test scripts. Watch this [demo](https://youtu.be/4qYs2bMz4GI) to see it in action.
+- [Nightwatch Chrome Recorder](https://github.com/nightwatchjs/nightwatch-chrome-recorder). You can use it to convert user flow JSON files to Nightwatch test scripts.
+- [CodeceptJS Chrome Recorder](https://github.com/PeterNgTr/codeceptjs-chrome-recorder). You can use it to convert user flow JSON files to CodeceptJS test scripts.
+
+Replay JSON user flows:
+
+- [Replay with Testcafe](https://testcafe.io/documentation/403998/guides/experimental-capabilities/chrome-replay-support). You can use TestCafe to replay user flow JSON files and generate test reports for these recordings.
+- [Replay with Sauce Labs](https://saucelabs.com/blog/how-to-create-test-scripts-using-chrome-devtools). You can replay the JSON files on [Sauce Labs](https://saucelabs.com/) using [saucectl](https://github.com/saucelabs/saucectl-replay-example).
+
+> [!IMPORTANT]
+> **Key point:** **Advanced use case: Integrate with the Puppeteer Replay library** Similar to the 3rd party libraries above, you can build your own library on top of the [Puppeteer Replay](https://github.com/puppeteer/replay) too. The Puppeteer Replay library provide ways for you to [customize how a recording is run](https://github.com/puppeteer/replay#2-customize-replay) and ["stringify" the user flow JSON files](https://github.com/puppeteer/replay#stringify-a-recording-as-a-puppeteer-script), that is, convert them to something else.
+
+## Debug user flows
+
+Like any code, sometimes you have to debug the recorded user flows.
+
+To help you debug, the **Recorder** panel lets you slow down the replays, set breakpoints, step through the execution, and inspect code in various formats in parallel with steps.
+
+### Slow down the replay
+
+By default, the **Recorder** replays the user flow as fast as it can. To understand what happens in the recording, you can slow down the replay speed:
+
+1. Open the ![Replay.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/replay-1e993777dc2cf.svg)**Replay** drop-down menu.
+2. Choose one of the replay speed options:
+   - Normal (Default)
+   - Slow
+   - Very slow
+   - Extremely slow
+
+![Slow replay.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/slow-replay-943ac02118312.png)
+
+> [!IMPORTANT]
+> **Key point:** You can use these slow replay options only in the **Recorder** . To add timeouts to the recording itself, see [Adjust timeouts for steps](https://developer.chrome.com/docs/devtools/recorder/reference#adjust-timeout).
+
+### Inspect code
+
+To inspect the code of a user flow in various formats:
+
+1. Open a recording in the **Recorder** panel.
+2. Click **Show code** in the top right corner of the steps list. ![The Show code button.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/the-show-code-button-64d771b392dde.png)
+3. The **Recorder** shows a side-by-side view of the steps and their code. ![The side-by-side view of the steps and their code.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/the-side-side-view-the-e0d59fb1abcca.png)
+4. As you hover over a step, the **Recorder** highlights its respective code in any format, including those provided by [extensions](https://developer.chrome.com/docs/devtools/recorder/reference#recorder-extension).
+5. Expand the format drop-down list to select a format that you use to [export user flows](https://developer.chrome.com/docs/devtools/recorder/reference#export-flows).
+
+   ![The format drop-down list.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/the-format-drop-down-list-b4556883f1719.png)
+
+   It can be one of the three default formats (JSON, [@puppeteer/replay](https://github.com/puppeteer/replay), [Puppeteer script](https://developer.chrome.com/docs/puppeteer) or a format provided by an [extension](https://developer.chrome.com/docs/devtools/recorder/reference#recorder-extension).
+6. Proceed to debug your recording by [editing step parameters and values](https://developer.chrome.com/docs/devtools/recorder/reference#edit-steps). The code view isn't editable but it updates accordingly as you make changes to steps on the left.
+
+### Set breakpoints and execute step by step
+
+To set a breakpoint and execute step by step:
+
+1. Hover over the ![Step.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/step-a405d9cf6baad.svg) circle next to any step in a recording. The circle turns into a ![Breakpoint.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/breakpoint-6fd80fab785ba.svg) breakpoint icon.
+2. Click the ![Breakpoint.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/breakpoint-1159031f2d507.svg) breakpoint icon and [replay the recording](https://developer.chrome.com/docs/devtools/recorder#replay). The executions pauses at the breakpoint. ![Execution pause.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/execution-pause-6993cd67c372b.png)
+3. To step through the execution, click the ![Execute one step.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/execute-step-a4b6b5b19f11f.png) **Execute one step** button on the action bar at the top of the **Recorder** panel.
+4. To stop the replay, click ![Pause.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/pause-0dbd04d872338.svg) **Cancel replay**.
+
+## Edit steps
+
+You can edit any step in the recording by clicking the ![Expand.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/expand-9f049dc13f1ca.svg) button next to it, both during the recording and after.
+
+You can also [add](https://developer.chrome.com/docs/devtools/recorder/reference#add-steps) missing steps and [remove](https://developer.chrome.com/docs/devtools/recorder/reference#remove-steps) accidentally recorded ones.
+
+### Add steps
+
+Sometimes, you may need to add steps manually. For example, the **Recorder** doesn't automatically capture `hover` events because this pollutes the recording and not all such events are useful. However, UI elements such as drop-down menus can appear only on `hover`. You can manually add `hover` steps to user flows that depend on such elements.
+
+To manually add a step:
+
+1. Open this [demo page](https://jec.fish/demo/menu-hover) and start a new recording. ![Start a recording to capture a hover event.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/start-recording-capture-03d52d22ba1c5.png)
+2. Hover over the element in the viewport. An action menu pops up. ![Hovering over the element.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/hovering-the-element-ce25c6746fd05.png)
+3. Pick an action from the menu and end the recording. The **Recorder** captures only the click event. ![Clicking an action and ending the recording.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/clicking-action-ending-189fc1c9636f2.png)
+4. Try to replay the recording by clicking ![Replay.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/replay-019050a5d4616.svg) **Replay** . The replay fails after a timeout because the **Recorder** can't access the element in the menu. ![Replay fail.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/replay-fail-f5f0585820ccd.png)
+5. Click the ![Three-dot button.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/three-dot-button-034d3307c76a5.svg) three-dot button next to the **Click** step and select **Add step before** . ![Adding a step before Click.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/adding-step-before-click-cdc3adac88f8a.png)
+6. Expand the new step. By default, it has the `waitForElement` type. Click the value next to `type` and select `hover`. ![Selecting hover.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/selecting-hover-c9b1c4178c36d.png)
+7. Next, set an appropriate selector for the new step. Click ![Select.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/select-8bb5a596a1022.svg) **Select** , then click an area on the `Hover over me!` element that's outside the pop-up menu. The selector is set to `#clickable`. ![Setting the selector.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/setting-selector-9567fc7a277c1.png)
+8. Try replaying the recording again. With the added hover step, the **Recorder** successfully replays the flow. ![Replay success.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/replay-success-c839111eea647.png)
+
+### Add assertions
+
+During recording, you can assert, for example, HTML attributes and JavaScript properties. To add an assertion:
+
+1. [Start a recording](https://developer.chrome.com/docs/devtools/recorder#record), for example, on this [demo page](https://coffee-cart.app/).
+2. Click **Add assertion**.
+
+   ![The Add assertion button.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/the-add-assertion-button-bf70ffea0ea19.png)
+
+   The **Recorder** creates a configurable `waitForElement` step.
+3. [Specify selectors](https://developer.chrome.com/docs/devtools/recorder#edit-selectors) for this step.
+
+4. [Configure the step](https://developer.chrome.com/docs/devtools/recorder/reference#configure-steps) but don't change its `waitForElement` type. For example, you can specify:
+
+   - **HTML attribute** . Click **Add attributes** and type the attribute's name and value that elements on this page use. For example, `data-test: <value>`.
+   - **JavaScript property** . Click **Add properties** and type the property's name and value in JSON format. For example, `{".innerText":"<text>"}`.
+   - [Other step properties](https://developer.chrome.com/docs/devtools/recorder/reference#step-properties). For example, `visible: true`.
+5. Proceed to record the rest of the user flow and then stop the recording.
+
+6. Click ![Replay.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/replay-f700536450ef4.svg) **Replay** . If an assertion fails, the **Recorder** displays an error after a [timeout](https://developer.chrome.com/docs/devtools/recorder/reference#adjust-timeout).
+
+Watch the following video to see this workflow in action.
+
+### Copy steps
+
+Instead of [exporting the entire user flow](https://developer.chrome.com/docs/devtools/recorder/reference#export-flows), you can copy a single step to the clipboard:
+
+1. Right-click the step you want to copy or click the ![Three-dot menu.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/three-dot-menu-02f13f36fc106.svg) three-dot icon next to it.
+2. In the drop-down menu, select one of the **Copy as ...** options.
+
+![Selecting a copy option from the drop-down menu.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/selecting-copy-option-t-b7a2ca87e119.png)
+
+You can copy steps in various formats: JSON, [Puppeteer](https://developer.chrome.com/docs/puppeteer), [@puppeteer/replay](https://github.com/puppeteer/replay), and those provided by [extensions](https://developer.chrome.com/docs/devtools/recorder/reference#recorder-extension).
+
+### Remove steps
+
+To remove an accidentally recorded step, right-click the step or click the ![Three-dot menu.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/three-dot-menu-110b233f24d83.svg) three-dot icon next to it and select **Remove step**.
+
+![Remove a step.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/remove-step-c588611434f35.png)
+
+Additionally, the **Recorder** automatically adds two separate steps to the start of every recording:
+
+![A recording with the set viewport and navigation steps.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/a-recording-the-set-view-af6406545a35f.png)
+
+- **Set viewport** . Lets you control the viewport's dimensions, scaling, and [other properties](https://developer.chrome.com/docs/devtools/recorder/reference#step-properties).
+- **Navigate**. Sets the URL and automatically refreshes the page for every replay.
+
+To perform in-page automation without reloading the page, remove the navigation step as described above.
+
+### Configure steps
+
+To configure a step:
+
+1. Specify its type: `click`, `doubleClick`, `hover`, (input) `change`, `keyUp`, `keyDown`, `scroll`, `close`, `navigate` (to a page), `waitForElement`, `waitForExpression`, or `setViewport`.
+
+   Other properties depend on the `type` value.
+2. Specify the required properties below the `type`.
+
+   ![Configure a step.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/configure-step-d097a1d48cd98.png)
+
+   <br />
+
+3. Click the corresponding buttons to add optional type-specific properties and specify them.
+
+For a list of available properties, see [Step properties](https://developer.chrome.com/docs/devtools/recorder/reference#step-properties).
+
+To remove an optional property, click the ![Remove.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/remove-93a3bfb26ea7a.svg) **Remove** button next to it.
+
+To add or remove an element to or from an array property, click the **+** or **-** buttons next to the element.
+
+#### Step properties
+
+Each step can have the following optional properties:
+
+- `target`---a URL for the [Chrome DevTools Protocol (CDP)](https://chromedevtools.github.io/devtools-protocol/) target, the default `main` keyword refers to the current page.
+- `assertedEvents` that can only be a single `navigation` event.
+
+Other common properties available for most of the step types are:
+
+- `frame`---an array of zero-based indexes that identify an iframe that can be nested. For example, you can identify the first (0) iframe inside a second (1) iframe of the main target as `[1, 0]`.
+- `timeout`---a number of milliseconds to wait before executing a step. For more information, see [Adjust timeouts for steps](https://developer.chrome.com/docs/devtools/recorder/reference#adjust-timeout).
+- `selectors`---an array of selectors. For more information, see [Understand selectors](https://developer.chrome.com/docs/devtools/recorder/reference#selector).
+
+Type-specific properties are:
+
+| Type | Property | Required | Description |
+|---|---|---|---|
+| `click` `doubleClick` | `offsetX` `offsetY` | ![Check.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/check-b90a8359c7eb2.svg) | Relative to the top-left of the element content box, in pixels |
+| `click` `doubleClick` | `button` |   | Pointer button: primary \| auxiliary \| second \| back \| forward |
+| `change` | `value` | ![Check.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/check-c14a68be4a937.svg) | Final value |
+| `keyDown` `keyUp` | `key` | ![Check.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/check-72648f59d02f7.svg) | Key name |
+| `scroll` | `x` `y` |   | Absolute scroll x and y positions in pixels, default 0 |
+| `navigate` | `url` | ![Check.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/check-bfc58cc8a263e.svg) | Target URL |
+| `waitForElement` | `operator` |   | \>= (default) \| == \| \<= |
+| `waitForElement` | `count` |   | Number of elements identified by a selector |
+| `waitForElement` | `attributes` |   | HTML attribute and its value |
+| `waitForElement` | `properties` |   | JavaScript property and its value in JSON |
+| `waitForElement` | [`visible`](https://pptr.dev/api/puppeteer.waitforselectoroptions#properties) |   | Boolean. True if the element is in the DOM and visible (doesn't have `display: none` or `visibility: hidden`) |
+| `waitForElement` `waitForExpression` | `asserted events` |   | Currently, only `type: navigation` but you can specify the title and URL |
+| `waitForElement` `waitForExpression` | `timeout` |   | Maximum time to wait in milliseconds |
+| `waitForExpression` | `expression` | ![Check.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/check-46b89b2b158f8.svg) | JavaScript expression that resolves to true |
+| `setViewport` | `width` `height` | ![Check.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/check-2e032dd215e3b.svg) | Width and height of the viewport in pixels |
+| `setViewport` | `deviceScaleFactor` | ![Check.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/check-cf7496b1812a5.svg) | Similar to Device Pixel Ratio (DPR), default 1 |
+| `setViewport` | `isMobile` `hasTouch` `isLandscape` | ![Check.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/check-916ae2f27ad7.svg) | Boolean flags that specify whether to: - Take the meta tag into account - Support touch events - Display in landscape mode |
+
+There are two properties that make the replay pause:
+
+- The `waitForElement` property makes the step wait for the presence (or absence) of a number of elements identified by a selector. For example, the following step waits for less than three elements to be on the page that match the selector `.my-class`.
+
+        "type": "waitForElement",
+        "selectors": [".my-class"],
+        "operator": "<=",
+        "count": 2,
+
+- The `waitForExpression` property makes the step wait for a JavaScript expression to resolve to true. For example, the following step pauses for two seconds and then resolves to true allowing the replay to continue.
+
+        "type": "waitForExpression",
+        "expression": "new Promise(resolve => setTimeout(() => resolve(true), 2000))",
+
+### Adjust timeouts for steps
+
+In case your page has slow network requests or lengthy animations, the replay can fail on steps that exceed the default timeout of `5000` milliseconds.
+
+To avoid this problem, you can adjust the default timeout for each step at once or set separate timeouts for specific steps. Timeouts on specific steps overwrite the default.
+
+To adjust the default timeout for each step at once:
+
+1. Click **Replay settings** to make the **Timeout** box editable.
+
+   ![Replay settings.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/replay-settings-37162719716f7.png)
+2. In the **Timeout** box, set the timeout value in milliseconds.
+
+3. Click ![Replay.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/replay-84ebe8c0e8523.svg)[**Replay**](https://developer.chrome.com/docs/devtools/recorder#replay) to see the adjusted default timeout in action.
+
+To overwrite the default timeout on a specific step:
+
+1. [Expand the step](https://developer.chrome.com/docs/devtools/recorder#expand-step) and click **Add timeout**.
+
+   ![Add timeout.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/add-timeout-26a9b8517cef8.png)
+2. Click on the `timeout: <value>` and set the value in milliseconds.
+
+   ![Set the timeout value.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/set-timeout-value-e39b7a2b3ae6c.png)
+3. Click ![Replay.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/replay-7404b72c56e22.svg)[**Replay**](https://developer.chrome.com/docs/devtools/recorder#replay) to see the step with the timeout in action.
+
+To remove a timeout overwrite on a step, click the **Delete** ![Delete.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/delete-5a8fefbbbbd99.svg) button next to it.
+
+## Understand selectors
+
+When you start a new recording, you can configure the following:
+
+![Configuring a new recording.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/configuring-new-recordin-de8b8bac05bdb.png)
+
+- In the **Selector attribute** textbox, enter a [custom test attribute](https://developer.chrome.com/docs/devtools/recorder/reference#customize-selector). The **Recorder** will use this attribute to detect selectors instead of a list of [common test attributes](https://developer.chrome.com/docs/devtools/recorder/reference#common-test-selector).
+- In the **Selector types to record** set of checkboxes, choose the types of selectors to detect automatically:
+
+  - ![Checkbox.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/checkbox-2577d91b6b981.svg) **CSS**. Syntactic selectors.
+  - ![Checkbox.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/checkbox-74525428ffead.svg) **ARIA**. Semantic selectors.
+  - ![Checkbox.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/checkbox-dfa0cef3ff22d.svg) **Text**. Selectors with the shortest unique text if available.
+  - ![Checkbox.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/checkbox-ee836bef8c944.svg) **XPath** . Selectors that use [XML Path Language](https://developer.mozilla.org/docs/Web/XPath).
+  - ![Checkbox.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/checkbox-d5aa986a70409.svg) **Pierce** . Selectors similar to the CSS ones but that [can pierce shadow DOM](https://pptr.dev/guides/query-selectors#pierce-selectors-pierce).
+
+> [!NOTE]
+> **Note:** For more information, see [Syntactic vs. semantic selectors](https://developer.chrome.com/blog/puppetaria#syntactic-vs-semantic-selectors) and [Selector priority](https://developer.chrome.com/docs/devtools/recorder/reference#selector-priority).
+
+### Common test selectors
+
+For simple webpages, `id` attributes and CSS `class` attributes are sufficient for the **Recorder** to detect the selectors. However, that might not always be the case because:
+
+- Your webpages may use dynamic classes or IDs that change.
+- Your selectors may break because of code or framework changes.
+
+For example, the CSS `class` values might be auto-generated for applications developed with modern JavaScript frameworks (for example, [React](https://reactjs.org/), [Angular](https://angular.io/), [Vue](https://vuejs.org/)) and CSS frameworks.
+
+![Auto-generated CSS classes with randomized names.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/auto-generated-css-classe-e1faf987824ca.png)
+
+In these cases, you can use `data-*` attributes to create more resilient tests. There are already some common `data-*` selectors that developers use for automation. The **Recorder** supports them as well.
+
+If you have the following common test selectors defined on your website, the **Recorder** automatically detects and uses them first:
+
+- `data-testid`
+- `data-test`
+- `data-qa`
+- `data-cy`
+- `data-test-id`
+- `data-qa-id`
+- `data-testing`
+
+For example, inspect the "Cappuccino" element on this [demo page](https://coffee-cart.app/) and see the test attributes:
+
+![Defined test selectors.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/defined-test-selectors-1d537683ba57.png)
+
+Record a click on "Cappuccino", expand the corresponding step in the recording, and check the detected selectors:
+
+![Detected common test selector.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/detected-common-test-sele-2aa42587d3be5.png)
+
+### Customize the recording's selector
+
+You can customize the selector of a recording if the common test selectors don't work for you.
+
+For example, this [demo page](https://jec.fish/demo/recorder) uses the `data-automate` attribute as the selector. [Start a new recording](https://developer.chrome.com/docs/devtools/recorder/reference#record) and enter the `data-automate` as the selector attribute.
+
+![Customize the recording's selector.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/customize-recordings-se-7786af7b90e63.png)
+
+Fill in an email address and observe the selector value (`[data-automate=email-address]`).
+
+![The result of custom selector selection.](https://developer.chrome.com/static/docs/devtools/recorder/reference/image/the-result-custom-select-d3b300ad5ae3e.png)
+
+### Selector priority
+
+The **Recorder** looks for selectors in the following order depending on if you specified a [custom CSS selector](https://developer.chrome.com/docs/devtools/recorder/reference#customize-selector) attribute:
+
+- If specified:
+  1. CSS selector with your custom CSS attribute.
+  2. XPath selectors.
+  3. ARIA selector if found.
+  4. A selector with the shortest unique text if found.
+- If not specified:
+  1. ARIA selector if found.
+  2. CSS selectors with the following priority:
+     1. The most common attributes used for testing:
+        - `data-testid`
+        - `data-test`
+        - `data-qa`
+        - `data-cy`
+        - `data-test-id`
+        - `data-qa-id`
+        - `data-testing`
+     2. ID attributes, for example, `<div id="some_ID">`.
+     3. Regular CSS selectors.
+  3. XPath selectors.
+  4. Pierce selectors.
+  5. A selector with the shortest unique text if found.
+
+There can be multiple regular CSS, XPath, and Pierce selectors. The **Recorder** captures:
+
+- Regular CSS and XPath selectors at every root level, that is, nested [shadow hosts](https://developer.mozilla.org/docs/Web/Web_Components/Using_shadow_DOM#high-level_view), if any.
+- Pierce selectors that are unique among all elements *within* all shadow roots.

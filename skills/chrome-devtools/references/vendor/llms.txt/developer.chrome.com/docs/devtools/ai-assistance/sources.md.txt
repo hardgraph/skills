@@ -1,0 +1,125 @@
+Use the **AI assistance** panel for sources to understand files loaded and used by your website.
+
+## Open the "AI assistance" panel
+
+The **AI assistance** panel opens [in the drawer](https://developer.chrome.com/docs/devtools/console/reference#drawer).
+
+![The AI assistance panel opened in its default state.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/open-default.png)
+
+### From the Sources panel
+
+To open **AI assistance** from the [Sources panel](https://developer.chrome.com/docs/devtools/sources/overview),
+right-click a file and select the **Ask AI** option.
+
+![The file context menu with 'Ask AI' highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/files/open-context-menu.png)
+
+When you open **AI assistance** like this, the selected file is pre-selected as
+context for the conversation.
+
+Alternatively, click the floating button when hovering over a file.
+
+![The floating button attached to hovered file.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/files/open-floating-button.png)
+
+> [!NOTE]
+> **Note:** When opening **AI assistance** with the following methods, make sure to select [Conversation context](https://developer.chrome.com/docs/devtools/ai-assistance/sources#conversation_context) as outlined above.
+
+### From the command menu
+
+To open **AI assistance** from the command menu, type `AI` and then run the
+**Show AI assistance** command, which has the **Drawer** badge next to it.
+
+![The opened ommand menu with 'Show AI assistance' highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/open-command-menu.png)
+
+### From the "More tools" menu
+
+Alternatively, in the top right corner, select **More options** \> **More tools** \> **AI assistance**.
+
+![The opened more tools menu.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/open-more-tools.png)
+
+## Conversation context
+
+The selected file is used as context for your conversation with **AI assistance**.
+A reference to this file is shown in the bottom left corner of the panel.
+
+![The AI assistance panel with the context file highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/files/conversation-context.png)
+
+Change context by clicking on another file in the Sources panel.
+
+**AI assistance** is using the selected file's name, URL, source map (if available)
+and content to answer your questions.
+
+Click the button
+in the `Analyzing file` chip after starting a conversation to see the raw
+data used by **AI assistance**.
+
+![The AI assistance panel with the Analyzing file chip highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/files/data-usage.png)
+
+## Prompting
+
+When starting a new conversation, **AI assistance** for files offers example
+prompts to help you get started quickly.
+
+![The AI assistance panel with the example prompts highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/files/example-prompts.png)
+
+Click any of the prompts to prefill the prompt input field at the bottom of the
+panel.
+
+Alternatively, type your own prompt or question into the input field.
+
+To send a prompt, either press `Enter` or click the arrow on the right hand
+side of the input field.
+
+### No answer given
+
+**AI assistance** might not provide answers due to various reasons.
+
+![The AI assistance panel with a refused conversation.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/answer-refused.png)
+
+If you think your prompt is something **AI assistance** should be able to
+discuss, [file a bug](https://goo.gle/devtools-bug).
+
+### Conversation history
+
+Once you start a conversation, every next answer is based on your previous
+interactions between you and the AI.
+
+AI assistance saves your conversation history between sessions, so you can access your previous chats even after DevTools or Chrome reload.
+
+Use the controls in the top-left corner of the panel to control your conversation
+history.
+
+![The AI assistance panel with the history controls highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/history.png)
+
+#### Start new
+
+To start a new conversation with the currently selected
+[conversation context](https://developer.chrome.com/docs/devtools/ai-assistance/sources#conversation_context), click the button.
+
+#### Continue
+
+To continue a past conversation, click the button and select it from the context menu.
+
+> [!NOTE]
+> **Note:** [Conversation context](https://developer.chrome.com/docs/devtools/ai-assistance/sources#conversation_context) is not automatically updated as it might have vanished since the conversation stopped.
+
+#### Delete
+
+To delete a conversation from history, click the button.
+
+## Rate answers and provide feedback
+
+**AI assistance** is an experimental feature. Therefore we are actively looking
+for your feedback to learn how we can improve answer quality and the overall
+experience.
+
+![The AI assistance panel with rating controls highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/rate-answers.png)
+
+### Vote answers
+
+Rate an answer using the
+**Thumbs up** and
+**Thumbs down** buttons below the answer.
+
+### Report answers
+
+To report inappropriate content, click the button next to the voting buttons.

@@ -1,0 +1,72 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+This guide shows you how to use [Chrome DevTools](https://developer.chrome.com/docs/devtools) to do the following:
+
+- Test if you optimized your page for instant loads when using the browser's back and forward buttons.
+- Identify issues that may prevent your page from being eligible for this type of caching.
+
+[Video](https://www.youtube.com/watch?v=Y2IVv5KnrmI)
+
+Back/forward cache (or bfcache) is a browser optimization that enables instant back and forward navigation. For more information, see [Back/forward cache](https://web.dev/articles/bfcache).
+
+> [!IMPORTANT]
+> **Key point:** Back/forward cache differs from browser [cache](https://developer.mozilla.org/docs/Web/API/Cache) and [HTTP cache](https://developer.mozilla.org/docs/Web/HTTP/Caching).   
+>
+> To inspect [cache](https://developer.mozilla.org/docs/Web/API/Cache) data, follow the steps in [View cache data](https://developer.chrome.com/docs/devtools/storage/cache).   
+>
+> To inspect [HTTP cache](https://developer.mozilla.org/docs/Web/HTTP/Caching) data, open the **Size** column of the **Network Log** . See [Log network activity](https://developer.chrome.com/docs/devtools/network#load).
+
+## Test back/forward cache
+
+To test back/forward cache, follow these steps:
+
+1. On your page, [open DevTools](https://developer.chrome.com/docs/devtools/open), then navigate to **Application** \> **Background services** \> **Back/forward cache**.
+
+   ![Back/forward cache tab.](https://developer.chrome.com/static/docs/devtools/application/back-forward-cache/image/backforward-cache-tab-a5b7dab553d61.png)
+2. Click **Test back/forward cache**.
+
+   Chrome automatically takes you to `chrome://terms/` and back to your page.
+
+   Alternatively, you can click the browser's back and forward buttons.
+
+If the back/forward cache works for your page with no issues, you'll see the following message:
+
+![Successfully served from back/forward cache.](https://developer.chrome.com/static/docs/devtools/application/back-forward-cache/image/successfully-served-back-9dc3e53733a32.png)
+
+Otherwise, you'll see a list of issues.
+
+To find out which issues affect which frames, expand the **Frames** ![Expand icon.](https://developer.chrome.com/static/docs/devtools/application/back-forward-cache/image/expand-icon-0dbf0d5585cf5.svg) section.
+
+![Expanded Frames section.](https://developer.chrome.com/static/docs/devtools/application/back-forward-cache/image/expanded-frames-section-3bad0294b3223.png)
+
+## Resolve issues that prevent caching
+
+If your page isn't eligible for back/forward caching, the **Back/forward cache** tab shows you a list with three types of causes:
+
+![Not eligible for back/forward cache.](https://developer.chrome.com/static/docs/devtools/application/back-forward-cache/image/not-eligible-backforwar-ce70c84e43e74.png)
+
+- **Actionable** . You can fix these issues to enable caching. For example, [stop using `unload` events](https://web.dev/articles/bfcache#never_use_the_unload_event).
+- **Pending Support**. Chrome doesn't support these features yet, so they prevent caching. However, once supported, Chrome removes these limitations.
+- **Not Actionable**. You can't fix these issues on this page. Something that is outside the page's control prevents caching.
+
+To find out which frame is the blocker, expand the corresponding section under the issue's description.
+
+![Blocking frames.](https://developer.chrome.com/static/docs/devtools/application/back-forward-cache/image/blocking-frames-82bd55fd07fac.png)
+
+## Common issues that prevent back/forward caching
+
+The two main reasons that prevent bfcache from running are:
+
+- [`Cache-Control: no-store` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
+
+  This header value is recommended for pages with personal and private information. For pages you want to be reasonably fresh, use `no-cache` or a short cache time, for example, `max-age=60`.
+- [Problematic unload handlers](https://web.dev/articles/bfcache#never_use_the_unload_event).
+
+  Chrome is planning to [deprecate unload handlers](https://developer.chrome.com/docs/web-platform/deprecating-unload) and recommends to never use an `unload` event.
+
+  To ensure that your website doesn't use unload handlers and, for example, prevent extensions from adding `unload` events, declare the `Permissions-Policy: unload=()` HTTP response header.
+
+> [!TIP]
+> **Tip:** To test a bfcache fix, you can [mock a response header with overrides](https://developer.chrome.com/docs/devtools/overrides).

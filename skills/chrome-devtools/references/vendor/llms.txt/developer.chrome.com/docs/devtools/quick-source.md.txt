@@ -1,0 +1,32 @@
+![Dale St. Marthe](https://web.dev/images/authors/dalestmarthe.jpg) Dale St. Marthe [LinkedIn](https://www.linkedin.com/in/dale-st-marthe)
+
+<br />
+
+Use the **Quick source** panel to view and edit source files while having access to other panels.
+
+## Overview
+
+Usually, you would use the **Sources** panel to work with source files and you would need to switch from the **Sources** panel to access other panels. Since the **Quick source** panel opens in the **Drawer** at the bottom by default, you can use other panels at the same time.
+
+## Open the Quick source panel
+
+To open the **Quick source** panel:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Open the **Command menu** by pressing:
+   - macOS: <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+   - Windows, Linux, ChromeOS: <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> ![Command Menu with](https://developer.chrome.com/static/docs/devtools/quick-source/image/command-menu-quick-source.png)
+3. Start typing `Quick source`, select **Show Quick source** , and press <kbd>Enter</kbd>. DevTools displays the **Quick source** panel at the bottom of your DevTools window.
+
+Alternatively, in the top right corner, select **More options** \> **More tools** \> **Quick source**.
+
+## Open files
+
+The **Quick source** panel automatically opens the last file edited in the **Sources** panel. To open a source file manually, you can do any of following:
+
+- Click **Open file** and select a source file from the drop-down. ![The Quick source panel open file button.](https://developer.chrome.com/static/docs/devtools/quick-source/image/qs-open-file-link.png)
+- Or press:
+  - macOS: <kbd>Command</kbd>+<kbd>P</kbd>
+  - Windows, Linux, ChromeOS: <kbd>Control</kbd>+<kbd>P</kbd>
+
+While the **Quick source** panel is open, using the <kbd>Command</kbd>+<kbd>P</kbd> shortcut will open a source file in the **Quick source** panel, rather than the **Sources** panel.

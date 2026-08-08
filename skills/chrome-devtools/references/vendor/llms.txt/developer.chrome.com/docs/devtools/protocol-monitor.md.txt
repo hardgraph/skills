@@ -1,0 +1,79 @@
+![Dale St. Marthe](https://web.dev/images/authors/dalestmarthe.jpg) Dale St. Marthe [LinkedIn](https://www.linkedin.com/in/dale-st-marthe)
+
+<br />
+
+Use the **Protocol monitor** to view all CDP requests and responses made by DevTools and send CDP commands directly.
+
+## Overview
+
+Chrome DevTools uses the [Chrome DevTools Protocol (CDP)](https://chromedevtools.github.io/devtools-protocol/) to instrument, inspect, debug and profile Chrome browsers. Developers can use the **Protocol monitor** to work with the CDP programmatically.
+
+The **Protocol monitor** lets you do the following:
+
+- Record CDP requests and responses
+- Inspect CDP messages
+- Save CDP messages
+- Send CDP commands
+
+## Open the Protocol monitor
+
+To open the **Protocol monitor**, follow these steps:
+
+1. Make sure the experiment is enabled. Check the **Protocol Monitor** checkbox under **Settings** \> **Experiments**.
+
+2. Open the **Command menu** by pressing:
+
+   - macOS: <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+   - Windows, Linux, ChromeOS: <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> ![Command Menu with](https://developer.chrome.com/static/docs/devtools/protocol-monitor/image/command-menu-protocol-monitor.png)
+3. Start typing `Protocol monitor`, select **Show Protocol monitor** , and press <kbd>Enter</kbd>. DevTools displays the **Protocol monitor** panel at the bottom of your DevTools window.
+
+Alternatively, in the top right corner, select **More options** \> **More tools** \> **Protocol monitor**.
+
+## Record CDP requests and responses
+
+When you open the **Protocol monitor** , it automatically starts recording CDP messages from the current page. The **Protocol monitor** continues recording even if you refresh the page or close Devtools.
+
+To stop or start recording, click the record button on the left of the action bar at the top of the panel.
+
+![The record button in the Protocol monitor panel.](https://developer.chrome.com/static/docs/devtools/protocol-monitor/image/pm-record.png)
+
+## Inspect CDP messages
+
+As the **Protocol monitor** records, CDP messages are logged in a table on the left side of the panel.
+
+Click a **Method** , **Request** , or **Response** cell to open a detailed view of its **Request** or **Response** data on the right side of the panel.
+
+![A method highlighted in the Protocol monitor panel.](https://developer.chrome.com/static/docs/devtools/protocol-monitor/image/pm-method.png)
+
+Switch between the **Request** or **Response** data by clicking on the respective header tab.
+
+Right-clicking a value in the **Method** column gives you context based options.
+
+## Clear and download CDP messages
+
+To clear all recorded CDP messages, click the clear button in the action bar.
+
+To download the recorded messages as a JSON file, click download .
+
+## Send raw CDP commands
+
+There are two main ways to send a CDP command through the **Protocol monitor**:
+
+- If the command does not require any parameters, type the command into the input field at the bottom of the **Protocol Monitor** , then press <kbd>Enter</kbd>, for example `Page.captureScreenshot`.
+
+  If the command requires parameters, provide them in JSON format, for example `{"cmd":"Page.captureScreenshot","args":{"format": "jpeg"}}`.
+
+  The drop-down to the right of the input field specifies the target.
+
+![Target dropdown highlighted in the Protocol monitor.](https://developer.chrome.com/static/docs/devtools/protocol-monitor/image/pm-dropdown.png)
+
+- You can also use the [CDP editor](https://developer.chrome.com/blog/cdp-command-editor) to edit and issue commands:
+
+  1. Open the command editor by clicking the **Show CDP command editor** button next to the command input field.
+  2. Select a target from the drop-down list, and start typing a CDP command next to the command prompt. Autocomplete provides you with relevant options. Select the command you intend to use. ![The command input in protocol monitor.](https://developer.chrome.com/static/docs/devtools/protocol-monitor/image/pm-command.png)
+  3. After you enter a CDP command, the editor creates a structured form of parameters based on the protocol definitions. Fill out these parameters to send them with your command. ![Parameter input with service worker related parameters listed for filling out.](https://developer.chrome.com/static/docs/devtools/protocol-monitor/image/pm-parameters.png)
+  4. Send the command by clicking the **Send command** button or pressing <kbd>Ctrl</kbd> <kbd>+</kbd> <kbd>Enter</kbd>.
+
+You can also edit and resend commands from the table. Right-click an item in the table and select Edit and resend from the drop-down menu. This will automatically reopen the CDP editor and prefill it with the command you selected.
+
+For more information about the CDP editor, see [Craft your Chrome Devtools Protocol (CDP) commands efficiently with the new command editor](https://developer.chrome.com/blog/cdp-command-editor).

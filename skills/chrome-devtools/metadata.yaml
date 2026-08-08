@@ -1,0 +1,112 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 5
+  tags:
+    - chrome-devtools
+    - devtools
+    - browser-debugging
+    - web-performance
+    - memory-profiling
+    - cdp
+    - puppeteer
+visibility:
+  audiences:
+    - frontend-devs
+    - fullstack-devs
+    - qa-engineers
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: chrome-devtools-llms-index
+    kind: llms.txt
+    url: "https://developer.chrome.com/docs/devtools/llms.txt"
+    allowed_hosts:
+      - developer.chrome.com
+    allowed_extensions:
+      - .md.txt
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: chrome-devtools
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: chrome devtools
+    intensity: 10
+  - type: keyword
+    value: devtools
+    intensity: 9
+  - type: keyword
+    value: performance trace
+    intensity: 8
+  - type: keyword
+    value: flame chart
+    intensity: 7
+  - type: keyword
+    value: heap snapshot
+    intensity: 9
+  - type: keyword
+    value: conditional breakpoint
+    intensity: 8
+  - type: keyword
+    value: chrome devtools protocol
+    intensity: 9
+  - type: keyword
+    value: cdp
+    intensity: 8
+  - type: keyword
+    value: recorder panel
+    intensity: 8
+  - type: keyword
+    value: source maps debugging
+    intensity: 7
+  - type: vector
+    value: Debug a web page in Chrome DevTools — set breakpoints and inspect the DOM and network.
+    intensity: 10
+  - type: vector
+    value: Profile a slow web interaction and read the flame chart.
+    intensity: 10
+  - type: vector
+    value: Find a memory leak with heap snapshots and the comparison view.
+    intensity: 9
+  - type: vector
+    value: Drive Chrome DevTools remotely over the DevTools Protocol or Puppeteer.
+    intensity: 8
+  - type: vector
+    value: Record and replay a user flow with the Recorder panel and export it.
+    intensity: 8
+provenance:
+  summary: Chrome DevTools reference. Packages the official Chrome DevTools llms.txt index (https://developer.chrome.com/docs/devtools/llms.txt) plus a reproducible verbatim mirror of the documentation pages it links to, under references/vendor/. Covers the panel model (Elements, Console, Sources, Network, Performance, Memory, Application, Recorder), JavaScript debugging with breakpoints and source maps, performance and memory profiling, storage and service-worker inspection, device emulation, and the Chrome DevTools Protocol for automation.
+  sources:
+    - title: Chrome DevTools llms.txt index
+      url: https://developer.chrome.com/docs/devtools/llms.txt
+      authors:
+        - Google
+      inspected_at: "2026-08-08"
+      adopted:
+        - Curated link index organising the DevTools docs by panel and workflow
+        - Per-panel reference pages mirrored verbatim as .md
+    - title: Chrome DevTools documentation corpus (mirrored .md)
+      url: https://developer.chrome.com/docs/devtools
+      authors:
+        - Google
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of every resolvable .md link in the seed index, preserving URL path structure under references/vendor/
+        - Open/command shortcuts, debugging, performance, memory, network, application, recorder, and CDP reference
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 129
+  sources:
+    - id: chrome-devtools-llms-index
+      kind: llms.txt
+      url: https://developer.chrome.com/docs/devtools/llms.txt
+      seed_path: developer.chrome.com/docs/devtools/llms.txt
+  failures: []

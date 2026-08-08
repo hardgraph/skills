@@ -1,0 +1,91 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Use the **Elements** \> **Properties** tab to browse and filter properties of [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) objects.
+
+## Open the Properties tab
+
+To open the **Properties** tab, follow these steps:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open). By default, the **Elements** panel opens.
+2. In the DOM tree, select a node.
+3. Open the **Properties** tab. If you can't see the tab, click **More** , then select it from the drop-down menu.
+
+![Elements panel open to Properties tab](https://developer.chrome.com/static/docs/devtools/dom/properties/image/elements-properties-6e2e946a2f506.png)
+
+## Spot own properties
+
+The **Properties** tab sorts and displays the object's [own properties](https://developer.chrome.com/docs/devtools/dom/properties#own-and-inherited) first and in bold font.
+
+![ALT_TEXT_HERE](https://developer.chrome.com/static/docs/devtools/dom/properties/image/alttexthere-70ad3c54cc63e.png)
+
+## Find the origin of an inherited property
+
+The **Properties** tab evaluates accessors on built-in elements and displays them on the object as [inherited](https://developer.chrome.com/docs/devtools/dom/properties#own-and-inherited) and in regular font.
+
+To find the origin of an inherited property, expand an object, then its `[[Prototype]]`, then the nested `[[Prototype]]`, and so on.
+
+![Tracing the size property up to its getter on the prototype chain.](https://developer.chrome.com/static/docs/devtools/dom/properties/image/tracing-size-property-t-7f9cd1f60b0f.png)
+
+In this example, you can trace where the inherited `size` property came from by locating the original own (bold) property on the prototype chain together with the corresponding getter.
+
+Additionally, prototype-specific properties are shown only on prototypes, not on objects. This makes it easier to diagnose objects.
+
+![Prototype-specific properties.](https://developer.chrome.com/static/docs/devtools/dom/properties/image/prototype-specific-proper-f7b53a865e58e.png)
+
+## Filter properties
+
+To quickly find a property, start typing its name or value in the **Filter** input box.
+
+![Filter](https://developer.chrome.com/static/docs/devtools/dom/properties/image/filter-2dea7741c88f8.png)
+
+## Show all properties
+
+By default, the **Properties** tab doesn't show properties with `null` and `undefined` values.
+
+To see all properties, check **Show all**.
+
+![Properties with null values.](https://developer.chrome.com/static/docs/devtools/dom/properties/image/properties-null-values-f88fec06e9447.png)
+
+## Understand properties
+
+The **Elements** \> **Properties** tab shows a variety of properties.
+
+### Simple properties
+
+Simple properties are pairs of `<name>: <value>`.
+![Simple properties.](https://developer.chrome.com/static/docs/devtools/dom/properties/image/simple-properties-f67b989b05bcf.png)
+
+### Objects and arrays
+
+Collapsible () properties are objects `{}` or arrays `[]`.
+![Collapsible properties.](https://developer.chrome.com/static/docs/devtools/dom/properties/image/collapsible-properties-8f70aedeb6bcc.png)
+
+For more information on inspecting JavaScript objects, see [Inspect object properties](https://developer.chrome.com/docs/devtools/console/reference#inspect-object-properties).
+
+### Properties that correspond to DOM nodes
+
+Properties that correspond to DOM nodes are links. Click a link to select the relevant node in the DOM tree.
+![Link to the head DOM node.](https://developer.chrome.com/static/docs/devtools/dom/properties/image/link-the-head-dom-node-df56141d95412.png)
+
+### Own and inherited properties
+
+Properties in bold font are object's own. They are defined directly on the object.
+
+Properties in regular font are inherited from the prototype chain. To show them to you, DevTools evaluates relevant accessors on built-in HTML elements.
+![Own and inherited properties.](https://developer.chrome.com/static/docs/devtools/dom/properties/image/own-inherited-properties-a32b7c0f938a8.png)
+DevTools sorts own properties first to make them easier to spot.
+
+### Enumerable and non-enumerable properties
+
+Enumerable properties are bright in color. Non-enumerable properties are muted.
+![Enumerable and non-enumerable properties.](https://developer.chrome.com/static/docs/devtools/dom/properties/image/enumerable-non-enumerabl-7ac18a8fcc58c.png)
+You can iterate over the enumerable properties with the `for ... in` loop or `Object.keys()` method.
+
+### Methods
+
+Methods are marked with an *`f ()`* .
+![Method.](https://developer.chrome.com/static/docs/devtools/dom/properties/image/method-06c007a8c81fe.png)
+
+For more information on functions, see [Inspect functions](https://developer.chrome.com/docs/devtools/console/reference#inspect-functions) via the **Console**.

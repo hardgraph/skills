@@ -1,0 +1,136 @@
+# Chrome DevTools
+
+Debug and optimize your web applications with Chrome DevTools.
+
+## Docs
+
+- [Chrome DevTools](https://developer.chrome.com/docs/devtools.md.txt): Debug and optimize your web applications with Chrome DevTools.
+- [Make your website more readable](https://developer.chrome.com/docs/devtools/accessibility/contrast.md.txt): Find and fix low contrast text with DevTools.
+- [Track element focus](https://developer.chrome.com/docs/devtools/accessibility/focus.md.txt): Open the Console, create a Live Expression, and set the expression to document.activeElement.
+- [Navigate Chrome DevTools with assistive technology](https://developer.chrome.com/docs/devtools/accessibility/navigation.md.txt): A guide on navigating Chrome DevTools using assistive technology like screen readers.
+- [Accessibility features reference](https://developer.chrome.com/docs/devtools/accessibility/reference.md.txt): A comprehensive reference of accessibility features in Chrome DevTools.
+- (https://developer.chrome.com/docs/devtools/ai-assistance.md.txt): Discover and explore latest news about and use cases for AI assistance in DevTools
+- [Enable AI assistance in DevTools](https://developer.chrome.com/docs/devtools/ai-assistance/get-started.md.txt): Understand how a website works with the help of AI
+- [AI assistance for network](https://developer.chrome.com/docs/devtools/ai-assistance/network.md.txt): Understand your website&#39;s network traffic - with the help of AI
+- [AI assistance for performance](https://developer.chrome.com/docs/devtools/ai-assistance/performance.md.txt): Understand performance profiles - with the help of AI
+- (https://developer.chrome.com/docs/devtools/ai-assistance/quickstart.md.txt): Discover and explore latest news about and use cases for AI assistance in DevTools
+- [AI assistance for sources](https://developer.chrome.com/docs/devtools/ai-assistance/sources.md.txt): Understand your website resources - with the help of AI
+- [AI assistance for styling](https://developer.chrome.com/docs/devtools/ai-assistance/styling.md.txt): Understand how a website is styled with the help of AI in DevTools.
+- [Application panel overview](https://developer.chrome.com/docs/devtools/application.md.txt): Gain vital information about your web app straight from the browser.
+- [Test back/forward cache](https://developer.chrome.com/docs/devtools/application/back-forward-cache.md.txt): Ensure your pages are optimized for back/forward caching.
+- [View, add, edit, and delete cookies](https://developer.chrome.com/docs/devtools/application/cookies.md.txt): Learn how to view, add, edit, and delete a page&#39;s HTTP cookies using Chrome DevTools.
+- [Debug speculation rules with Chrome DevTools](https://developer.chrome.com/docs/devtools/application/debugging-speculation-rules.md.txt): Learn all about the Chrome DevTools features to debug speculation rules used to prefetch and prerender future page navigations.
+- [View frame details](https://developer.chrome.com/docs/devtools/application/frames.md.txt): View frame details.
+- [Autofill: Inspect and debug saved addresses](https://developer.chrome.com/docs/devtools/autofill.md.txt): Inspect and debug addresses saved in Chrome with the Autofill panel.
+- [Automatic Workspace connection in Chrome DevTools](https://developer.chrome.com/docs/devtools/automatic-workspaces.md.txt): Set up a workspace to save changes made within DevTools back to your source files.
+- [Changes: Track your HTML, CSS, and JavaScript changes](https://developer.chrome.com/docs/devtools/changes.md.txt): Track changes to HTML, CSS, and JavaScript.
+- [Run commands in the Command Menu](https://developer.chrome.com/docs/devtools/command-menu.md.txt): A guide on how to open the Command Menu, run commands, open files, see other actions, and more.
+- [Console overview](https://developer.chrome.com/docs/devtools/console.md.txt): The main uses of the Chrome DevTools Console are logging messages and running JavaScript.
+- [Console API reference](https://developer.chrome.com/docs/devtools/console/api.md.txt): Use the Console API to write messages to the Console.
+- [Format and style messages in the Console](https://developer.chrome.com/docs/devtools/console/format-style.md.txt): Learn how to format and style messages in the Console.
+- [Run JavaScript in the Console](https://developer.chrome.com/docs/devtools/console/javascript.md.txt): Learn how to run JavaScript in the Console.
+- [Watch JavaScript values in real time with Live Expressions](https://developer.chrome.com/docs/devtools/console/live-expressions.md.txt): If you find yourself typing the same JavaScript expressions into the Console repeatedly, try Live Expressions instead.
+- [Log messages in the Console](https://developer.chrome.com/docs/devtools/console/log.md.txt): Learn how to log messages to the Console.
+- [Console features reference](https://developer.chrome.com/docs/devtools/console/reference.md.txt): A comprehensive reference on every feature and behavior related to the Console UI in Chrome DevTools.
+- [Understand errors and warnings better with console insights](https://developer.chrome.com/docs/devtools/console/understand-messages.md.txt): Understand errors and warnings in the Console better with Gemini.
+- [Console Utilities API reference](https://developer.chrome.com/docs/devtools/console/utilities.md.txt): A reference of convenience functions available in the Chrome DevTools Console.
+- [Coverage: Find unused JavaScript and CSS](https://developer.chrome.com/docs/devtools/coverage.md.txt): How to find and analyze unused JavaScript and CSS code in Chrome DevTools.
+- [View and change CSS](https://developer.chrome.com/docs/devtools/css.md.txt): Learn how to use Chrome DevTools to view and change a page&#39;s CSS.
+- [CSS Overview: Identify potential CSS improvements](https://developer.chrome.com/docs/devtools/css-overview.md.txt): Identify potential CSS improvements with the CSS Overview panel.
+- [Animations: Inspect and modify CSS animation effects](https://developer.chrome.com/docs/devtools/css/animations.md.txt): Inspect and modify animations with the Animations panel.
+- [Inspect and debug HD and non-HD colors with the Color Picker](https://developer.chrome.com/docs/devtools/css/color.md.txt): Learn how to use the Color Picker in Elements &gt; Styles to inspect and debug HD and non-HD colors.
+- [Inspect and debug CSS container queries](https://developer.chrome.com/docs/devtools/css/container-queries.md.txt): Learn how to use Chrome DevTools to inspect, modify, and debug CSS container queries.
+- [Inspect and debug CSS flexbox layouts](https://developer.chrome.com/docs/devtools/css/flexbox.md.txt): Learn how to use Chrome DevTools to inspect, modify and debug CSS flexbox layouts.
+- [Inspect CSS grid layouts](https://developer.chrome.com/docs/devtools/css/grid.md.txt): Learn how to use Chrome DevTools to view and change CSS grids.
+- [Find invalid, overridden, inactive, and other CSS](https://developer.chrome.com/docs/devtools/css/issues.md.txt): Discover issues with CSS properties at a glance.
+- [CSS features reference](https://developer.chrome.com/docs/devtools/css/reference.md.txt): Discover new workflows for viewing and changing CSS in Chrome DevTools.
+- [Customize DevTools](https://developer.chrome.com/docs/devtools/customize.md.txt): A list of ways you can customize Chrome DevTools: Change theme, placement, panel order, language, and more.
+- [Developer Resources: View and manually load source maps](https://developer.chrome.com/docs/devtools/developer-resources.md.txt): Use the Developer Resources panel to check if source maps load successfully and load them manually.
+- [Simulate mobile devices with device mode](https://developer.chrome.com/docs/devtools/device-mode.md.txt): Use virtual devices in Chrome&#39;s device mode to build mobile-first websites.
+- [Network conditions: Override the user agent string](https://developer.chrome.com/docs/devtools/device-mode/override-user-agent.md.txt): Learn how to emulate other browsers with the Network conditions panel.
+- [Emulate and Test Other Browsers](https://developer.chrome.com/docs/devtools/device-mode/testing-other-browsers.md.txt): Your job doesn&#39;t end with ensuring your site runs great across Chrome and Android. Even though Device Mode can simulate a range of other devices like iPhones, we encourage you to check out other browsers solutions for emulation.
+- [Get started with viewing and changing the DOM](https://developer.chrome.com/docs/devtools/dom.md.txt): How to view nodes, search for nodes, edit nodes, reference nodes in the Console, break on node changes, and more.
+- [View the properties of DOM objects](https://developer.chrome.com/docs/devtools/dom/properties.md.txt): View and filter properties of DOM objects.
+- [Elements panel overview](https://developer.chrome.com/docs/devtools/elements.md.txt): Make changes to the DOM instantly.
+- [Badges reference](https://developer.chrome.com/docs/devtools/elements/badges.md.txt): Toggle various overlays and speed up DOM tree navigation with badges.
+- [Inspect mode: Quickly analyze element properties](https://developer.chrome.com/docs/devtools/inspect-mode.md.txt): Inspect elements on your web app
+- [Issues: Find and fix problems](https://developer.chrome.com/docs/devtools/issues.md.txt): Use the Issues panel to find and fix problems with your website.
+- [Debug JavaScript](https://developer.chrome.com/docs/devtools/javascript.md.txt): Learn how to use Chrome DevTools to find and fix JavaScript bugs.
+- [Debug background services](https://developer.chrome.com/docs/devtools/javascript/background-services.md.txt): View reports and debug background services, such as background fetch, background sync, notifications, push messages, and more.
+- [Pause your code with breakpoints](https://developer.chrome.com/docs/devtools/javascript/breakpoints.md.txt): Learn about all the ways you can pause your code in Chrome DevTools.
+- [Disable JavaScript](https://developer.chrome.com/docs/devtools/javascript/disable.md.txt): Open the Command Menu and run the Disable JavaScript command.
+- [JavaScript debugging reference](https://developer.chrome.com/docs/devtools/javascript/reference.md.txt): Discover new debugging workflows in this comprehensive reference of Chrome DevTools debugging features.
+- [Run snippets of JavaScript](https://developer.chrome.com/docs/devtools/javascript/snippets.md.txt): Snippets are small scripts that you can author and execute within the Sources panel of Chrome DevTools. You can access and run them from any page. When you run a snippet, it executes from the context of the currently open page.
+- [Debug your original code instead of deployed with source maps](https://developer.chrome.com/docs/devtools/javascript/source-maps.md.txt): Keep your client-side code readable and debuggable even after you&#39;ve combined, minified, or compiled it.
+- [Watch variables in Sources](https://developer.chrome.com/docs/devtools/javascript/watch-variables.md.txt): Chrome DevTools allows you to easily see multiple variables throughout your application.
+- [Layers panel: Explore the layers of your website](https://developer.chrome.com/docs/devtools/layers.md.txt): Inspect the layers that make up your website.
+- [Lighthouse: Optimize your website](https://developer.chrome.com/docs/devtools/lighthouse.md.txt): Optimize your websites with Chrome DevTools Lighthouse panel.
+- [Media: View and debug media players information](https://developer.chrome.com/docs/devtools/media-panel.md.txt): Use the Media Panel to view information and debug the media players per browser tab.
+- [Memory panel overview](https://developer.chrome.com/docs/devtools/memory.md.txt): Gain deep insight into memory allocation, investigate low level memory issues, and manage garbage collection.
+- [Memory Inspector: Inspect ArrayBuffer, TypedArray, DataView, and Wasm Memory.](https://developer.chrome.com/docs/devtools/memory-inspector.md.txt): Use the Memory inspector to inspect an ArrayBuffer, TypedArray, or DataView in JavaScript as well as WebAssembly.Memory of C&#43;&#43; Wasm apps.
+- [Fix memory problems](https://developer.chrome.com/docs/devtools/memory-problems.md.txt): Learn how to use Chrome and DevTools to find memory issues that affect page performance, including memory leaks, memory bloat, and frequent garbage collections.
+- [How to Use the Allocation Timeline Tool](https://developer.chrome.com/docs/devtools/memory-problems/allocation-profiler.md.txt): Use the Allocation timeline tool to find objects that aren&#39;t being properly garbage collected, and continue to retain memory.
+- [Memory terminology](https://developer.chrome.com/docs/devtools/memory-problems/get-started.md.txt): This section describes common terms used in memory analysis, and is applicable to a variety of memory profiling tools for different languages.
+- [Record heap snapshots](https://developer.chrome.com/docs/devtools/memory-problems/heap-snapshots.md.txt): Learn how to record heap snapshots with the heap profiler and find memory leaks.
+- [Inspect network activity](https://developer.chrome.com/docs/devtools/network.md.txt): A tutorial on the most popular network-related features in Chrome DevTools.
+- [Network requests: Test your site by blocking or throttling network requests](https://developer.chrome.com/docs/devtools/network-request-blocking.md.txt): Test how your site handles missing resources by blocking or throttling network requests.
+- [Network panel: Analyze network load and resources](https://developer.chrome.com/docs/devtools/network/overview.md.txt): Analyze network load and resources
+- [Network features reference](https://developer.chrome.com/docs/devtools/network/reference.md.txt): A comprehensive reference of Chrome DevTools Network panel features.
+- [What&#39;s new in DevTools](https://developer.chrome.com/docs/devtools/news.md.txt): Stay up to date with the latest DevTools changes.
+- [Open Chrome DevTools](https://developer.chrome.com/docs/devtools/open.md.txt): All of the ways that you can open Chrome DevTools.
+- [Override web content and HTTP response headers locally](https://developer.chrome.com/docs/devtools/overrides.md.txt): Use local overrides to mock remote resources and keep the changes you make in DevTools across page loads.
+- [Overview](https://developer.chrome.com/docs/devtools/overview.md.txt): Get started with Google Chrome&#39;s built-in web developer tools.
+- [Analyze runtime performance](https://developer.chrome.com/docs/devtools/performance.md.txt): Learn how to evaluate runtime performance in Chrome DevTools.
+- [Performance insights: Get actionable insights on your website&#39;s performance](https://developer.chrome.com/docs/devtools/performance-insights.md.txt): Get actionable insights on your website&#39;s performance with the Performance insights panel.
+- [Performance monitor panel](https://developer.chrome.com/docs/devtools/performance-monitor.md.txt): Analyze your website&#39;s runtime performance in real-time.
+- [Annotate and share your performance findings](https://developer.chrome.com/docs/devtools/performance/annotations.md.txt): Annotate and share your performance findings.
+- [Customize your performance data with extensibility API](https://developer.chrome.com/docs/devtools/performance/extension.md.txt): Customize performance data with the extensibility API
+- [Profile Node.js performance with the Performance panel](https://developer.chrome.com/docs/devtools/performance/nodejs.md.txt): Learn how to profile Node.js application performance with the Performance panel.
+- [Performance panel: Analyze your website&#39;s performance](https://developer.chrome.com/docs/devtools/performance/overview.md.txt): Analyze your website&#39;s load and runtime performance
+- [Performance features reference](https://developer.chrome.com/docs/devtools/performance/reference.md.txt): A reference on all the ways to record and analyze performance in Chrome DevTools.
+- [Analyze CSS selector performance during Recalculate Style events](https://developer.chrome.com/docs/devtools/performance/selector-stats.md.txt): Analyze CSS selector performance during Recalculate Style events.
+- [Timeline event reference](https://developer.chrome.com/docs/devtools/performance/timeline-reference.md.txt): The timeline events mode displays all events triggered while making a recording. Use the timeline event reference to learn more about each timeline event type.
+- [Debug Progressive Web Apps](https://developer.chrome.com/docs/devtools/progressive-web-apps.md.txt): Use the Application panel to inspect, modify, and debug web app manifests, service workers, and service worker caches.
+- [Protocol monitor: View and send CDP requests](https://developer.chrome.com/docs/devtools/protocol-monitor.md.txt): Monitor CDP requests and responses.
+- [Quick source panel](https://developer.chrome.com/docs/devtools/quick-source.md.txt): View source files and have access to other tools.
+- [Record, replay, and measure user flows](https://developer.chrome.com/docs/devtools/recorder.md.txt): Record, replay, measure user flows, and edit their steps with the Recorder panel.
+- [Customize the Recorder with extensions](https://developer.chrome.com/docs/devtools/recorder/extensions.md.txt): Customize and integrate the Recorder by installing extensions.
+- [Recorder panel: Record and measure user flow](https://developer.chrome.com/docs/devtools/recorder/overview.md.txt): Analyze and record user flows.
+- [Features reference](https://developer.chrome.com/docs/devtools/recorder/reference.md.txt): A comprehensive reference of Chrome DevTools Recorder panel features.
+- [Remote debug Android devices](https://developer.chrome.com/docs/devtools/remote-debugging.md.txt): Remote debug live content on an Android device from a Windows, Mac, or Linux computer.
+- [Access local servers and Chrome instances with port forwarding](https://developer.chrome.com/docs/devtools/remote-debugging/local-server.md.txt): Host a site on a development machine web server, and then access the content from an Android device.
+- [Rendering tab overview](https://developer.chrome.com/docs/devtools/rendering.md.txt): Discover a collection of options that affect web content rendering.
+- [Apply other effects: enable automatic dark theme, emulate focus, and more](https://developer.chrome.com/docs/devtools/rendering/apply-effects.md.txt): Highlight ad frames, emulate focus on a page, disable local fonts and image formats, enable an automatic dark theme, and emulate vision deficiencies.
+- [Emulate CSS media features](https://developer.chrome.com/docs/devtools/rendering/emulate-css.md.txt): Emulate prefers-color-scheme, media type, forced-colors, prefers-contrast, prefers-reduced-motion, color-gamut.
+- [Discover issues with rendering performance](https://developer.chrome.com/docs/devtools/rendering/performance.md.txt): Spot repainting, layout shifts, layers and tiles, scrolling issues, see rendering statistics and Core Web Vitals.
+- [View page resources](https://developer.chrome.com/docs/devtools/resources.md.txt): Organize resources by frame, domain, type, or other criteria.
+- [Search: Find text across all loaded resources](https://developer.chrome.com/docs/devtools/search.md.txt): Find text across all loaded resources with the Search panel.
+- [Privacy and security panel](https://developer.chrome.com/docs/devtools/security.md.txt): Use the &#39;Privacy and security&#39; panel to inspect and control third-party cookies and check HTTPS protection.
+- [Sensors: Emulate device sensors](https://developer.chrome.com/docs/devtools/sensors.md.txt): Use the Sensors panel to override geolocation, simulate device orientation, force touch, and emulate idle state.
+- [Settings overview](https://developer.chrome.com/docs/devtools/settings.md.txt): Settings overview.
+- [AI innovations](https://developer.chrome.com/docs/devtools/settings/ai-innovations.md.txt): AI Innovations tab reference.
+- [Devices](https://developer.chrome.com/docs/devtools/settings/devices.md.txt): Devices tab reference.
+- [Experiments](https://developer.chrome.com/docs/devtools/settings/experiments.md.txt): Experiments tab reference.
+- [Ignore List](https://developer.chrome.com/docs/devtools/settings/ignore-list.md.txt): Ignore List tab reference.
+- [Locations](https://developer.chrome.com/docs/devtools/settings/locations.md.txt): Locations tab reference.
+- [Preferences](https://developer.chrome.com/docs/devtools/settings/preferences.md.txt): Preferences tab reference.
+- [Shortcuts](https://developer.chrome.com/docs/devtools/settings/shortcuts.md.txt): Shortcuts tab reference.
+- [Throttling](https://developer.chrome.com/docs/devtools/settings/throttling.md.txt): Throttling tab reference.
+- [Workspace](https://developer.chrome.com/docs/devtools/settings/workspace.md.txt): Workspace tab reference.
+- [Keyboard shortcuts](https://developer.chrome.com/docs/devtools/shortcuts.md.txt): The canonical documentation for Chrome DevTools keyboard shortcuts.
+- [Sources panel overview](https://developer.chrome.com/docs/devtools/sources.md.txt): View and edit files, create Snippets, debug JavaScript, and set up Workspaces in the Sources panel of Chrome DevTools.
+- [Deprecated: View Application Cache Data With Chrome DevTools](https://developer.chrome.com/docs/devtools/storage/applicationcache.md.txt): How to view Application Cache data from the Application panel of Chrome DevTools.
+- [View cache data](https://developer.chrome.com/docs/devtools/storage/cache.md.txt): How to view cache data from the Application panel of Chrome DevTools.
+- [View and edit extension storage](https://developer.chrome.com/docs/devtools/storage/extensionstorage.md.txt): How to view and edit extension storage with the Extension Storage panel.
+- [View and change IndexedDB data](https://developer.chrome.com/docs/devtools/storage/indexeddb.md.txt): How to view and change IndexedDB data with the Application panel and Snippets.
+- [View and edit local storage](https://developer.chrome.com/docs/devtools/storage/localstorage.md.txt): How to view and edit `localStorage` with the Local Storage pane and the Console.
+- [View and edit session storage](https://developer.chrome.com/docs/devtools/storage/sessionstorage.md.txt): How to view and edit `sessionStorage` with the Session Storage pane and the Console.
+- [View Web SQL data](https://developer.chrome.com/docs/devtools/storage/websql.md.txt): How to view Web SQL data from the Application panel of Chrome DevTools.
+- [DevTools Tips](https://developer.chrome.com/docs/devtools/tips.md.txt): Debug and optimize your web applications with Chrome DevTools.
+- [Debug C/C++ WebAssembly](https://developer.chrome.com/docs/devtools/wasm.md.txt): Learn how to use Chrome DevTools to find and fix bugs in C/C&#43;&#43; WebAssembly.
+- [WebAudio: View WebAudio API metrics](https://developer.chrome.com/docs/devtools/webaudio.md.txt): View WebAudio API metrics in the WebAudio panel
+- [WebAuthn: Emulate authenticators](https://developer.chrome.com/docs/devtools/webauthn.md.txt): Emulate Authenticators and Debug WebAuthn in Chrome DevTools.
+- [What&#39;s new panel in DevTools](https://developer.chrome.com/docs/devtools/whats-new.md.txt): Discover the latest features in Chrome DevTools
+- [Set up workspaces to save changes to source files](https://developer.chrome.com/docs/devtools/workspaces.md.txt): Set up a workspace to save changes made within DevTools back to your source files.
+- [The ignoreList source map extension](https://developer.chrome.com/docs/devtools/x-google-ignore-list.md.txt): Improve debugging experience in Chrome DevTools with the ignoreList source map extension.
+- [Remote debugging WebViews](https://developer.chrome.com/docs/devtools/remote-debugging/webviews.md.txt): Debug WebViews in your native Android apps using Chrome Developer Tools.

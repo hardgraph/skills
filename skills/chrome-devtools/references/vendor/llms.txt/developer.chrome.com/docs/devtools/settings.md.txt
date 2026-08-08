@@ -1,0 +1,54 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+DevTools settings let you control the behavior of both individual panels and DevTools in general.
+
+The ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/image/settings-f006b81215522.svg) **Settings** panel has several tabs described in the following sections:
+
+- [**Preferences**](https://developer.chrome.com/docs/devtools/settings/preferences)
+- [**Workspace**](https://developer.chrome.com/docs/devtools/settings/workspace)
+- [**AI innovations**](https://developer.chrome.com/docs/devtools/settings/ai-innovations)
+- [**Experiments**](https://developer.chrome.com/docs/devtools/settings/experiments)
+- [**Ignore List**](https://developer.chrome.com/docs/devtools/ignore-list)
+- [**Devices**](https://developer.chrome.com/docs/devtools/settings/devices)
+- [**Throttling**](https://developer.chrome.com/docs/devtools/settings/throttling)
+- [**Locations**](https://developer.chrome.com/docs/devtools/settings/locations)
+- [**Shortcuts**](https://developer.chrome.com/docs/devtools/settings/shortcuts)
+
+## Open Settings
+
+To open ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/image/settings-c983610d9dbfa.svg) **Settings**:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) on any page.
+2. Click the ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/image/settings-e13f66cad48e2.svg) **Settings** button in the action bar at the top.
+
+   ![The Settings button in the action bar at the top of DevTools.](https://developer.chrome.com/static/docs/devtools/settings/image/the-settings-button-the-28ec605e6879a.png)
+
+   > [!IMPORTANT]
+   > **Key point:** Be careful not to confuse general DevTools settings with panel settings. DevTools settings are on the topmost action bar. ![General DevTools settings on the topmost action bar and panel settings on the panel's action bar.](https://developer.chrome.com/static/docs/devtools/settings/image/general-devtools-settings-248720a970c7e.png)
+
+3. Alternatively, when focused in DevTools, press:
+
+   - <kbd>?</kbd>
+   - <kbd>F1</kbd> on Windows or Linux
+   - <kbd>Fn</kbd> + <kbd>F1</kbd> on Mac
+
+The **Settings** panel opens.
+
+![The Settings panel.](https://developer.chrome.com/static/docs/devtools/settings/image/general-setting.png)
+
+## Use the Command Menu to access settings faster
+
+The [Command Menu](https://developer.chrome.com/docs/devtools/command-menu) is a faster alternative to accessing many of the settings. In particular, if you remember the name of the settings or even its value but don't remember where the setting is.
+
+To quickly change a setting:
+
+1. [Open the Command Menu](https://developer.chrome.com/docs/devtools/command-menu#open).
+2. Start typing the setting's name or its value, select a suggested option, and press <kbd>Enter</kbd>.
+
+For example, to set the DevTools UI language to Chinese, type `Chinese` and select an option.
+
+![Options for a Chinese DevTools UI locale.](https://developer.chrome.com/static/docs/devtools/settings/image/options-a-chinese-devtoo-b192ebbd551a6.png)
+
+These commands directly set the value of ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/image/settings-c75529395f8d4.svg) [**Settings** \> **Preferences** \> **Appearance**](https://developer.chrome.com/docs/devtools/settings/preferences#appearance) \> Language.

@@ -1,0 +1,39 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+[Frames](https://developer.mozilla.org/docs/Web/API/Window/frames) let you divide web pages into multiple views that can load independently.
+
+The **Application** \> **Frames** section lists the top frame (![Frame.](https://developer.chrome.com/static/docs/devtools/application/frames/image/frame.svg)), its nested frames and iframes (![IFrame.](https://developer.chrome.com/static/docs/devtools/application/frames/image/iframe.svg)), and other loaded resources in a tree:
+
+![The Frames section.](https://developer.chrome.com/static/docs/devtools/application/frames/image/frames-section.png)
+
+## Frame details
+
+To see the details of a frame, select it in the **Frames** section.
+
+The details include the following sections:
+
+- **Document**. Lists URL, origin, and owner element.
+
+![The Document section.](https://developer.chrome.com/static/docs/devtools/application/frames/image/document.png)
+
+- **Security \& Isolation** . Lists [secure context](https://developer.mozilla.org/docs/Web/Security/Secure_Contexts), [cross-origin isolation](https://developer.mozilla.org/docs/Web/API/crossOriginIsolated), [COEP](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy), and [COOP](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy) information.
+
+![The Security & Isolation section.](https://developer.chrome.com/static/docs/devtools/application/frames/image/sec-and-isolation.png)
+
+- [**Content Security Policy (CSP)**](https://developer.mozilla.org/docs/Web/HTTP/CSP).
+
+![The Content Security Policy (CSP) section.](https://developer.chrome.com/static/docs/devtools/application/frames/image/csp.png)
+
+- **API availability** . Lists the availability of certain APIs depending on whether the document is cross-origin isolated or not. For more information, see [Why you need "cross-origin isolated" for powerful features](https://web.dev/articles/why-coop-coep).
+
+![The API availability section.](https://developer.chrome.com/static/docs/devtools/application/frames/image/api-availability.png)
+
+- **Origin Trials** . Lists details about access to new or experimental features you have registered on your origin. Expand (![Expand.](https://developer.chrome.com/static/docs/devtools/application/frames/image/expand.svg)) to see more details about the feature and access token status. For more information, see [Get started with origin trials](https://developer.chrome.com/docs/web-platform/origin-trials).
+
+![The Origin Trials section.](https://developer.chrome.com/static/docs/devtools/application/frames/image/origin-trials.png)
+
+- **Permissions Policy** . Lists allowed and disabled features. To see why some features are turned off, click **Show details** at the bottom of the section.
+
+![The Permissions Policy section.](https://developer.chrome.com/static/docs/devtools/application/frames/image/permissions-policy.png)

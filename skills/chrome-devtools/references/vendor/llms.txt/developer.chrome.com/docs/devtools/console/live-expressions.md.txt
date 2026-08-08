@@ -1,0 +1,38 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+[Video](https://www.youtube.com/watch?v=zW9ibQbYJNE)
+
+If you find yourself typing the same JavaScript expression in the Console repeatedly, you might find
+it easier to create a **Live Expression** . With **Live Expressions**, you type an expression once and
+then pin it to the top of your Console. The value of the expression updates in near real time.
+
+## Create a live expression
+
+To pin an expression to the top of the **Console**:
+
+1. [Open the Console](https://developer.chrome.com/docs/devtools/console/reference#open).
+2. Click ![Create Live Expression.](https://developer.chrome.com/static/docs/devtools/console/live-expressions/image/create-live-expression-0e50c0e7a0d68.svg) **Create Live Expression** . The **Live Expression** text box appears.
+
+3. Type your expression in the text box. For example, you can use a live expression to [track element focus](https://developer.chrome.com/docs/devtools/accessibility/focus).
+
+   ![Typing document.activeElement into the Live Expression text box.](https://developer.chrome.com/static/docs/devtools/console/live-expressions/image/typing-documentactiveele-78f7cf4e4c2a3.png)
+
+   > [!IMPORTANT]
+   > **Key point:** To type a multi-line expression, start the new line by pressing \<kbd\>Shift\</kbd\>+\<kbd\>Enter\</kbd\>.
+
+4. Press <kbd>Enter</kbd> to save the expression, or click outside of the **Live Expression** text box.
+
+The value below the pinned expression is its result. The result updates every 250 milliseconds.
+
+## Add multiple expressions
+
+To pin multiple expressions in parallel, click the ![Create a live expression.](https://developer.chrome.com/static/docs/devtools/console/live-expressions/image/create-live-expression-2929e12c69541.svg) **Create Live Expression** button as many times as you need.
+
+You can only see several pinned expressions at a time but you can scroll the expressions list to view all of them.
+![Scroll the pinned expressions list.](https://developer.chrome.com/static/docs/devtools/console/live-expressions/image/scroll-pinned-expression-0c4b5719455d.gif)
+
+## Remove expressions
+
+To remove an expression, click the ![The Close button.](https://developer.chrome.com/static/docs/devtools/console/live-expressions/image/the-close-button-0e4bee9ece079.svg)**Close** button next to it.

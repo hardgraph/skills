@@ -1,0 +1,121 @@
+![Sam Dutton](https://web.dev/images/authors/samdutton.jpg) Sam Dutton [X](https://twitter.com/sw12) [GitHub](https://github.com/samdutton) [Mastodon](https://techhub.social/@samdutton) [Bluesky](https://bsky.app/profile/samdutton.bsky.social) [Homepage](https://samdutton.com) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Use the **Issues** panel to find solutions to problems detected by the browser, such as cookie issues and mixed
+content.
+
+[Video](https://www.youtube.com/watch?v=1TbkSxQb4bI)
+
+> [!NOTE]
+> **Note:** The **Issues** panel continues to add support of new issue types.
+
+## Overview
+
+By collecting and grouping common problems, the **Issues** panel reduces notification fatigue and clutter in the **Console**.
+
+As of now, the **Issues** panel reports:
+
+- [Cookie problems](https://web.dev/samesite-cookies-explained)
+- [Mixed content](https://web.dev/what-is-mixed-content/)
+- [COEP issues](https://web.dev/coop-coep/)
+- [CORS errors](https://developer.mozilla.org/docs/Web/HTTP/CORS/Errors)
+- [Quirks mode issues](https://quirks.spec.whatwg.org/)
+- (Preview) [Low-contrast issues](https://developer.chrome.com/blog/new-in-devtools-90#low-contrast)
+- [Trusted Web Activity issues](https://developer.chrome.com/docs/android/trusted-web-activity)
+- [Stylesheet loading issues](https://developer.chrome.com/blog/new-in-devtools-116#stylesheets)
+- [Invalid `@property` CSS rules](https://developer.chrome.com/blog/new-in-devtools-119#property-issues)
+- [Content Security Policy violations](https://developer.mozilla.org/docs/Web/HTTP/CSP)
+- [Autocomplete attribute issues](https://developer.mozilla.org/docs/Web/HTML/Attributes/autocomplete)
+
+Future versions of Chrome will support more issue types.
+
+## Open the Issues panel
+
+1. Visit a page with issues to fix.
+2. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+3. Click the **Open Issues** button next to ![Settings.](https://developer.chrome.com/static/docs/devtools/issues/image/settings-d0ca5b87cd8c8.svg) **Settings** in the right corner of the action bar at the top. Depending on issue severity, the button can have a red ![Error.](https://developer.chrome.com/static/docs/devtools/issues/image/error-9913310117c4c.png), yellow ![Warning.](https://developer.chrome.com/static/docs/devtools/issues/image/warning-db45d557f0a95.png), or blue ![Information.](https://developer.chrome.com/static/docs/devtools/issues/image/information-9e3e61cb60846.png) icon.
+
+   ![The Open Issues button with a red icon.](https://developer.chrome.com/static/docs/devtools/issues/image/the-open-issues-button-a-4592eaddcb486.png)
+
+   Alternatively, select **Issues** from the ![More tools menu.](https://developer.chrome.com/static/docs/devtools/issues/image/more-tools-menu-d6cd9a9b52526.svg) **More tools** menu.
+
+   ![The Issues panel in More tools menu.](https://developer.chrome.com/static/docs/devtools/issues/image/the-issues-tab-more-tool-58b074e9cc1c7.png)
+4. Once you're on the **Issues** panel, you might want to reload the page to catch even more issues, this time occurring during page load.
+
+   ![The Issues panel with one more issues found after reloading the page.](https://developer.chrome.com/static/docs/devtools/issues/image/the-issues-tab-one-more-19c93f270dca9.png)
+
+The **Console** might also show you [issues reported by the browser](https://developer.chrome.com/docs/devtools/console/log#browser). However, you'll notice that such issues (like the cookie warning in the screenshot below) are hard to understand. It's not clear what you need to do to fix it.
+
+![The Console with an obscure cookie warning.](https://developer.chrome.com/static/docs/devtools/issues/image/the-console-an-obscure-c-2d5b6887e4df3.png)
+
+On the other hand, the **Issues** panel provides you with actionable insights.
+
+## View items in the Issues panel
+
+The **Issues** panel presents warnings from the browser in a structured, aggregated, and actionable
+way.
+
+1. Click an item in the **Issues** panel to expand the issue and get guidance on how to fix it and find affected resources.
+
+   ![The Issues panel with a cross-site cookie issue expanded.](https://developer.chrome.com/static/docs/devtools/issues/image/the-issues-tab-a-cross-s-4f4a58de61e42.png)
+
+   Each item has four components:
+   - A headline describing the issue.
+   - A description providing the context and the solution.
+   - An **AFFECTED RESOURCES** section that links to resources within the appropriate DevTools context, such as the **Network** , **Sources** , **Elements**, and other panels.
+   - Links to further guidance.
+2. Click the items in **AFFECTED RESOURCES** to [view issues in context](https://developer.chrome.com/docs/devtools/issues#issues-devtools).
+
+### Group issues by kind
+
+> [!NOTE]
+> **Note:** This is a preview feature disabled by default. To enable it, check ![Settings.](https://developer.chrome.com/static/docs/devtools/issues/image/settings-7baba6890b994.svg) **Settings** \> **Experiments** \> ![Checkbox.](https://developer.chrome.com/static/docs/devtools/issues/image/checkbox-89fb0987677f7.svg) **Allow grouping and hiding of issues by issue kind**.
+
+The **Issues** panel counts the number of affected resources for each issue and shows it next to their headlines. Additionally, you can organize the issues by their severity in three group kinds:
+
+- ![Error.](https://developer.chrome.com/static/docs/devtools/issues/image/error-9a5e5395add3a.png) **Page Errors** that Chrome reports.
+- ![Warning.](https://developer.chrome.com/static/docs/devtools/issues/image/warning-37cbb6186c84c.png) **Breaking Changes** such as deprecations.
+- ![Information.](https://developer.chrome.com/static/docs/devtools/issues/image/information-b6ffe9e0d8b6a.png) **Improvements** that DevTools suggests.
+
+To group issues, check ![Checkbox.](https://developer.chrome.com/static/docs/devtools/issues/image/checkbox-6449ff394a3e8.svg) **Group by kind** in the action bar at the top of the **Issues** panel.
+
+![Issues grouped in three kinds: Page errors, Breaking changes, and Improvements.](https://developer.chrome.com/static/docs/devtools/issues/image/issues-grouped-three-kin-b459bf779c6f2.png)
+
+### Include third-party issues
+
+The **Issues** panel shows third-party cookies issues by default.
+
+You can find third-party cookie issues in the **AFFECTED RESOURCES** section missing a link.
+
+![Third-party cookie without a linked resource in the Affected Resources section.](https://developer.chrome.com/static/docs/devtools/issues/image/third-party-cookie-withou-ca05851e925f2.png)
+
+To hide such issues, clear ![Clear.](https://developer.chrome.com/static/docs/devtools/issues/image/clear-9dfef7f5bba3b.svg) **Include third-party cookie issues** in the action bar at the top of the **Issues** panel.
+
+### Hide issues
+
+To hide an issue, select **Hide issues like this** from the ![Three-dot menu.](https://developer.chrome.com/static/docs/devtools/issues/image/three-dot-menu-52f8ec54fe1f6.svg) three-dot menu next to the issue.
+
+![The Hide issues like this option in the three-dot menu next to an issue.](https://developer.chrome.com/static/docs/devtools/issues/image/the-hide-issues-this-opt-46440b13d9065.png)
+
+To see the list of hidden issues, scroll down to the **Hidden issues** section and expand it.
+
+![The Hidden issues section.](https://developer.chrome.com/static/docs/devtools/issues/image/the-hidden-issues-section-06a9ea6b63a5d.png)
+
+To reveal all issues, click **Unhide all** . To reveal a specific issue, select **Unhide issues like this** from the ![Three-dot menu.](https://developer.chrome.com/static/docs/devtools/issues/image/three-dot-menu-92d63238e4de3.svg) three-dot menu next to the issue.
+
+Additionally, with [grouping enabled](https://developer.chrome.com/docs/devtools/issues#group-by-kind), you can hide entire groups of issues using the same three-dot menu next to a group.
+
+![The three-dot menu with an option to hide the Improvements group.](https://developer.chrome.com/static/docs/devtools/issues/image/the-three-dot-menu-an-op-8db6884e8d338.png)
+
+## View issues in context
+
+To investigate an issue:
+
+1. In the **AFFECTED RESOURCES** section, click a resource link to view the item in the appropriate context within DevTools. The link takes you to the **Network** panel.
+
+   ![The Affected Resources section with a link to the affected request.](https://developer.chrome.com/static/docs/devtools/issues/image/the-affected-resources-se-394d43d1b0607.png)
+2. Scroll to view the item with a problem: in this case, the cookie `ck02`. Hover over the
+   ![Information.](https://developer.chrome.com/static/docs/devtools/issues/image/information-7786eb10739fa.svg) information icon on the right to see the problem and how to fix it.
+
+   ![The Network panel shows a tooltip when you hover over the information icon.](https://developer.chrome.com/static/docs/devtools/issues/image/the-network-panel-shows-64dc9b00bcf7a.png)

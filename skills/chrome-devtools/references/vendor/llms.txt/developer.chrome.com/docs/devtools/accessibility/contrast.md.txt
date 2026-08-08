@@ -1,0 +1,141 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+> [!IMPORTANT]
+> **Key Point:** Low contrast text is the top accessibility issue on the web. In February 2022, 83.9% of the top million home pages had this issue. Check out the [WebAIM Million 2022 report](https://webaim.org/projects/million/#wcag) to learn more.
+
+[Video](https://www.youtube.com/watch?v=t4pDjqhG6fE)
+
+Low contrast texts make your website less readable for all users, even more so
+for users with vision deficiencies. DevTools can automatically find low contrast
+issues and suggest better colors to help you fix them.
+
+Use DevTools to:
+
+- [**Discover contrast issues**](https://developer.chrome.com/docs/devtools/accessibility/contrast#discover-low-contrast). Use the **CSS Overview** panel, (preview) **Issues** tab, or a **Lighthouse** report to get a list of all issues.
+- [**Fix contrast issues**](https://developer.chrome.com/docs/devtools/accessibility/contrast#fix-low-contrast). View the issues with a tooltip in inspector mode and select colors that the **Color Picker** suggests to fix the contrast ratio.
+- [**Emulate vision deficiencies**](https://developer.chrome.com/docs/devtools/rendering/apply-effects#emulate_vision_deficiencies). Look at your site the way your users see it.
+
+## Discover low contrast text
+
+To discover low contrast text:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) on your page.
+2. List all contrast issues by using one of three panels:
+
+   - [**CSS Overview**](https://developer.chrome.com/docs/devtools/accessibility/contrast#overview-contrast)
+   - [(Preview) **Issues**](https://developer.chrome.com/docs/devtools/accessibility/contrast#issues-contrast)
+   - [**Lighthouse**](https://developer.chrome.com/docs/devtools/accessibility/contrast#lighthouse-contrast)
+
+You can experiment by opening [our CodePen](https://codepen.io/editor/web-dot-dev/pen/019ef466-d38b-7876-8a2c-87fd142fea89).
+
+### Contrast issues in the CSS Overview panel
+
+To get an overview:
+
+1. Open [CSS Overview](https://developer.chrome.com/docs/devtools/css-overview#open).
+2. [Capture an overview](https://developer.chrome.com/docs/devtools/css-overview#run).
+3. Open the **Colors** section, go to **Contrast issues**, and click an issue, if any.
+4. In the **Contrast issues** table, hover over an element and click the link next to it.
+
+   ![List of contrast issues in CSS Overview.](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/list-contrast-issues-cs-636b0f83d6e21.png)
+5. Fix the issue as described in the [Fix low contrast text](https://developer.chrome.com/docs/devtools/accessibility/contrast#fix-low-contrast) section.
+
+### (Preview) Contrast issues in the Issues tab
+
+> [!NOTE]
+> **Note:** This is a preview feature disabled by default.
+
+To get a list of issues:
+
+1. Enable contrast issues reporting in the **Issues** tab:
+   1. Open **Settings** \> **Experimental**.
+   2. In the filter bar, search for `contrast issue`.
+   3. Select **Enable automatic contrast issue reporting via the Issues panel** . ![Enable contrast issue reporting.](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/enable-contrast-issue-rep-c7bafe595ae6c.png)
+   4. Click **Reload DevTools** in the prompt at the top.
+2. [Open the Issues tab](https://developer.chrome.com/docs/devtools/issues#open).
+3. Expand the contrast issues DevTools found, then expand the elements table, and click a link next to the element.
+
+   ![Table of elements with contrast issues in the Issues tab.](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/table-elements-contrast-c8745ce07b4de.png)
+4. Fix the issue as described in the [Fix low contrast text](https://developer.chrome.com/docs/devtools/accessibility/contrast#fix-low-contrast) section.
+
+### Contrast issues in a Lighthouse report
+
+To run a report:
+
+1. [In DevTools](https://developer.chrome.com/docs/devtools/open), open ![](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/more-tabs-87aa06b21bc5a.svg) **More tabs** \> **Lighthouse**.
+2. Generate a Lighthouse report with the following settings:
+
+   - **Mode**: Navigation (default)
+   - **Categories**: Accessibility
+   - **Device**: Desktop
+
+   ![Lighthouse report with Navigation, Accessibility, and Desktop settings.](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/lighthouse-report-naviga-b2bad283018c8.png)
+3. Click **Analyze page load** and wait for Lighthouse to generate the report.
+
+4. Go to the **Contrast** section. From the elements list, click a link to
+   an affected element.
+
+   ![The Contrast section of the Lighthouse report with a list of elements that have contrast issues.](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/the-contrast-section-the-8a7e7e9e32685.png)
+5. Fix the issue as described in the [Fix low contrast text](https://developer.chrome.com/docs/devtools/accessibility/contrast#fix-low-contrast) section.
+
+## Fix low contrast text
+
+To fix a low contrast issue:
+
+1. [Find a contrast issue](https://developer.chrome.com/docs/devtools/accessibility/contrast#discover-low-contrast) and click a link to an
+   affected element either on the [**CSS Overview** panel](https://developer.chrome.com/docs/devtools/accessibility/contrast#overview-contrast),
+   [**Issues** tab](https://developer.chrome.com/docs/devtools/accessibility/contrast#issues-contrast), or
+   [**Lighthouse** report](https://developer.chrome.com/docs/devtools/accessibility/contrast#lighthouse-contrast). DevTools takes you to the
+   **Elements** panel and selects the corresponding element.
+
+   ![An element with a contrast issue selected in the Elements panel.](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/an-element-a-contrast-is-30c475692680b.png)
+
+   For example, on [our inaccessible demo CodePen](https://codepen.io/editor/web-dot-dev/pen/019ef466-d38b-7876-8a2c-87fd142fea89?orientation=left&panel=files&show=editors), the first affected
+   element is `h1.line1`.
+2. Click ![](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/inspect-1ff8959931e03.png)
+   **Inspect** at the top-right corner of DevTools and hover over the element in
+   the viewport. DevTools shows a tooltip for this element.
+
+   ![The tooltip shows a warning sign next to the contrast value.](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/the-tooltip-shows-warnin-3415b3fdcdb3d.png)
+
+   Notice the ![](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/warning-filled.svg)
+   warning sign next to the contrast ratio value in the tooltip. The contrast
+   ratio measures the difference in brightness between the foreground (text
+   color) and background colors.
+3. [Open the **Color Picker**](https://developer.chrome.com/docs/devtools/css/reference#color-picker) next
+   to the color declaration of the element's text and, in the **Color Picker** ,
+   expand the **Contrast ratio** section.
+
+   ![The Contrast ratio section of the Color Picker.](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/the-contrast-ratio-sectio-dbb2e34ad690d.png)
+
+   The **Color Picker** tells you the contrast ratio doesn't meet the AA or AAA
+   levels of [WebAIM guidelines](https://webaim.org/standards/wcag/).
+4. Click the ![](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/use-suggested-color-cdee06beeff9d.png)
+   **Use suggested color** button next to the AAA level. The **Color Picker**
+   applies the text color that complies to the contrast ratio guidelines.
+
+   ![The applied color complies with the guidelines.](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/the-applied-color-complie-67641e72f40a7.png)
+5. Alternatively, to pick a color manually, you can drag the circle in the
+   shades preview. To stay within the AA or AAA level, pick a color below the
+   top or bottom line respectively.
+
+   ![Picking a color shade below the bottom line to stay in AAA level.](https://developer.chrome.com/static/docs/devtools/accessibility/contrast/image/picking-color-shade-belo-7f1a0c2283bdf.png)
+6. Similarly, fix all the contrast issues you found with the
+   [**CSS Overview** panel](https://developer.chrome.com/docs/devtools/accessibility/contrast#overview-contrast), [**Issues** tab](https://developer.chrome.com/docs/devtools/accessibility/contrast#issues-contrast),
+   or [**Lighthouse** report](https://developer.chrome.com/docs/devtools/accessibility/contrast#lighthouse-contrast).
+
+## Save the changes
+
+To save the changes you made in DevTools:
+
+- [Copy all CSS changes at once](https://developer.chrome.com/docs/devtools/changes#copy-css-changes) and paste them to your code
+- [Set up a Workspace](https://developer.chrome.com/docs/devtools/workspaces) to allow DevTools to save files directly to your sources.
+
+## What's next?
+
+Learn more:
+
+- [Learn Accessibility](https://web.dev/learn/accessibility) in general
+- [Color and contrast](https://web.dev/learn/accessibility/color-contrast) accessibility in particular

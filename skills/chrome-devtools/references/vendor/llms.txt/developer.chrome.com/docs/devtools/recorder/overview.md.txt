@@ -1,0 +1,30 @@
+![Dale St. Marthe](https://web.dev/images/authors/dalestmarthe.jpg) Dale St. Marthe [LinkedIn](https://www.linkedin.com/in/dale-st-marthe)
+
+<br />
+
+[Video](https://www.youtube.com/watch?v=rMUayh1QPYs)
+
+Use the **Recorder** panel to record, measure, and edit user flows. The **Recorder** panel contains a set of diagnostic tools that can help frontend developers improve and debug their conversion paths. For a guided tutorial, check out [Record, replay, and measure user flows](https://developer.chrome.com/docs/devtools/recorder).
+
+## Overview
+
+The Recorder panel lets you:
+
+- **Record and replay user flows** : [Start a recording](https://developer.chrome.com/docs/devtools/recorder#record) to have the **Recorder** panel track certain events on your website or app. Afterwards, you can [replay a user flow](https://developer.chrome.com/docs/devtools/recorder#replay) and jump between steps. [Slow down the replay](https://developer.chrome.com/docs/devtools/recorder/reference#slow_down_the_replay) to better understand what happens in a user flow. Additionally, learn how you can [replay with external libraries](https://developer.chrome.com/docs/devtools/recorder/reference#replay_with_external_libraries).
+- **Edit and debug user flows** : [Edit the steps](https://developer.chrome.com/docs/devtools/recorder/reference#edit-steps) of a recorded user flow, even during recording. [Set breakpoints](https://developer.chrome.com/docs/devtools/recorder/reference#breakpoints-and-step-through) and execute a user flow step by step. [Inspect the code](https://developer.chrome.com/docs/devtools/recorder/reference#inspect-code) and see a side-by-side view of the steps and their code.
+- **Generate performance profiles** : [Measure the performance](https://developer.chrome.com/docs/devtools/recorder#measure) of a recorded user flow by generating a profile and viewing a report in the **Performance** panel.
+- **Share and export user flows** : You can [export a user flow](https://developer.chrome.com/docs/devtools/recorder/reference#export-flows) as a JSON file or in multiple Puppeteer formats, and in any format provided by the [Recorder's Export extensions](https://developer.chrome.com/docs/devtools/recorder/extensions#export-extensions). You can also [import a user flow](https://developer.chrome.com/docs/devtools/recorder/reference#import-flows).
+
+To better integrate the **Recorder** panel it into your workflow and expand its capabilities, [customize the Recorder panel with extensions](https://developer.chrome.com/docs/devtools/recorder/extensions).
+
+## Open the Recorder panel
+
+To open the **Recorder** panel, follow these steps:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Open the **Command menu** by pressing:
+   - macOS: <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+   - Windows, Linux, ChromeOS: <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> ![Command Menu with](https://developer.chrome.com/static/docs/devtools/recorder/overview/image/cmd-recorder.png)
+3. Start typing `Recorder panel`, select **Show Recorder panel** , and press <kbd>Enter</kbd>.
+
+Alternatively, in the top right corner, select **More options** \> **More tools** \> **Recorder panel**.

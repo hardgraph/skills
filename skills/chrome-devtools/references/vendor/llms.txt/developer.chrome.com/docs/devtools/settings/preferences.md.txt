@@ -1,0 +1,377 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Configure the appearance and behavior of DevTools and its panels using ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/settings-410a4b92d5ada.svg) [**Settings**](https://developer.chrome.com/docs/devtools/settings#open) \> **Preferences**. This tab lists both general customization options and panel-specific ones.
+
+To set preferences, open ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/settings-e4c0c94aa10c2.svg) [Settings](https://developer.chrome.com/docs/devtools/settings#open) \> **Preferences** and scroll to one of the sections described next.
+
+![The Appearance section in the Preferences tab.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-appearance-section-t-fc14a02a4793c.png)
+
+To find out what each setting does, search this page for the setting's name and expand its description.
+
+This reference indicates different settings with the following icons:
+
+- ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-799f412d6048e.svg) Checkboxes
+- Drop-down lists ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-7517104fefc02.svg)
+- ![Deprecated.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/deprecated-c55477c2a555f.svg) Deprecated
+
+To restore default preferences, scroll to the end of the **Preferences** tab and click **Restore defaults and reload**.
+
+## Appearance
+
+This section lists options that customize DevTools appearance.
+
+#### **Themes** ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-6a5e07e5fb0bb.svg) sets a color theme for DevTools UI.
+
+Themes: ![Changing DevTools theme from system preference to dark to light.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/changing-devtools-theme-d8f7c3a3db9cf.gif)
+
+- System preference
+- Light
+- Dark
+
+#### **Panel layout** ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-98c5328c62623.svg) arranges panes in panels.
+
+Affects **Elements** \> **Styles** and sister tabs, and the **Sources** \> **Debugger** pane. The **auto** option makes the layout depend on DevTools width.
+Panel layout: ![Changing the Element's panel layout from horizontal to vertical.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/changing-elements-panel-3ccf4881869ae.gif)
+
+- horizontal
+- vertical
+- auto
+
+#### **Language** ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-f3730a0a672c1.svg) sets the locale for DevTools UI.
+
+To apply this setting, reload DevTools.
+Language: ![The Settings panel in Chinese.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-settings-panel-chine-3ba858128bc81.png)
+
+- Browser UI language
+- One of locale options, in this example, Chinese
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-106c6be7fba04.svg) **Enable <kbd>Ctrl/Cmd</kbd> + <kbd>0</kbd>-<kbd>9</kbd> shortcut to switch panels** lets you open panels using the keyboard.
+
+This video shows how to switch between the tabs using the corresponding keyboard shortcuts.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-ac7ba6eeef536.svg) **Disable paused state overlay** hides the **Paused in debugger** ![Play and step over buttons.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/play-step-buttons-2ba8453fa7ee6.png) overlay in the viewport when code execution is paused.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-75c73741131dd.svg) **Show What's New after each update** automatically opens the **What's New** drawer tab after each Chrome update.
+
+![The What's New drawer tab.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-s-drawer-tab-284de1eb4dca3.png)
+
+## Sources
+
+This section lists options that customize the **Sources** panel.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-3af127e68a412.svg) **Search in anonymous and content scripts** lets you search all loaded JavaScript files, including those in Chrome extensions, using the **Search** tab.
+
+This video shows how to search for text in an extension source file.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-13c6e4d540f3c.svg) **Automatically reveal files in sidebar** selects files on the **Sources** \> **Page** pane when you switch between tabs in the **Editor**.
+
+This video shows how, with this option enabled, the **Sources** panel selects files in the navigation tree as you switch between tabs.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-9fca7539b5f0d.svg) **Enable JavaScript source maps** lets DevTools find sources of generated or minified JavaScript files.
+
+> [!IMPORTANT]
+> **Key point:** This option works only if the source maps are available. The **Sources** panel also puts a link to the generated or minified file in the status bar.
+
+![The Sources panel shows a link to the minified file in the status bar.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-sources-panel-shows-18a5986aebe76.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-22a2ad46bfc63.svg) **Enable tab moves focus** makes the ![Tab key.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/tab-key-0641afdee1ff8.svg) <kbd>Tab</kbd> key move focus inside DevTools instead of inserting a Tab character in the **Editor**.
+
+Requires to reload DevTools.
+
+> [!IMPORTANT]
+> **Key point:** This setting makes ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-9414ca60e7488.svg) **Default indentation** inactive because the ![Tab key.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/tab-key-e8e7018d1977c.svg) <kbd>Tab</kbd> key doesn't insert characters in this case.
+
+This video first shows Tab characters inserted with the Tab key. Then when you enable this option and reload DevTools, the Tab key moves focus.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-74d75cb274f85.svg) **Detect indentation** sets indentation to the one in the source file opened in the **Editor**.
+
+Requires to reload DevTools.
+
+> [!IMPORTANT]
+> **Key point:** This setting overrides ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-1778cde506e82.svg) **Default indentation** . In the following video, the default indentation is set to eight spaces, while the detected indentation in the file is two spaces. ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-14e9b4055cf17.svg) **Show whitespace characters: All** lets you to see whitespace characters as dots (`...`) and tabs as lines (`---`).
+
+This video first shows the default indentation of eight spaces. Then when you enable this option, it overrides the default indentation to that of the source file.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-eef487362c0df.svg) **Autocompletion** enables handy suggestions in the **Editor**.
+
+This video first doesn't show any suggestions. Then when you enable this option, the **Editor** shows suggestions for command completion.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-eef487362c0df.svg) **Auto bracket closing** automatically adds a closing bracket or tag when you type an opening one.
+
+This video shows typing opening brackets before and after enabling automatic bracket closing.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-e9d6b5e1e3491.svg) **Bracket matching** underlines and highlights in light red in the **Editor** a square bracket, curly bracket, or parenthesis without a pair.
+
+![A curly bracket without a pair underlined with red.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/a-curly-bracket-without-39b53417db5f3.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-96088dde5625f.svg) **Code folding** lets you fold and unfold code blocks in curly brackets in the **Editor**.
+
+Requires to reload DevTools.
+
+This video shows how to fold code blocks when you enable this option.
+
+#### **Show whitespace characters** ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-71f801dcdf2f.svg) displays whitespace characters in the **Editor**.
+
+Requires to reload DevTools. Options do the following:
+
+- **All** denotes all whitespace characters as dots (`...`). Additionally, the **Editor** denotes the <kbd>Tab</kbd> character as a line (`---`).
+- **Trailing** highlights whitespace characters at the end of lines in light red.
+
+Show whitespace characters: ![Options selected: All and Trailing.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/options-selected-and-tr-e77f71f75d372.png)
+
+- None
+- All (`...`)
+- Trailing
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-e5f5db65c8a5.svg) **Display variable values inline while debugging** shows you the variable values next to assignment statements while the execution is paused.
+
+![The Debugger paused during function execution displays variable values next to assignment statements.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-debugger-paused-durin-7df9450bef37b.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-84479adeb7eeb.svg) **Focus Sources panel when triggering a breakpoint** opens **Sources** \> **Editor** at the line with the breakpoint that paused execution.
+
+This video first shows the **Sources** panel out of focus when paused at a breakpoint. Then when you enable this option, DevTools opens the **Editor** in the **Sources** panel and shows you the line of code with the breakpoint.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-84479adeb7eeb.svg) **Automatically pretty print minified sources** makes those sources readable.
+
+When [pretty-printed](https://developer.chrome.com/docs/devtools/javascript/reference#format), the **Editor** may show a single long code line in multiple lines, preceded by `-` to indicate that it's a line continuation.
+![Pretty-printed code in the Sources panel.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/pretty-print.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-e003bad8a57e.svg) **Enable CSS source maps** lets DevTools find the sources of generated CSS files, for example, `.scss`, and show them to you.
+
+> [!IMPORTANT]
+> **Key point:** This option works only if the source maps are available.
+>
+> - The **Sources** panel shows `.scss` files under the **Authored** section of the navigation tree.
+> - The **Elements** \> **Styles** pane shows links to sources next to CSS rules applied to an element.
+
+![The Sources panel shows .scss files in the Authored section of the navigation tree. The Styles pane in the Elements panel shows links to .scss sources next to CSS rules.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-sources-panel-shows-e421484c90f24.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-b75781378d249.svg) **Allow scrolling past end of file** lets you scroll further than the last line in the **Editor**.
+
+This video shows you how to scroll past the end of file when you enable this option.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-dcbab49972b25.svg) **Allow DevTools to load resources, such as source maps, from remote file paths**. Disabled by default for security reasons.
+
+> [!CAUTION]
+> **Caution:** [Remote file paths are a security vulnerability](https://bugs.chromium.org/p/chromium/issues/detail?id=1342722). It is best to use this option only if you are aware of consequences.
+
+If left disabled, DevTools logs to the **Console** messages similar to the following:
+![A message in the Console informing that loading from a remote file path is prohibited for security reasons.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/a-message-the-console-in-052f2c13b3dc.png)
+
+#### **Default indentation** ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-8de199d32c5f9.svg) lets you choose the number of spaces the ![Tab key.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/tab-key-acafd3f1b31f8.svg) <kbd>Tab</kbd> key inserts in the **Editor**.
+
+> [!IMPORTANT]
+> **Key point:** ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-4d15038a700fa.svg) **Detect indentation** overrides this setting and sets indentation to the that of the source file. Requires to reload DevTools. ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-246cbbb2abfd4.svg) **Enable tab moves focus** overrides the ![Tab key.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/tab-key-bf68e8474a5b3.svg) <kbd>Tab</kbd> key. It moves focus instead of inserting characters. ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-9f06bc11c1f07.svg) **Show whitespace characters: All** lets you to see whitespace characters as dots (`...`) and tabs as lines (`---`).
+
+Default indentation: ![Disabling overriding options and changing default indentation from two spaces to eight, then to the Tab key.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/disabling-overriding-opti-b99a2d62da012.gif)
+
+- 2 spaces
+- 4 spaces
+- 8 spaces
+- Tab character
+
+This example shows how to set the default indentation to eight spaces first and then to a Tab character.
+
+## Elements
+
+This section lists options that customize the **Elements** panel.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-e8069df4d53b4.svg) **Show user agent shadow DOM** displays shadow DOM nodes in the DOM tree.
+
+![The Elements panel shows shadow DOM nodes.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-elements-panel-shows-088126d24e216.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-e2b793e1a1d72.svg) **Word wrap** breaks long lines in the DOM tree and wraps them to the next line.
+
+![The Elements panel breaks long lines by words and wraps them onto the next line.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-elements-panel-breaks-8f610414be113.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-cd170dc3fca4c.svg) **Show HTML comments** displays HTML comments in the DOM tree.
+
+![The Elements panel shows HTML comments.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-elements-panel-shows-69db5e051bcd3.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-f78ab3a6c26a9.svg) **Reveal DOM node on hover** selects the corresponding node in the DOM tree as you hover over an element in the viewport in ![Inspect.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/inspect-eb1e3cb4f5b65.png) inspect mode.
+
+This video first shows that DOM nodes aren't selected in the DOM tree. Then when you enable this option, the **Elements** panel selects the nodes on hover.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-3271646a5440c.svg) **Show detailed inspect tooltip** displays the tooltip in the viewport in ![Inspect.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/inspect-fc5aa780d7179.png) inspect mode as you hover over an element.
+
+![The detailed tooltip shown in inspect mode.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-detailed-tooltip-show-28d3aa44e33a2.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-8ca7298dcb8d7.svg) **Show rulers on hover** displays the rulers in the viewport as you hover over elements in the DOM tree.
+
+![Rulers shown in viewport.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/rulers-shown-viewport-ae8f481c23e7e.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-d34f17ef22898.svg) **Show CSS documentation tooltip** displays a tooltip with a short description when you hover over a property in the **Styles** pane.
+
+The **Learn more** link takes you an [MDN CSS Reference](https://developer.mozilla.org/docs/Web/CSS/Reference) on the property.
+![The tooltip with documentation on a CSS property.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-tooltip-documentatio-7c33fb7ae9d4e.png)
+
+## Network
+
+This section lists options that customize the **Network** panel. Most of the options are the same as in the panel's settings.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-9e9601ffed796.svg) **Preserve log** is the same as [**Preserve log**](https://developer.chrome.com/docs/devtools/network/reference#preserve-log) in the **Network** panel. Saves requests across page loads.
+
+This video first shows the requests log refreshed on page reload, then persisted when you enable this option.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-05db10b14928d.svg) **Record network log** is the same as ![Record network log.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/record-network-log-f2989c95178c7.png) [Record network log](https://developer.chrome.com/docs/devtools/network/reference#stop-recording) in the **Network** panel. Starts or stops recording requests in the network log.
+
+![The Record network log button in the Network panel.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-record-network-log-bu-ae1f7d1e69e3.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-e209ff3f4b78e.svg) **Enable network request blocking** blocks requests that match patterns in the **Network request blocking** drawer.
+
+This video first shows that the requests aren't blocked. Then, after you enable this option, a pattern in the **Network request blocking** drawer blocks them.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-13aed2bf70ed5.svg) **Disable cache (while DevTools is open)** is the same as [Disable cache](https://developer.chrome.com/docs/devtools/network/reference#disable-cache) in the **Network** panel. Disables browser cache.
+
+![The Disable Cache checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-disable-cache-checkbo-f09250026a0aa.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-13aed2bf70ed5.svg) **Allow to generate HAR with sensitive data** adds options to the **Export HAR** button that let you export with or without sensitive data (sanitized).
+
+Sensitive data is the data in `Cookie`, `Set-Cookie`, and `Authorization` headers.
+![The two options for the Export HAR button.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/export-har-button.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-780f4d36677c5.svg) **Color-code resource types** highlights requests in different colors depending on their type in the **Waterfall** column of the network log.
+
+![The Waterfall column on the Network tab without and with color-coding.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-waterfall-column-the-c3f0d296db17e.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-bcc3360e79e8c.svg) **Group network log by frame** is the same as [Group by frames](https://developer.chrome.com/docs/devtools/network/reference#group-by-frames) in the **Network** panel. This option groups requests initiated by inline frames.
+
+![The network request log with requests grouped by inline frames.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-network-request-log-8ecfc9e3f8259.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-96170b4837db.svg) **Force ad blocking on this site** blocks [detected ads](https://chromium.googlesource.com/chromium/src/+/master/docs/ad_tagging.md) on the page while DevTools is open.
+
+![An ad-related network request shown in the Network panel with the Blocked Requests filter enabled.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/an-ad-related-network-req-3e1c284d89cd5.png)
+
+## Performance
+
+This section lists options that customize the **Performance** panel.
+
+#### **Flamechart mouse wheel action** ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-cca8fac9471b8.svg) assigns scroll or zoom action to your mouse wheel when you navigate the flame chart.
+
+Flame chart mouse wheel action: ![Changing mouse wheel action from scrolls to zoom for the flame chart.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/changing-mouse-wheel-acti-aa6b24b1bf1eb.gif)
+
+- Scroll
+- Zoom
+
+This example shows both scroll and zoom mouse wheel actions on a flame chart in the **Performance** panel.
+
+## Console
+
+This section lists options that customize the **Console** . Most of the options are the same as in [Console Settings](https://developer.chrome.com/docs/devtools/console/reference#settings).
+
+![Similar options in Console and in Settings.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/similar-options-console-8bfd47da7d55d.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-075b1e4d9adb9.svg) **Hide network messages** hides network messages in the **Console**.
+
+This video shows how to hide network messages with this option both in ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/settings-be0e0a65502b4.svg) **Settings** and in [Console Settings](https://developer.chrome.com/docs/devtools/console/reference#settings).
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-c3aa1af5fea4b.svg) **Selected context only** makes the **Console** show messages only for the selected context: top, iframe, worker, or extension.
+
+This video shows how to enable this option both in ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/settings-edb01fff8cda4.svg) **Settings** and in [Console \> Settings](https://developer.chrome.com/docs/devtools/console/reference#filtercontext) and select the context in the **Console**.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-5eb71d45b71f.svg) **Log XMLHttpRequests** makes the **Console** log XHR and fetch requests.
+
+This video shows how to enable this option both in ![Settings.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/settings-84ee53970b34f.svg) **Settings** and [Console \> Settings](https://developer.chrome.com/docs/devtools/console/reference#xhr) and log the `XHR finished loading` messages to the **Console**.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-1210cb9093d09.svg) **Show timestamps** makes the **Console** show timestamps next to messages.
+
+![Messages with timestamps listed in the Console.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/messages-timestamps-list-040be725ea68b.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-8eaf2931681d1.svg) **Autocomplete from history** makes the **Console** suggest commands you ran earlier as you type.
+
+You can find the same option in [Console \> Settings](https://developer.chrome.com/docs/devtools/console/reference#autocomplete).
+![Autocomplete drop-down with a command option from Console history.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/autocomplete-drop-down-a-6e0a4dc95d8d5.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-515db963f15ba.svg) **Accept autocomplete suggestion on Enter** makes the **Console** accept the selected suggestion from the autocomplete drop-down when you press <kbd>Enter</kbd>.
+
+This video shows what happens when you press <kbd>Enter</kbd> before and after enabling this option.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-3d57720401322.svg) **Group similar messages in console** makes the **Console** group similar messages together.
+
+You can find the same option in [Console \> Settings](https://developer.chrome.com/docs/devtools/console/reference#group).
+![Similar messages in the Console grouped together.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/similar-messages-the-con-2026bc985883e.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-26eb04773588b.svg) **Show CORS errors in console** makes the **Console** show the [CORS errors](https://developer.mozilla.org/docs/Web/HTTP/CORS/Errors) it logged.
+
+You can find the same option in [Console \> Settings](https://developer.chrome.com/docs/devtools/console/reference#cors-errors).
+![Console shows CORS errors.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/console-shows-cors-errors-57f9bea2680a4.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-3f6fa69cfa49a.svg) **Eager evaluation** makes the **Console** show a preview of an output as you type a command.
+
+You can find the same option in [Console \> Settings](https://developer.chrome.com/docs/devtools/console/reference#eagereval).
+
+This video shows various output previews.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-8c39e7c95f976.svg) **Treat code evaluation as user action** turns any command you run in the **Console** into user interaction.
+
+In other words, it sets [`navigator.userActivation.isActive`](https://developer.mozilla.org/docs/Web/API/Navigator/userActivation) to `true` upon evaluation. You can find the same option in [Console \> Settings](https://developer.chrome.com/docs/devtools/console/reference#trigger-user-activation).
+
+This video shows the evaluation result of `navigator.userActivation.isActive` before and after enabling this option.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-a6e57c2b66c9e.svg) **Automatically expand console.trace() messages** makes the **Console** display expanded `console.trace()` messages when it logs them.
+
+![An expanded console.trace() message in the Console.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/an-expanded-consoletrace-a083a714be536.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-543728a4a3e1.svg) **Preserve log upon navigation** makes the **Console** log a `Navigated to` message upon every navigation and save logs across all pages.
+
+You can find the same option in [Console \> Settings](https://developer.chrome.com/docs/devtools/console/reference#persist).
+![The Console shows 'Navigated to' messages and saves logs across different pages.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-console-shows-naviga-f4bc36001187f.png)
+
+## Extension
+
+This section lists options that customize link handling for Chrome DevTools extensions.
+
+#### **Link handling** ![Drop-down.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/drop-down-96718c6df5856.svg) sets an option to open files with when you click a link to a source file, for example, in the **Elements** \> **Styles** pane.
+
+Link handling: ![Choosing an option to open links with.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/choosing-option-open-li-43a8b042ca76d.png)
+
+- Auto. Opens files in the **Sources** panel by default.
+- Arbitrary option that can be added by a DevTools extension.
+
+## Persistence
+
+This section lists options that control how DevTools saves the changes you make.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-39404dd932361.svg) **Enable local overrides** makes DevTools persist changes you make to sources across page loads.
+
+For more information, see [Local Overrides](https://developer.chrome.com/docs/devtools/workspaces#overrides).
+
+## Debugger
+
+This section lists options that control the **Debugger** behavior.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-dd86114edda35.svg) **Disable JavaScript** lets you see how your web page looks and behaves when [JavaScript is disabled](https://developer.chrome.com/docs/devtools/javascript/disable).
+
+Reload the page to see if and how the page depends on JavaScript while loading.
+
+When JavaScript is disabled, Chrome shows the corresponding ![Disabled JavaScript.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/disabled-javascript-b065d6a947f0d.png) icon in the address bar and DevTools shows a warning ![Warning.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/warning-37d8acb476bb1.svg) icon next to **Sources**.
+![An icon in the address bar and a warning icon next to Sources in DevTools.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/an-icon-the-address-bar-92ceba2ae707c.png)
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-0a61815eef8ad.svg) **Disable async stack traces** hides the "full story" of the async operation in the **Call Stack**.
+
+By default, the **Debugger** tries to trace async operations if the framework you're using supports such tracing.
+![The async operation in the Call Stack.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/the-async-operation-the-7d1209cb7afdd.png)
+
+For more information, see [View async stack traces](https://developer.chrome.com/docs/devtools/console/reference#async-stack-traces).
+
+## Global
+
+This section lists options that have global effects in DevTools.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-d192854dc26cf.svg) **Auto-open DevTools for popups** opens DevTools when you click links that open new tabs. That is, all links with `target=_blank`.
+
+This video first shows how to click a link and open a new tab \*without\* DevTools. Then when you enable this option, a new tab opens \*with\* DevTools.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-9d60be63c0c92.svg) [**Search as you type**](https://developer.chrome.com/docs/devtools/dom#search) makes DevTools "jump" to the first search result as you type your search query. If disabled, DevTools takes you to the result only when you press <kbd>Enter</kbd>.
+
+This video first shows how DevTools "jumps" as you type a search query. Then when you enable this option, DevTools takes you to the first result when you press <kbd>Enter</kbd>.
+
+## Sync
+
+This section lets you set up the synchronization of settings between devices.
+
+#### ![Checkbox.](https://developer.chrome.com/static/docs/devtools/settings/preferences/image/checkbox-6fbf84469b326.svg) **Enable settings sync** lets you sync DevTools settings across multiple devices.
+
+To use this setting, first [enable Chrome Sync](https://support.google.com/chrome/answer/185277). For more information, see [Sync settings](https://developer.chrome.com/docs/devtools/customize#sync).

@@ -1,0 +1,90 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem) ![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques)
+
+<br />
+
+<br />
+
+Discover rendering performance issues with this reference of performance-related options on the **Rendering** tab.
+
+## Highlight repainted areas with paint flashing
+
+With this option switched on, Chrome flashes the screen green whenever repainting happens.
+
+To view areas that are being repainted:
+
+1. [Open the **Rendering** tab](https://developer.chrome.com/docs/devtools/rendering#open-rendering) on this [demo](https://googlechrome.github.io/devtools-samples/jank/) and check **Paint flashing**.
+2. Observe the repainting highlighted in green.
+
+![Paint flashing](https://developer.chrome.com/static/docs/devtools/rendering/performance/image/paint-flashing-395f32ef1b98a.gif)
+
+If, on another page, you see the whole screen flash green or areas of the screen that you didn't think should be painted, consider investigating further.
+
+## Highlight layout shift regions
+
+[Layout shifts](https://web.dev/articles/cls) cause unexpected repaints and can be not only annoying but harmful.
+A screencast illustrating how layout instability can negatively affect users.
+
+To view the location and timing of the layout shifts on a page:
+
+1. [Open the **Rendering** tab](https://developer.chrome.com/docs/devtools/rendering#open-rendering) and check **Layout Shift Regions**.
+
+2. Refresh the page. Areas of layout shift are briefly highlighted in purple.
+
+![Layout shift](https://developer.chrome.com/static/docs/devtools/rendering/performance/image/layout-shift-d7ba61a972764.gif)
+
+## View layers and tiles with layer borders
+
+Use **Layer Borders** to view an overlay of [layer borders](https://developer.chrome.com/blog/inside-browser-part3#what_is_compositing) and [tiles](https://developer.chrome.com/blog/inside-browser-part3#raster_and_composite_off_of_the_main_thread) on top of the page.
+
+To enable layer borders:
+
+1. [Open the **Rendering** tab](https://developer.chrome.com/docs/devtools/rendering#open-rendering) and check **Layer Borders**.
+2. Observe layer borders in orange and olive and tiles in cyan.
+
+![Layer borders and tiles](https://developer.chrome.com/static/docs/devtools/rendering/performance/image/layer-borders-tiles-210bd1d9baeb9.png)
+
+See the comments in [`debug_colors.cc`](https://cs.chromium.org/chromium/src/cc/debug/debug_colors.cc) for an explanation of the color-codings.
+
+## View frames per second in real time with frame rendering stats
+
+The **Frame rendering stats** is an overlay that appears in the top-right corner of your viewport.
+
+To open the **Frame rendering stats**:
+
+1. [Open the **Rendering** tab](https://developer.chrome.com/docs/devtools/rendering#open-rendering) and enable the **Frame rendering stats** checkbox.
+2. Observe the statistics in the top right corner of the page.
+
+![Frame rendering stats](https://developer.chrome.com/static/docs/devtools/rendering/performance/image/frame-rendering-stats-323115aca2b54.png)
+
+The **Frame rendering stats** overlay shows:
+
+- Real time estimate of frames per second as the page runs.
+- Frame timeline as a plot with three frame types:
+  - Successfully rendered frames (blue lines)
+  - Partially presented frames (yellow lines)
+  - Dropped frames (red lines).
+- The state of the GPU raster: on or off. For more information, see [How to get GPU rasterization](https://www.chromium.org/developers/design-documents/chromium-graphics/how-to-get-gpu-rasterization/).
+- GPU memory usage: the number of used and maximum MB of memory.
+
+## Identify scrolling performance issues
+
+Use **Scrolling Performance Issues** to identify elements of the page that have event listeners related to scrolling that may harm the performance of the page.
+
+To view the potentially problematic elements:
+
+1. [Open the **Rendering** tab](https://developer.chrome.com/docs/devtools/rendering#open-rendering) and check **Scrolling Performance Issues**.
+2. Observe the potentially problematic elements highlighted.
+
+![Scrolling Performance Issues is indicating that there are multiple event listeners that may harm scroll performance](https://developer.chrome.com/static/docs/devtools/rendering/performance/image/scrolling-performance-iss-ad174a2b73796.png)
+
+## View Core Web Vitals
+
+[Web Vitals](https://web.dev/articles/vitals) is an initiative by Google to provide unified guidance for quality signals that are essential to delivering a great user experience on the web.
+
+Core Web Vitals are the subset of Web Vitals that apply to all web pages. Each of the Core Web Vitals represents a distinct facet of the user experience, is measurable in the field, and reflects the real-world experience of a critical user-centric outcome. The Core Web Vitals are:
+
+- **[Largest Contentful Paint (LCP)](https://web.dev/articles/lcp)** : measures *loading* performance. To provide a good user experience, LCP should occur within **2.5 seconds** of when the page first starts loading.
+- **[Interaction to Next Paint (INP)](https://web.dev/articles/inp)** : measures *interactivity* . To provide a good user experience, pages should have an INP of **200 milliseconds** or less.
+- **[Cumulative Layout Shift (CLS)](https://web.dev/articles/cls)** : measures *visual stability* . To provide a good user experience, pages should maintain a CLS of **0.1.** or less.
+
+Use the [Web Vitals Chrome extension](https://goo.gle/wve) to view your page's Core Web Vitals values.

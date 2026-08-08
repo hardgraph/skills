@@ -1,0 +1,74 @@
+![Oliver Dunk](https://web.dev/images/authors/oliverdunk.jpg) Oliver Dunk [X](https://twitter.com/oliverdunk_) [GitHub](https://github.com/oliverdunk) [Bluesky](https://bsky.app/profile/oliverdunk.com) [Homepage](https://oliverdunk.com)
+
+<br />
+
+> [!NOTE]
+> **Note:** This feature is available from Chrome 132.
+
+This guide shows you how to use [Chrome DevTools](https://developer.chrome.com/docs/devtools) to view and change
+data stored by extensions using the [`chrome.storage`](https://developer.chrome.com/docs/extensions/reference/api/storage) API.
+
+![Extension storage panel in Application tab](https://developer.chrome.com/static/docs/devtools/storage/extensionstorage/image/viewer.png)
+
+## View extension storage
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) for the context you want to inspect.
+
+2. Navigate to **Application** \> **Storage** and expand **Extension Storage**.
+
+3. Select the storage area you want to inspect:
+
+   a. For contexts where multiple extensions may be present, expand the extension you are interested in, and then choose the storage area.
+
+   b. In contexts associated with a single extension, you can directly select the storage area.
+
+   ![The key-value pairs of youtube.com.](https://developer.chrome.com/static/docs/devtools/storage/extensionstorage/image/select-context.png)
+4. To preview a value in the preview section, select a row in the table.
+
+To view updated values, click ![](https://developer.chrome.com/static/docs/devtools/storage/extensionstorage/image/refresh-icon.svg) **Refresh** in the action bar at the top.
+
+## Availability
+
+Extension storage is accessible when inspecting the following contexts:
+
+- Documents where extensions have injected a [content script](https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts).
+- Documents (including iframes) with the `chrome-extension://` scheme.
+- Extension [service workers](https://developer.chrome.com/docs/extensions/develop/concepts/service-workers).
+- In MV2, inspecting a [background page](https://developer.chrome.com/docs/extensions/mv2/background-pages).
+
+In all cases, the extension will only show in DevTools if the extension has the
+`storage` permission.
+
+### Access levels
+
+By default, the `chrome.storage.session` area is [not accessible](https://developer.chrome.com/docs/extensions/reference/api/storage#method-StorageArea-setAccessLevel)
+to content scripts. However, it is always available in DevTools, even when
+inspecting a page where the extension is running a content script that does not
+have access.
+
+## Filter key-value pairs
+
+To quickly find a key-value pair you need, type into the filter box at the top a string that either the key or value contains.
+
+![Filtering out key-value pairs that don't contain the string 'has'.](https://developer.chrome.com/static/docs/devtools/storage/extensionstorage/image/filter.png)
+
+## Create a new key-value pair
+
+1. Double-click the empty part of the table. DevTools creates a new row and focuses your cursor in the **Key** column.
+2. Enter a new key-value pair.
+
+Where possible, DevTools will parse the value you enter as JSON and store the
+corresponding object. Values which are not valid JSON will be stored as strings.
+
+## Edit keys or values
+
+To edit a value, double-click a cell in the Key or Value column to edit that key
+or value. You may need to [reload](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#reload) your extension for it to
+retrieve the updated values.
+
+## Delete key-value pairs
+
+1. Click a key-value pair to select it.
+2. Click ![](https://developer.chrome.com/static/docs/devtools/storage/extensionstorage/image/delete-icon.svg) **Delete** in the action bar at the top to remove the selected pair. ![Deleting the selected key-value pair.](https://developer.chrome.com/static/docs/devtools/storage/extensionstorage/image/delete.png)
+
+Alternatively, click ![](https://developer.chrome.com/static/docs/devtools/storage/extensionstorage/image/clear-icon.svg) **Clear all** to remove all pairs.

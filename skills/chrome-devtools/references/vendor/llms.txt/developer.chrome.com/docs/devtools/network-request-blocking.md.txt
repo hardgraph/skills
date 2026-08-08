@@ -1,0 +1,89 @@
+Ewa Gasperowicz  
+[X](https://twitter.com/devnook)
+
+<br />
+
+Use the **Request conditions** drawer to test how your page behaves if certain resources, such as images or stylesheets, are prevented from loading or if the resources load slower.
+
+## Overview
+
+The **Request conditions** drawer lets you block multiple resources or "patterns" at the same time and toggle them from a list. You can also block network request domains or URLs from the **Network** panel and the respective patterns will appear in the **Request conditions** drawer.
+
+The **Request conditions** drawer lets you:
+
+- Add or remove patterns.
+- Edit patterns.
+- Remove all patterns.
+- Enable or disable network request blocking or throttling. Once enabled, you can toggle blocking or throttling for an individual pattern.
+
+Closing DevTools disables network request blocking and throttling. You have to open the panel and enable blocking again.
+However, DevTools saves the patterns even after the browser is closed.
+
+## Block or throttle a network request
+
+You can block network requests from the **Network** panel in DevTools.
+
+1. In the **Network** panel, under the **Name** section, right-click a request and select Block request or Throttle request. ![image](https://developer.chrome.com/static/docs/devtools/network-request-blocking/image/block-request-from-network-panel.png)
+2. The **Request conditions** drawer automatically opens and lists the relevant pattern as blocked or throttled. This also automatically enables the Enable blocking and throttling checkbox.
+
+### Understand which requests are throttled or blocked
+
+To distinguish between requests that are slow and those that are being throttled by DevTools, you can check the Network and Performance panels.
+
+In the Network panel:
+
+- **Blocked Requests:** Check the **Status** column. Blocked requests will explicitly show (blocked:devtools) and will be red in color.
+- **Throttled Requests:** An icon in gold or brown will appear next to the request URL. Alternatively you can also check the **Time** column. The icon will appear next to the timing.
+  - Hover over the icon to see exactly which network condition has been applied.
+  - Click the icon to immediately open the **Request conditions** drawer and highlight the rule responsible for the throttling.
+
+![Network panel in DevTools showing blocked and throttled requests indicators.](https://developer.chrome.com/static/docs/devtools/network-request-blocking/image/blocked-and-throttled-requests.png)
+
+In the Performance panel:
+You can also look for network conditions when recording a performance profile. To do so:
+
+1. Go to the **Performance** panel and capture a recording.
+2. Locate the request in the Network track.
+3. Hover over the request to view a tooltip detailing the applied network conditions.
+
+## Open the Request conditions drawer
+
+To open the **Request conditions** drawer:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Open the **Command menu** by pressing:
+   - macOS: <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+   - Windows, Linux, ChromeOS: <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> ![Command Menu with](https://developer.chrome.com/static/docs/devtools/network-request-blocking/image/command-menu-network-panel.png)
+3. Start typing `Request conditions`, select **Show Request conditions** , and press <kbd>Enter</kbd>. DevTools displays the **Request conditions** drawer at the bottom of your DevTools window.
+
+Alternatively, in the top right corner, select more_vert **More tools** \> **Request conditions**.
+
+## Modify a throttling setting
+
+To customize a throttling setting:
+
+1. Open the **Request conditions** drawer and go to the specific request.
+2. In the Throttling column, select a preset (for example, Slow 3G, Fast 3G) from the drop-down menu. You can also add a custom network profile.
+
+| **Note:** Settings for a specific request in the **Request conditions** drawer are ordered in sequence. This means that a throttling rule can override a blocking one.
+
+## Modify a request pattern
+
+To modify a pattern, in the **Request conditions** drawer, click the edit **Edit** button next to the pattern, edit it, and click **Save** . You can also click the **Add condition** button to create a new one.
+When you enter a URL pattern, you can use wildcards (`*`) to match dynamic parts of the URL. For example, `*://example.com` will match all API requests to that domain. You can use wildcards to apply conditions to multiple resources at once using the [URL Pattern API](https://developer.mozilla.org/docs/Web/API/URL_Pattern_API).
+
+## Toggle network request blocking
+
+The check_box **Enable blocking and throttling** checkbox lets you enable and disable network request blocking for all patterns at once.
+
+## Reorder URL matching patterns
+
+If a request matches multiple patterns, DevTools applies the first rule found. To control this precedence, click the arrow buttons next to the specific rule in the **Request conditions** drawer to move high priority rules to the top of the list.
+
+## Remove a network request blocking pattern
+
+To remove a specific network request blocking pattern from the list:
+
+- In the **Request conditions** panel, click the delete **Delete** button.
+
+To remove all network request blocking patterns, in the activity bar, click the block **Remove all network blocking patterns** button.

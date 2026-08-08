@@ -1,0 +1,66 @@
+![Jecelyn Yeen](https://web.dev/images/authors/jecelynyeen.jpg) Jecelyn Yeen [X](https://twitter.com/jecfish) [GitHub](https://github.com/jecfish) [Bluesky](https://bsky.app/profile/jec.fish) [Homepage](https://jec.fish/) ![Dale St. Marthe](https://web.dev/images/authors/dalestmarthe.jpg) Dale St. Marthe [LinkedIn](https://www.linkedin.com/in/dale-st-marthe)
+
+<br />
+
+Use the **Media** Panel in Chrome DevTools to view information and debug the media players per browser
+tab.
+
+## Overview
+
+The **Media** panel is the main place in DevTools for inspecting the media player of a page. Audio and video sources are listed in the left section of the **Media** panel under **Players**, and the right section displays various properties and details.
+
+The **Media** panel lets you do the following:
+
+- [View media player information](https://developer.chrome.com/docs/devtools/media-panel#view).
+- [Hide and show media](https://developer.chrome.com/docs/devtools/media-panel#hide-show).
+- [Remote media player debugging](https://developer.chrome.com/docs/devtools/media-panel#remote-debug).
+- [Export media player information](https://developer.chrome.com/docs/devtools/media-panel#export).
+
+## Open the Media panel
+
+To open the **Media** panel:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Click the **More Options** \> **More tools** \> **Media** to open the **Media** panel.
+
+![Media panel.](https://developer.chrome.com/static/docs/devtools/media-panel/image/media-panel.png)
+
+## View media players information
+
+To view media player information, follow these steps:
+
+1. Visit a page with a media player, such as <https://youtu.be/e1gAyQuIFQo>.
+2. You can now see a media player under the **Players** menu.
+3. Click on the player. The **Properties** tab displays the properties of the media player. ![Media panel properties.](https://developer.chrome.com/static/docs/devtools/media-panel/image/media-properties.png)
+4. Click on the **Events** tab to view all the media player events. ![Media panel events.](https://developer.chrome.com/static/docs/devtools/media-panel/image/media-events.png)
+5. Click on the **Messages** tab to view the media player message logs. You can filter the messages by log level or string. ![Media panel messages.](https://developer.chrome.com/static/docs/devtools/media-panel/image/media-messages.png)
+6. The **Timeline** tab is where you can view the media playback and buffer status live. ![Media panel timeline.](https://developer.chrome.com/static/docs/devtools/media-panel/image/media-timeline.png)
+
+### Remote debugging
+
+You can view the media players information on an Android device from your Windows, Mac, or Linux
+computer.
+
+1. Follow [these steps](https://developer.chrome.com/docs/devtools/remote-debugging) to set up remote debugging.
+2. Now you can view the media players information remotely.
+
+![Remote debugging example.](https://developer.chrome.com/static/docs/devtools/media-panel/image/remote-debugging.png)
+
+## Hide and show media players
+
+Sometimes there might be more than one media player on a page, or you might use the same browser tab
+browsing different pages, each with media players.
+
+You can choose to show or hide each media player for easier debugging experience.
+
+1. Browse to several different video pages using the same browser tab.
+2. Right-click on one of the media players. You can choose to hide the selected player by select **Hide player** or select **Hide all others** to hide all the other players.
+
+![Hide media players](https://developer.chrome.com/static/docs/devtools/media-panel/image/hide-media-players.png)
+
+## Export media player information
+
+1. Right-click on one of the media players.
+2. Select **Save player info** to download the player info as json.
+
+![Export media information](https://developer.chrome.com/static/docs/devtools/media-panel/image/export-media-information.png)

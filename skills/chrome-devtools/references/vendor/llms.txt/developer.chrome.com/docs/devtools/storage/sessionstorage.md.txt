@@ -1,0 +1,57 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+This guide shows you how to use [Chrome DevTools](https://developer.chrome.com/docs/devtools) to view, edit, and delete [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage)
+key-value pairs. Session storage clears when the page session ends.
+
+[Video](https://www.youtube.com/watch?v=5o8krh_Qduk)
+
+## View `sessionStorage` keys and values
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) on the website you want to inspect.
+
+2. Navigate to **Application** \> **Storage** and expand **Session Storage**. Click a domain to view its key-value pairs.
+
+   ![The key-value pairs of youtube.com.](https://developer.chrome.com/static/docs/devtools/storage/sessionstorage/image/the-key-value-pairs-yout-b460ada7c50ba.png)
+3. To preview the value below the table, select a pair.
+
+   ![Viewing the value of the selected key.](https://developer.chrome.com/static/docs/devtools/storage/sessionstorage/image/viewing-value-the-selec-d0e0ee30458fe.png)
+
+To manually refresh the key-value pairs, click **Refresh** in the action bar at the top.
+
+## Filter key-value pairs
+
+To quickly find a key-value pair you need, type into the filter box at the top a string that either the key or value contains.
+
+![Filtering out key-value pairs that don't contain the string 'false'.](https://developer.chrome.com/static/docs/devtools/storage/sessionstorage/image/filtering-key-value-pair-1bb4851401584.png)
+
+## Create a new `sessionStorage` key-value pair
+
+1. [View the domain's `sessionStorage` key-value pairs](https://developer.chrome.com/docs/devtools/storage/sessionstorage#view). For example, on this [demo page](https://jec.fish/demo/storage).
+2. Double-click the empty part of the table. DevTools creates a new row and focuses your cursor in the **Key** column.
+3. Enter a new key-value pair.
+
+## Edit `sessionStorage` keys or values
+
+1. [View a domain's `sessionStorage` key-value pairs](https://developer.chrome.com/docs/devtools/storage/sessionstorage#view). For example, on this [demo page](https://jec.fish/demo/storage).
+2. Double-click a cell in the **Key** or **Value** column to edit that key or value.
+3. Refresh the page to apply.
+
+## Delete `sessionStorage` key-value pairs
+
+1. [View a domain's `sessionStorage` key-value pairs](https://developer.chrome.com/docs/devtools/storage/sessionstorage#view). For example, on this [demo page](https://jec.fish/demo/storage).
+2. Click a key-value pair to select it.
+3. Click ![Delete.](https://developer.chrome.com/static/docs/devtools/storage/sessionstorage/image/delete-63b62f7af2f1e.svg) **Delete** in the action bar at the top to remove the selected pair. ![Deleting the selected key-value pair.](https://developer.chrome.com/static/docs/devtools/storage/sessionstorage/image/deleting-selected-key-va-675252c76f954.png)
+4. Alternatively, click ![Clear all.](https://developer.chrome.com/static/docs/devtools/storage/sessionstorage/image/clear-1afd056ff79.svg) **Clear all** to remove all pairs.
+
+## Interact with `sessionStorage` from the Console
+
+Since you can run JavaScript in the **Console** , and since the **Console** has access to the page's
+JavaScript contexts, it's possible to interact with `sessionStorage` from the **Console**.
+
+1. In DevTools, open the **Console**.
+2. If you want to access the `sessionStorage` key-value pairs of a domain other than the page you're on, [select the JavaScript context](https://developer.chrome.com/docs/devtools/console/reference#context) you need from the context drop-down menu in the action bar at the top.
+3. Run your `sessionStorage` expressions in the **Console**, the same as you would in your JavaScript.
+
+![Interacting with `sessionStorage` from the Console](https://developer.chrome.com/static/docs/devtools/storage/sessionstorage/image/interacting-sessionstor-493fb238eebd6.png)

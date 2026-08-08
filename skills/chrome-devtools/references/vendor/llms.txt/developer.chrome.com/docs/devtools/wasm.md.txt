@@ -1,0 +1,105 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+[WebAssembly](https://developer.mozilla.org/docs/WebAssembly) provides a way to run, for example, C/C++ code on the web at near native speed and alongside JavaScript. This document shows how to set up and use Chrome DevTools to better debug such applications.
+
+[Video](https://www.youtube.com/watch?v=VBMHswhun-s)
+
+Once you set up DevTools, you can:
+
+- Inspect your original code in **Sources** \> **Editor**.
+- Pause execution with line-of-code [breakpoints](https://developer.chrome.com/docs/devtools/javascript/breakpoints#loc) and step through your original C/C++ source code, not the compiled `.wasm` binary file.
+
+And, while paused, you can:
+
+- Hover over variables in the original source file and see their values.
+- Understand function names in **Call Stack** and variables in **Scope**.
+- Output deeply nested properties and complex objects to the **Console**.
+- Inspect object memory with [**Memory Inspector**](https://developer.chrome.com/docs/devtools/memory-inspector#wasm).
+
+## Set up
+
+To enable C/C++ WebAssembly debugging in DevTools:
+
+1. Compile your application with [DWARF](https://dwarfstd.org/) debug information included. Run the [latest Emscripten compiler](https://github.com/emscripten-core/emsdk#downloads--how-do-i-get-the-latest-emscripten-build) and pass it the `-g` flag. For example:
+
+       emcc -g source.cc -o app.html
+
+   For more information, see [Building projects with debug information](https://emscripten.org/docs/compiling/Building-Projects.html#building-projects-with-debug-information).
+2. Install the [C/C++ DevTools Support (DWARF) Chrome extension](https://goo.gle/wasm-debugging-extension).
+
+## Debug
+
+With DevTools set up, debug your code:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open) to inspect your website. For this tutorial, you can try it on this [demo page](https://emscripten-dbg-stories.netlify.app/mandelbrot.html), which was compiled with the required `-g` flag.
+2. Optionally, group the files you authored for easier navigation. In **Sources** , check ![Three-dot menu.](https://developer.chrome.com/static/docs/devtools/wasm/image/three-dot-menu-56b40e93c1be2.svg) \> **Page** \> ![Checkbox.](https://developer.chrome.com/static/docs/devtools/wasm/image/checkbox-0c18d214474b.svg) \> [**Group by Authored/Deployed**](https://developer.chrome.com/docs/devtools/javascript/reference#group-authored-and-deployed) ![Experimental.](https://developer.chrome.com/static/docs/devtools/wasm/image/experimental-e96d47d0c76fb.svg).
+3. Select your original source file from the file tree. In this case, `mandelbrot.cc`.
+4. To set a [line-of-code breakpoint](https://developer.chrome.com/docs/devtools/javascript/breakpoints#loc), click a line number in the column to the left of the **Editor**, for example, on line 38.
+
+   ![A line-of-code breakpoint set on line 38.](https://developer.chrome.com/static/docs/devtools/wasm/image/a-line-code-breakpoint-s-ddb902d45a9d6.png)
+5. Run the code again. The execution pauses before the line with the breakpoint.
+
+While paused, try the following:
+
+- In **Sources** \> **Editor**, hover over a variable to see its value in a tooltip.
+
+![The value of a variable in a tooltip.](https://developer.chrome.com/static/docs/devtools/wasm/image/the-value-a-variable-a-46294e7317225.png)
+
+- In **Sources** \> **Call Stack**, view function names as they are in the source.
+
+![The main function in the Call Stack.](https://developer.chrome.com/static/docs/devtools/wasm/image/the-main-function-the-ca-2e531d22d8ad5.png)
+
+- In **Sources** \> **Scope**, view local and global variables, their types, and values.
+
+![The Scope pane with local variables and their values.](https://developer.chrome.com/static/docs/devtools/wasm/image/the-scope-pane-local-var-0adfdc59402db.png)
+
+- In **Console** , output variables and objects that are hard to navigate to in **Scope**:
+
+  - Deeply nested variables, for example, indexed items in big arrays.
+  - Complex objects, including those you can access with pointers (`->`). Expand them to inspect.
+
+![A nested variable and a complex object expanded in the Console.](https://developer.chrome.com/static/docs/devtools/wasm/image/a-nested-variable-a-comp-4490b96809fd7.png)
+
+- In **Sources** \> **Scope** , click the ![Memory.](https://developer.chrome.com/static/docs/devtools/wasm/image/memory-31652a564b8d6.svg) icon to open the **Memory Inspector** and inspect the raw bytes of object memory. For more information, see [WebAssembly memory inspection](https://developer.chrome.com/docs/devtools/memory-inspector#wasm).
+
+![Inspecting the memory of a variable.](https://developer.chrome.com/static/docs/devtools/wasm/image/inspecting-memory-a-var-e10b3014ca875.png)
+
+## Profile performance
+
+With DevTools set up and open, the code Chrome runs isn't optimized. It's [tiered down](https://v8.dev/docs/wasm-compilation-pipeline#debugging) to give you better debugging experience.
+
+In this case, you can't rely on `console.time()` and `performance.now()` in your code to profile performance. Instead, use the [**Performance**](https://developer.chrome.com/docs/devtools/performance/reference#record) panel to profile.
+
+Alternatively, you can run your profiling code without opening DevTools, then open it to inspect the messages in the **Console**.
+
+## Separate the debug information
+
+To speed up loading but still have a better debugging experience, you can split out the debug information into a separate `.wasm` file. For more information, see [Debugging WebAssembly Faster](https://developer.chrome.com/blog/faster-wasm-debugging).
+
+You can either keep this file locally or host it on a separate server. To do it with Emscripten, pass the [`-gseparate-dwarf=<filename>`](https://emscripten.org/docs/tools_reference/emcc.html#:%7E:text=%2Dgseparate%2Ddwarf%5B) flag and specify the path to the file:
+
+    emcc -g source.cc -o app.html \
+         -gseparate-dwarf=temp.debug.wasm \
+         -s SEPARATE_DWARF_URL=[file://local/path/to/temp.debug.wasm] | [URL]
+
+## Build and debug on different machines
+
+If you build on a machine with a different operating system (container, VM, or remote server) than that on the machine you run Chrome on, you may need to manually map the debug file paths.
+
+For example, if your project is at `C:\src\project` locally but was built in a Docker container with the path `/mnt/c/src/project`, do the following:
+
+1. Go to `chrome://extensions/`, find the **C/C++ DevTools Support (DWARF)** extension, and click **Details** \> **Extension options**.
+2. Specify the old and the new file paths.
+
+![Specified old and new file paths.](https://developer.chrome.com/static/docs/devtools/wasm/image/specified-old-new-file-p-68492afa0c4d5.png)
+
+## Learn more
+
+Check out the Chrome DevTools engineering blog for more information on WebAssembly debugging:
+
+- [Debugging WebAssembly with modern tools](https://developer.chrome.com/blog/wasm-debugging-2020)
+- [Debugging WebAssembly Faster](https://developer.chrome.com/blog/faster-wasm-debugging)
+- [Introducing the Memory Inspector](https://developer.chrome.com/blog/memory-inspector#introduction)
+- [Extending the Memory Inspector for C/C++ debugging](https://developer.chrome.com/blog/memory-inspector-extended-cpp)

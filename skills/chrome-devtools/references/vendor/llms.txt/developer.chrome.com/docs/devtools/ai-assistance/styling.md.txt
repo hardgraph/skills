@@ -1,0 +1,202 @@
+Use the **AI assistance** panel for styling to understand a website's overall
+layout, specific element styles and to get AI generated fixes for CSS bugs.
+
+## Open the "AI assistance" panel
+
+The **AI assistance** panel opens [in the drawer](https://developer.chrome.com/docs/devtools/console/reference#drawer).
+
+![The AI assistance panel opened in its default state.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/open-default.png)
+
+### From the Elements panel
+
+To open **AI assistance** from the Elements panel, when
+[inspecting a DOM node](https://developer.chrome.com/docs/devtools/dom#inspect),
+right-click the node and select the **Ask AI** option.
+
+![The element context menu with 'Ask AI' highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/styling/open-context-menu.png)
+
+When you open **AI assistance** like this, the inspected DOM element is already
+pre-selected as a context element for the conversation.
+
+Alternatively, click the floating button attached to a hovered DOM node.
+
+![The floating button attached to a DOM node.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/styling/open-floating-button.png)
+
+> [!NOTE]
+> **Note:** When opening **AI assistance** with the following methods, make sure to select [Conversation context](https://developer.chrome.com/docs/devtools/ai-assistance/styling#conversation_context) as outlined above.
+
+### From the command menu
+
+To open **AI assistance** from the command menu, type `AI` and then run the
+**Show AI assistance** command, which has the **Drawer** badge next to it.
+
+![The opened ommand menu with 'Show AI assistance' highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/open-command-menu.png)
+
+### From the "More tools" menu
+
+Alternatively, in the top right corner, select **More options** \> **More tools** \> **AI assistance**.
+
+![The opened more tools menu.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/open-more-tools.png)
+
+## Conversation context
+
+Chats with **AI assistance** always relate to the currently inspected element,
+which is the last element selected in the Elements panel DOM tree. A reference
+to this element is shown in the bottom left corner of the panel.
+
+![The AI assistance panel with the context element highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/styling/conversation-context.png)
+
+Change the context using the element picker next to the current element
+or by selecting from the [Elements panel DOM tree](https://developer.chrome.com/docs/devtools/dom#inspect).
+
+With the context selected, you can capture a screenshot of the viewport and submit it to your chat. Click the **Take screenshot** button next to the chat input field.
+
+![The 'Take screenshot button' and an attached screenshot in the input field.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/take-screenshot.png)
+
+You can use screenshots to provide additional visual context to your prompts, for example, to check if all visible buttons have the same spacing.
+
+While the currently inspected element is the foundation of the conversation,
+**AI assistance** has access to all web APIs to gather more information from the
+inspected page. This includes querying other elements with
+`document.querySelector` or evaluating computed styles.
+
+## Prompting
+
+When starting a new conversation, **AI assistance** for styling offers example
+prompts to help you get started quickly.
+
+![The AI assistance panel with the example prompts highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/styling/example-prompts.png)
+
+Click any of the prompts to prefill the prompt input field at the bottom of the
+panel.
+
+Alternatively, type your own prompt or question into the input field.
+
+To send a prompt, either press <kbd>Enter</kbd> or click the arrow on the right
+side of the input field.
+
+> [!TIP]
+> **Tip:** Looking for inspiration on how to use **AI assistance** ? Check out [5 cool things to do with AI Assistance](https://developer.chrome.com/blog/5-cool-things-to-do-with-ai-assistance).
+
+## Conversation flow
+
+Sending a prompt starts the conversation with the styling agent. To get the
+information required to answer your prompt best, the agent generates and
+executes JavaScript that calls web APIs. Agent progress is shown in steps. The
+initial step status is `Investigating...`.
+
+![The AI assistance panel after a conversation started.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/styling/flow-investigating.png)
+
+The step label updates as the agent executes more specific actions to solve your
+question.
+
+Once the agent comes to a final answer, the answer is displayed below the
+investigation steps, including suggestions for follow-up prompts.
+
+![The AI assistance panel with an answer given by AI.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/styling/flow-final.png)
+
+Click any of the suggested prompts to continue the conversation. Click the
+
+of an investigation step to get a better understanding of what AI assistance did
+behind the scenes.
+
+![The AI assistance panel with an expanded conversation step.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/styling/flow-step-expanded.png)
+
+When you expand a progress chip, you see the code the agent has executed,
+together with its return value. Copy the executed code for further use, like
+executing it with the [Console panel](https://developer.chrome.com/docs/devtools/console).
+
+> [!WARNING]
+> **Experimental:** Generative code features are still experimental. See Google's policy on [Generative Code Assistance](https://support.google.com/legal/answer/13505487).
+
+### Paused conversations
+
+**AI assistance** might generate code with side effects. When that happens, the
+conversation is paused before the code is executed.
+
+![The AI assistance panel with a paused conversation.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/styling/flow-paused.png)
+
+When the conversation pauses, review the code proposed by the agent. Click
+**Continue** to proceed or **Cancel** to prevent execution.
+
+> [!NOTE]
+> **Note:** While the conversation is paused, prompt input is disabled.
+
+### Save changes to your workspace
+
+With a [connected workspace folder](https://developer.chrome.com/docs/devtools/workspaces), you can save style changes suggested by **AI assistance** back to CSS source files on your computer.
+
+To do this:
+
+1. First, [generate a metadata file](https://developer.chrome.com/docs/devtools/workspaces#generate-json) and [connect a workspace folder](https://developer.chrome.com/docs/devtools/workspaces#connect).
+
+   Alternatively, you can [add a folder manually](https://developer.chrome.com/docs/devtools/workspaces#manual-connection).
+2. Start a chat [from the Elements panel](https://developer.chrome.com/docs/devtools/ai-assistance/styling#from_the_elements_panel).
+
+3. Prompt **AI assistance** to modify your CSS.
+
+4. **AI assistance** may generate code and [pause execution](https://developer.chrome.com/docs/devtools/ai-assistance/styling#paused_conversations). Review the code and click **Continue** to test changes live.
+
+5. Expand the **Unsaved changes** section and click **Apply to workspace**.
+
+   > [!NOTE]
+   > **Note:** If you don't have a connected workspace folder, at this step, the **AI assistance** panel will ask you to manually add it.
+
+6. Review the changes in a `diff` and click **Save all**.
+
+To learn this workflow, see:
+
+### No answer given
+
+**AI assistance** might not provide answers due to various reasons.
+
+![The AI assistance panel with a refused conversation.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/answer-refused.png)
+
+If you think your prompt is something **AI assistance** should be able to
+discuss, [file a bug](https://goo.gle/devtools-bug).
+
+### Conversation history
+
+Once you start a conversation, every next answer is based on your previous
+interactions between you and the AI.
+
+AI assistance saves your conversation history between sessions, so you can access your previous chats even after DevTools or Chrome reload.
+
+Use the controls in the top-left corner of the panel to control your conversation
+history.
+
+![The AI assistance panel with the history controls highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/history.png)
+
+#### Start new
+
+To start a new conversation with the currently selected
+[conversation context](https://developer.chrome.com/docs/devtools/ai-assistance/styling#conversation_context), click the button.
+
+#### Continue
+
+To continue a past conversation, click the button and select it from the context menu.
+
+> [!NOTE]
+> **Note:** [Conversation context](https://developer.chrome.com/docs/devtools/ai-assistance/styling#conversation_context) is not automatically updated as it might have vanished since the conversation stopped.
+
+#### Delete
+
+To delete a conversation from history, click the button.
+
+## Rate answers and provide feedback
+
+**AI assistance** is an experimental feature. Therefore we are actively looking
+for your feedback to learn how we can improve answer quality and the overall
+experience.
+
+![The AI assistance panel with rating controls highlighted.](https://developer.chrome.com/static/docs/devtools/ai-assistance/images/rate-answers.png)
+
+### Vote answers
+
+Rate an answer using the
+**Thumbs up** and
+**Thumbs down** buttons below the answer.
+
+### Report answers
+
+To report inappropriate content, click the button next to the voting buttons.

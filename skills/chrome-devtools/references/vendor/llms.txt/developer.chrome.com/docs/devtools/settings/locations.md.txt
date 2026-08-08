@@ -1,0 +1,27 @@
+![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+![Settings.](https://developer.chrome.com/static/docs/devtools/settings/locations/image/settings-8d9e01b0d2fe3.svg) [**Settings**](https://developer.chrome.com/docs/devtools/settings#open) \> **Locations** list geolocation presets. You can use these presets to [override geolocation](https://developer.chrome.com/docs/devtools/sensors#geolocation) in Chrome. You can also populate the list with your own preset that you use frequently.
+
+To add a custom preset:
+
+1. [Open Settings](https://developer.chrome.com/docs/devtools/settings#open).
+2. In the **Locations** tab, click **Add location**.
+3. Specify the following values for the new entry. For example, let's add New York as a new location.
+
+   - **Location name** : `New York`.
+   - **Latitude** : `40.72403285608484`.
+   - **Longitude** : `-73.94397543423175`.
+   - **Timezone ID** : `America/New_York` as defined in the [latest release of the Time Zone Database](https://data.iana.org/time-zones/releases/).
+   - **Locale** : `en-US` as defined by [BCP47](https://www.rfc-editor.org/info/bcp47).
+
+   ![Specifying values for a new entry in the Locations list.](https://developer.chrome.com/static/docs/devtools/settings/locations/image/specifying-values-a-ent-ddf578b1aac6e.png)
+
+   > [!IMPORTANT]
+   > **Key point:** To copy latitude and longitude, right-click a city name on [Google Maps](https://www.google.co.uk/maps/place/New+York,+NY,+USA/).
+
+   ![New York coordinates on Google Maps.](https://developer.chrome.com/static/docs/devtools/settings/locations/image/new-york-coordinates-goo-98ced0dcb8678.png)
+4. Click **Save** . Now you can select this preset from the [**Sensors** \> **Location** drop-down list](https://developer.chrome.com/docs/devtools/device-mode/geolocation#override).
+
+To edit or remove an existing preset, click ![Edit.](https://developer.chrome.com/static/docs/devtools/settings/locations/image/edit-b9ff4c724b1ce.svg) or ![Delete.](https://developer.chrome.com/static/docs/devtools/settings/locations/image/delete-64f88fe14cbe4.svg) buttons that appear on hover.

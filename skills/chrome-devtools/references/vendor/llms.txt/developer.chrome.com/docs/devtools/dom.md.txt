@@ -1,0 +1,492 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Watch the video and complete these interactive tutorials to learn the basics of
+viewing and changing a page's DOM with Chrome DevTools.
+
+[Video](https://www.youtube.com/watch?v=J-02VNxE7lE)
+
+This tutorial assumes that you know the difference between the DOM and HTML.
+Get a referesher in the [appendix: HTML versus the DOM](https://developer.chrome.com/docs/devtools/dom#html_dom).
+
+## View DOM nodes
+
+The DOM Tree of the **Elements** panel is where you do all DOM-related
+activities in DevTools.
+
+### Inspect a node
+
+When you're interested in a particular DOM node, **Inspect** is a fast way to
+open DevTools and investigate that node.
+
+1. In the following list, right-click **Michelangelo** . From the menu, select **Inspect**.
+
+   - Michelangelo
+   - Raphael
+
+   The **Elements** panel of DevTools opens.
+   `<li>Michelangelo</li>` is highlighted in the **DOM Tree**.
+
+   ![Highlighting the Michelangelo node](https://developer.chrome.com/static/docs/devtools/dom/image/highlight-node.png)
+2. Click ![](https://developer.chrome.com/docs/images/icons/select-element.svg)
+   **Select an element**.
+
+3. Select the **Tokyo** from the following list.
+
+   - Tokyo
+   - Beirut
+
+   `<li>Tokyo</li>` is highlighted in the DOM Tree.
+
+Inspecting a node is also the first step towards viewing and changing a node's
+[styles and CSS](https://developer.chrome.com/docs/devtools/css).
+
+### Navigate the DOM Tree with a keyboard
+
+Once you've selected a node in the DOM Tree, you can navigate the DOM Tree with
+your keyboard.
+
+1. From the following list, right-click **Ringo** and select **Inspect** .
+   `<li>Ringo</li>` is selected in the DOM Tree.
+
+   - George
+   - Ringo
+   - Paul
+   - John
+
+     ![Inspecting the Ringo node](https://developer.chrome.com/static/docs/devtools/dom/image/inspecting-ringo-node-a30eb2ec496a8.png)
+2. Press the <kbd>Up</kbd> arrow key 2 times. `<ul>` is selected.
+
+   ![Inspecting the ul node](https://developer.chrome.com/static/docs/devtools/dom/image/inspecting-ul-node-d23485a3dcc19.png)
+3. Press the <kbd>Left</kbd> arrow key. The `<ul>` list collapses.
+
+4. Press the <kbd>Left</kbd> arrow key again. The parent of the `<ul>` node
+   is selected. In this case, it's the `<li>` node containing the instructions
+   for step 1.
+
+5. Press the <kbd>Down</kbd> arrow key 3 times so that you've re-selected the
+   `<ul>` list that you just collapsed. It should look like this: `<ul>...</ul>`
+
+6. Press the <kbd>Right</kbd> arrow key. The list expands.
+
+### Scroll into view
+
+When viewing the DOM Tree, sometimes you'll find yourself in a DOM node that's
+not in the viewport. For example, suppose that you scrolled to the bottom of the
+page, and you're interested in the `<h1>` node at the top of the page.
+**Scroll into view** lets you quickly reposition the viewport so that you can
+see the node.
+
+1. In the following list, right-click **Magritte** and select **Inspect**.
+
+   - Magritte
+   - Soutine
+2. Scroll to the appendix section [Scroll into view](https://developer.chrome.com/docs/devtools/dom#scroll2) for
+   additional instructions.
+
+Once completed, you should jump back up to this section.
+
+### Show rulers
+
+With rulers in your viewport, you can measure the width
+and height of an element when you hover over it in the **Elements** panel.
+
+![](https://developer.chrome.com/static/docs/devtools/dom/image/rulers-ab676cf17b11.png)
+
+Enable the rulers in one of two ways:
+
+- Press <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> or <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> (macOS) to open the **Command menu** , type `Show rulers on hover`, and press <kbd>Enter</kbd>.
+- Check **Settings** \> **Preferences** \> **Elements** \> **Show rulers on hover**.
+
+The sizing unit of the rulers is pixels.
+
+### Search for nodes
+
+You can search the DOM Tree by string, CSS selector, or XPath selector.
+
+1. Focus your cursor on the **Elements** panel.
+2. Press <kbd>Control</kbd>+<kbd>F</kbd> or <kbd>Command</kbd>+<kbd>F</kbd> (macOS). The Search bar opens at the bottom of the DOM Tree.
+3. Type `The Moon is a Harsh Mistress`. The last sentence is highlighted in the
+   DOM Tree.
+
+   ![Highlighting the query in the Search bar.](https://developer.chrome.com/static/docs/devtools/dom/image/search-for-nodes.png)
+
+The Search bar also supports CSS and XPath selectors.
+
+The **Elements** panel selects the first matching result in the DOM tree and
+rolls it into view in the viewport. By default, this happens as you type. If you
+always work with long search queries, you can make DevTools run search only
+when you press <kbd>Enter</kbd>.
+
+To avoid unnecessary jumps between nodes, clear the
+
+**Settings** \> **Preferences** \> **Global** \> **Search as you type** checkbox.
+
+![Cleared Search as you type checkbox in Settings.](https://developer.chrome.com/static/docs/devtools/dom/image/preferences-uncheck-search-type.png)
+
+## Edit the DOM
+
+You can edit the DOM on the fly and see how those changes affect the page.
+
+### Edit content
+
+To edit a node's content, double-click the content in the DOM Tree.
+
+1. In the following list, right-click **Michelle** and select **Inspect**.
+
+   - Fry
+   - Michelle
+2. In the DOM Tree, double-click `Michelle`. In other words, double-click the
+   text between `<li>` and `</li>`. The text is highlighted blue to indicate
+   that it's selected.
+
+   ![Editing the text](https://developer.chrome.com/static/docs/devtools/dom/image/edit-text.png)
+3. Delete `Michelle`, type `Leela`, then press <kbd>Enter</kbd> to confirm the
+   change. The text changes from **Michelle** to **Leela**.
+
+### Edit attributes
+
+To edit attributes, double-click the attribute name or value. Follow these
+instructions to learn how to add attributes to a node.
+
+1. In the following list, right-click **Howard** and select **Inspect**.
+
+   - Howard
+   - Vince
+2. Expand `<ul>`, then double-click on `<li>` to edit. The text is highlighted
+   to indicate that the node is selected.
+
+   ![Once clicked, the node is highlighted to indicate selection.](https://developer.chrome.com/static/docs/devtools/dom/image/edit-list-node.png)
+3. Press the <kbd>Right</kbd> arrow key, add a space, type
+   `style="background-color:gold"`, and then press <kbd>Enter</kbd>.
+   The background color of the node changes to gold.
+
+   ![Adding a style attribute to the node](https://developer.chrome.com/static/docs/devtools/dom/image/edit-style-node.png)
+
+### Edit node type
+
+To edit a node's type, double-click the type and then type in the new type.
+
+1. In the following list, right-click **Hank** and select **Inspect**.
+
+   - Dean
+   - Hank
+   - Thaddeus
+   - Brock
+2. Double-click `<li>`. The text `li` is highlighted.
+
+3. Delete `li`, type `button`, then press <kbd>Enter</kbd>. The `<li>` node
+   changes to a `<button>` node.
+
+   ![Changing the node type to button](https://developer.chrome.com/static/docs/devtools/dom/image/change-node.png)
+
+### Edit as HTML
+
+To edit nodes as HTML with syntax highlighting and autocomplete, select
+**Edit as HTML** from the node's drop-down menu.
+
+1. Right-click **Leonard** below and select **Inspect**.
+
+   - Penny
+   - Howard
+   - Rajesh
+   - Leonard
+2. In the **Elements** panel, right-click the current node and select
+   **Edit as HTML** from the drop-down menu.
+
+   ![The drop-down menu of a node.](https://developer.chrome.com/static/docs/devtools/dom/image/dropdown-edit-html.png)
+3. Press <kbd>Enter</kbd> to start a new line and start typing `<l`. DevTool
+   highlights HTML syntax and suggests tags to autocomplete.
+
+   ![Autocompletion of HTML tags.](https://developer.chrome.com/static/docs/devtools/dom/image/autocomplete.png)
+
+   > [!NOTE]
+   > **Note:** Additionally, DevTools can autocomplete DOM properties.
+
+4. Select the `li` element from the autocomplete menu and type `>`. DevTools
+   automatically adds the closing `</li>` tag after the cursor.
+
+   ![DevTools closes the tag automatically.](https://developer.chrome.com/static/docs/devtools/dom/image/autocomplete-closetag.png)
+5. Type `Sheldon` inside the tag and press <kbd>Control</kbd> or
+   <kbd>Command</kbd> + <kbd>Enter</kbd> to apply changes.
+
+### Duplicate a node
+
+You can duplicate an element using the **Duplicate element** right-click option.
+
+1. Right-click **Nana** in the following list and select **Inspect**.
+
+   - Bonfire of the Vanities
+   - Nana
+   - Orlando
+   - White Noise
+2. In the **Elements** panel, right-click `<li>Nana</li>` and select
+   **Duplicate element** from the drop-down menu.
+
+   ![The Duplicate element option highlighted in the drop-down.](https://developer.chrome.com/static/docs/devtools/dom/image/duplicate-element.png)
+3. Return to the page. The list item has been duplicated.
+
+You can also use the keyboard shortcuts: <kbd>Shift</kbd> + <kbd>Alt</kbd> +
+<kbd>Down</kbd> arrow (Windows and Linux) and <kbd>Shift</kbd> +
+<kbd>Option</kbd> + <kbd>Down</kbd> arrow (macOS).
+
+### Capture a node screenshot
+
+You can screenshot any individual node in the DOM Tree.
+
+1. Right-click any image on this page and select **Inspect**.
+
+2. In the **Elements** panel, right-click the image URL and select
+   **Capture node screenshot** from the drop-down menu.
+
+   ![A node screenshot being captured.](https://developer.chrome.com/static/docs/devtools/dom/image/capture-node-screenshot.png)
+3. The screenshot is saved to your downloads
+   ([Windows](https://support.microsoft.com/windows/file-explorer-in-windows-ef370130-1cca-9dc5-e0df-2f7416fe1cb1) and
+   [macOS](https://support.apple.com/guide/mac-help/organize-your-files-in-the-finder-mchlp2605/mac)).
+
+Learn more in [4 ways to capture screenshots with DevTools](https://developer.chrome.com/blog/devtools-tips-33).
+
+### Reorder DOM nodes
+
+Drag nodes to reorder them.
+
+1. In the following list, right-click **Elvis Presley** and select **Inspect**.
+   It's the last item in the list.
+
+   <br />
+
+   - Stevie Wonder
+   - Tom Waits
+   - Chris Thile
+   - Elvis Presley
+
+   <br />
+
+2. In the DOM Tree, drag `<li>Elvis Presley</li>` to the top of the list.
+
+### Force state
+
+You can force nodes to remain in states like `:active`, `:hover`, `:focus`,
+`:visited`, and `:focus-within`.
+
+1. Hover over the **The Lord of the Flies** list item. The background color becomes orange.
+
+   <br />
+
+   - The Lord of the Flies
+   - Crime and Punishment
+   - Moby Dick
+
+   <br />
+
+2. Right-click on the **The Lord of the Flies** list item, and select **Inspect**.
+
+3. Right-click `<li class="demo--hover">The Lord of the Flies</li>` and select
+   **Force State** \> **:hover** . Read the appendix on [missing options](https://developer.chrome.com/docs/devtools/dom#options),
+   if you don't see this option.
+
+   The background color remains orange, even though you're not actually hovering
+   over the node.
+
+### Hide a node
+
+Press <kbd>H</kbd> to hide a node.
+
+1. From the following list, right-click **The Stars My Destination** and
+   select **Inspect**.
+
+   - The Count of Monte Cristo
+   - The Stars My Destination
+2. Press the <kbd>H</kbd> key. The node is hidden. You can also right-click the
+   node and use the **Hide element** option.
+
+   ![What the node looks like in the DOM Tree after it's hidden](https://developer.chrome.com/static/docs/devtools/dom/image/hide-node.png)
+3. Press the <kbd>H</kbd> key again. The node is shown again.
+
+### Delete a node
+
+Press <kbd>Delete</kbd> to delete a node.
+
+1. From the following list, right-click **Foundation** and select **Inspect**.
+
+   - The Illustrated Man
+   - Through the Looking-Glass
+   - Foundation
+2. Press the <kbd>Delete</kbd> key. The node is deleted. You can also
+   right-click the node and use the **Delete element** option.
+
+3. Press <kbd>Control</kbd>+<kbd>Z</kbd> or <kbd>Command</kbd>+<kbd>Z</kbd> (macOS).
+   The last action is undone and the node reappears.
+
+## Access nodes in the Console
+
+DevTools provides a few shortcuts for accessing DOM nodes from the Console, or
+getting JavaScript references to them.
+
+### Reference the currently-selected node with $0
+
+When you inspect a node, the `== $0` text next to the node means that you can
+reference this node in the Console with the variable `$0`.
+
+1. Right-click **The Left Hand of Darkness** list item and select **Inspect**.
+
+   - The Left Hand of Darkness
+   - Dune
+2. Press the <kbd>Escape</kbd> key to open the Console Drawer. You may have to
+   select **Console** to open it.
+
+3. Type `$0` and press the <kbd>Enter</kbd> key. The result of the expression is
+   that `$0` evaluates to `<li>The Left Hand of Darkness</li>`.
+
+   ![The result of the first $0 expression in the Console.](https://developer.chrome.com/static/docs/devtools/dom/image/console-lefthand-darkness.png)
+4. Hover over the result. The node is highlighted in the viewport.
+
+5. Click `<li>Dune</li>` in the DOM Tree, type `$0` in the Console again, and
+   then press <kbd>Enter</kbd> again. Now, `$0` evaluates to `<li>Dune</li>`.
+
+   ![The result of the second $0 expression in the Console.](https://developer.chrome.com/static/docs/devtools/dom/image/console-dune.png)
+
+### Store as global variable
+
+If you need to refer back to a node many times, store it as a global variable.
+
+1. In the following list, right-click **The Big Sleep** and select **Inspect**.
+
+   - The Big Sleep
+   - The Long Goodbye
+2. Right-click `<li>The Big Sleep</li>` in the DOM Tree and select
+   **Store as global variable** . If you can't find this option, read about
+   [missing options](https://developer.chrome.com/docs/devtools/dom#options).
+
+3. Type `temp1` in the Console and then press <kbd>Enter</kbd>. The result of
+   the expression shows that the variable evaluates to the node. Click the
+   node to expand the list item.
+
+   ![The result of the temp1 expression.](https://developer.chrome.com/static/docs/devtools/dom/image/temp1-result.png)
+
+### Copy JS path
+
+Copy the JavaScript path to a node to reference it in an automated test.
+
+1. In the following list, right-click **The Brothers Karamazov** , and
+   select **Inspect**.
+
+   - The Brothers Karamazov
+   - Crime and Punishment
+2. Right-click `<li>The Brothers Karamazov</li>` in the DOM Tree and select
+   **Copy** \> **Copy JS Path** . A `document.querySelector()` expression that
+   resolves to the node has been copied to your clipboard.
+
+3. Press <kbd>Control</kbd>+<kbd>V</kbd> or <kbd>Command</kbd>+<kbd>V</kbd>
+   (macOS) to paste the expression into the Console.
+
+4. Press <kbd>Enter</kbd> to evaluate the expression.
+
+   ![The result of the Copy JS Path expression](https://developer.chrome.com/static/docs/devtools/dom/image/the-result-the-copy-js-p-7a9d5a4875212.png)
+
+## Break on DOM changes
+
+DevTools lets you pause a page's JavaScript when the JavaScript modifies the DOM.
+Read about [DOM change breakpoints](https://developer.chrome.com/docs/devtools/javascript/breakpoints#dom).
+
+## Next steps
+
+That covers most of the DOM-related features in DevTools. You can discover the
+rest of them by right-clicking nodes in the DOM Tree and experimenting with the
+options that weren't covered in this tutorial.
+
+Keep reading:
+
+- Read about [Elements panel keyboard shortcuts](https://developer.chrome.com/docs/devtools/shortcuts#elements).
+- Read more [DevTools documentation](https://developer.chrome.com/docs/devtools) to discover everything else you can do with DevTools.
+
+Participate in the [DevTools community](https://developer.chrome.com/docs/devtools/overview#community) to
+contact the DevTools team or get help from other developers.
+
+## Appendix
+
+Learn more about specific topics.
+
+### HTML versus the DOM
+
+This section quickly explains the difference between HTML and the DOM.
+
+When you use a web browser to request a page like `https://example.com`, the
+server returns an HTML document:
+
+    <!doctype html>
+    <html>
+      <head>
+        <title>Hello, world!</title>
+      </head>
+      <body>
+        <h1>Hello, world!</h1>
+        <p>This is a hypertext document on the World Wide Web.</p>
+        <script src="/script.js" async></script>
+      </body>
+    </html>
+
+The browser parses the HTML and creates a tree of objects:
+
+    html
+      head
+        title
+      body
+        h1
+        p
+        script
+
+This tree of objects, or nodes, represent the page's content. This is called the
+document object model, or the DOM for short. Right now, the objects are the same
+in both the DOM and the HTML.
+
+Suppose that the `script.js` file at the bottom of the HTML included the
+following functions:
+
+    const h1 = document.querySelector('h1');
+    h1.parentElement.removeChild(h1);
+    const p = document.createElement('p');
+    p.textContent = 'Wildcard!';
+    document.body.appendChild(p);
+
+That script removes the `h1` node and adds another `p` node to the DOM. The
+DOM now looks like this:
+
+    html
+      head
+        title
+      body
+        p
+        script
+        p
+
+The page's HTML is now different than its DOM.
+
+HTML represents initial page content and the DOM represents active, current
+page content. When JavaScript adds, removes, or edits nodes, the DOM
+becomes different than the HTML.
+
+Learn more in MDN's
+[Introduction to the DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model).
+
+### Scroll into view
+
+This is a continuation of the [Scroll into view](https://developer.chrome.com/docs/devtools/dom#scroll1) section. Follow the
+instructions to complete the section.
+
+1. The `<li>Magritte</li>` node should still be selected in your DOM Tree. If not, go back to [Scroll into view](https://developer.chrome.com/docs/devtools/dom#scroll1) and start over.
+2. Right-click the `<li>Magritte</li>` node and select **Scroll into view** .
+   Your viewport scrolls back up so that you can see the **Magritte** node.
+   If **Scroll into view** is missing, read about [missing options](https://developer.chrome.com/docs/devtools/dom#options).
+
+   ![](https://developer.chrome.com/static/docs/devtools/dom/image/scroll-view-640c169d78f0e.png)
+
+### Missing options
+
+Many instructions in this tutorial instruct you to right-click a node in the DOM
+Tree and then select an option from the context menu that pops up. If you don't
+see the specified option in the context menu, try right-clicking away from the
+node text.
+
+![Where to click if you're not seeing all the options](https://developer.chrome.com/static/docs/devtools/dom/image/where-click-youre-see-7b901ba2f1219.png)

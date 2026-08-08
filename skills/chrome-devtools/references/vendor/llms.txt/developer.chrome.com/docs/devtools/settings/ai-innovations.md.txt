@@ -1,0 +1,18 @@
+![Meysam Sarabadani](https://web.dev/images/authors/meysarabadani.jpeg) Meysam Sarabadani ![Jecelyn Yeen](https://web.dev/images/authors/jecelynyeen.jpg) Jecelyn Yeen [X](https://twitter.com/jecfish) [GitHub](https://github.com/jecfish) [Bluesky](https://bsky.app/profile/jec.fish) [Homepage](https://jec.fish/)
+
+<br />
+
+[**Settings**](https://developer.chrome.com/docs/devtools/settings#open) \> **AI innovations** lets you manage the list of AI features in DevTools.
+
+To enable an AI feature:
+
+1. [Open Settings](https://developer.chrome.com/docs/devtools/settings#open).
+2. In the **AI innovations** tab, read the **Things to consider** at the top to better understand the usage of generative AI.
+3. Turn on the toggle next to the AI feature. Expand the feature drop-down to learn more about the feature and privacy consideration.
+
+There are two features:
+
+- [Console insights](https://developer.chrome.com/docs/devtools/console/understand-messages). Understand console errors and warnings better with AI.
+- [AI assistance](https://developer.chrome.com/docs/devtools/ai-assistance). Get help from AI to improve your development workflow with contextual explanations and suggestions.
+
+![A list of AI features in the AI innovations tab.](https://developer.chrome.com/static/docs/devtools/settings/ai-innovations/image/ai-innovations.png)

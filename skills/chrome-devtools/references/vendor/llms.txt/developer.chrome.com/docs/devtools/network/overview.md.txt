@@ -1,0 +1,110 @@
+![Dale St. Marthe](https://web.dev/images/authors/dalestmarthe.jpg) Dale St. Marthe [LinkedIn](https://www.linkedin.com/in/dale-st-marthe)
+
+<br />
+
+Use the **Network** panel to analyze page load and inspect network resources.
+
+> [!IMPORTANT]
+> **Key Point:** You can also use **AI assistance** to understand requests sent by your website. See [AI assistance for network](https://developer.chrome.com/docs/devtools/ai-assistance/chat#network).
+
+## Overview
+
+The **Network** panel lets you:
+
+- [Record network activity](https://developer.chrome.com/docs/devtools/network/overview#activity)
+- [Inspect network requests](https://developer.chrome.com/docs/devtools/network/overview#inspect)
+- [Filter and sort network requests](https://developer.chrome.com/docs/devtools/network/overview#filter)
+- [Search network headers and responses](https://developer.chrome.com/docs/devtools/network/overview#search)
+- [Change loading behavior](https://developer.chrome.com/docs/devtools/network/overview#loading)
+- [Block network requests](https://developer.chrome.com/docs/devtools/network-request-blocking)
+- [Change network conditions](https://developer.chrome.com/docs/devtools/device-mode/override-user-agent#open_the_network_conditions_panel)
+- [Debug `prefetch` speculation rules](https://developer.chrome.com/docs/devtools/application/debugging-speculation-rules#debug-prefetch-network)
+- [Override HTTP response headers](https://developer.chrome.com/docs/devtools/overrides#override-headers)
+- [Override headers for multiple URLs with wildcard characters.](https://developer.chrome.com/docs/devtools/overrides#edit-response-header-overrides)
+- [Save and export network request data](https://developer.chrome.com/docs/devtools/network/overview#export)
+
+Check out [Inspect network activity](https://developer.chrome.com/docs/devtools/network) for a guided tutorial exploring some of the most commonly-used **Network** panel features.
+
+## Open the Network panel
+
+To open the **Network** panel, [open DevTools](https://developer.chrome.com/docs/devtools/open) and then click **Network** located in the action bar at the top.
+
+Alternatively, to open the **Network** panel through the **Command menu** follow these steps:
+
+1. [Open DevTools](https://developer.chrome.com/docs/devtools/open).
+2. Open the **Command menu** by pressing:
+3. macOS: <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+4. Windows, Linux, ChromeOS: <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> ![Command Menu with](https://developer.chrome.com/static/docs/devtools/network/overview/image/cmdm-network-panel.png)
+5. Start typing `Network`, select **Show Network panel** , and press <kbd>Enter</kbd>.
+
+## Record network activity
+
+When you [open DevTools](https://developer.chrome.com/docs/devtools/open), network requests are automatically recorded in the **Network** panel, so long as DevTools is open.
+
+In addition to recording, you can do the following:
+
+- [Stop recording network requests](https://developer.chrome.com/docs/devtools/network/reference#stop-recording).
+- [Clear all requests](https://developer.chrome.com/docs/devtools/network/reference#clear) from the **Requests** table.
+- [Save requests across page loads](https://developer.chrome.com/docs/devtools/network/reference#preserve-log).
+- [Emulate an offline experience](https://developer.chrome.com/docs/devtools/network/reference#offline).
+- [Simulate slower network connections](https://developer.chrome.com/docs/devtools/network#throttle).
+
+## Inspect network requests
+
+All network requests are logged in the **Requests** table at the center of the panel.
+
+To learn more about columns displayed by default and additional ones you can add, see [View a log of requests](https://developer.chrome.com/docs/devtools/network/reference#requests).
+
+Click the name of a request to see tabs with additional information on the request, including the following:
+
+- [**Headers**](https://developer.chrome.com/docs/devtools/network/reference#headers): The HTTP headers of the selected request.
+- [**Payload**](https://developer.chrome.com/docs/devtools/network/reference#payload): The query string parameters and form data of a request.
+- [**Preview**](https://developer.chrome.com/docs/devtools/network/reference#preview): A basic rendering of the HTML.
+- [**Response**](https://developer.chrome.com/docs/devtools/network/reference#response): The HTML source code of the request.
+- [**Initiator**](https://developer.chrome.com/docs/devtools/network/reference#initiators-dependencies): What caused the request.
+- [**Timing**](https://developer.chrome.com/docs/devtools/network/reference#timing): A breakdown of the network activity for the selected request.
+- [**Cookies**](https://developer.chrome.com/docs/devtools/network/reference#cookies): Cookies of the request and its response.
+- [**Device bound sessions**](https://developer.chrome.com/docs/devtools/network/reference#dbsc): The deferral and refresh status of active device bound sessions.
+
+## Filter and sort network requests
+
+The **Network** panel give you two ways to sort requests in the **Requests** table:
+
+- [Sort by column](https://developer.chrome.com/docs/devtools/network/reference#sort-by-column)
+- [Sort by activity phase](https://developer.chrome.com/docs/devtools/network/reference#sort-by-activity).
+
+The following are several ways to filter requests in the **Requests** table:
+
+- [Filter requests by properties](https://developer.chrome.com/docs/devtools/network/reference#filter-by-property)
+- [Filter requests by type](https://developer.chrome.com/docs/devtools/network/reference#filter-by-type)
+- [Filter requests by time](https://developer.chrome.com/docs/devtools/network/reference#filter-by-time)
+- [Hide data URLs](https://developer.chrome.com/docs/devtools/network/reference#hide_data_urls)
+- [Hide extension URLs](https://developer.chrome.com/docs/devtools/network/reference#hide-extension-urls)
+- [Show only the requests with blocked response cookies](https://developer.chrome.com/docs/devtools/network/reference#show-blocked-cookies)
+- [Show only blocked requests](https://developer.chrome.com/docs/devtools/network/reference#show-blocked)
+- [Show only third-party requests](https://developer.chrome.com/docs/devtools/network/reference#third-party)
+
+## Search network headers and responses
+
+To learn how to search the HTTP headers and responses of all resources for a certain string or regular expression, see [Search network headers and responses](https://developer.chrome.com/docs/devtools/network#search).
+
+## Change loading behavior
+
+Test your page's user experience by changing loading behavior in the **Network** panel.
+
+Using the **Network** panel you can do the following:
+
+- [Emulate a first-time visitor by disabling the browser cache](https://developer.chrome.com/docs/devtools/network/reference#disable-cache)
+- [Manually clear the browser cache](https://developer.chrome.com/docs/devtools/network/reference#clear-cache)
+- [Manually clear browser cookies](https://developer.chrome.com/docs/devtools/network/reference#clear-cookies)
+- [Emulate offline](https://developer.chrome.com/docs/devtools/network/reference#offline)
+- [Simulate a slow network connection](https://developer.chrome.com/docs/devtools/network/reference#throttling)
+- [Override HTTP response headers](https://developer.chrome.com/docs/devtools/network/reference#override-headers)
+- [Override the user agent](https://developer.chrome.com/docs/devtools/network/reference#user-agent)
+
+## Save and export network request data
+
+To save and export network request data, see the following:
+
+- [Save all network requests to a HAR file](https://developer.chrome.com/docs/devtools/network/reference#save-as-har)
+- [Copy one or more requests to the clipboard](https://developer.chrome.com/docs/devtools/network/reference#copy)

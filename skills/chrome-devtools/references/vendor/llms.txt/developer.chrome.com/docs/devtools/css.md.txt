@@ -1,0 +1,99 @@
+![Kayce Basques](https://web.dev/images/authors/kaycebasques.jpg) Kayce Basques [X](https://twitter.com/kaycebasques) [GitHub](https://github.com/kaycebasques) ![Sofia Emelianova](https://web.dev/images/authors/sofiayem.jpg) Sofia Emelianova [GitHub](https://github.com/sofiayem)
+
+<br />
+
+Complete these interactive tutorials to learn the basics of viewing and changing a page's CSS using
+Chrome DevTools.
+
+## View an element's CSS
+
+1. Right-click the `Inspect me!` text below and select **Inspect** . The **Elements** panel of DevTools opens.
+
+   Inspect me!
+2. Observe the `Inspect me!` element highlighted blue in the **DOM Tree**.
+
+   ![Highlighted element.](https://developer.chrome.com/static/docs/devtools/css/image/highlighted-element-8f4f3524bfa5c.png)
+3. In the **DOM Tree** , find the value of the `data-message` attribute for the `Inspect me!`
+   element.
+
+4. Enter the attribute's value in the text box below.
+
+5. In the **Elements** \> **Styles** tab, find the `aloha` class rule.
+
+   The **Styles** tab lists the CSS rules being applied to whatever element is selected in the **DOM Tree** , which should still be the `Inspect me!` element.
+6. The `aloha` class is declaring a value for `padding`. Enter this value and its unit without spaces in the text box below.
+
+If you'd like to dock your DevTools window to the right of your viewport, like on the screenshot in step one, see [Change DevTools placement](https://developer.chrome.com/docs/devtools/customize#placement).
+
+## Add a CSS declaration to an element
+
+Use the **Styles** tab when you want to change or add CSS declarations to an element.
+
+1. Right-click the `Add a background color to me!` text below and select **Inspect**.
+
+   Add a background color to me!
+2. Click `element.style` near the top of the **Styles** tab.
+
+3. Type `background-color` and press <kbd>Enter</kbd>.
+
+4. Type `honeydew` and press <kbd>Enter</kbd>. In the **DOM tree**, you can see that an inline style declaration was applied to the element.
+
+![Adding a CSS declaration to the element via the Styles tab.](https://developer.chrome.com/static/docs/devtools/css/image/adding-css-declaration-d1de92218eac4.png)
+
+## Add a CSS class to an element
+
+Use the **Styles** tab to see how an element looks when a CSS class is applied to or removed from an
+element.
+
+1. Right-click the `Add a class to me!` element below and select **Inspect**.
+
+   Add a class to me!
+2. Click **.cls**. DevTools reveals a text box where you can add classes to the selected element.
+
+3. Type `color_me` in the **Add new class** text box and then press Enter. A checkbox appears below
+   the **Add new class** text box, where you can toggle the class on and off. If the
+   `Add a class to me!` element had any other classes applied to it, you'd also be able to toggle
+   them from here.
+
+![Applying the color_me class to the element.](https://developer.chrome.com/static/docs/devtools/css/image/applying-colorme-class-cf50101604797.png)
+
+## Add a pseudostate to a class
+
+Use the **Styles** tab to apply a CSS pseudostate to an element.
+
+1. Hover over the `Hover over me!` text below. The background color changes.
+
+   Hover over me!
+2. Right-click the `Hover over me!` text and select **Inspect**.
+
+3. In the **Styles** tab, click **:hov**.
+
+4. Check the **:hover** checkbox. The background color changes like before, even though you're not
+   actually hovering over the element.
+
+![Toggling the hover pseudostate on an element.](https://developer.chrome.com/static/docs/devtools/css/image/hover-pseudostate.png)
+
+For more information, see [Toggle a pseudo-class](https://developer.chrome.com/docs/devtools/css/reference#pseudo-class).
+
+## Change the dimensions of an element
+
+Use the **Box Model** interactive diagram in the **Styles** tab to change the width, height, padding, margin, or border length of an element.
+
+1. Right-click the `Change my margin!` element below and select **Inspect**.
+
+   Change my margin!
+2. To see the **Box Model** , click the ![Show sidebar.](https://developer.chrome.com/static/docs/devtools/css/image/show-sidebar-bf915ed20021b.png) **Show sidebar** button in the action bar on the **Styles** tab.
+   ![The Show sidebar button.](https://developer.chrome.com/static/docs/devtools/css/image/the-show-sidebar-button-4c374c3f34511.png)
+
+3. In the **Box Model** diagram in the **Styles** tab, hover over **padding** . The element's padding is highlighted in the viewport.
+   ![Element's padding.](https://developer.chrome.com/static/docs/devtools/css/image/elements-padding-42cdfef833fcf.png)
+
+4. Double-click the left margin in the **Box Model** . The element currently doesn't have margins, so the `margin-left` has a value of `-`.
+
+5. Type `100` and press <kbd>Enter</kbd>.
+   ![Changing the element's margin-left.](https://developer.chrome.com/static/docs/devtools/css/image/changing-elements-left-7aa96916ac40d.png)
+
+The **Box Model** defaults to pixels, but it also accepts other values, such as `25%`, or `10vw`.
+
+> [!IMPORTANT]
+> **Key point:** Alternatively, in rule declarations in the **Styles** tab, you can change [length properties and their units with your pointer](https://developer.chrome.com/docs/devtools/css/reference#change-length-value).
