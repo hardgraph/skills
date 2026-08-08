@@ -1,9 +1,15 @@
 ---
 name: apify
-description: Apify — serverless cloud platform for web scraping, browser automation, and data extraction via Actors. Use when running or building Apify Actors, calling the Apify REST API (v2), driving Actor runs, datasets, and key-value stores from the CLI or SDK, scheduling and chaining Actors, using Apify's residential/datacenter proxy, or deciding between the Console, API, CLI, and SDKs.
+description: Apify — serverless cloud platform for web scraping, browser automation, and data extraction via Actors. Use when running or building Apify Actors, calling the Apify REST API (v2), driving Actor runs, datasets, and key-value stores from the CLI or SDK, scheduling and chaining Actors, using Apify's residential/datacenter proxy, or deciding between the Console, API, CLI, and SDKs. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Apify
+  category: Automation
+  tags: [apify, web-scraping, browser-automation, actors, data-extraction]
 ---
 
 # Apify
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 Apify runs **Actors** — serverless cloud programs that take a JSON input, perform
 a task (web scraping, headless-browser automation, data processing), and write

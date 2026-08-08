@@ -1,9 +1,15 @@
 ---
 name: ollama
-description: Ollama — run open large language models locally or through Ollama Cloud, via a CLI and an OpenAI-compatible REST API. Use when running models like Gemma, Qwen, GLM, Kimi, or Llama on your own hardware, building a Modelfile, calling the /api/generate and /api/chat endpoints, using Ollama as a drop-in OpenAI replacement at /v1, pointing a library at OLLAMA_HOST, or choosing between a local server and Ollama Cloud.
+description: Ollama — run open large language models locally or through Ollama Cloud, via a CLI and an OpenAI-compatible REST API. Use when running models like Gemma, Qwen, GLM, Kimi, or Llama on your own hardware, building a Modelfile, calling the /api/generate and /api/chat endpoints, using Ollama as a drop-in OpenAI replacement at /v1, pointing a library at OLLAMA_HOST, or choosing between a local server and Ollama Cloud. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Ollama
+  category: AI and agents
+  tags: [ollama, local-models, llm, openai-compatible, inference]
 ---
 
 # Ollama
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 Ollama runs open-weight large language models — Gemma, Qwen, GLM, Kimi, Llama,
 and thousands more — behind one CLI and one REST API. The same model can run on

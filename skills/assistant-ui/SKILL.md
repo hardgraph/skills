@@ -1,9 +1,15 @@
 ---
 name: assistant-ui
-description: assistant-ui — React components for building AI chat interfaces. Use when building a chat UI (thread list, message composer, markdown rendering, tool-call parts, streaming), wiring it to a model runtime (Vercel AI SDK, LangChain, custom), using the CLI to scaffold and add components, adapting a shadcn/Radix/Base UI style, or running it on web, React Native, or the terminal.
+description: assistant-ui — React components for building AI chat interfaces. Use when building a chat UI (thread list, message composer, markdown rendering, tool-call parts, streaming), wiring it to a model runtime (Vercel AI SDK, LangChain, custom), using the CLI to scaffold and add components, adapting a shadcn/Radix/Base UI style, or running it on web, React Native, or the terminal. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Assistant UI
+  category: AI and agents
+  tags: [ai, chat, react, ui, streaming]
 ---
 
 # assistant-ui
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 assistant-ui is a set of React components and runtimes for building AI chat
 interfaces. It gives you the hard parts of a chat UI — a thread of messages,

@@ -1,9 +1,15 @@
 ---
 name: expo
-description: Use when building or shipping a React Native app with Expo, choosing between managed and bare workflows, adding native dependencies, configuring EAS Build or Update, or verifying Expo SDK details that drift between releases.
+description: Use when building or shipping a React Native app with Expo, choosing between managed and bare workflows, adding native dependencies, configuring EAS Build or Update, or verifying Expo SDK details that drift between releases. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Expo
+  category: Mobile
+  tags: [expo, react-native, eas, ios, android]
 ---
 
 # Expo
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 Expo is a framework and cloud service for React Native. The framework gives you a
 managed native project you do not edit; the service (EAS) builds, signs, submits,

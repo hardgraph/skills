@@ -1,9 +1,15 @@
 ---
 name: n8n
-description: n8n — a source-available workflow automation platform (self-hosted n8n or n8n Cloud) for connecting APIs and services through visual node graphs with optional JavaScript/Python code. Use when building integrations and automations, designing a workflow of triggers and nodes, using expressions to map data between nodes, working with the HTTP Request node and credentials, building custom nodes or the Advanced AI/agent nodes, calling n8n from webhooks or external code, deploying self-hosted n8n (Docker), or using the REST API and public/internal endpoints.
+description: n8n — a source-available workflow automation platform (self-hosted n8n or n8n Cloud) for connecting APIs and services through visual node graphs with optional JavaScript/Python code. Use when building integrations and automations, designing a workflow of triggers and nodes, using expressions to map data between nodes, working with the HTTP Request node and credentials, building custom nodes or the Advanced AI/agent nodes, calling n8n from webhooks or external code, deploying self-hosted n8n (Docker), or using the REST API and public/internal endpoints. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: n8n
+  category: Automation
+  tags: [workflow, integrations, low-code, webhooks, ai-agents]
 ---
 
 # n8n
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 n8n automates work by chaining **nodes** in a graph: a trigger starts the run,
 each node does a unit of work (call an API, transform data, branch), and data

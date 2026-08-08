@@ -1,9 +1,15 @@
 ---
 name: stripe
-description: Payments platform for accepting money online, running subscriptions and invoicing, and paying out to connected accounts. Use when integrating Stripe — Checkout, Payment Intents, webhooks, Connect, Billing, Elements, Tax — choosing between its APIs, or identifying which surfaces are deprecated.
+description: Payments platform for accepting money online, running subscriptions and invoicing, and paying out to connected accounts. Use when integrating Stripe — Checkout, Payment Intents, webhooks, Connect, Billing, Elements, Tax — choosing between its APIs, or identifying which surfaces are deprecated. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Stripe
+  category: Payments
+  tags: [stripe, checkout, billing, connect, webhooks]
 ---
 
 # Stripe
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 Stripe is the payments platform for accepting money online (cards, wallets, bank
 debits, BNPL) plus billing and subscriptions, marketplace payouts (Connect), tax,

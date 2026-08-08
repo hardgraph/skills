@@ -1,9 +1,15 @@
 ---
 name: cloudflare
-description: Use when building on the Cloudflare developer platform — Workers, Pages, D1, R2, KV, Durable Objects, Queues, Vectorize, Workers AI — choosing a storage primitive, configuring bindings and Wrangler, or working around Workers runtime constraints that differ from Node.js.
+description: Use when building on the Cloudflare developer platform — Workers, Pages, D1, R2, KV, Durable Objects, Queues, Vectorize, Workers AI — choosing a storage primitive, configuring bindings and Wrangler, or working around Workers runtime constraints that differ from Node.js. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Cloudflare
+  category: Infrastructure
+  tags: [cloudflare, workers, edge, serverless, storage]
 ---
 
 # Cloudflare
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 Cloudflare's developer platform runs your code in V8 isolates distributed across
 its network, with storage primitives attached as **bindings** rather than

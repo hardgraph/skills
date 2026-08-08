@@ -1,9 +1,15 @@
 ---
 name: neon
-description: Neon — serverless Postgres with database branching, scale-to-zero, and a connection pooler. Use when provisioning Postgres, modelling data for an autoscaling database, using copy-on-write branches for dev/preview/migrations, sizing the autoscaler, choosing connection options (pooled vs direct, the -pooler endpoint), running the CLI, calling the API, configuring extensions, or integrating Neon with frameworks and edge platforms.
+description: Neon — serverless Postgres with database branching, scale-to-zero, and a connection pooler. Use when provisioning Postgres, modelling data for an autoscaling database, using copy-on-write branches for dev/preview/migrations, sizing the autoscaler, choosing connection options (pooled vs direct, the -pooler endpoint), running the CLI, calling the API, configuring extensions, or integrating Neon with frameworks and edge platforms. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Neon
+  category: Backend and data
+  tags: [postgres, database, serverless, branching, sql]
 ---
 
 # Neon
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 Neon is fully-managed Postgres that separates compute from storage. Storage is a
 copy-on-write page server; compute is a Postgres instance that can start, stop,

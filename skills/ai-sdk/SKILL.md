@@ -1,9 +1,15 @@
 ---
 name: ai-sdk
-description: Vercel AI SDK — provider-agnostic TypeScript toolkit for building streaming AI applications and agents. Use when generating or streaming text with LLMs, wiring model providers (OpenAI, Anthropic, Google), implementing tool calling, producing structured output with Zod, building chat UIs with useChat, or composing multi-step agents with ToolLoopAgent.
+description: Vercel AI SDK — provider-agnostic TypeScript toolkit for building streaming AI applications and agents. Use when generating or streaming text with LLMs, wiring model providers (OpenAI, Anthropic, Google), implementing tool calling, producing structured output with Zod, building chat UIs with useChat, or composing multi-step agents with ToolLoopAgent. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: AI SDK
+  category: AI and agents
+  tags: [ai, llm, streaming, tool-calling, typescript]
 ---
 
 # Vercel AI SDK
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 The AI SDK is a provider-agnostic TypeScript toolkit for building AI-powered
 applications and agents. It runs on React, Next.js, Vue, Svelte, Node.js, and

@@ -1,9 +1,15 @@
 ---
 name: chrome-devtools
-description: Chrome DevTools — the inspector, debugger, profiler, and automation toolset built into Chrome and Edge. Use when debugging web pages (DOM, styles, network, console), profiling runtime or load performance, finding memory leaks, inspecting storage and service workers, debugging JavaScript with breakpoints and source maps, recording and replaying user flows with the Recorder, emulating devices and network conditions, running remote debugging over CDP, or driving DevTools headless for CI.
+description: Chrome DevTools — the inspector, debugger, profiler, and automation toolset built into Chrome and Edge. Use when debugging web pages (DOM, styles, network, console), profiling runtime or load performance, finding memory leaks, inspecting storage and service workers, debugging JavaScript with breakpoints and source maps, recording and replaying user flows with the Recorder, emulating devices and network conditions, running remote debugging over CDP, or driving DevTools headless for CI. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Chrome DevTools
+  category: Developer tools
+  tags: [browser, debugging, performance, network, automation]
 ---
 
 # Chrome DevTools
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 Chrome DevTools is the in-browser toolkit for inspecting, debugging, and
 profiling web applications. Open it with `Cmd+Opt+I` (macOS) or `Ctrl+Shift+I`.

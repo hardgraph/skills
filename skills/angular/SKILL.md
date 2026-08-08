@@ -1,9 +1,15 @@
 ---
 name: angular
-description: Angular — Google's component-based web application framework for building client, mobile, and desktop apps with TypeScript. Use when building or upgrading Angular apps — components, templates and bindings, signals and computed state, dependency injection, RxJS interop, routing, forms, standalone components, zoneless change detection, or migrating from NgModules and the legacy module-based model.
+description: Angular — Google's component-based web application framework for building client, mobile, and desktop apps with TypeScript. Use when building or upgrading Angular apps — components, templates and bindings, signals and computed state, dependency injection, RxJS interop, routing, forms, standalone components, zoneless change detection, or migrating from NgModules and the legacy module-based model. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Angular
+  category: Web frameworks
+  tags: [angular, typescript, signals, rxjs, web]
 ---
 
 # Angular
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 Angular is a TypeScript web application framework. Modern Angular (v17+) is
 built on **standalone components** (no NgModules required), **signals** for

@@ -1,9 +1,15 @@
 ---
 name: appwrite
-description: Appwrite — an open-source backend-as-a-service (self-hosted or Cloud) providing Auth, Databases, Storage, Functions, Messaging, and Realtime. Use when adding user authentication and sessions, modelling data in the document database with attributes/permissions, uploading and serving files, running serverless Functions (Node, Python, Ruby, PHP, Dart) triggered by events or schedules, sending push/email/SMS, subscribing to realtime document changes, or integrating the Web/Flutter/Apple/Android/React Native SDKs and server SDKs.
+description: Appwrite — an open-source backend-as-a-service (self-hosted or Cloud) providing Auth, Databases, Storage, Functions, Messaging, and Realtime. Use when adding user authentication and sessions, modelling data in the document database with attributes/permissions, uploading and serving files, running serverless Functions (Node, Python, Ruby, PHP, Dart) triggered by events or schedules, sending push/email/SMS, subscribing to realtime document changes, or integrating the Web/Flutter/Apple/Android/React Native SDKs and server SDKs. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Appwrite
+  category: Backend and data
+  tags: [baas, authentication, database, storage, serverless]
 ---
 
 # Appwrite
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 Appwrite is a backend platform: Auth, a document database, file storage,
 serverless functions, messaging, and realtime, exposed through REST/GraphQL and

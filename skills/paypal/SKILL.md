@@ -1,9 +1,15 @@
 ---
 name: paypal
-description: Use when integrating PayPal payments, choosing between PayPal products, or verifying PayPal API details that drift — webhook event names, SDK parameters, version pins. Covers Orders v2 checkout, subscriptions, payouts, disputes, and the Business versus Platforms split.
+description: Use when integrating PayPal payments, choosing between PayPal products, or verifying PayPal API details that drift — webhook event names, SDK parameters, version pins. Covers Orders v2 checkout, subscriptions, payouts, disputes, and the Business versus Platforms split. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: PayPal
+  category: Payments
+  tags: [paypal, checkout, subscriptions, payouts, webhooks]
 ---
 
 # PayPal
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 You almost certainly already know the Orders v2 flow: create server-side, buyer
 approves in PayPal's UI, capture server-side, verify the capture response, and

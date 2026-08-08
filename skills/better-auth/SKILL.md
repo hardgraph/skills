@@ -1,9 +1,15 @@
 ---
 name: better-auth
-description: Use when adding authentication to a TypeScript application with Better Auth — email and password, social providers, sessions, two-factor, organizations, RBAC — choosing a database adapter, generating the schema, or debugging why a plugin's client methods are missing.
+description: Use when adding authentication to a TypeScript application with Better Auth — email and password, social providers, sessions, two-factor, organizations, RBAC — choosing a database adapter, generating the schema, or debugging why a plugin's client methods are missing. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Better Auth
+  category: Authentication
+  tags: [authentication, typescript, sessions, oauth, rbac]
 ---
 
 # Better Auth
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 Better Auth is an authentication framework, not an authentication service. It
 runs inside your application and the **user and session tables live in your own
