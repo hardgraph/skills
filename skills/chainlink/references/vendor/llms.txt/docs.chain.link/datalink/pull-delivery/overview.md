@@ -1,0 +1,54 @@
+# DataLink (Pull Delivery)
+Source: https://docs.chain.link/datalink/pull-delivery/overview
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+DataLink pull-based feeds provide access to specialized data from Data Providers through offchain retrieval with onchain verification capabilities.
+
+## Key Characteristics
+
+- **Specialized market data**: Access specialized datasets directly from individual Data Providers
+- **Pull-based delivery**: Fetch data on-demand via REST API or real-time via WebSocket
+- **Onchain verification**: Cryptographically verify report integrity using verifier contracts
+- **Proven infrastructure**: Built on the same battle-tested [Chainlink Data Streams](/data-streams) architecture
+
+> **NOTE: Infrastructure Sharing**
+>
+> Pull-based DataLink feeds use the **same underlying infrastructure** as [Chainlink Data Streams](/data-streams),
+> including APIs, SDKs, and verification contracts. This ensures reliability, security, and a familiar developer
+> experience.
+
+## How It Works
+
+1. **Data Providers** submit specialized data to Chainlink Decentralized Oracle Networks (DONs)
+2. **DONs** create cryptographically signed reports and deliver them to the Chainlink Aggregation Layer
+3. **Applications** fetch reports offchain via API/WebSocket and verify their integrity onchain
+
+For detailed technical information, see the [Architecture](/datalink/pull-delivery/architecture) page.
+
+## Getting Started
+
+### 1. Check Network Support
+
+Verify that your target blockchain supports onchain verification by reviewing [Supported Networks](/datalink/pull-delivery/supported-networks).
+
+### 2. Choose Your Integration Method
+
+- **REST API**: Fetch reports on-demand for periodic updates
+- **WebSocket**: Stream real-time data for continuous applications
+- **Onchain Verification**: Add cryptographic validation
+
+### 3. Follow the Tutorials
+
+Start with our step-by-step [Tutorials](/datalink/pull-delivery/tutorials) covering:
+
+- Fetching and decoding reports via API (Go/Rust)
+- Streaming and decoding reports via WebSocket (Go/Rust)
+- Onchain verification for EVM chains
+
+### 4. Reference Documentation
+
+Consult the [Reference](/datalink/pull-delivery/reference) section for:
+
+- Complete API and SDK documentation
+- Report schema specifications

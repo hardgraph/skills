@@ -1,0 +1,38 @@
+# Capabilities Overview
+Source: https://docs.chain.link/cre/capabilities
+Last Updated: 2025-11-04
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+At the core of the Chainlink Runtime Environment (CRE) is the concept of **Capabilities**. A capability is a modular, decentralized service that performs a specific task. Think of them as the individual "bricks" that you can use to build custom workflows.
+
+Each capability is powered by its own independent Decentralized Oracle Network (DON), which is optimized for that specific task, ensuring security and reliable performance.
+
+(Image: Image)
+
+## Invoking Capabilities via the SDK
+
+As a developer, you do not interact with these capability DONs directly. Instead, you invoke them through the developer-friendly interfaces provided by the **CRE SDKs** ([Go](/cre/reference/sdk/core-go) and [TypeScript](/cre/reference/sdk/core-ts)), such as the [`evm.Client`](/cre/reference/sdk/evm-client), the [`solana.Client`](/cre/reference/sdk/solana-client), or the [`http.Client`](/cre/reference/sdk/http-client). The SDK handles the low-level complexity of communicating with the correct DON and processing the consensus-verified result, allowing you to focus on your business logic.
+
+## Chain Families
+
+CRE supports blockchain capabilities across multiple **chain families** — groups of networks that share the same virtual machine, serialization format, and address encoding. The chain family determines which SDK client you use and how payloads are encoded.
+
+| Chain Family | Networks                                                           | SDK Client                       | Payload Encoding         |
+| ------------ | ------------------------------------------------------------------ | -------------------------------- | ------------------------ |
+| EVM          | Ethereum, Base, Arbitrum, and [many more](/cre/supported-networks) | `EVMClient` / `evm.Client`       | ABI (viem / go-ethereum) |
+| Solana       | Solana Mainnet, Solana Devnet                                      | `SolanaClient` / `solana.Client` | Borsh                    |
+
+Additional chain families may be added in future releases.
+
+## Available Capabilities
+
+This section provides a high-level, conceptual overview of the capabilities currently available in CRE.
+
+- **[Triggers](/cre/capabilities/triggers)**: Event sources that start your workflow executions.
+- **[HTTP](/cre/capabilities/http)**: Fetch and post data from external APIs with decentralized consensus.
+- **[Confidential HTTP](/cre/capabilities/confidential-http)**: Make privacy-preserving API calls with enclave execution, secret injection, and optional response encryption.
+- **[EVM Read & Write](/cre/capabilities/evm-read-write)**: Interact with smart contracts on EVM-compatible blockchains with decentralized consensus.
+- **[Solana Write](/cre/capabilities/solana-write)**: Write verified workflow results to Solana programs via the Keystone Forwarder.
+
+All execution capabilities automatically use [built-in consensus](/cre/concepts/consensus-computing) to validate results across multiple nodes, ensuring security and reliability.

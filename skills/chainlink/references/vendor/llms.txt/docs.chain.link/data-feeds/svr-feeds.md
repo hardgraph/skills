@@ -1,0 +1,144 @@
+# Smart Value Recapture (SVR) Feeds
+Source: https://docs.chain.link/data-feeds/svr-feeds
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+<p>
+    SVR now supports multiple orderflow auctions in parallel on Ethereum mainnet, including Flashbots and Titan.
+    Searchers participating in SVR should integrate with all supported orderflow auction providers to maximize their
+    competitiveness.
+  </p>
+  <p>
+    Reach out to <a href="mailto:devrel@smartcontract.com">devrel@smartcontract.com</a> for assistance getting
+    onboarded. Searchers can [subscribe here](https://chainlinkcommunity.typeform.com/to/s55Hu2tK) to receive timely
+    Chainlink SVR updates.
+  </p>
+
+
+
+  <p>
+    Chainlink SVR has expanded beyond Ethereum Mainnet and is now available on Base, Arbitrum, and BNB Chain via the
+    Atlas auction system. See the{" "}
+    <a href="/data-feeds/svr-feeds/searcher-onboarding-atlas">Atlas searcher onboarding guide</a> for integration
+    details.
+  </p>
+
+
+[Chainlink Smart Value Recapture](https://blog.chain.link/chainlink-smart-value-recapture-svr/) (SVR) Feeds introduce a novel and secure way to recapture Oracle Extractable Value (OEV)—a subset of non-toxic Maximal Extractable Value (MEV) associated with oracle updates that is most commonly observed during the liquidation process of lending protocols. The value recaptured by SVR provides DeFi protocols with an additional revenue stream while also supporting the economic sustainability of Chainlink oracle. SVR Feeds are read in the same manner as standard Chainlink Data Feeds (see [Using Data Feeds](/data-feeds/using-data-feeds)), and simply require that users specify an SVR-enabled feed address.
+
+
+  [Contact us](https://chain.link/contact?ref_id=DataFeed) to talk to an expert about integrating Chainlink SVR with
+  your applications.
+
+
+
+  <p>
+    Developers remain responsible for ensuring that protocol risk parameters are configured appropriately and that the
+    operation and performance of Chainlink SVR matches expectations. Chainlink SVR operates on the same underlying
+    architecture as Chainlink Data Feeds. Please review the Chainlink Data Feeds [Developer
+    Responsibilities](/data-feeds/developer-responsibilities) and Chainlink [Terms of Service](https://chain.link/terms)
+    for important information and disclosures. By using Chainlink SVR, you acknowledge and agree to these terms.
+  </p>
+
+
+## Understanding MEV and OEV
+
+### Maximal Extractable Value (MEV)
+
+Maximal Extractable Value (MEV) refers to the value derived from the ability of block proposers (e.g., validators) to include, exclude, or change the order of transactions in the blocks they produce. Specialized **searchers** typically identify MEV opportunities, such as liquidation or arbitrage, and bid for optimal inclusion in the block via a competitive auction. The value is then captured by the participants of the block building process such as searchers, builders, and validators.
+
+### Oracle Extractable Value (OEV)
+
+Oracle Extractable Value (OEV) refers to a subset of MEV created during the transmission of **oracle reports** onchain and their subsequent consumption by onchain applications. For example, when a price oracle report reveals that a collateralized position is at-risk and eligible for liquidation, searchers compete to place a **liquidation transaction** immediately after the oracle update transaction (a process known as **backrunning**). Because oracles supply these price updates, the resulting liquidation MEV is inherently "oracle-related".
+
+## Chainlink Smart Value Recapture (SVR)
+
+Chainlink Smart Value Recapture (SVR) extends standard Chainlink Price Feeds with an **optional private transmission flow**. By sending oracle updates through a **dual aggregator** architecture, SVR enables an **auction** for the opportunity to backrun liquidations. This approach enables **non-toxic MEV** recapture, where the **DeFi protocol** and the **Chainlink Network** share in the payment offered by the searcher for the right to backrun the liquidation instead of letting it leak entirely to third parties.
+
+### Why Use SVR?
+
+- **Targeted at Liquidations (Non-Toxic MEV Capture)**  
+  SVR is purpose-built for recapturing non-toxic **liquidation-related OEV** via backrunning and cannot be used for harmful forms of MEV such as frontrunning or sandwich attacks.
+
+- **Minimal Integration Changes**  
+  Chainlink SVR Feeds maintain the **same aggregator interface** and data structure as standard Chainlink Price Feeds. Most protocols can simply point to the new SVR contracts with **minimal** changes required.
+
+- **Economic Sustainability**  
+  By recapturing OEV that would have otherwise been leaked to third parties, SVR helps support the economic sustainability of the DeFi ecosystem. Recaptured OEV revenue is split between integrating DeFi protocols and the Chainlink Network at a standard rate.
+
+- **Fallback Security**  
+  Chainlink SVR uses **standard Price Feeds** as a fallback, ensuring pricing data is continually made available to protocols via the public mempool in situations where the private route (e.g., Flashbots) fails.
+
+- **Proven Oracle Infrastructure**  
+  Chainlink SVR is built on the **Chainlink Decentralized Oracle Network (DON)** infrastructure that has already helped secure tens of billions in DeFi TVL and underpins existing Chainlink Data Feeds.
+
+### How SVR Works
+
+
+
+1. **Dual Transmission**
+   - **(1a) Standard Feed (Public Route)**: The Chainlink Data DON (triggered by a heartbeat or deviation threshold) sends a price report to the **Standard Aggregator** via the public mempool—this is the traditional Chainlink flow. If anything goes wrong with the private route, the system can still rely on the standard aggregator's updates.
+   - **(1b) SVR Feed (Private Route)**: Simultaneously, the Data DON sends the **same** price report to the **SVR Aggregator** through a private channel (e.g., Flashbots MEV-Share). This private route creates an **auction** for liquidations.
+
+2. **MEV-Share Auction**
+   - **(2) Liquidation Bid**: In the private channel, searchers see the incoming oracle report and bid to backrun the price update with a liquidation transaction. Builders select the highest bid, bundling that liquidation in the same block. If no bid is placed, the price update can still be published onchain without any bundled liquidation. If not, the fallback in the dual aggregator is triggered.
+
+3. **SVR Update and Liquidation**
+   - **(3a) SVR Price Report**: The winning bundle is published onchain, and the **SVR Feed** is updated with the new price.
+   - **(3b) Liquidation Execution**: In the same block, the **backrunning** transaction can use the freshly updated price to liquidate the undercollateralized position. The oracle-related MEV can thereby be partly recaptured by the DeFi protocol and the Chainlink Network.
+
+4. **Token Price Consumption**
+   - **(4) DeFi Protocol**: The updated price from the **SVR Feed** is now available to the DeFi protocol (e.g., Aave) for accurate liquidation logic or other price-dependent actions.
+
+**Fail-Safe Fallback Mechanism**  
+If the **private route** fails or times out, the SVR feed automatically **reverts** to the **Standard Feed price** after a configurable delay. This delay can be set to any amount of seconds. This helps ensures the feed doesn't stall and that price data is accessible through the public route if the private channel is unavailable.
+
+## SVR Feed Variants
+
+Chainlink SVR Feeds are available as standard feeds for general use and specialized [Aave SVR Feeds](#aave-svr-feeds) for the Aave protocol. More specialized SVR feeds may be developed in the future for other protocols.
+
+### Aave SVR Feeds
+
+Aave SVR feeds are specifically tailored for the Aave protocol and are only intended for use by Aave.
+
+## How Protocols Can Utilize SVR Feeds
+
+### 1. Identify the SVR Feed Address
+
+To get started, please fill out [this form](https://chainlinkcommunity.typeform.com/svr-signup) to ensure protocol compatibility and proper recapture of OEV revenue. In many situations, you only need to point your protocol to an SVR version of the Chainlink Price Feed. To find the correct address for the asset pair you wish to secure with SVR, visit the [Feed Addresses](/data-feeds/price-feeds/addresses) page and filter the feeds to display only SVR feeds.
+
+### 2. Read from the SVR Feed
+
+In your smart contract, import and reference the **AggregatorV3Interface** just as you normally would, but **use the SVR aggregator's address**.
+
+```solidity
+
+## Searcher Guides
+
+Chainlink SVR supports two auction paths depending on the network:
+
+| Network                          | Auction System      | Guide                                                                                                            |
+| -------------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Ethereum Mainnet                 | Flashbots MEV-Share | [Searcher Onboarding: Ethereum Mainnet](/data-feeds/svr-feeds/searcher-onboarding-ethereum)                      |
+| Base, Arbitrum, BNB Chain, Monad | Atlas               | [Searcher Onboarding: Atlas (Base, Arbitrum, BNB Chain, Monad)](/data-feeds/svr-feeds/searcher-onboarding-atlas) |
+
+## Economics and Revenue Split
+
+When a protocol integrates Chainlink SVR Feeds, the recaptured oracle-related MEV is split between the integrating DeFi protocol and the Chainlink Network.
+
+This split provides DeFi protocols with an additional revenue stream while also supporting the economic sustainability of Chainlink oracles. Note that the split may be subject to change, with the goal of generating sustainable economics between DeFi protocols and the oracles that power them.
+
+## Risk and Disclaimers
+
+- **Delay Risks**: SVR introduces a small, configurable delay to allow for the MEV-Share auction. In the unlikely event of a private-route failure, the dual aggregator reverts to the standard feed price update after a delay. To learn more about delay risks, and how you can parameterize your protocol to account for them, refer to [this research blog](https://blog.chain.link/chainlink-svr-analysis/).
+- **Liquidation Competition**: Multiple liquidations triggered by the same price update compete for blockspace. SVR is agnostic to which liquidator wins. SVR maximizes for the highest payment, and thus the highest recapture rate, on the auction.
+- **MEV Does Not Disappear**: SVR recaptures only the oracle-related portion of MEV. Protocol builders should remain MEV-aware when designing their applications.
+- **Dynamic Recapture Rates**: SVR aims to recapture as high a portion of oracle-update-related MEV as possible. Actual results depend on market conditions, competition among searchers, and factors such as protocol design.
+
+
+  <p>
+    Chainlink SVR Feeds recapture oracle-initiated liquidation-related MEV (OEV), but they do not eliminate other forms
+    of MEV such as sandwich or frontrunning attacks. Developers remain responsible for ensuring that protocol risk
+    parameters are configured appropriately and that the operation and performance of Chainlink SVR matches
+    expectations.
+  </p>

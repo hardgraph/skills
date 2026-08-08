@@ -1,0 +1,132 @@
+# Consuming Data Feeds
+Source: https://docs.chain.link/data-feeds/getting-started
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+You can use Chainlink Data Feeds to connect your smart contracts to asset pricing data like the [ETH / USD feed](https://data.chain.link/feeds/ethereum/mainnet/eth-usd). These data feeds use data aggregated from many independent Chainlink node operators. Each price feed has an onchain address and functions that enable contracts to read pricing data from that address.
+
+This guide shows you how to read Data Feeds and store the value onchain using Solidity. To learn how to read feeds offchain or use different languages, see the [Using Data Feeds on EVM Chains](/data-feeds/using-data-feeds) guide. Alternatively, you can also learn how to use Data Feeds on [Solana](/data-feeds/solana) or [StarkNet](/data-feeds/starknet).
+
+The code for reading Data Feeds on Ethereum or other EVM-compatible blockchains is the same for each chain and each Data Feed types. You choose different types of feeds for different uses, but the request and response format are the same. The answer decimal length and expected value ranges might change depending on what feed you use.
+
+> **CAUTION: Using Data Feeds on L2 networks**
+>
+> If you are using Chainlink Data Feeds on L2 networks like Arbitrum, OP, and Metis, you must also check the latest
+> answer from the L2 Sequencer Uptime Feed to ensure that the data is accurate in the event of an L2 sequencer outage.
+> See the [L2 Sequencer Uptime Feeds](/data-feeds/l2-sequencer-feeds) page to learn how to use Data Feeds on L2
+> networks.
+
+## Before you begin
+
+If you are new to smart contract development, learn how to [Deploy Your First Smart Contract](/quickstarts/deploy-your-first-contract) before you start this guide.
+
+## Examine the sample contract
+
+This example contract obtains the latest price answer from the [BTC / USD feed](/data-feeds/price-feeds/addresses) on the Sepolia testnet, but you can modify it to read any of the different [Types of Data Feeds](/data-feeds#types-of-data-feeds).
+
+```sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.7;
+
+import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
+
+/**
+ * THIS IS AN EXAMPLE CONTRACT THAT USES HARDCODED
+ * VALUES FOR CLARITY.
+ * THIS IS AN EXAMPLE CONTRACT THAT USES UN-AUDITED CODE.
+ * DO NOT USE THIS CODE IN PRODUCTION.
+ */
+
+/**
+ * If you are reading data feeds on L2 networks, you must
+ * check the latest answer from the L2 Sequencer Uptime
+ * Feed to ensure that the data is accurate in the event
+ * of an L2 sequencer outage. See the
+ * https://docs.chain.link/data-feeds/l2-sequencer-feeds
+ * page for details.
+ */
+contract DataConsumerV3 {
+  AggregatorV3Interface internal dataFeed;
+
+  /**
+   * Network: Sepolia
+   * Aggregator: BTC/USD
+   * Address: 0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43
+   */
+  constructor() {
+    dataFeed = AggregatorV3Interface(0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43);
+  }
+
+  /**
+   * Returns the latest answer.
+   */
+  function getChainlinkDataFeedLatestAnswer() public view returns (int256) {
+    // prettier-ignore
+    (
+      /* uint80 roundId */
+      ,
+      int256 answer,
+      /*uint256 startedAt*/
+      ,
+      /*uint256 updatedAt*/
+      ,
+      /*uint80 answeredInRound*/
+    ) = dataFeed.latestRoundData();
+    return answer;
+  }
+}
+```
+
+The contract has the following components:
+
+- The `import` line imports an interface named `AggregatorV3Interface`. Interfaces define functions without their implementation, which leaves inheriting contracts to define the actual implementation themselves. In this case, `AggregatorV3Interface` defines that all v3 Aggregators have the function `latestRoundData`. You can [see the complete code](https://github.com/smartcontractkit/chainlink/blob/contracts-v1.3.0/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol) for the `AggregatorV3Interface` on GitHub.
+
+- The `constructor() {}` initializes an interface object named `dataFeed` that uses `AggregatorV3Interface` and connects specifically to a proxy aggregator contract that is already deployed at `0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43`. The interface allows your contract to run functions on that deployed aggregator contract.
+
+- The `getChainlinkDataFeedLatestAnswer()` function calls your `dataFeed` object and runs the `latestRoundData()` function. When you deploy the contract, it initializes the `dataFeed` object to point to the aggregator at `0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43`, which is the proxy address for the Sepolia BTC / USD data feed. Your contract connects to that address and executes the function. The aggregator connects with several oracle nodes and aggregates the pricing data from those nodes. The response from the aggregator includes several variables, but `getChainlinkDataFeedLatestAnswer()` returns only the `answer` variable.
+
+## Compile, deploy, and run the contract
+
+> **CAUTION: Configure and fund your wallet**
+>
+> If you have not already configured your MetaMask wallet and funded it with testnet ETH, follow the instructions in [Deploy Your First Smart Contract](/quickstarts/deploy-your-first-contract#install-and-fund-your-metamask-wallet) to set that up. You can get testnet ETH at one of the available [Sepolia faucets](/resources/link-token-contracts/#sepolia-testnet).
+
+Deploy the `DataConsumerV3` smart contract on the Sepolia testnet.
+
+1. [Open the example contract](https://remix.ethereum.org/#url=https://docs.chain.link/samples/DataFeeds/DataConsumerV3.sol) in Remix. Remix opens and shows the contents of the smart contract.
+
+   <div class="remix-callout">
+     <a href="https://remix.ethereum.org/#url=https://docs.chain.link/samples/DataFeeds/DataConsumerV3.sol">Open the contract in Remix</a>
+   </div>
+
+2. Because the code is already written, you can start the compile step. On the left side of Remix, click the **Solidity Compiler** tab to view the compiler settings.
+
+   (Image: Screenshot showing the Compiler tab and its settings.)
+
+3. Use the default compiler settings. Click the **Compile DataConsumerV3.sol** button to compile the contract. Remix automatically detects the correct compiler version depending on the `pragma` that you specify in the contract. You can ignore warnings about unused local variables in this example.
+
+   (Image: Screenshot of the Compile button.)
+
+4. On the **Deploy** tab, select the **Injected Provider** environment. This contract specifically requires Web3 because it connects with another contract on the blockchain. Running in a JavaScript VM will not work.
+
+   (Image: Screenshot showing the Injected Provider environment selected.)
+
+5. Because the example contract has several imports, Remix might select another contract to deploy by default. In the **Contract** section, select the `DataConsumerV3` contract to make sure that Remix deploys the correct contract.
+
+   (Image: Screenshot showing DataConsumerV3 as the contract to deploy.)
+
+6. Click **Deploy** to deploy the contract to the Sepolia testnet. MetaMask opens and asks you to confirm payment for deploying the contract. Make sure MetaMask is set to the Sepolia network before you accept the transaction. Because these transactions are on the blockchain, they are not reversible.
+
+   (Image: Screenshot of the Deploy button for DataConsumerV3.)
+
+7. In the MetaMask prompt, click **Confirm** to approve the transaction and spend your testnet ETH required to deploy the contract.
+
+   (Image: Screenshot showing Metamask asking you to confirm the transaction.)
+
+8. After a few seconds, the transaction completes and your contract appears under the **Deployed Contracts** list in Remix. Click the contract dropdown to view its variables and functions.
+
+   (Image: Remix Deployed Contracts Section)
+
+9. Click **getChainlinkDataFeedLatestAnswer** to show the latest answer from the aggregator contract. In this example, the answer is the latest price, which appears just below the button. The returned answer is an integer, so it is missing its decimal point. You can find the correct number of decimal places for this answer on the [Price Feed addresses](/data-feeds/price-feeds/addresses) page by clicking the **Show more details** checkbox. The answer on the BTC / USD feed uses 8 decimal places, so an answer of `3030914000000` indicates a BTC / USD price of `30309.14`. Each feed uses a different number of decimal places for answers.
+
+   (Image: A screenshot showing the deployed contract and the latest answer.)

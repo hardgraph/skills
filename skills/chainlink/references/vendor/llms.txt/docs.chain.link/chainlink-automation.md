@@ -1,0 +1,20 @@
+# Chainlink Automation
+Source: https://docs.chain.link/chainlink-automation
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+<ChainlinkAutomation callout="shutdown" />
+
+Automate your smart contracts using a secure and hyper-reliable decentralized network that uses the same external network of node operators that secures billions in value. Building on Chainlink Automation will accelerate your innovation, save you time and money, and help you get to market faster so you don't have to deal with the setup cost, ongoing maintenance, and risks associated with a centralized automation stack.
+
+To learn more about how the Chainlink Automation Network automates your smart contracts, visit the [Concepts](/chainlink-automation/concepts/automation-concepts) and [Architecture](/chainlink-automation/concepts/automation-architecture) pages. You can also learn more through our [additional Automation resources](https://chain.link/automation#masterclass).
+
+(Image: Image)
+
+## Supported networks and costs
+
+For a list of blockchains that are supported by Chainlink Automation, see the [Supported Networks](/chainlink-automation/overview/supported-networks) page. To learn more about the cost of using Chainlink Automation, see the [Automation Economics](/chainlink-automation/overview/automation-economics) page.
+
+## Contact us
+
+For help with your specific use case, [contact us](https://chain.link/contact?ref_id=Automation) to connect with one of our Solutions Architects. You can also ask questions about Chainlink Automation on [Stack Overflow](https://stackoverflow.com/questions/ask?tags=chainlink) or the [#automation channel](https://discord.com/channels/592041321326182401/821350860302581771) in our [Discord server](https://discord.gg/qj9qarT). For all developers resources, check out the [Developer Resource Hub](https://dev.chain.link).

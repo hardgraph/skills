@@ -1,0 +1,15 @@
+# Using Triggers
+Source: https://docs.chain.link/cre/guides/workflow/using-triggers/overview
+Last Updated: 2025-11-04
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+Triggers are a special type of capability that start your workflows. They are event-driven services that watch for a specific condition to be met. When the condition occurs, the trigger fires and instructs CRE to run the callback function you have registered for that event.
+
+A single workflow can contain multiple handlers, allowing you to react to different events with specific logic.
+
+This section provides detailed guides for each available trigger type:
+
+- **[Cron Trigger](/cre/guides/workflow/using-triggers/cron-trigger)**: Run workflows on a time-based schedule.
+- **[HTTP Trigger](/cre/guides/workflow/using-triggers/http-trigger/overview)**: Start workflows in response to an HTTP request from an external system.
+- **[EVM Log Trigger](/cre/guides/workflow/using-triggers/evm-log-trigger)**: Initiate workflows in response to a specific event being emitted by a smart contract.

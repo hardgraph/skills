@@ -1,0 +1,52 @@
+# CCIP Solidity Interfaces & Contracts Reference Documentation (EVM)
+Source: https://docs.chain.link/ccip/api-reference/evm
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+## Available Versions
+
+### Latest Release
+
+- **[CCIP v1.6.1](/ccip/api-reference/evm/v1.6.1)** (Current Version)
+  - Pool Library: `ReleaseOrMintInV1.amount` renamed to `sourceDenominatedAmount`
+  - TokenPool events: `Locked`/`Burned` and `Released`/`Minted` replaced by unified `LockedOrBurned` and `ReleasedOrMinted`
+  - Rate limiting: added `OutboundRateLimitConsumed` and `InboundRateLimitConsumed` events for monitoring consumption
+  - LockReleaseTokenPool constructor: removed `acceptLiquidity` parameter; `canAcceptLiquidity` capability removed
+  - LockReleaseTokenPool: removed `lockOrBurn` and `releaseOrMint` functions
+  - LockReleaseTokenPool: added `RebalancerSet` event
+  - Extensibility: standardized pool extension hooks via internal `_lockOrBurn` and `_releaseOrMint` in `TokenPool`
+
+- **[CCIP v1.6.0](/ccip/api-reference/evm/v1.6.0)**
+  - Added support for SVM (Solana Virtual Machine) chains
+
+- **[CCIP v1.5.1](/ccip/api-reference/evm/v1.5.1)**
+  - Added support for tokens with different decimals across chains
+  - Enhanced token pool upgrades to support multiple active pools, ensuring in-flight messages remain deliverable during upgrades
+  - Added decimal validation and overflow protection
+  - Upgraded token pool access control from OwnerIsCreator to Ownable2StepMsgSender for better security
+  - Introduced BurnMintERC20 contract for easy token deployment and cross-chain expansion
+    - Configurable decimals and max supply
+    - Built-in CCIP admin support
+    - Role-based access control for minting and burning
+
+### Previous Versions
+
+- **[CCIP v1.5.0](/ccip/api-reference/evm/v1.5.0)** (Legacy Version)
+  - Base implementation
+  - Cross-chain:
+    - Send arbitrary data
+    - Transfer tokens
+    - Programmable Token Transfers
+  - [Cross-Chain Token (CCT) standard](/ccip/concepts/cross-chain-token/overview)
+  - ⚠️ We recommend upgrading to v1.5.1 for latest features
+
+## Documentation Structure
+
+Each version includes detailed documentation for:
+
+- Core Contracts (Router, Receiver)
+- Token Pool Implementations
+- Registry Components
+- Interface Definitions
+- Library Definitions
+- Error Handling

@@ -1,0 +1,120 @@
+# Data Streams Architecture
+Source: https://docs.chain.link/data-streams/architecture
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+<DataStreams section="dsNotes" />
+
+Chainlink Data Streams delivers low-latency market data offchain that you can verify onchain. This architecture uses a pull-based design, preserving trust-minimization with cryptographic verification while offering greater flexibility compared to traditional push-based oracle designs.
+
+Data Streams offers two implementation approaches to meet different needs:
+
+1. **Standard API Implementation**: The default implementation where applications directly retrieve report data through REST APIs or WebSocket connections and can verify this data onchain when needed.
+
+2. **Streams Trade Implementation**: An alternative implementation that combines Data Streams with Chainlink Automation for automated data retrieval and execution with frontrunning mitigation.
+
+## High Level Architecture
+
+Chainlink Data Streams has the following core components:
+
+(Image: Image)
+
+- **A Chainlink Decentralized Oracle Network (DON):** This DON operates similarly to the DONs that power [Chainlink Data Feeds](/data-feeds), but the key difference is that it signs and delivers reports to the Chainlink Data Streams Aggregation Network rather than delivering answers onchain directly. This allows the Data Streams DON to deliver reports more frequently for time-sensitive applications. Nodes in the DON retrieve data from many different data providers, reach a consensus about the data, sign a report including that data, and deliver the report to the Data Streams Aggregation Network.
+- **The Chainlink Data Streams Aggregation Network:** The Data Streams Aggregation Network stores the signed reports and makes them available for retrieval. The network uses an [active-active multi-site deployment](/data-streams/architecture#active-active-multi-site-deployment) to ensure high availability and robust fault tolerance by operating multiple active sites in parallel. The network delivers these reports directly via API for standard implementations or to Chainlink Automation upon request for [Streams Trade](/data-streams/architecture#streams-trade-architecture) implementations.
+- **The Chainlink Verifier Contract:** This contract verifies the signature from the DON to cryptographically guarantee that the report has not been altered from the time that the DON reached consensus to the point where you use the data in your application.
+
+## Standard API Implementation Architecture
+
+The Standard API Implementation is the default way to access Chainlink Data Streams. It provides direct access to report data through REST APIs and WebSocket connections, giving you maximum flexibility in how and when you access market data.
+
+### Example of offchain price updates
+
+Data Streams enables seamless offchain price updates through a mechanism designed for real-time data delivery. Here is an example of how your Client will benefit from low-latency market data directly from the Data Streams Aggregation Network:
+
+1. The Client opens a WebSocket connection to the Data Streams Aggregation Network to subscribe to new reports with low latency.
+
+2. The Data Streams Aggregation Network streams price reports via WebSocket, which gives the Client instant access to updated market data.
+
+3. The Client stores the price reports in a cache for quick access and use, which preserves data integrity over time.
+
+4. The Client regularly queries the Data Streams Aggregation Network for any missed reports to ensure data completeness.
+
+5. The Aggregation Network sends back an array of reports to the Client.
+
+6. The Client updates its cache to backfill any missing reports, ensuring the data set remains complete and current.
+
+(Image: Image)
+
+### Key benefits of the Standard API Implementation
+
+- **Maximum Flexibility**: Access data only when you need it, on your own terms
+- **Direct Integration**: Integrate directly with your systems using our SDKs or APIs
+- **Customized Usage**: Control exactly when and how data verification happens onchain
+- **Reduced Gas Costs**: Only pay for verification when absolutely necessary
+- **Real-time Access**: Get sub-second data latency through WebSocket subscriptions
+
+## Streams Trade Architecture
+
+Streams Trade is an alternative implementation that combines Chainlink Data Streams with [Chainlink Automation](/chainlink-automation) to deliver automated trade execution with frontrunning mitigation. Using Chainlink Automation with Data Streams automates trade execution and mitigates frontrunning by executing the transaction before the data is recorded onchain. Chainlink Automation requests data from the Data Streams Aggregation Network. It executes transactions only in response to the data and the verified report, so the transaction is executed correctly and independently from the decentralized application itself.
+
+(Image: Image)
+
+### Example trading flow using Streams Trade
+
+One example of how to use Data Streams with Automation is in a decentralized exchange. An example flow might work using the following process:
+
+(Image: Image)
+
+1. A user initiates a trade by confirming an `initiateTrade` transaction in their wallet.
+2. The onchain contract for the decentralized exchange responds by emitting a [log trigger](/chainlink-automation/concepts/automation-concepts#upkeeps-and-triggers) event.
+3. The Automation upkeep monitors the contract for the event. When Automation detects the event, it runs the `checkLog` function specified in the upkeep contract. The upkeep is defined by the decentralized exchange.
+4. The `checkLog` function uses a `revert` with a custom error called `StreamsLookup`. This approach aligns with [EIP-3668](https://eips.ethereum.org/EIPS/eip-3668#use-of-revert-to-convey-call-information) and conveys the required information through the data in the `revert` custom error.
+5. Automation monitors the `StreamsLookup` custom error that triggers Data Streams to process the offchain data request. Data Streams then returns the requested signed report in the `checkCallback` function for Automation.
+6. Automation passes the report to the Automation Registry, which executes the `performUpkeep` function defined by the decentralized exchange. The report is included as a variable in the `performUpkeep` function.
+7. The `performUpkeep` function calls the `verify` function on the Data Streams onchain verifier contract and passes the report as a variable.
+8. The verifier contract returns a `verifierResponse` bytes value to the upkeep.
+9. If the response indicates that the report is valid, the upkeep executes the user's requested trade. If the response is invalid, the upkeep rejects the trade and notifies the user.
+
+This is one example of how you can combine Data Streams and Automation, but the systems are highly configurable. You can write your own log triggers or [custom logic triggers](/chainlink-automation/guides/register-upkeep) to initiate Automation upkeeps for a various array of events. You can configure the `StreamsLookup` to retrieve multiple reports. You can configure the `performUpkeep` function to perform a wide variety of actions using the report.
+
+### Key benefits of the Streams Trade Implementation
+
+- **Automated Execution**: No need to build execution logic - Automation handles it
+- **Frontrunning Protection**: Transaction data and price data revealed atomically onchain
+- **Trustless Design**: Fully decentralized solution with no centralized execution components
+- **Ease of Integration**: Built-in support for standard DeFi operations
+
+Read the [Getting Started](/data-streams/getting-started) guide to learn how to build your own smart contract that retrieves reports from Data Streams using the Streams Trade implementation.
+
+**Note**: Before implementing Streams Trade, ensure that Chainlink Automation is available on your desired network by checking the [Automation Supported Networks page](/chainlink-automation/overview/supported-networks).
+
+## Active-Active Multi-Site Deployment
+
+Active-active is a system configuration strategy where redundant systems remain active simultaneously to serve requests. Incoming requests are distributed across all active resources and load-balanced to provide high availability, scalability, and fault tolerance. This strategy is the opposite of active-passive where a secondary system remains inactive until the primary system fails.
+
+The Data Streams API services use an active-active setup as a highly available and resilient architecture across multiple distributed and fully isolated origins. This setup ensures that the services are operational even if one origin fails, which provides robust fault tolerance and high availability. This configuration applies to both the [REST API](/data-streams/reference/data-streams-api/interface-api) and the [WebSocket API](/data-streams/reference/data-streams-api/interface-ws). A global load balancer seamlessly manages the system to provide automated and transparent failovers. For advanced use cases, the service publishes available origins using HTTP headers, which enables you to interact directly with specific origin locations if necessary.
+
+### Active-Active Setup
+
+The API services are deployed across multiple distributed data centers. Each active deployment is fully isolated and capable of handling requests independently. This redundancy ensures that the service can withstand the failure of any single site without interrupting service availability.
+
+### Global Load Balancer
+
+A global load balancer sits in front of the distributed deployments. The load balancer directs incoming traffic to the healthiest available site based on real-time health checks and observed load.
+
+- **Automated Failover:** In the event of a site failure, traffic is seamlessly rerouted to operational sites without user intervention.
+- **Load Distribution:** Requests are balanced across all active sites to optimize resource usage and response times.
+
+### Origin Publishing
+
+To enable advanced interactions, the service includes the origin information for all of the available origins in the HTTP headers of API responses. This feature allows customers to explicitly target specific deployments if desired. It also allows for concurrent WebSocket consumption from multiple sites, ensuring fault tolerant WebSocket subscriptions, low-latency, and minimized risk of report gaps.
+
+### Example Failover Scenarios
+
+Automatic failover handles availability and traffic routing in the following scenarios:
+
+- **Automatic Failover:** If one of the origins becomes unavailable, the global load balancer automatically reroutes traffic to the next available origin. This process is transparent to the user and ensures uninterrupted service. During automatic failover, WebSockets experience a reconnect. Failed REST requests must be retried.
+
+- **Manual Traffic Steering:** If you want to bypass the load balancer and target a specific site, you can use the origin headers to direct your requests. This manual targeting does not affect the automated failover capabilities provided by the load balancer, so a request will succeed even if the specified origin is unavailable.
+
+- **Multi-origin concurrent WebSocket subscriptions:** In order to maintain a highly available and fault tolerant report stream, you can subscribe to up to two available origins simultaneously. This compares the latest consumed timestamp for each stream and discards duplicate reports before merging the report stream locally.

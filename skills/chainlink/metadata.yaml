@@ -1,0 +1,109 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - chainlink
+    - blockchain
+    - oracle
+    - smart-contracts
+    - vrf
+    - ccip
+    - automation
+visibility:
+  audiences:
+    - web3-devs
+    - backend-devs
+lifecycle:
+  status: draft
+  created: '2026-08-08'
+  updated: '2026-08-08'
+# Chainlink publishes a flat llms.txt: absolute links, `.md` targets, no nesting.
+# Probed 2026-08-08: 82 unique `.md` links, all absolute under docs.chain.link,
+# zero nested llms.txt references. Same simple shape as the Expo, Stripe,
+# Resend, and React Navigation indexes. The index itself is agent-oriented and
+# instructs readers to prefer `.md` pages.
+# SPA check passed: a real page (conceptual-overview.md) returned distinct bytes
+# with real markdown content; a nonsense path returned distinct bytes — the
+# site is server-rendered and mirrorable.
+crawl:
+  - id: chainlink-llms-index
+    kind: llms.txt
+    url: 'https://docs.chain.link/llms.txt'
+    allowed_hosts:
+      - docs.chain.link
+    allowed_extensions:
+      - .md
+    follow_index_depth: 0
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: chainlink
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: Chainlink
+    intensity: 10
+  - type: keyword
+    value: Chainlink VRF
+    intensity: 9
+  - type: keyword
+    value: Chainlink Data Feeds
+    intensity: 9
+  - type: keyword
+    value: Chainlink Automation
+    intensity: 8
+  - type: keyword
+    value: CCIP
+    intensity: 8
+  - type: keyword
+    value: Chainlink Functions
+    intensity: 8
+  - type: keyword
+    value: oracle smart contract
+    intensity: 7
+  - type: keyword
+    value: LINK token
+    intensity: 6
+  - type: vector
+    value: Read reliable off-chain price and reference data into a smart contract using a decentralized oracle.
+    intensity: 10
+  - type: vector
+    value: Generate tamper-proof randomness on-chain for a game, lottery, or NFT mint.
+    intensity: 9
+  - type: vector
+    value: Automate smart-contract execution on a condition instead of running a custom keeper bot.
+    intensity: 8
+  - type: vector
+    value: Transfer tokens or messages between blockchains with Chainlink CCIP.
+    intensity: 8
+  - type: vector
+    value: Decide which Chainlink product fits an off-chain-data or cross-chain workflow.
+    intensity: 7
+provenance:
+  summary: >-
+    Chainlink reference for integrating decentralized oracle networks into smart contracts. Covers Data Feeds, Functions, VRF (verifiable randomness), Automation, Proof of Reserve, and CCIP cross-chain messaging, including per-network deployment, subscription and funding models, and contract addresses. Packages a reproducible mirror of the Chainlink documentation corpus under references/vendor/.
+  sources:
+    - title: Chainlink documentation llms.txt index
+      url: 'https://docs.chain.link/llms.txt'
+      authors:
+        - Chainlink Labs
+      inspected_at: '2026-08-08'
+      adopted:
+        - Flat index of documentation pages as absolute .md links, requiring no index nesting or path rewriting
+        - Coverage split across Data Feeds, VRF, Automation, Functions, CCIP, and getting-started material
+  notes: >-
+    Index inspected 2026-08-08: 82 unique `.md` links, absolute under docs.chain.link, no nested indexes. SPA check passed: conceptual-overview.md returned distinct, real markdown bytes versus a nonsense path. Status is `draft` until the corpus is crawled and the authored guidance reviewed against it.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 83
+  sources:
+    - id: chainlink-llms-index
+      kind: llms.txt
+      url: https://docs.chain.link/llms.txt
+      seed_path: docs.chain.link/llms.txt
+  failures: []

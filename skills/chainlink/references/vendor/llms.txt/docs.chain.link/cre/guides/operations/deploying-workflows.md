@@ -1,0 +1,76 @@
+# Deploying Workflows
+Source: https://docs.chain.link/cre/guides/operations/deploying-workflows
+Last Updated: 2026-05-12
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+> **NOTE: Early Access required**
+>
+> Workflow deployment is currently in Early Access. Run `cre account access` or visit <a href="https://app.chain.link/cre/request-access" target="_blank" rel="noopener noreferrer">app.chain.link/cre/request-access</a> to submit a request. See [Requesting Deploy Access](/cre/account/deploy-access) for details.
+
+**While you wait:** Continue building and simulating workflows using [`cre workflow simulate`](/cre/guides/operations/simulating-workflows).
+
+When you deploy a workflow, you register it with a **workflow registry** so it can activate and respond to triggers across a [Decentralized Oracle Network (DON)](/cre/key-terms#decentralized-oracle-network-don). CRE supports two registry models, selected per deployment target via `deployment-registry` in `workflow.yaml`:
+
+- **Private workflow**: Lifecycle operations (deploy, activate, pause, update, delete) are authorized by your CRE login session against the Chainlink-hosted private registry. No linked wallet, no gas, no Ethereum Mainnet RPC required for registry management.
+- **Public/onchain workflow**: Lifecycle operations submit transactions to the Workflow Registry contract on Ethereum Mainnet, authorized by your linked web3 wallet key.
+
+This is a **control-plane** choice — it governs how workflow management is authorized, not how workflow execution behaves. See [Private workflow](/cre/key-terms#private-workflow) and [Confidential execution](/cre/key-terms#confidential-workflow-or-confidential-execution) for the distinction.
+
+> **NOTE: Private is not confidential**
+>
+> A private workflow uses a private, offchain registry for workflow management. It does not make workflow execution confidential. A workflow can use the private registry and still run on a public DON, and it can use confidential execution regardless of which registry it's deployed to.
+
+## Comparing registries
+
+Run `cre registry list` to see which registries are available to your organization:
+
+```bash
+cre registry list
+```
+
+**Example output:**
+
+```
+Registries available to your organization
+
+ethereum-mainnet (0x4Ac5...E7e5)
+  ID:   onchain:ethereum-mainnet
+  Type: on-chain
+  Addr: 0x4Ac54353FA4Fa961AfcC5ec4B118596d3305E7e5
+
+Private (Chainlink-hosted)
+  ID:   private
+  Type: off-chain
+```
+
+Use the `ID` value as the `deployment-registry` in your `workflow.yaml`.
+
+|                                 | Private workflow                | Public / onchain workflow          |
+| ------------------------------- | ------------------------------- | ---------------------------------- |
+| `deployment-registry` value     | `"private"`                     | `"onchain:ethereum-mainnet"`       |
+| Authorization                   | CRE login session               | Linked web3 wallet key             |
+| Ethereum Mainnet RPC required   | No                              | Yes                                |
+| ETH for gas (registry ops)      | No                              | Yes                                |
+| `cre account link-key` required | No                              | Yes                                |
+| Creates onchain record          | No                              | Yes, in Workflow Registry contract |
+| Ideal for                       | Testing, team-managed workflows | Production, multisig ownership     |
+
+Secrets follow the same split. See [Using Secrets with Deployed Workflows](/cre/guides/workflow/secrets/using-secrets-deployed) for the per-registry secrets flows.
+
+## Limits
+
+Both registry types have per-organization defaults. See [Service Quotas](/cre/service-quotas#registry-quotas) for current values.
+
+|                                             | Default limit |
+| ------------------------------------------- | ------------- |
+| Private registry workflows per organization | 3             |
+| Linked keys per organization (onchain)      | 1             |
+| Workflows per linked key (onchain)          | 3             |
+
+## Deployment guides
+
+For step-by-step instructions, choose the guide for your target registry:
+
+- **[Deploying to the Private Registry](/cre/guides/operations/deploying-to-private-registry)** — Uses your CRE login session. No wallet, no gas, no Ethereum Mainnet RPC required for registry operations.
+- **[Deploying to the Onchain Registry](/cre/guides/operations/deploying-to-onchain-registry)** — Requires a linked wallet key and ETH on Ethereum Mainnet for registry transaction gas.

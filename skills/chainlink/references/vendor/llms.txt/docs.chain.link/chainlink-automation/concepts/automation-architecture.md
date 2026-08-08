@@ -1,0 +1,26 @@
+# Automation Architecture
+Source: https://docs.chain.link/chainlink-automation/concepts/automation-architecture
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+The following diagram describes the architecture of the Chainlink Automation Network. The Chainlink Automation Registry governs the actors on the network and compensates Automation Nodes for performing successful upkeeps. Developers can register their Upkeeps, and Node Operators can register as Automation Nodes.
+
+(Image: Image)
+
+## How it works
+
+Automation Nodes form a peer-to-peer network using Chainlink's OCR3 protocol. Nodes use the `Registry` to know which Upkeeps to service and **simulate** `checkUpkeep` functions on their own block nodes to determine when upkeeps are eligible to be performed.
+
+Using Chainlink's OCR3 protocol, nodes then get consensus on which upkeeps to perform and sign a report. The signed report contains the performData that will be executed onchain and the report is validated on the `Registry` before execution to provide cryptographic guarantees. The network has built-in redundancy and will still perform your upkeep even if some nodes are down.
+
+(Image: Image)
+
+Chainlink Automation use the same battle-tested transaction manager mechanism built and used by Chainlink Data Feeds. This creates a hyper-reliable automation service that can execute and confirm transactions even during intense gas spikes or on chains with significant reorgs.
+
+## Internal monitoring
+
+Internally, Chainlink Automation also uses its own monitoring and alerting mechanisms to maintain a healthy network and ensure developers get the industry leading reliability and performance.
+
+## Supported networks and costs
+
+For a list of blockchains that is supported by Chainlink Automation, please review the [supported networks page](/chainlink-automation/overview/supported-networks). To learn more about the cost of using Chainlink Automation, please review the [Automation economics](/chainlink-automation/overview/automation-economics) page.

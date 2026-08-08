@@ -1,0 +1,422 @@
+# Supporting safe areas
+
+Version: 7.x
+
+Sitemap: [llms.txt](https://reactnavigation.org/llms.txt)
+
+On modern devices, there are often areas of the screen that are partially or fully obscured by:
+
+- Physical notches
+- Status bar overlay
+- Home activity indicator on iOS
+- Navigation bar on Android
+
+The area not overlapped by such items is referred to as "safe area".
+
+React Navigation automatically applies proper insets to the built-in UI elements of the navigators, such as headers, tab bars, and drawers, to avoid being overlapped by such items. But your own content may still need to handle safe areas to ensure that it isn't obscured by these items.
+
+It's tempting to solve it by wrapping your entire app in a container in a `SafeAreaView`. But in doing so, we waste a bunch of space on the screen, as pictured in the image on the left below. What we ideally want is the image pictured on the right.
+
+![Notch on the iPhone X](/assets/safe-area/intro.png)
+
+When handling safe areas, the goal is to:
+
+a. Maximize usage of the screen
+b. Avoid hiding content or making it difficult to interact with by having it obscured
+
+The guide covers different scenarios and best practices for handling safe areas keeping these goals in mind.
+
+## Edge-to-edge on Android
+
+On Android, edge-to-edge means that your app draws under translucent system bars, such as the status bar and navigation bar. This behavior is similar to iOS.
+
+Starting with [Android 15 (API level 35)](https://developer.android.com/about/versions/15/behavior-changes-15#edge-to-edge), apps that target API 35 are edge-to-edge by default when running on Android 15 or later. On [Android 16 (API level 36)](https://developer.android.com/about/versions/16/behavior-changes-16#edge-to-edge), opting out of edge-to-edge is no longer supported.
+
+React Native supports edge-to-edge configuration from [version 0.81](https://reactnative.dev/blog/2025/08/12/react-native-0.81). You can enable edge-to-edge for Android versions below 16 by setting the `edgeToEdgeEnabled` property in `android/gradle.properties`:
+
+```properties
+edgeToEdgeEnabled=true
+```
+
+We recommend enabling edge-to-edge for Android to ensure that safe area is handled consistently across platforms and Android versions.
+
+This React Native option currently only works when your app uses the default `ReactActivity`, as documented in the [React Native Android template](https://github.com/react-native-community/template/blob/0.81.0/template/android/gradle.properties). If your app hosts React Native in a custom Android `Activity` or `Fragment`, you need to configure edge-to-edge in native Android code yourself.
+
+If you're on an older React Native version, you can use [`react-native-edge-to-edge`](https://github.com/zoontek/react-native-edge-to-edge).
+
+## The `SafeAreaView` component
+
+While React Native exports a [`SafeAreaView`](https://reactnative.dev/docs/safeareaview) component, it is not adequate:
+
+- It only supports iOS with no support for Android
+- It can't be used to apply insets to scrollable content, which is a common use case
+- If a screen containing safe area is animating, it causes jumpy behavior
+
+So we recommend to use the `useSafeAreaInsets` hook from the [react-native-safe-area-context](https://github.com/th3rdwave/react-native-safe-area-context) library to handle safe areas consistently. On iOS, you can also use [`contentInsetAdjustmentBehavior="automatic"`](https://reactnative.dev/docs/scrollview#contentinsetadjustmentbehavior-ios) on scroll views to handle safe areas automatically.
+
+:::warning
+
+The `SafeAreaView` component from `react-native-safe-area-context` works on Android, but still has the other issues mentioned above.
+
+:::
+
+## The `useSafeAreaInsets` hook
+
+![Default React Navigation Behavior](/assets/safe-area/iphonex-default.png)
+
+If you're using custom header, tab bar etc. or hiding the default ones, it's important to ensure your UI is within the safe area.
+
+For example, if the header and the tab bar are hidden, the content gets covered by the status bar and the bottom bar:
+
+**Static (Recommended):**
+
+```js name="Hidden components" snack
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { createStaticNavigation } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+function Demo() {
+  return (
+    <View
+      style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
+    >
+      <Text>This is top text.</Text>
+      <Text>This is bottom text.</Text>
+    </View>
+  );
+}
+
+// codeblock-focus-start
+const MyTabs = createBottomTabNavigator({
+  initialRouteName: 'Analytics',
+  // highlight-next-line
+  tabBar: () => null,
+  screenOptions: {
+    // highlight-next-line
+    headerShown: false,
+  },
+  screens: {
+    Analytics: Demo,
+    Profile: Demo,
+  },
+});
+
+const RootStack = createNativeStackNavigator({
+  initialRouteName: 'Home',
+  screenOptions: {
+    // highlight-next-line
+    headerShown: false,
+  },
+  screens: {
+    Home: MyTabs,
+    Settings: Demo,
+  },
+});
+
+// codeblock-focus-end
+
+const Navigation = createStaticNavigation(RootStack);
+
+export default function App() {
+  return <Navigation />;
+}
+```
+
+**Dynamic:**
+
+```js name="Hidden components" snack
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+function Demo() {
+  return (
+    <View
+      style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
+    >
+      <Text>This is top text.</Text>
+      <Text>This is bottom text.</Text>
+    </View>
+  );
+}
+
+// codeblock-focus-start
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Analytics"
+      // highlight-next-line
+      tabBar={() => null}
+      screenOptions={{
+        // highlight-next-line
+        headerShown: false,
+      }}
+    >
+      <Tab.Screen name="Analytics" component={Demo} />
+      <Tab.Screen name="Profile" component={Demo} />
+    </Tab.Navigator>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+function RootStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        // highlight-next-line
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Home" component={MyTabs} />
+      <Stack.Screen name="Settings" component={Demo} />
+    </Stack.Navigator>
+  );
+}
+
+// codeblock-focus-end
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
+  );
+}
+```
+
+![Text hidden by iPhoneX UI elements](/assets/safe-area/iphonex-content-hidden.png)
+
+To fix this issue you can apply safe area insets on your content. This can be achieved using the `useSafeAreaInsets` hook from the `react-native-safe-area-context` library and applying the insets as padding to your content:
+
+**Static (Recommended):**
+
+```js name="Safe area example" snack
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { createStaticNavigation } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// codeblock-focus-start
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+function Demo() {
+  // highlight-next-line
+  const insets = useSafeAreaInsets();
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        // highlight-start
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+        paddingLeft: insets.left,
+        paddingRight: insets.right,
+        // highlight-end
+      }}
+    >
+      <Text>This is top text.</Text>
+      <Text>This is bottom text.</Text>
+    </View>
+  );
+}
+// codeblock-focus-end
+
+const MyTabs = createBottomTabNavigator({
+  initialRouteName: 'Analytics',
+  tabBar: () => null,
+  screenOptions: {
+    headerShown: false,
+  },
+  screens: {
+    Analytics: Demo,
+    Profile: Demo,
+  },
+});
+
+const RootStack = createNativeStackNavigator({
+  initialRouteName: 'Home',
+  screenOptions: {
+    headerShown: false,
+  },
+  screens: {
+    Home: MyTabs,
+    Settings: Demo,
+  },
+});
+
+const Navigation = createStaticNavigation(RootStack);
+
+export default function App() {
+  return <Navigation />;
+}
+```
+
+**Dynamic:**
+
+```js name="Safe area example" snack
+import * as React from 'react';
+import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+// codeblock-focus-start
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+function Demo() {
+  // highlight-next-line
+  const insets = useSafeAreaInsets();
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        // highlight-start
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+        paddingLeft: insets.left,
+        paddingRight: insets.right,
+        // highlight-end
+      }}
+    >
+      <Text>This is top text.</Text>
+      <Text>This is bottom text.</Text>
+    </View>
+  );
+}
+
+// codeblock-focus-end
+
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+  return (
+    <Tab.Navigator
+      initialRouteName="Analytics"
+      tabBar={() => null}
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Tab.Screen name="Analytics" component={Demo} />
+      <Tab.Screen name="Profile" component={Demo} />
+    </Tab.Navigator>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+function RootStack() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Home" component={MyTabs} />
+      <Stack.Screen name="Settings" component={Demo} />
+    </Stack.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
+  );
+}
+```
+
+![Content spaced correctly with safe area insets](/assets/safe-area/iphonex-content-fixed.png)
+
+The `useSafeAreaInsets` hook returns the insets for all sides of the screen, so you can choose to apply only specific insets if you want. For example, if your content doesn't extend to the bottom of the screen, you can choose to only apply the top inset.
+
+:::warning
+
+Using both `SafeAreaView` component and `useSafeAreaInsets` hook together can cause flickering as they may update at different times. So we recommend always using the `useSafeAreaInsets` hook instead for consistent behavior.
+
+:::
+
+## Landscape Mode
+
+Even if you're using the default navigation bar and tab bar - if your application works in landscape mode it's important to ensure your content isn't hidden behind the sensor cluster.
+
+![App in landscape mode with text hidden](/assets/safe-area/iphonex-landscape-hidden.png)
+
+To fix this you can, once again, apply safe area insets to your content. This will not conflict with the navigation bar nor the tab bar's default behavior in portrait mode.
+
+![App in landscape mode with text visible](/assets/safe-area/iphonex-landscape-fixed.png)
+
+## Scrollable content
+
+When the content of a screen is scrollable, on iOS, you can use `contentInsetAdjustmentBehavior="automatic"` on `ScrollView`, `FlatList`, `SectionList` to automatically apply the insets to when needed. This applies space so the content isn't hidden behind the status bar or the home indicator, but can scroll under them:
+
+```js
+import * as React from 'react';
+import { ScrollView, Text } from 'react-native';
+
+export default function Screen() {
+  return (
+    <ScrollView
+      // highlight-next-line
+      contentInsetAdjustmentBehavior="automatic"
+    >
+      {/* Your scrollable content goes here */}
+    </ScrollView>
+  );
+}
+```
+
+On Android, `contentInsetAdjustmentBehavior` is not supported. So you need to apply the insets manually with `useSafeAreaInsets`:
+
+```js
+import * as React from 'react';
+import { ScrollView, Text, Platform } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+export default function Screen() {
+  const insets = useSafeAreaInsets();
+
+  return (
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      // highlight-start
+      style={
+        Platform.OS === 'android'
+          ? {
+              paddingTop: insets.top,
+              paddingBottom: insets.bottom,
+              paddingLeft: insets.left,
+              paddingRight: insets.right,
+            }
+          : null
+      }
+      // highlight-end
+    >
+      {/* Your scrollable content goes here */}
+    </ScrollView>
+  );
+}
+```
+
+## Summary
+
+- Enable to edge-to-edge on Android by setting `edgeToEdgeEnabled=true` in `android/gradle.properties` for safe area to work consistently
+- Use [`useSafeAreaInsets`](https://appandflow.github.io/react-native-safe-area-context/api/use-safe-area-insets) hook from `react-native-safe-area-context` instead of [`SafeAreaView`](https://reactnative.dev/docs/safeareaview) component
+- For `ScrollView`, `FlatList`, `SectionList`, etc. on iOS, prefer [`contentInsetAdjustmentBehavior="automatic"`](https://reactnative.dev/docs/scrollview#contentinsetadjustmentbehavior-ios)
+- Don't wrap your whole app in `SafeAreaView`, instead apply the styles to content inside your screens
+- Apply only specific insets using the `useSafeAreaInsets` hook for more control

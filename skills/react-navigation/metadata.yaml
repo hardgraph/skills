@@ -1,0 +1,108 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - react-native
+    - navigation
+    - routing
+    - expo
+    - mobile
+    - deep-linking
+visibility:
+  audiences:
+    - mobile-devs
+    - fullstack-devs
+lifecycle:
+  status: draft
+  created: '2026-08-08'
+  updated: '2026-08-08'
+# React Navigation publishes a flat llms.txt: absolute links, `.md` targets,
+# no nesting. Probed 2026-08-08: 87 unique `.md` links, all absolute under
+# reactnavigation.org/docs, zero nested llms.txt references. Same simple shape
+# as the Expo, Stripe, and Resend indexes.
+# SPA check passed: a real page (getting-started.md) returned distinct bytes
+# with real markdown content; a nonsense path returned distinct bytes — the
+# site is server-rendered and mirrorable.
+crawl:
+  - id: react-navigation-llms-index
+    kind: llms.txt
+    url: 'https://reactnavigation.org/llms.txt'
+    allowed_hosts:
+      - reactnavigation.org
+    allowed_extensions:
+      - .md
+    follow_index_depth: 0
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: react-navigation
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: React Navigation
+    intensity: 10
+  - type: keyword
+    value: createStackNavigator
+    intensity: 8
+  - type: keyword
+    value: createBottomTabNavigator
+    intensity: 8
+  - type: keyword
+    value: createDrawerNavigator
+    intensity: 7
+  - type: keyword
+    value: react-native-screens
+    intensity: 7
+  - type: keyword
+    value: deep linking React Native
+    intensity: 7
+  - type: keyword
+    value: navigation.navigate
+    intensity: 7
+  - type: keyword
+    value: Expo Router
+    intensity: 6
+  - type: vector
+    value: Add multi-screen navigation to a React Native app with stack, tab, and drawer navigators.
+    intensity: 10
+  - type: vector
+    value: Configure deep linking and web URLs for a React Navigation app so routes map to shareable links.
+    intensity: 9
+  - type: vector
+    value: Choose between React Navigation and Expo Router for a React Native project.
+    intensity: 8
+  - type: vector
+    value: Diagnose a screen that does not remount or whose header customisation is ignored.
+    intensity: 7
+  - type: vector
+    value: Type-check route names and params across nested navigators.
+    intensity: 6
+provenance:
+  summary: >-
+    React Navigation reference for navigation in React Native apps. Covers the Stack, Tabs, Drawer, and Material Top Tabs navigators, navigation state, deep linking and web URL mapping, route typing, native screens, and migration between major versions including from Expo Router. Packages a reproducible mirror of the React Navigation documentation corpus under references/vendor/.
+  sources:
+    - title: React Navigation llms.txt index
+      url: 'https://reactnavigation.org/llms.txt'
+      authors:
+        - React Navigation
+        - Software Mansion
+      inspected_at: '2026-08-08'
+      adopted:
+        - Flat index of documentation pages as absolute .md links, requiring no index nesting or path rewriting
+        - Coverage split across fundamentals, navigators, guiding, and migration guides
+  notes: >-
+    Index inspected 2026-08-08: 87 unique `.md` links, absolute under reactnavigation.org/docs, no nested indexes. SPA check passed: getting-started.md returned distinct, real markdown bytes versus a nonsense path. Status is `draft` until the corpus is crawled and the authored guidance reviewed against it.
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 88
+  sources:
+    - id: react-navigation-llms-index
+      kind: llms.txt
+      url: https://reactnavigation.org/llms.txt
+      seed_path: reactnavigation.org/llms.txt
+  failures: []

@@ -1,0 +1,171 @@
+# CLI Reference
+Source: https://docs.chain.link/cre/reference/cli
+Last Updated: 2026-07-09
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+export const CRE_CLI_VERSION = VERSIONS["cre-cli"].LATEST
+
+> \*\*NOTE\*\*
+>
+>
+>
+> To ensure compatibility with the guides and examples in this documentation, please use version{" "}
+> <code>{CRE_CLI_VERSION}</code> of the CRE CLI. You can check your installed version by running `cre version`. Refer to
+> the [CLI Installation](/cre/getting-started/cli-installation/macos-linux) guide for more information.
+
+The CRE Command Line Interface (CLI) is your primary tool for developing, testing, deploying, and managing workflows. It handles project setup, contract binding generation (Go workflows only), local simulation, and workflow lifecycle management.
+
+## Global flags
+
+These flags can be used with any `cre` command.
+
+| Flag                     | Description                                                                                                                                                                                                             |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-h, --help`             | Displays help information for any command                                                                                                                                                                               |
+| `-e, --env`              | Specifies the path to your `.env` file (default: `".env"`)                                                                                                                                                              |
+| `-E, --public-env`       | Specifies the path to your `.env.public` file, which contains shared, non-sensitive build configuration                                                                                                                 |
+| `-T, --target`           | Sets the target environment from your configuration files                                                                                                                                                               |
+| `-R, --project-root`     | Specifies the path to the project root directory. By default, the CLI automatically finds the project root by searching for `project.yaml` in the current directory and parent directories                              |
+| `-v, --verbose`          | Enables verbose logging to print `DEBUG` level logs                                                                                                                                                                     |
+| `--non-interactive`      | Fails instead of prompting; provide all required inputs with flags or environment variables. Use this for CI/CD, scripts, and other headless environments                                                               |
+| `--allow-unknown-chains` | Skips chain-name validation against the chain-selectors registry for `cre workflow simulate` and `cre workflow deploy`. Use for experimental or unlisted chains. Chain-selector and RPC availability are still enforced |
+| `--allow-insecure-rpc`   | Allows non-localhost HTTP RPC URLs. By default, the CLI blocks cleartext RPC endpoints to reduce accidental secret exposure over insecure connections                                                                   |
+
+> **NOTE: Non-interactive authentication**
+>
+> `cre login` requires a browser and is not available in non-interactive mode. For CI/CD and other headless environments, set `CRE_API_KEY` instead. See [API key authentication](/cre/reference/cli/authentication#api-key-authentication).
+
+## Commands overview
+
+### Authentication
+
+Manage your authentication and account credentials.
+
+- **`cre login`** — Authenticate with the CRE UI, save credentials locally, and cache tenant context (`context.yaml`)
+- **`cre logout`** — Revoke authentication tokens and remove local credentials and cached tenant context
+- **`cre whoami`** — Show your current account details
+
+[View authentication commands →](/cre/reference/cli/authentication)
+
+***
+
+### Project Setup
+
+Initialize projects and generate contract bindings (Go only).
+
+- [**`cre init`**](/cre/reference/cli/project-setup) — Initialize a new CRE project (interactive wizard or **`--non-interactive`** with flags for CI/CD)
+- **`cre generate-bindings`** — Generate contract bindings from ABI or Anchor IDL files (Go and TypeScript for Solana)
+
+[View project setup commands →](/cre/reference/cli/project-setup)
+
+***
+
+### Account Management
+
+Manage your linked public key addresses and deployment access.
+
+- **`cre account access`** — Check deployment access status or submit an Early Access request
+- **`cre account link-key`** — Link a public key address to your account
+- **`cre account list-key`** — List workflow owners linked to your organization
+- **`cre account unlink-key`** — Unlink a public key address from your account
+
+[View account management commands →](/cre/reference/cli/account)
+
+***
+
+### Workflow Commands
+
+Manage workflows throughout their entire lifecycle.
+
+- **`cre workflow build`** — Compile a workflow to a WASM binary (without uploading or deploying)
+- **`cre workflow simulate`** — Compile and execute workflows in a local simulation environment
+- **`cre workflow hash`** — Display content hashes for a workflow's binary and config (matches the onchain workflow ID)
+- **`cre workflow deploy`** — Deploy a workflow to the Workflow Registry contract
+- **`cre workflow activate`** — Activate a workflow on the Workflow Registry contract
+- **`cre workflow pause`** — Pause a workflow on the Workflow Registry contract
+- **`cre workflow delete`** — Delete all versions of a workflow from the Workflow Registry
+- **`cre workflow list`** — List workflows deployed for your organization; use `--output json` for scripts
+- **`cre workflow get`** — Show deployment health and the most recent execution for the workflow configured in `workflow.yaml`
+- **`cre workflow supported-chains`** — List chain names the CLI supports for local simulation; use `--output json` for scripts
+- **`cre workflow custom-build`** — Convert a workflow to use a custom self-compiled WASM build
+
+[View workflow commands →](/cre/reference/cli/workflow)
+
+***
+
+### Execution Commands
+
+Inspect deployed workflow runs from the terminal.
+
+- **`cre execution list`** — List recent executions; filter by workflow, status, and time range
+- **`cre execution status`** — Show detailed status for a single execution
+- **`cre execution events`** — Show the capability event timeline for an execution
+- **`cre execution logs`** — Show log lines emitted during an execution
+
+[View execution commands →](/cre/reference/cli/execution)
+
+***
+
+### Secrets Management
+
+Manage secrets stored in the Vault DON for use in your workflows.
+
+- **`cre secrets create`** — Create new secrets from a YAML file
+- **`cre secrets update`** — Update existing secrets
+- **`cre secrets delete`** — Delete secrets
+- **`cre secrets list`** — List secret identifiers in a namespace
+
+[View secrets management commands →](/cre/reference/cli/secrets)
+
+***
+
+### Registry Commands
+
+Inspect the workflow registries available to your organization. A workflow registry is the system that tracks which workflows are registered to your organization and makes them available to the Chainlink DON for execution.
+
+- **`cre registry list`** — Display the registries configured for your organization, including type and on-chain address
+
+[View registry commands →](/cre/reference/cli/registry)
+
+***
+
+### Template Sources
+
+Manage the GitHub repositories that `cre init` uses to discover templates.
+
+- **`cre templates list`** — List templates (human output includes required networks; **`--json`** for scripts)
+- **`cre templates add`** — Add a custom or third-party template repository
+- **`cre templates remove`** — Remove a template repository source
+
+[View template source commands →](/cre/reference/cli/templates)
+
+***
+
+### Utilities
+
+Additional utility commands.
+
+- **`cre update`** — Update the CRE CLI to the latest version
+- **`cre version`** — Print the current version of the CRE CLI
+
+[View utility commands →](/cre/reference/cli/utilities)
+
+## Typical development workflow
+
+The typical workflow development process uses these commands in sequence:
+
+1. **`cre init`** — Initialize your project
+2. **`cre generate-bindings`** — Generate contract bindings from ABIs (Go workflows only, if interacting with contracts)
+3. **`cre workflow simulate`** — Test your workflow locally
+4. **`cre workflow build`** — (Optional) Compile independently; useful in CI/CD pipelines
+5. **`cre workflow hash`** — (Optional) Inspect content hashes before deploying
+6. **`cre workflow deploy`** — Deploy your workflow to the registry
+7. **`cre workflow activate`** / **`cre workflow pause`** — Control workflow execution
+8. **`cre workflow list`** / **`cre workflow get`** — Inspect deployed workflow metadata
+
+## Learn more
+
+- **[CLI Installation](/cre/getting-started/cli-installation)** — How to install and set up the CRE CLI
+- **[Getting Started](/cre/getting-started)** — Step-by-step tutorials using the CLI
+- **[Project Configuration](/cre/reference/project-configuration)** — Understanding project structure and configuration files

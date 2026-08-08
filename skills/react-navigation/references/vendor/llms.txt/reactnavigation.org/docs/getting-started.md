@@ -1,0 +1,152 @@
+# Getting started
+
+Version: 7.x
+
+Sitemap: [llms.txt](https://reactnavigation.org/llms.txt)
+
+React Navigation is a navigation library for React Native and Web. It provides routing logic and UI common on mobile apps and PWAs with type-safe navigation, built-in universal links on mobile, and browser history integration on the web.
+
+## Starter template
+
+You can use the [React Navigation template](https://github.com/react-navigation/template) to quickly set up a new project:
+
+```bash
+npx create-expo-app@latest --template react-navigation/template
+```
+
+This creates a new Expo project with React Navigation already installed and configured. See the project's `README.md` for more information, then move on to [Setting up React Navigation](#setting-up-react-navigation).
+
+## Installation
+
+The `@react-navigation/native` package contains the core functionality of React Navigation.
+
+In your project directory, run:
+
+```bash npm2yarn
+npm install @react-navigation/native
+```
+
+<details>
+<summary>Minimum requirements</summary>
+
+- `react-native` >= 0.72.0
+- `expo` >= 52 (if you use [Expo Go](https://expo.dev/go))
+- `typescript` >= 5.0.0 (if you use TypeScript)
+
+</details>
+
+### Installing dependencies
+
+Next, install the dependencies used by most navigators: [`react-native-screens`](https://github.com/software-mansion/react-native-screens) and [`react-native-safe-area-context`](https://github.com/th3rdwave/react-native-safe-area-context).
+
+**Expo:**
+
+In your project directory, run:
+
+```bash
+npx expo install react-native-screens react-native-safe-area-context
+```
+
+This will install versions of these libraries that are compatible with your Expo SDK version.
+
+**Community CLI:**
+
+In your project directory, run:
+
+```bash npm2yarn
+npm install react-native-screens react-native-safe-area-context
+```
+
+If you're on a Mac and developing for iOS, install the pods via [Cocoapods](https://cocoapods.org/) to complete the linking:
+
+```bash
+npx pod-install ios
+```
+
+#### Configuring `react-native-screens` on Android
+
+[`react-native-screens`](https://github.com/software-mansion/react-native-screens) requires one additional configuration to properly work on Android.
+
+Edit `MainActivity.kt` or `MainActivity.java` under `android/app/src/main/java/<your package name>/` and add the highlighted code:
+
+**Kotlin:**
+
+```kotlin
+// highlight-start
+import android.os.Bundle
+import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory
+// highlight-end
+
+// ...
+
+class MainActivity: ReactActivity() {
+  // ...
+
+  // highlight-start
+  override fun onCreate(savedInstanceState: Bundle?) {
+    supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
+    super.onCreate(savedInstanceState)
+  }
+  // highlight-end
+
+  // ...
+}
+```
+
+**Java:**
+
+```java
+// highlight-start
+import android.os.Bundle;
+import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory;
+// highlight-end
+
+// ...
+
+public class MainActivity extends ReactActivity {
+  // ...
+
+  // highlight-start
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    getSupportFragmentManager().setFragmentFactory(new RNScreensFragmentFactory());
+    super.onCreate(savedInstanceState);
+  }
+  // highlight-end
+
+  // ...
+}
+```
+
+This avoids crashes related to View state not being persisted across Activity restarts.
+
+#### Opting-out of predictive back on Android
+
+React Navigation doesn't yet support Android's predictive back gesture, so you need to disable it for the system back gesture to work properly.
+
+In `AndroidManifest.xml`, set `android:enableOnBackInvokedCallback` to `false` in the `<application>` tag (or `<activity>` tag to opt-out at activity level):
+
+```xml
+<application
+  // highlight-next-line
+  android:enableOnBackInvokedCallback="false"
+  >
+  <!-- ... -->
+</application>
+```
+
+## Setting up React Navigation
+
+The guides linked below cover the fundamentals of React Navigation, and give you the background to dive deeper into the more advanced topics.
+
+When using React Navigation, you configure [**navigators**](glossary-of-terms.md#navigator) in your app. Navigators handle transitions between screens and provide UI such as headers, tab bars, etc.
+
+There are 2 ways to configure navigators:
+
+- **[Static configuration](hello-react-navigation.md?config=static)** <span class="recommended-badge">Recommended</span>
+
+  Object-based configuration with automatic TypeScript types and deep linking. Supports static screen lists with dynamic navigator options.
+
+- **[Dynamic configuration](hello-react-navigation.md?config=dynamic)**
+
+  Component-based configuration with significantly more boilerplate for TypeScript and deep linking. Supports dynamic screen lists and navigator options.

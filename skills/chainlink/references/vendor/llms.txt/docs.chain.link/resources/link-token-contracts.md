@@ -1,0 +1,2127 @@
+# LINK Token Contracts
+Source: https://docs.chain.link/resources/link-token-contracts
+
+> For the complete documentation index, see [llms.txt](/llms.txt).
+
+***
+
+> **NOTE: Talk to an expert**
+>
+> <a href="https://chain.link/contact?ref_id=Contracts">Contact us</a> to talk to an expert about the networks that
+> support the LINK token.
+
+The LINK token is the native digital asset of the Chainlink Network. It serves as the standard unit of payment for Chainlink services and as a core component of the network's cryptoeconomic security through staking. As more developers, enterprises, and financial institutions use Chainlink to build institutional-grade smart contract applications, LINK provides a shared economic framework that helps strengthen the network's security and service quality.
+
+### Payment for oracle services
+
+The LINK token is used by developers and organizations to pay fees to access Chainlink services, similar to how the native coins of blockchain networks are used to pay for transaction gas fees (e.g., ETH on Ethereum).
+
+To support network reliability, LINK is the standard unit of compensation to network service providers, such as node operators, for successfully facilitating Chainlink services. This helps align the incentives of node operators with the long-term health and proper functioning of the network.
+
+### Payment Abstraction
+
+To reduce payment friction and accelerate adoption, [Payment Abstraction](https://blog.chain.link/payment-abstraction-svr-fee-conversion/) allows users to pay for Chainlink services using their preferred form of payment, including onchain tokens and offchain fiat payments. These payments are then programmatically converted into LINK tokens using decentralized exchange infrastructure.
+
+### Chainlink Reserve
+
+Payment Abstraction is used to help build the [Chainlink Reserve](https://blog.chain.link/chainlink-reserve-strategic-link-reserve/), a strategic onchain reserve of LINK tokens designed to support the network's long-term growth and sustainability. The Chainlink Reserve is funded by offchain revenue from enterprise adoption of the Chainlink standard, as well as onchain revenue from service usage.
+
+### Network security and rewards
+
+[Chainlink Staking](https://chain.link/economics/staking) uses the LINK token to support the network's cryptoeconomic security. Node operators and community members stake LINK, which can be subject to slashing if predefined performance requirements are not met. In exchange for helping secure the network, stakers receive staking rewards.
+
+### Token standard and cross-chain transfers
+
+The LINK token is an [ERC-677 token](https://github.com/ethereum/EIPs/issues/677) that inherits functionality from the ERC-20 token standard and allows token transfers to contain a data payload. The smallest denomination of LINK is called a Juel, and 1,000,000,000,000,000,000 (1e18) Juels are equal to 1 LINK. This is similar to Wei, which is the [smallest denomination of ETH](https://ethereum.org/en/developers/docs/intro-to-ether/#denominations).
+
+The LINK token was originally issued on the Ethereum blockchain and can be securely transferred cross-chain by using [Chainlink CCIP](https://docs.chain.link/ccip/tutorials/evm/transfer-tokens-from-contract) and CCIP-powered applications such as [Transporter](https://app.transporter.io/?tab=token\&token=LINK).
+
+> **NOTE: Interfaces and Applications**
+>
+> Chainlink CCIP is a messaging protocol. Third parties may build user interfaces or other applications on top of CCIP.
+> Neither Chainlink Labs nor the Chainlink Foundation owns, controls, endorses, or assumes any responsibility for any
+> such interfaces or applications. You are solely responsible for your use of such interfaces or applications. Please
+> visit the Chainlink Foundation [Terms of Service](https://chain.link/terms) for more information.
+
+## <img src="/assets/chains/0g.svg" style="height: 24px; width: auto; margin-right: 8px;" />0G
+
+### 0G Galileo Testnet
+
+| Parameter | Value                                                                                                                                                                                              |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `16602`                                                                                                                                                                                            |
+| Address   | <Address contractUrl="https://chainscan-galileo.0g.ai/address/0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlId="16602_0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on 0G Galileo Testnet                                                                                                                                                              |
+| Symbol    | LINK                                                                                                                                                                                               |
+| Decimals  | 18                                                                                                                                                                                                 |
+
+## <img src="/assets/chains/abchain.svg" style="height: 24px; width: auto; margin-right: 8px;" />AB Chain
+
+### AB Chain Mainnet
+
+| Parameter | Value                                                                                                                                                                                           |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `36888`                                                                                                                                                                                         |
+| Address   | <Address contractUrl="https://explorer.core.ab.org/address/0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlId="36888_0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on AB Chain                                                                                                                                                                     |
+| Symbol    | LINK                                                                                                                                                                                            |
+| Decimals  | 18                                                                                                                                                                                              |
+
+## <img src="/assets/chains/abstract.svg" style="height: 24px; width: auto; margin-right: 8px;" />Abstract
+
+### Abstract Mainnet
+
+| Parameter | Value                                                                                                                                                                                |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `2741`                                                                                                                                                                               |
+| Address   | <Address contractUrl="https://abscan.org/address/0x2Ea38D6cDb6774992d4A62fe622f4405663729Dd" urlId="2741_0x2Ea38D6cDb6774992d4A62fe622f4405663729Dd" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                      |
+| Symbol    | LINK                                                                                                                                                                                 |
+| Decimals  | 18                                                                                                                                                                                   |
+
+### Abstract Sepolia Testnet
+
+| Parameter | Value                                                                                                                                                                                         |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `11124`                                                                                                                                                                                       |
+| Address   | <Address contractUrl="https://sepolia.abscan.org/address/0x6641415a61bCe80D97a715054d1334360Ab833Eb" urlId="11124_0x6641415a61bCe80D97a715054d1334360Ab833Eb" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                               |
+| Symbol    | LINK                                                                                                                                                                                          |
+| Decimals  | 18                                                                                                                                                                                            |
+
+## <img src="/assets/chains/adi-network.svg" style="height: 24px; width: auto; margin-right: 8px;" />ADI Network
+
+### ADI Network Mainnet
+
+| Parameter | Value                                                                                                                                                                                                |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `36900`                                                                                                                                                                                              |
+| Address   | <Address contractUrl="https://explorer.adifoundation.ai/address/0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlId="36900_0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on ADI Network Mainnet                                                                                                                                                               |
+| Symbol    | LINK                                                                                                                                                                                                 |
+| Decimals  | 18                                                                                                                                                                                                   |
+
+### ADI Network AB Testnet
+
+| Parameter | Value                                                                                                                                                                                                            |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `99999`                                                                                                                                                                                                          |
+| Address   | <Address contractUrl="https://explorer.ab.testnet.adifoundation.ai/address/0x64c12A9Bfdb4DEB5F37A0eC4c5fae0405669612A" urlId="399999_0x64c12A9Bfdb4DEB5F37A0eC4c5fae0405669612A" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on ADI Network AB Testnet                                                                                                                                                                        |
+| Symbol    | LINK                                                                                                                                                                                                             |
+| Decimals  | 18                                                                                                                                                                                                               |
+
+## <img src="/assets/chains/apechain.svg" style="height: 24px; width: auto; margin-right: 8px;" />Apechain
+
+### Apechain Mainnet
+
+| Parameter | Value                                                                                                                                                                                 |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `33139`                                                                                                                                                                               |
+| Address   | <Address contractUrl="https://apescan.io/address/0xf575731b78981B86d34321d875A3D25a48479be6" urlId="33139_0xf575731b78981B86d34321d875A3D25a48479be6" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Apechain Mainnet                                                                                                                                                   |
+| Symbol    | LINK                                                                                                                                                                                  |
+| Decimals  | 18                                                                                                                                                                                    |
+
+### Apechain Curtis Testnet
+
+| Parameter | Value                                                                                                                                                                                                   |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `33111`                                                                                                                                                                                                 |
+| Address   | <Address contractUrl="https://explorer.curtis.apechain.com/address/0xa787B3E0471b718bBfEaA59B502fd0C4EBd7b74E" urlId="33111_0xa787B3E0471b718bBfEaA59B502fd0C4EBd7b74E" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Apechain Curtis Testnet                                                                                                                                                              |
+| Symbol    | LINK                                                                                                                                                                                                    |
+
+## <img src="/assets/chains/arbitrum.svg" style="height: 24px; width: auto; margin-right: 8px;" />Arbitrum
+
+### Arbitrum Mainnet
+
+ETH is used to pay for transactions on the Arbitrum Mainnet.
+
+You can use the [Arbitrum Bridge](https://bridge.arbitrum.io/) to transfer ETH and LINK from Ethereum Mainnet to Arbitrum Mainnet.
+
+| Parameter      | Value                                                                                                                                                                                           |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `42161`                                                                                                                                                                                         |
+| Address        | <Address contractUrl="https://explorer.arbitrum.io/address/0xf97f4df75117a78c1A5a0DBb814Af92458539FB4" urlId="42161_0xf97f4df75117a78c1A5a0DBb814Af92458539FB4" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Arbitrum Mainnet                                                                                                                                                             |
+| Symbol         | LINK                                                                                                                                                                                            |
+| Decimals       | 18                                                                                                                                                                                              |
+| Network status | [arbiscan.freshstatus.io](https://arbiscan.freshstatus.io/)                                                                                                                                     |
+
+### Arbitrum Sepolia Testnet
+
+Testnet ETH is used to pay for transactions on Arbitrum Sepolia.
+
+Testnet ETH and LINK are available at [faucets.chain.link/arbitrum-sepolia](https://faucets.chain.link/arbitrum-sepolia).
+
+| Parameter      | Value                                                                                                                                                                                           |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `421614`                                                                                                                                                                                        |
+| Address        | <Address contractUrl="https://sepolia.arbiscan.io/address/0xb1D4538B4571d411F07960EF2838Ce337FE1E80E" urlId="421614_0xb1D4538B4571d411F07960EF2838Ce337FE1E80E" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Arbitrum Sepolia Testnet                                                                                                                                                     |
+| Symbol         | LINK                                                                                                                                                                                            |
+| Decimals       | 18                                                                                                                                                                                              |
+| Network status | [arbiscan.freshstatus.io](https://arbiscan.freshstatus.io/)                                                                                                                                     |
+
+## <img src="/assets/chains/arc.svg" style="height: 24px; width: auto; margin-right: 8px;" />Arc Network
+
+### Arc Network Testnet
+
+| Parameter | Value                                                                                                                                                                                            |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `5042002`                                                                                                                                                                                        |
+| Address   | <Address contractUrl="https://testnet.arcscan.app/address/0x3F1f176e347235858DD6Db905DDBA09Eaf25478a" urlId="5042002_0x3F1f176e347235858DD6Db905DDBA09Eaf25478a" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Arc Network Testnet                                                                                                                                                           |
+| Symbol    | LINK                                                                                                                                                                                             |
+| Decimals  | 18                                                                                                                                                                                               |
+
+## <img src="/assets/chains/astar.svg" style="height: 24px; width: auto; margin-right: 8px;" />Astar
+
+### Astar Mainnet
+
+ASTR is used to pay for transactions on Astar Mainnet.
+
+| Parameter      | Value                                                                                                                                                                                         |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `592`                                                                                                                                                                                         |
+| Address        | <Address contractUrl="https://astar.blockscout.com/address/0x31EFB841d5e0b4082F7E1267dab8De1b853f2A9d" urlId="592_0x31EFB841d5e0b4082F7E1267dab8De1b853f2A9d" urlClass="erc-token-address" /> |
+| Name           | ChainLink Token on Astar Mainnet                                                                                                                                                              |
+| Symbol         | LINK                                                                                                                                                                                          |
+| Decimals       | 18                                                                                                                                                                                            |
+| Network status | [portal.astar.network/astar/dashboard](https://portal.astar.network/astar/dashboard)                                                                                                          |
+
+### Astar Shibuya
+
+SBY is used to pay for transactions on Astar Shibuya. Testnet SBY is available at [Astar Shibuya Faucet](https://docs.astar.network/docs/build/environment/faucet/).
+
+Testnet LINK is available at [faucets.chain.link/astar-shibuya](https://faucets.chain.link/astar-shibuya).
+
+| Parameter      | Value                                                                                                                                                                                          |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `81`                                                                                                                                                                                           |
+| Address        | <Address contractUrl="https://shibuya.blockscout.com/address/0xe74037112db8807B3B4B3895F5790e5bc1866a29" urlId="81_0xe74037112db8807B3B4B3895F5790e5bc1866a29" urlClass="erc-token-address" /> |
+| Name           | ChainLink Token on Astar Shibuya                                                                                                                                                               |
+| Symbol         | LINK                                                                                                                                                                                           |
+| Decimals       | 18                                                                                                                                                                                             |
+| Network status | [portal.astar.network/shibuya-testnet/dashboard](https://portal.astar.network/shibuya-testnet/dashboard)                                                                                       |
+
+## <img src="/assets/chains/avalanche.svg" style="height: 24px; width: auto; margin-right: 8px;" />Avalanche
+
+### Avalanche Mainnet
+
+AVAX is used to pay for transactions on Avalanche Mainnet. Use the [Avalanche Bridge](https://bridge.avax.network/) to transfer LINK from Ethereum Mainnet to Avalanche.
+
+| Parameter      | Value                                                                                                                                                                                   |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `43114`                                                                                                                                                                                 |
+| Address        | <Address contractUrl="https://snowtrace.io/address/0x5947BB275c521040051D82396192181b413227A3" urlId="43114_0x5947BB275c521040051D82396192181b413227A3" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Avalanche Mainnet                                                                                                                                                    |
+| Symbol         | LINK                                                                                                                                                                                    |
+| Decimals       | 18                                                                                                                                                                                      |
+| Network status | [status.avax.network](https://status.avax.network/)                                                                                                                                     |
+
+### Avalanche Fuji Testnet
+
+Testnet AVAX is used to pay for transactions on Avalanche Fuji.
+
+Testnet AVAX and LINK are available at [faucets.chain.link/fuji](https://faucets.chain.link/fuji). Testnet AVAX is also available at [core.app/tools/testnet-faucet](https://core.app/tools/testnet-faucet/).
+
+| Parameter      | Value                                                                                                                                                                                           |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `43113`                                                                                                                                                                                         |
+| Address        | <Address contractUrl="https://testnet.snowtrace.io/address/0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846" urlId="43113_0x0b9d5D9136855f6FEc3c0993feE6E9CE8a297846" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Avalanche Fuji Testnet                                                                                                                                                       |
+| Symbol         | LINK                                                                                                                                                                                            |
+| Decimals       | 18                                                                                                                                                                                              |
+| Network status | [status.avax.network](https://status.avax.network/)                                                                                                                                             |
+
+## <img src="/assets/chains/base.svg" style="height: 24px; width: auto; margin-right: 8px;" />BASE
+
+### BASE Mainnet
+
+ETH is used to pay for transactions on BASE. You can use the [BASE Bridge](https://bridge.base.org/deposit) to transfer ETH from Ethereum Mainnet to BASE Mainnet. To transfer LINK from Ethereum to Base, use [Transporter](https://app.transporter.io/) or [XSwap Bridge](https://xswap.link/bridge).
+
+| Parameter      | Value                                                                                                                                                                                  |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `8453`                                                                                                                                                                                 |
+| Address        | <Address contractUrl="https://basescan.org/address/0x88Fb150BDc53A65fe94Dea0c9BA0a6dAf8C6e196" urlId="8453_0x88Fb150BDc53A65fe94Dea0c9BA0a6dAf8C6e196" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on BASE Mainnet                                                                                                                                                        |
+| Symbol         | LINK                                                                                                                                                                                   |
+| Decimals       | 18                                                                                                                                                                                     |
+| Network status | [basescan.org](https://basescan.org/)                                                                                                                                                  |
+
+### BASE Sepolia Testnet
+
+Testnet ETH is used to pay for transactions on BASE Sepolia.
+
+Testnet ETH and LINK are available at [faucets.chain.link/base-sepolia](https://faucets.chain.link/base-sepolia). Testnet ETH is also available from one of the [BASE Network Faucets](https://docs.base.org/tools/network-faucets).
+
+| Parameter      | Value                                                                                                                                                                                           |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `84532`                                                                                                                                                                                         |
+| Address        | <Address contractUrl="https://sepolia.basescan.org/address/0xE4aB69C077896252FAFBD49EFD26B5D171A32410" urlId="84532_0xE4aB69C077896252FAFBD49EFD26B5D171A32410" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on BASE Sepolia Testnet                                                                                                                                                         |
+| Symbol         | LINK                                                                                                                                                                                            |
+| Decimals       | 18                                                                                                                                                                                              |
+| Network status | [sepolia.basescan.org](https://sepolia.basescan.org/)                                                                                                                                           |
+
+## <img src="/assets/chains/berachain.svg" style="height: 24px; width: auto; margin-right: 8px;" />Berachain
+
+### Berachain Mainnet
+
+| Parameter | Value                                                                                                                                                                                   |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `80094`                                                                                                                                                                                 |
+| Address   | <Address contractUrl="https://berascan.com/address/0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlId="80094_0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Berachain Mainnet                                                                                                                                                    |
+| Symbol    | LINK                                                                                                                                                                                    |
+| Decimals  | 18                                                                                                                                                                                      |
+
+### Berachain Bartio Testnet
+
+| Parameter | Value                                                                                                                                                                                          |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `80084`                                                                                                                                                                                        |
+| Address   | <Address contractUrl="https://bartio.beratrail.io/address/0x52CEEed7d3f8c6618e4aaD6c6e555320d0D83271" urlId="80084_0x52CEEed7d3f8c6618e4aaD6c6e555320d0D83271" urlClass="erc-token-address" /> |
+| Name      | ChainLink Token on Berachain Bartio Testnet                                                                                                                                                    |
+| Symbol    | LINK                                                                                                                                                                                           |
+| Decimals  | 18                                                                                                                                                                                             |
+
+## <img src="/assets/chains/bitlayer.svg" style="height: 24px; width: auto; margin-right: 8px;" />Bitlayer
+
+### Bitlayer Mainnet
+
+| Parameter      | Value                                                                                                                                                                                       |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID       | `200901`                                                                                                                                                                                    |
+| Address        | <Address contractUrl="https://www.btrscan.com/address/0x56B275c0Ec034a229a1deD8DB17089544bc276D9" urlId="200901_0x56B275c0Ec034a229a1deD8DB17089544bc276D9" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Bitlayer Mainnet                                                                                                                                                         |
+| Symbol         | LINK                                                                                                                                                                                        |
+| Decimals       | 18                                                                                                                                                                                          |
+| Network status | [bitlayer.org](https://bitlayer.org/)                                                                                                                                                       |
+
+### Bitlayer Testnet
+
+Testnet LINK are available at [faucets.chain.link/bitlayer-testnet](https://faucets.chain.link/bitlayer-testnet).
+
+| Parameter      | Value                                                                                                                                                                                           |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `200810`                                                                                                                                                                                        |
+| Address        | <Address contractUrl="https://testnet.btrscan.com/address/0x2A5bACb2440BC17D53B7b9Be73512dDf92265e48" urlId="200810_0x2A5bACb2440BC17D53B7b9Be73512dDf92265e48" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Bitlayer Testnet                                                                                                                                                             |
+| Symbol         | LINK                                                                                                                                                                                            |
+| Decimals       | 18                                                                                                                                                                                              |
+| Network status | [bitlayer.org](https://bitlayer.org/)                                                                                                                                                           |
+
+## <img src="/assets/chains/bittensor.svg" style="height: 24px; width: auto; margin-right: 8px;" />Bittensor EVM
+
+### Bittensor EVM Mainnet
+
+| Parameter | Value                                                                                                                                                                                |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `964`                                                                                                                                                                                |
+| Address   | <Address contractUrl="https://taostats.io/address/0xf09AFe78d3c7d359b334d7cB88995751F7eC5E13" urlId="964_0xf09AFe78d3c7d359b334d7cB88995751F7eC5E13" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Bittensor EVM Mainnet                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                 |
+| Decimals  | 18                                                                                                                                                                                   |
+
+## <img src="/assets/chains/blast.svg" style="height: 24px; width: auto; margin-right: 8px;" />Blast
+
+### Blast Mainnet
+
+ETH is used to pay for transactions on Blast. You can use the [Blast Bridge](https://blast.io/en/bridge) to transfer ETH from Ethereum Mainnet to Blast Mainnet.
+
+| Parameter      | Value                                                                                                                                                                                   |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `81457`                                                                                                                                                                                 |
+| Address        | <Address contractUrl="https://blastscan.io/address/0x93202eC683288a9EA75BB829c6baCFb2BfeA9013" urlId="81457_0x93202eC683288a9EA75BB829c6baCFb2BfeA9013" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Blast Mainnet                                                                                                                                                        |
+| Symbol         | LINK                                                                                                                                                                                    |
+| Decimals       | 18                                                                                                                                                                                      |
+| Network status | [blastscan.io](https://blastscan.io/)                                                                                                                                                   |
+
+### Blast Sepolia Testnet
+
+Testnet ETH is used to pay for transactions on Blast Sepolia. Testnet ETH is available from one of the [Blast Network Faucets](https://docs.blast.io/tools/faucets). Testnet ETH and LINK are also available at [faucets.chain.link/blast-sepolia](https://faucets.chain.link/blast-sepolia).
+
+| Parameter      | Value                                                                                                                                                                                               |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `168587773`                                                                                                                                                                                         |
+| Address        | <Address contractUrl="https://sepolia.blastscan.io/address/0x02c359ebf98fc8BF793F970F9B8302bb373BdF32" urlId="168587773_0x02c359ebf98fc8BF793F970F9B8302bb373BdF32" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Blast Sepolia Testnet                                                                                                                                                            |
+| Symbol         | LINK                                                                                                                                                                                                |
+| Decimals       | 18                                                                                                                                                                                                  |
+| Network status | [sepolia.blastscan.io](https://sepolia.blastscan.io/)                                                                                                                                               |
+
+## <img src="/assets/chains/bnb-chain.svg" style="height: 24px; width: auto; margin-right: 8px;" />BNB Chain
+
+### BNB Chain Mainnet
+
+BNB is used to pay for transactions on the BNB Chain Mainnet.
+
+> **CAUTION: ERC-677 LINK on BNB Chain**
+>
+> The LINK provided by the <a href="https://www.bnbchain.world/en/bridge">BNB Chain Bridge</a> is not ERC-677
+> compatible, so you cannot use it with Chainlink services or oracle nodes. Use the{" "}
+
+{" "}
+
+to convert bridged LINK to the official ERC-677 LINK token on BNB Chain.
+
+| Parameter      | Value                                                                                                                                                                             |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `56`                                                                                                                                                                              |
+| Address        | <Address contractUrl="https://bscscan.com/token/0x404460C6A5EdE2D891e8297795264fDe62ADBB75" urlId="56_0x404460C6A5EdE2D891e8297795264fDe62ADBB75" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on BNB Chain Mainnet                                                                                                                                              |
+| Symbol         | LINK                                                                                                                                                                              |
+| Decimals       | 18                                                                                                                                                                                |
+| Network status | [bscscan.freshstatus.io](https://bscscan.freshstatus.io/)                                                                                                                         |
+
+### BNB Chain Testnet
+
+Testnet BNB is used to pay for transactions on the BNB Chain testnet. Testnet BNB is available at [testnet.bnbchain.org/faucet-smart](https://testnet.bnbchain.org/faucet-smart).
+
+Testnet Native and LINK is available at [faucets.chain.link/bnb-chain-testnet](https://faucets.chain.link/bnb-chain-testnet).
+
+| Parameter      | Value                                                                                                                                                                                       |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID       | `97`                                                                                                                                                                                        |
+| Address        | <Address contractUrl="https://testnet.bscscan.com/address/0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06" urlId="97_0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on BNB Chain Testnet                                                                                                                                                        |
+| Symbol         | LINK                                                                                                                                                                                        |
+| Decimals       | 18                                                                                                                                                                                          |
+| Network status | [bscscan.freshstatus.io](https://bscscan.freshstatus.io/)                                                                                                                                   |
+
+## <img src="/assets/chains/bob.svg" style="height: 24px; width: auto; margin-right: 8px;" />Bob
+
+### Bob Mainnet
+
+| Parameter      | Value                                                                                                                                                                                         |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `60808`                                                                                                                                                                                       |
+| Address        | <Address contractUrl="https://explorer.gobob.xyz/address/0x5aB885CDa7216b163fb6F813DEC1E1532516c833" urlId="60808_0x5aB885CDa7216b163fb6F813DEC1E1532516c833" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Bob Mainnet                                                                                                                                                                |
+| Symbol         | LINK                                                                                                                                                                                          |
+| Decimals       | 18                                                                                                                                                                                            |
+| Network status | [conduit-bob.checkly-dashboards.com](https://conduit-bob.checkly-dashboards.com/)                                                                                                             |
+
+### Bob Sepolia Testnet
+
+Testnet ETH and LINK are available at [faucets.chain.link/bob-testnet](https://faucets.chain.link/bob-testnet).
+
+| Parameter      | Value                                                                                                                                                                                                      |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `808813`                                                                                                                                                                                                   |
+| Address        | <Address contractUrl="https://bob-sepolia.explorer.gobob.xyz/address/0xcd2AfB2933391E35e8682cbaaF75d9CA7339b183" urlId="808813_0xcd2AfB2933391E35e8682cbaaF75d9CA7339b183" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Bob Sepolia Testnet                                                                                                                                                                     |
+| Symbol         | LINK                                                                                                                                                                                                       |
+| Decimals       | 18                                                                                                                                                                                                         |
+| Network status | [conduit-bob.checkly-dashboards.com](https://conduit-bob.checkly-dashboards.com/)                                                                                                                          |
+
+## <img src="/assets/chains/botanix.svg" style="height: 24px; width: auto; margin-right: 8px;" />Botanix
+
+### Botanix Mainnet
+
+| Parameter | Value                                                                                                                                                                                    |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `3637`                                                                                                                                                                                   |
+| Address   | <Address contractUrl="https://botanixscan.io/address/0x30e85A5c9525AD9a7A0FA5C74df4Baf0b01aD241" urlId="3637_0x30e85A5c9525AD9a7A0FA5C74df4Baf0b01aD241" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                          |
+| Symbol    | LINK                                                                                                                                                                                     |
+| Decimals  | 18                                                                                                                                                                                       |
+
+### Botanix Testnet
+
+Testnet Native and LINK are available at [faucets.chain.link/botanix-testnet](https://faucets.chain.link/botanix-testnet).
+
+| Parameter | Value                                                                                                                                                                                            |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `3636`                                                                                                                                                                                           |
+| Address   | <Address contractUrl="https://testnet.botanixscan.io/address/0x7311DED199CC28D80E58e81e8589aa160199FCD2" urlId="3636_0x7311DED199CC28D80E58e81e8589aa160199FCD2" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Botanix Testnet                                                                                                                                                               |
+| Symbol    | LINK                                                                                                                                                                                             |
+| Decimals  | 18                                                                                                                                                                                               |
+
+## <img src="/assets/chains/bsquared.svg" style="height: 24px; width: auto; margin-right: 8px;" />Bsquared
+
+### Bsquared Mainnet
+
+BTC is used to pay for transactions on Bsquared Mainnet.
+
+| Parameter      | Value                                                                                                                                                                                              |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `223`                                                                                                                                                                                              |
+| Address        | <Address contractUrl="https://explorer.bsquared.network/address/0x709229D9587886a1eDFeE6b5cE636E1D70d1cE39" urlId="223_0x709229D9587886a1eDFeE6b5cE636E1D70d1cE39" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Bsquared Mainnet                                                                                                                                                                |
+| Symbol         | LINK                                                                                                                                                                                               |
+| Decimals       | 18                                                                                                                                                                                                 |
+| Network status | [explorer.bsquared.network](https://explorer.bsquared.network/)                                                                                                                                    |
+
+### Bsquared Testnet
+
+Testnet BTC is used to pay for transactions on Bsquared Testnet.
+
+Testnet BTC and LINK are available at [faucets.chain.link/bsquared-testnet](https://faucet.chain.link/bsquared-testnet).
+
+| Parameter      | Value                                                                                                                                                                                                       |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `1123`                                                                                                                                                                                                      |
+| Address        | <Address contractUrl="https://testnet-explorer.bsquared.network/address/0x436a1907D9e6a65E6db73015F08f9C66F6B63E45" urlId="1123_0x436a1907D9e6a65E6db73015F08f9C66F6B63E45" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Bsquared Testnet                                                                                                                                                                         |
+| Symbol         | LINK                                                                                                                                                                                                        |
+| Decimals       | 18                                                                                                                                                                                                          |
+| Network status | [testnet-explorer.bsquared.network](https://testnet-explorer.bsquared.network/)                                                                                                                             |
+
+## <img src="/assets/chains/celo.svg" style="height: 24px; width: auto; margin-right: 8px;" />Celo
+
+### Celo Mainnet
+
+CELO is used to pay for transactions on the Celo network.
+
+| Parameter      | Value                                                                                                                                                                                                |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `42220`                                                                                                                                                                                              |
+| Address        | <Address contractUrl="https://explorer.celo.org/mainnet/address/0xd07294e6E917e07dfDcee882dd1e2565085C2ae0" urlId="42220_0xd07294e6E917e07dfDcee882dd1e2565085C2ae0" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Celo Mainnet                                                                                                                                                                      |
+| Symbol         | LINK                                                                                                                                                                                                 |
+| Decimals       | 18                                                                                                                                                                                                   |
+| Network status | [explorer.celo.org](https://explorer.celo.org/)                                                                                                                                                      |
+
+### Celo Alfajores Testnet
+
+Testnet CELO is used to pay for transactions on Celo Alfajores. Testnet CELO is available from the [Alfajores Token Faucet](https://faucet.celo.org/alfajores).
+
+Testnet Native and LINK is available at [faucets.chain.link/celo-alfajores-testnet](https://faucets.chain.link/celo-alfajores-testnet).
+
+| Parameter      | Value                                                                                                                                                                                                  |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `44787`                                                                                                                                                                                                |
+| Address        | <Address contractUrl="https://explorer.celo.org/alfajores/address/0x32E08557B14FaD8908025619797221281D439071" urlId="44787_0x32E08557B14FaD8908025619797221281D439071" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Celo Alfajores Testnet                                                                                                                                                              |
+| Symbol         | LINK                                                                                                                                                                                                   |
+| Decimals       | 18                                                                                                                                                                                                     |
+| Network status | [explorer.celo.org/alfajores](https://explorer.celo.org/alfajores/)                                                                                                                                    |
+
+## <img src="/assets/chains/core.svg" style="height: 24px; width: auto; margin-right: 8px;" />Core
+
+### Core Mainnet
+
+| Parameter | Value                                                                                                                                                                                      |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `1116`                                                                                                                                                                                     |
+| Address   | <Address contractUrl="https://scan.coredao.org/address/0x3902228D6A3d2Dc44731fD9d45FeE6a61c722D0b" urlId="1116_0x3902228D6A3d2Dc44731fD9d45FeE6a61c722D0b" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Core Mainnet                                                                                                                                                            |
+| Symbol    | LINK                                                                                                                                                                                       |
+| Decimals  | 18                                                                                                                                                                                         |
+
+## <img src="/assets/chains/corn.svg" style="height: 24px; width: auto; margin-right: 8px;" />Corn
+
+### Corn Mainnet
+
+| Parameter | Value                                                                                                                                                                                     |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `21000000`                                                                                                                                                                                |
+| Address   | <Address contractUrl="https://cornscan.io/address/0x7311DED199CC28D80E58e81e8589aa160199FCD2" urlId="21000000_0x7311DED199CC28D80E58e81e8589aa160199FCD2" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Corn Mainnet                                                                                                                                                           |
+| Symbol    | LINK                                                                                                                                                                                      |
+| Decimals  | 18                                                                                                                                                                                        |
+
+### Corn Testnet
+
+Testnet Native and LINK is available at [faucets.chain.link/corn-testnet](https://faucets.chain.link/corn-testnet).
+
+| Parameter | Value                                                                                                                                                                                             |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `21000001`                                                                                                                                                                                        |
+| Address   | <Address contractUrl="https://testnet.cornscan.io/address/0x996EfAb6011896Be832969D91E9bc1b3983cfdA1" urlId="21000001_0x996EfAb6011896Be832969D91E9bc1b3983cfdA1" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Corn Testnet                                                                                                                                                                   |
+| Symbol    | LINK                                                                                                                                                                                              |
+| Decimals  | 18                                                                                                                                                                                                |
+
+## <img src="/assets/chains/creditcoin.svg" style="height: 24px; width: auto; margin-right: 8px;" />Creditcoin
+
+### Creditcoin Mainnet
+
+| Parameter | Value                                                                                                                                                                                                 |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `102030`                                                                                                                                                                                              |
+| Address   | <Address contractUrl="https://creditcoin.blockscout.com/address/0x76a443768a5e3b8d1aed0105fc250877841deb40" urlId="102030_0x76a443768a5e3b8d1aed0105fc250877841deb40" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Creditcoin Mainnet                                                                                                                                                                 |
+| Symbol    | LINK                                                                                                                                                                                                  |
+| Decimals  | 18                                                                                                                                                                                                    |
+
+## <img src="/assets/chains/cronos.svg" style="height: 24px; width: auto; margin-right: 8px;" />Cronos
+
+### Cronos Mainnet
+
+| Parameter | Value                                                                                                                                                                                       |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `25`                                                                                                                                                                                        |
+| Address   | <Address contractUrl="https://explorer.cronos.org/address/0x8c80A01F461f297Df7F9DA3A4f740D7297C8Ac85" urlId="25_0x8c80A01F461f297Df7F9DA3A4f740D7297C8Ac85" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                        |
+| Decimals  | 18                                                                                                                                                                                          |
+
+### Cronos Testnet
+
+| Parameter | Value                                                                                                                                                                                                |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `338`                                                                                                                                                                                                |
+| Address   | <Address contractUrl="https://explorer.cronos.org/testnet/address/0x2896e619Fa7c831A7E52b87EffF4d671bEc6B262" urlId="338_0x2896e619Fa7c831A7E52b87EffF4d671bEc6B262" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Cronos Testnet                                                                                                                                                                    |
+| Symbol    | LINK                                                                                                                                                                                                 |
+| Decimals  | 18                                                                                                                                                                                                   |
+
+## <img src="/assets/chains/cronoszkevm.svg" style="height: 24px; width: auto; margin-right: 8px;" />Cronos zkEVM
+
+### Cronos zkEVM Mainnet
+
+| Parameter | Value                                                                                                                                                                                              |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `388`                                                                                                                                                                                              |
+| Address   | <Address contractUrl="https://explorer.zkevm.cronos.org/address/0x61170ca9fB9cF98d4c7d684e07be6D969D59667E" urlId="388_0x61170ca9fB9cF98d4c7d684e07be6D969D59667E" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Cronos zkEVM Mainnet                                                                                                                                                            |
+| Symbol    | LINK                                                                                                                                                                                               |
+| Decimals  | 18                                                                                                                                                                                                 |
+
+### Cronos zkEVM Testnet
+
+| Parameter | Value                                                                                                                                                                                                      |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `240`                                                                                                                                                                                                      |
+| Address   | <Address contractUrl="https://explorer.zkevm.cronos.org/testnet/address/0xB96217A159cB11Bc51E87c8CAe46C7dF8826A827" urlId="240_0xB96217A159cB11Bc51E87c8CAe46C7dF8826A827" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Cronos zkEVM Testnet                                                                                                                                                                    |
+| Symbol    | LINK                                                                                                                                                                                                       |
+| Decimals  | 18                                                                                                                                                                                                         |
+
+## <img src="/assets/chains/dogeos.svg" style="height: 24px; width: auto; margin-right: 8px;" />DogeOS
+
+### DogeOS Chikyu Testnet
+
+| Parameter | Value                                                                                                                                                                                                      |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `6281971`                                                                                                                                                                                                  |
+| Address   | <Address contractUrl="https://blockscout.testnet.dogeos.com/address/0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlId="6281971_0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on DogeOS Chikyu Testnet                                                                                                                                                                   |
+| Symbol    | LINK                                                                                                                                                                                                       |
+| Decimals  | 18                                                                                                                                                                                                         |
+
+## <img src="/assets/chains/edge.svg" style="height: 24px; width: auto; margin-right: 8px;" />Edge
+
+### Edge Mainnet
+
+| Parameter | Value                                                                                                                                                                                                       |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `3343`                                                                                                                                                                                                      |
+| Address   | <Address contractUrl="https://pro.edgex.exchange/en-US/explorer/address/0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlId="3343_0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Edge Mainnet                                                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                                        |
+| Decimals  | 18                                                                                                                                                                                                          |
+
+### Edge Testnet
+
+| Parameter | Value                                                                                                                                                                                                        |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `33431`                                                                                                                                                                                                      |
+| Address   | <Address contractUrl="https://edge-testnet.explorer.alchemy.com/address/0xD610B8f58689de7755947C05342A2DFaC30ebD57" urlId="33431_0xD610B8f58689de7755947C05342A2DFaC30ebD57" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Edge Testnet                                                                                                                                                                              |
+| Symbol    | LINK                                                                                                                                                                                                         |
+| Decimals  | 18                                                                                                                                                                                                           |
+
+## <img src="/assets/chains/ethereum.svg" style="height: 24px; width: auto; margin-right: 8px;" />Ethereum
+
+### Ethereum Mainnet
+
+ETH is used to pay for transactions on Ethereum Mainnet.
+
+| Parameter      | Value                                                                                                                                                                             |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `1`                                                                                                                                                                               |
+| Address        | <Address contractUrl="https://etherscan.io/token/0x514910771AF9Ca656af840dff83E8264EcF986CA" urlId="1_0x514910771AF9Ca656af840dff83E8264EcF986CA" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Ethereum Mainnet                                                                                                                                               |
+| Symbol         | LINK                                                                                                                                                                              |
+| Decimals       | 18                                                                                                                                                                                |
+| Network status | [ethstats.dev](https://ethstats.dev/)                                                                                                                                             |
+
+### Sepolia Testnet
+
+Testnet ETH is used to pay for transactions on Sepolia.
+
+Testnet ETH and LINK are available at [faucets.chain.link/sepolia](https://faucets.chain.link/sepolia).
+
+| Parameter      | Value                                                                                                                                                                                            |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `11155111`                                                                                                                                                                                       |
+| Address        | <Address contractUrl="https://sepolia.etherscan.io/token/0x779877A7B0D9E8603169DdbD7836e478b4624789" urlId="11155111_0x779877A7B0D9E8603169DdbD7836e478b4624789" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Ethereum Sepolia Testnet                                                                                                                                                      |
+| Symbol         | LINK                                                                                                                                                                                             |
+| Decimals       | 18                                                                                                                                                                                               |
+| Network status | [etherscan.freshstatus.io](https://etherscan.freshstatus.io/)                                                                                                                                    |
+
+### Ethereum Holesky Testnet
+
+Testnet ETH is used to pay for transactions on Holesky.
+
+Testnet ETH and LINK are available at [faucets.chain.link/holesky](https://faucets.chain.link/holesky).
+
+| Parameter      | Value                                                                                                                                                                                         |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `17000`                                                                                                                                                                                       |
+| Address        | <Address contractUrl="https://holesky.etherscan.io/token/0x685cE6742351ae9b618F383883D6d1e0c5A31B4B" urlId="17000_0x685cE6742351ae9b618F383883D6d1e0c5A31B4B" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Ethereum Holesky Testnet                                                                                                                                                   |
+| Symbol         | LINK                                                                                                                                                                                          |
+| Decimals       | 18                                                                                                                                                                                            |
+| Network status | [etherscan.freshstatus.io](https://etherscan.freshstatus.io/)                                                                                                                                 |
+
+### Ethereum Hoodi Testnet
+
+Testnet ETH is used to pay for transactions on Hoodi.
+
+Testnet ETH and LINK are available at [faucets.chain.link/hoodi](https://faucets.chain.link/hoodi).
+
+| Parameter      | Value                                                                                                                                                                                        |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `560048`                                                                                                                                                                                     |
+| Address        | <Address contractUrl="https://hoodi.etherscan.io/token/0x76c00B055414de203B79B4955E28119BF459033e" urlId="560048_0x76c00B055414de203B79B4955E28119BF459033e" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Ethereum Hoodi Testnet                                                                                                                                                    |
+| Symbol         | LINK                                                                                                                                                                                         |
+| Decimals       | 18                                                                                                                                                                                           |
+| Network status | [etherscan.freshstatus.io](https://etherscan.freshstatus.io/)                                                                                                                                |
+
+## <img src="/assets/chains/etherlink.svg" style="height: 24px; width: auto; margin-right: 8px;" />Etherlink
+
+### Etherlink Mainnet
+
+| Parameter | Value                                                                                                                                                                                             |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `42793`                                                                                                                                                                                           |
+| Address   | <Address contractUrl="https://explorer.etherlink.com/address/0x8ce7618E8f8E514d13889283F58FF03B794e6CC3" urlId="42793_0x8ce7618E8f8E514d13889283F58FF03B794e6CC3" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Etherlink Mainnet                                                                                                                                                              |
+| Symbol    | LINK                                                                                                                                                                                              |
+| Decimals  | 18                                                                                                                                                                                                |
+
+### Etherlink Testnet
+
+| Parameter | Value                                                                                                                                                                                                        |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `128123`                                                                                                                                                                                                     |
+| Address   | <Address contractUrl="https://testnet.explorer.etherlink.com/address/0xE02E6E94d4a5E215F308bDd564a1B6f13AA56950" urlId="11155111_0xE02E6E94d4a5E215F308bDd564a1B6f13AA56950" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Etherlink Testnet                                                                                                                                                                         |
+| Symbol    | LINK                                                                                                                                                                                                         |
+| Decimals  | 18                                                                                                                                                                                                           |
+
+## <img src="/assets/chains/everclear.svg" style="height: 24px; width: auto; margin-right: 8px;" />Everclear
+
+### Everclear Mainnet
+
+| Parameter | Value                                                                                                                                                                                         |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `25327`                                                                                                                                                                                       |
+| Address   | <Address contractUrl="https://scan.everclear.org/address/0x318Ec96df83AccC18B5EAD5D23e0F022F7Eb5503" urlId="25327_0x318Ec96df83AccC18B5EAD5D23e0F022F7Eb5503" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Everclear Mainnet                                                                                                                                                          |
+| Symbol    | LINK                                                                                                                                                                                          |
+| Decimals  | 18                                                                                                                                                                                            |
+
+## <img src="/assets/chains/fantom.svg" style="height: 24px; width: auto; margin-right: 8px;" />Fantom
+
+### Fantom Mainnet
+
+FTM is used to pay for transactions on Fantom Mainnet.
+
+> **CAUTION: ERC-677 LINK on Fantom**
+>
+> You must use ERC-677 LINK on Fantom. ERC-20 LINK will not work with Chainlink services.
+
+| Parameter      | Value                                                                                                                                                                                |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `250`                                                                                                                                                                                |
+| Address        | <Address contractUrl="https://ftmscan.com/address/0x6F43FF82CCA38001B6699a8AC47A2d0E66939407" urlId="250_0x6F43FF82CCA38001B6699a8AC47A2d0E66939407" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Fantom Mainnet                                                                                                                                                    |
+| Symbol         | LINK                                                                                                                                                                                 |
+| Decimals       | 18                                                                                                                                                                                   |
+| Network status | [ftmscan.freshstatus.io](https://ftmscan.freshstatus.io/)                                                                                                                            |
+
+### Fantom Testnet
+
+Testnet FTM is used to pay for transactions on Fantom testnet. Testnet FTM is available at [faucet.fantom.network](https://faucet.fantom.network/).
+
+Testnet LINK is available at [faucets.chain.link/fantom-testnet](https://faucets.chain.link/fantom-testnet).
+
+| Parameter      | Value                                                                                                                                                                                         |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `4002`                                                                                                                                                                                        |
+| Address        | <Address contractUrl="https://testnet.ftmscan.com/address/0xfaFedb041c0DD4fA2Dc0d87a6B0979Ee6FA7af5F" urlId="4002_0xfaFedb041c0DD4fA2Dc0d87a6B0979Ee6FA7af5F" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Fantom Testnet                                                                                                                                                             |
+| Symbol         | LINK                                                                                                                                                                                          |
+| Decimals       | 18                                                                                                                                                                                            |
+| Network status | [ftmscan.freshstatus.io](https://ftmscan.freshstatus.io/)                                                                                                                                     |
+
+## <img src="/assets/chains/fraxtal.svg" style="height: 24px; width: auto; margin-right: 8px;" />Fraxtal
+
+### Fraxtal Mainnet
+
+| Parameter | Value                                                                                                                                                                                  |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `252`                                                                                                                                                                                  |
+| Address   | <Address contractUrl="https://fraxscan.com/address/0xd6A6ba37fAaC229B9665E86739ca501401f5a940" urlId="2522_0xd6A6ba37fAaC229B9665E86739ca501401f5a940" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Fraxtal Mainnet                                                                                                                                                     |
+| Symbol    | LINK                                                                                                                                                                                   |
+| Decimals  | 18                                                                                                                                                                                     |
+
+### Fraxtal Testnet
+
+| Parameter | Value                                                                                                                                                                                          |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `2522`                                                                                                                                                                                         |
+| Address   | <Address contractUrl="https://holesky.fraxscan.com/address/0xb192c5Fb8e33694F0CFD4357806a63dc59feEBEF" urlId="2522_0xb192c5Fb8e33694F0CFD4357806a63dc59feEBEF" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Fraxtal Testnet                                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                           |
+| Decimals  | 18                                                                                                                                                                                             |
+
+## <img src="/assets/chains/gnosis-chain.svg" style="height: 24px; width: auto; margin-right: 8px;" />Gnosis Chain (xDai)
+
+### Gnosis Chain Mainnet
+
+xDAI is used to pay for transactions on Gnosis Chain Mainnet. Use the [xDai Bridge](https://bridge.gnosischain.com/) to send DAI from Ethereum Mainnet to Gnosis Chain and convert it to xDAI. Use [OmniBridge](https://omni.gnosischain.com/bridge) to send LINK from Ethereum Mainnet to Gnosis Chain.
+
+| Parameter      | Value                                                                                                                                                                                  |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `100`                                                                                                                                                                                  |
+| Address        | <Address contractUrl="https://gnosisscan.io/address/0xE2e73A1c69ecF83F464EFCE6A5be353a37cA09b2" urlId="100_0xE2e73A1c69ecF83F464EFCE6A5be353a37cA09b2" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Gnosis Chain (xDai) Mainnet                                                                                                                                         |
+| Symbol         | LINK                                                                                                                                                                                   |
+| Decimals       | 18                                                                                                                                                                                     |
+| Network status | [gnosisscan.freshstatus.io](https://gnosisscan.freshstatus.io/)                                                                                                                        |
+
+### Gnosis Chiado Testnet
+
+xDAI is used to pay for transactions on Gnosis Chiado testnet. Use the [Chiado faucet](https://faucet.chiadochain.net/) to get testnet xDAI.
+
+Testnet Native and LINK is available at [faucets.chain.link/gnosis-chiado-testnet](https://faucets.chain.link/gnosis-chiado-testnet).
+
+| Parameter      | Value                                                                                                                                                                                                   |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID       | `10200`                                                                                                                                                                                                 |
+| Address        | <Address contractUrl="https://gnosis-chiado.blockscout.com/address/0xDCA67FD8324990792C0bfaE95903B8A64097754F" urlId="10200_0xDCA67FD8324990792C0bfaE95903B8A64097754F" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Gnosis Chiado Testnet                                                                                                                                                                |
+| Symbol         | LINK                                                                                                                                                                                                    |
+| Decimals       | 18                                                                                                                                                                                                      |
+| Network status | [gnosisscan.freshstatus.io](https://gnosisscan.freshstatus.io/)                                                                                                                                         |
+
+## <img src="/assets/chains/hashkey.svg" style="height: 24px; width: auto; margin-right: 8px;" />HashKey
+
+### HashKey Chain Mainnet
+
+| Parameter | Value                                                                                                                                                                                           |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `177`                                                                                                                                                                                           |
+| Address   | <Address contractUrl="https://hashkey.blockscout.com/address/0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlId="177_0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on HashKey Chain Mainnet                                                                                                                                                        |
+| Symbol    | LINK                                                                                                                                                                                            |
+| Decimals  | 18                                                                                                                                                                                              |
+
+### HashKey Chain Testnet
+
+| Parameter | Value                                                                                                                                                                                                                 |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `133`                                                                                                                                                                                                                 |
+| Address   | <Address contractUrl="https://hashkeychain-testnet-explorer.alt.technology/address/0x8418c4d7e8e17ab90232DC72150730E6c4b84F57" urlId="133_0x8418c4d7e8e17ab90232DC72150730E6c4b84F57" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on HashKey Testnet                                                                                                                                                                                    |
+| Symbol    | LINK                                                                                                                                                                                                                  |
+| Decimals  | 18                                                                                                                                                                                                                    |
+
+## <img src="/assets/chains/hedera.svg" style="height: 24px; width: auto; margin-right: 8px;" />Hedera
+
+### Hedera Mainnet
+
+| Parameter | Value                                                                                                                                                                                         |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `296`                                                                                                                                                                                         |
+| Address   | <Address contractUrl="https://hashscan.io/mainnet/contract/0x7ce6bb2cc2d3fd45a974da6a0f29236cb9513a98" urlId="296_0x7ce6bb2cc2d3fd45a974da6a0f29236cb9513a98" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                               |
+| Symbol    | LINK                                                                                                                                                                                          |
+| Decimals  | 18                                                                                                                                                                                            |
+
+### Hedera Testnet
+
+Testnet HBAR is used to pay for transactions on the Hedera testnet.
+
+Testnet Native and LINK is available at [faucets.chain.link/hedera-testnet](https://faucets.chain.link/hedera-testnet).
+
+| Parameter | Value                                                                                                     |
+| :-------- | :-------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `296`                                                                                                     |
+| Address   | <Address contractUrl="https://hashscan.io/testnet/contract/0x90a386d59b9A6a4795a011e8f032Fc21ED6FEFb6" /> |
+| Name      | Chainlink Token on Hedera Testnet                                                                         |
+| Symbol    | LINK                                                                                                      |
+| Decimals  | 18                                                                                                        |
+
+## <img src="/assets/chains/hemi.svg" style="height: 24px; width: auto; margin-right: 8px;" />Hemi
+
+### Hemi Mainnet
+
+| Parameter | Value                                                                                                                                                                                        |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `43111`                                                                                                                                                                                      |
+| Address   | <Address contractUrl="https://explorer.hemi.xyz/address/0x63dbE12A6381D64adE47bc3D92aBF4393DFF4BC8" urlId="43111_0x63dbE12A6381D64adE47bc3D92aBF4393DFF4BC8" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                              |
+| Symbol    | LINK                                                                                                                                                                                         |
+| Decimals  | 18                                                                                                                                                                                           |
+
+### Hemi Sepolia Testnet
+
+| Parameter | Value                                                                                                                                                                                                 |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `743111`                                                                                                                                                                                              |
+| Address   | <Address contractUrl="https://testnet.explorer.hemi.xyz/address/0x5246409a2e09134824c4E709602205B176491e57" urlId="743111_0x5246409a2e09134824c4E709602205B176491e57" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Hemi Sepolia Testnet                                                                                                                                                               |
+| Symbol    | LINK                                                                                                                                                                                                  |
+| Decimals  | 18                                                                                                                                                                                                    |
+
+## <img src="/assets/chains/henesys.svg" style="height: 24px; width: auto; margin-right: 8px;" />Henesys
+
+### Henesys Mainnet
+
+| Parameter | Value                                                                                                                                                                                                   |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `68414`                                                                                                                                                                                                 |
+| Address   | <Address contractUrl="https://subnets.avax.network/henesys/address/0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlId="68414_0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Nexon Henesys Mainnet                                                                                                                                                                |
+| Symbol    | LINK                                                                                                                                                                                                    |
+| Decimals  | 18                                                                                                                                                                                                      |
+
+## <img src="/assets/chains/hyperliquid.svg" style="height: 24px; width: auto; margin-right: 8px;" />HyperEVM
+
+### HyperEVM Mainnet
+
+| Parameter | Value                                                                                                                                                                                    |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `999`                                                                                                                                                                                    |
+| Address   | <Address contractUrl="https://hyperevmscan.io/address/0x1AC2EE68b8d038C982C1E1f73F596927dd70De59" urlId="999_0x1AC2EE68b8d038C982C1E1f73F596927dd70De59" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                          |
+| Symbol    | LINK                                                                                                                                                                                     |
+| Decimals  | 18                                                                                                                                                                                       |
+
+### HyperEVM Testnet
+
+| Parameter | Value                                                                                                                                                                                                |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `998`                                                                                                                                                                                                |
+| Address   | <Address contractUrl="https://explore-testnet.hyperpc.app/address/0xDD311DBec8A24EdFabf5F985845a75F42e8f9544" urlId="998_0xDD311DBec8A24EdFabf5F985845a75F42e8f9544" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                      |
+| Symbol    | LINK                                                                                                                                                                                                 |
+| Decimals  | 18                                                                                                                                                                                                   |
+
+## <img src="/assets/chains/ink.svg" style="height: 24px; width: auto; margin-right: 8px;" />Ink
+
+### Ink Mainnet
+
+| Parameter | Value                                                                                                                                                                                              |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `57073`                                                                                                                                                                                            |
+| Address   | <Address contractUrl="https://explorer.inkonchain.com/address/0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlId="57073_0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Ink Mainnet                                                                                                                                                                     |
+| Symbol    | LINK                                                                                                                                                                                               |
+| Decimals  | 18                                                                                                                                                                                                 |
+
+### Ink Sepolia Testnet
+
+| Parameter | Value                                                                                                                                                                                                       |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `763373`                                                                                                                                                                                                    |
+| Address   | <Address contractUrl="https://explorer-sepolia.inkonchain.com/address/0x3423C922911956b1Ccbc2b5d4f38216a6f4299b4" urlId="763373_0x3423C922911956b1Ccbc2b5d4f38216a6f4299b4" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Ink Sepolia Testnet                                                                                                                                                                      |
+| Symbol    | LINK                                                                                                                                                                                                        |
+| Decimals  | 18                                                                                                                                                                                                          |
+
+## <img src="/assets/chains/janction.svg" style="height: 24px; width: auto; margin-right: 8px;" />Janction
+
+### Janction Sepolia Testnet
+
+| Parameter | Value                                                                                                                                                                                                             |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CHAIN\_ID | `679`                                                                                                                                                                                                             |
+| Address   | <Address contractUrl="https://janction-testnet-explorer.alt.technology/address/0x7311DED199CC28D80E58e81e8589aa160199FCD2" urlId="679_0x7311DED199CC28D80E58e81e8589aa160199FCD2" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Janction Sepolia Testnet                                                                                                                                                                       |
+| Symbol    | LINK                                                                                                                                                                                                              |
+| Decimals  | 18                                                                                                                                                                                                                |
+
+## <img src="/assets/chains/jovay.svg" style="height: 24px; width: auto; margin-right: 8px;" />Jovay
+
+### Jovay Mainnet
+
+| Parameter | Value                                                                                                                                                                                             |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `5734951`                                                                                                                                                                                         |
+| Address   | <Address contractUrl="https://explorer.jovay.io/l2/address/0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlId="5734951_0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Jovay Mainnet                                                                                                                                                                  |
+| Symbol    | LINK                                                                                                                                                                                              |
+| Decimals  | 18                                                                                                                                                                                                |
+
+### Jovay Sepolia Testnet
+
+| Parameter | Value                                                                                                                                                                                                     |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `2019775`                                                                                                                                                                                                 |
+| Address   | <Address contractUrl="https://sepolia-explorer.jovay.io/l2/address/0xd3e461C55676B10634a5F81b747c324B85686Dd1" urlId="2019775_0xd3e461C55676B10634a5F81b747c324B85686Dd1" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Jovay Sepolia Testnet                                                                                                                                                                  |
+| Symbol    | LINK                                                                                                                                                                                                      |
+| Decimals  | 18                                                                                                                                                                                                        |
+
+## <img src="/assets/chains/kaia.svg" style="height: 24px; width: auto; margin-right: 8px;" />Kaia
+
+### Kaia Mainnet
+
+| Parameter  | Value                                                                                                                                                                                 |
+| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `CHAIN_ID` | `8217`                                                                                                                                                                                |
+| Address    | <Address contractUrl="https://kaiascan.io/address/0x7311ded199cc28d80e58e81e8589aa160199fcd2" urlId="8217_0x7311ded199cc28d80e58e81e8589aa160199fcd2" urlClass="erc-token-address" /> |
+| Name       | Chainlink Token                                                                                                                                                                       |
+| Symbol     | LINK                                                                                                                                                                                  |
+| Decimals   | 18                                                                                                                                                                                    |
+
+### Kaia Kairos Testnet
+
+| Parameter  | Value                                                                                                                                                                                        |
+| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CHAIN_ID` | `1001`                                                                                                                                                                                       |
+| Address    | <Address contractUrl="https://kairos.kaiascan.io/address/0xaf3243f975afe2269da8ffa835ca3a8f8b6a5a36" urlId="1001_0xaf3243f975afe2269da8ffa835ca3a8f8b6a5a36" urlClass="erc-token-address" /> |
+| Name       | Chainlink Token                                                                                                                                                                              |
+| Symbol     | LINK                                                                                                                                                                                         |
+| Decimals   | 18                                                                                                                                                                                           |
+
+## <img src="/assets/chains/lens.svg" style="height: 24px; width: auto; margin-right: 8px;" />Lens
+
+### Lens Mainnet
+
+| Parameter | Value                                                                                                                                                                                      |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `232`                                                                                                                                                                                      |
+| Address   | <Address contractUrl="https://explorer.lens.xyz/address/0x6e970e8d6758164798290c8db1D79a527ca6e1B2" urlId="232_0x6e970e8d6758164798290c8db1D79a527ca6e1B2" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                            |
+| Symbol    | LINK                                                                                                                                                                                       |
+| Decimals  | 18                                                                                                                                                                                         |
+
+### Lens Sepolia Testnet
+
+| Parameter | Value                                                                                                                                                                                                      |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `37111`                                                                                                                                                                                                    |
+| Address   | <Address contractUrl="https://block-explorer.testnet.lens.dev/address/0x7f1b9eE544f9ff9bB521Ab79c205d79C55250a36" urlId="37111_0x7f1b9eE544f9ff9bB521Ab79c205d79C55250a36" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Lens Sepolia Testnet                                                                                                                                                                    |
+| Symbol    | LINK                                                                                                                                                                                                       |
+| Decimals  | 18                                                                                                                                                                                                         |
+
+## <img src="/assets/chains/linea.svg" style="height: 24px; width: auto; margin-right: 8px;" />Linea
+
+### Linea Mainnet
+
+ETH is used to pay for transactions on Linea Mainnet. Use the [Linea Bridge](https://bridge.linea.build/) to transfer ETH from Ethereum to Linea.
+
+| Parameter      | Value                                                                                                                                                                                      |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `59144`                                                                                                                                                                                    |
+| Address        | <Address contractUrl="https://lineascan.build/address/0xa18152629128738a5c081eb226335FEd4B9C95e9" urlId="59144_0xa18152629128738a5c081eb226335FEd4B9C95e9" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Linea Mainnet                                                                                                                                                           |
+| Symbol         | LINK                                                                                                                                                                                       |
+| Decimals       | 18                                                                                                                                                                                         |
+| Network status | [linea.statuspage.io](https://linea.statuspage.io/)                                                                                                                                        |
+
+### Linea Sepolia Testnet
+
+Testnet ETH is used to pay for transactions on Linea Sepolia. Testnet Native and LINK are available at [faucets.chain.link/linea-sepolia](https://faucets.chain.link/linea-sepolia).
+
+| Parameter      | Value                                                                                                                                                                                              |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `59141`                                                                                                                                                                                            |
+| Address        | <Address contractUrl="https://sepolia.lineascan.build/address/0xF64E6E064a71B45514691D397ad4204972cD6508" urlId="59141_0xF64E6E064a71B45514691D397ad4204972cD6508" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Linea Sepolia Testnet                                                                                                                                                           |
+| Symbol         | LINK                                                                                                                                                                                               |
+| Decimals       | 18                                                                                                                                                                                                 |
+| Network status | [linea.statuspage.io](https://linea.statuspage.io/)                                                                                                                                                |
+
+## <img src="/assets/chains/lisk.svg" style="height: 24px; width: auto; margin-right: 8px;" />Lisk
+
+### Lisk Mainnet
+
+| Parameter | Value                                                                                                                                                                                         |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `1135`                                                                                                                                                                                        |
+| Address   | <Address contractUrl="https://blockscout.lisk.com/address/0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlId="1135_0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                               |
+| Symbol    | LINK                                                                                                                                                                                          |
+| Decimals  | 18                                                                                                                                                                                            |
+
+### Lisk Sepolia Testnet
+
+| Parameter | Value                                                                                                                                                                                                 |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `4202`                                                                                                                                                                                                |
+| Address   | <Address contractUrl="https://sepolia-blockscout.lisk.com/address/0x6641415a61bCe80D97a715054d1334360Ab833Eb" urlId="4202_0x6641415a61bCe80D97a715054d1334360Ab833Eb" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                       |
+| Symbol    | LINK                                                                                                                                                                                                  |
+| Decimals  | 18                                                                                                                                                                                                    |
+
+## <img src="/assets/chains/mantle.svg" style="height: 24px; width: auto; margin-right: 8px;" />Mantle
+
+### Mantle Mainnet
+
+MNT is used to pay for transactions on the Mantle mainnet.
+
+| Parameter      | Value                                                                                                                                                                                    |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `5000`                                                                                                                                                                                   |
+| Address        | <Address contractUrl="https://mantlescan.xyz/address/0xfe36cF0B43aAe49fBc5cFC5c0AF22a623114E043" urlId="5000_0xfe36cF0B43aAe49fBc5cFC5c0AF22a623114E043" urlClass="erc-token-address" /> |
+| Name           | ChainLink Token on Mantle Mainnet                                                                                                                                                        |
+| Symbol         | LINK                                                                                                                                                                                     |
+| Decimals       | 18                                                                                                                                                                                       |
+
+### Mantle Sepolia Testnet
+
+Testnet ETH is used to pay for transactions on the Mantle Sepolia testnet.
+
+Testnet Native and LINK are available at [faucets.chain.link/mantle-sepolia](https://faucets.chain.link/mantle-sepolia).
+
+| Parameter      | Value                                                                                                                                                                                            |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `5003`                                                                                                                                                                                           |
+| Address        | <Address contractUrl="https://sepolia.mantlescan.xyz/address/0x22bdEdEa0beBdD7CfFC95bA53826E55afFE9DE04" urlId="5003_0x22bdEdEa0beBdD7CfFC95bA53826E55afFE9DE04" urlClass="erc-token-address" /> |
+| Name           | ChainLink Token on Mantle Sepolia Testnet                                                                                                                                                        |
+| Symbol         | LINK                                                                                                                                                                                             |
+| Decimals       | 18                                                                                                                                                                                               |
+
+## <img src="/assets/chains/memento.svg" style="height: 24px; width: auto; margin-right: 8px;" />Memento
+
+### Memento Testnet
+
+| Parameter | Value                                                                                                                                                                                                   |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `2129`                                                                                                                                                                                                  |
+| Address   | <Address contractUrl="https://explorer.memento.zeeve.online/address/0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlId="2129_0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                         |
+| Symbol    | LINK                                                                                                                                                                                                    |
+| Decimals  | 18                                                                                                                                                                                                      |
+
+## <img src="/assets/chains/megaeth.svg" style="height: 24px; width: auto; margin-right: 8px;" />MegaETH
+
+### MegaETH Mainnet
+
+| Parameter | Value                                                                                                                                                                                       |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `4326`                                                                                                                                                                                      |
+| Address   | <Address contractUrl="https://mega.etherscan.io/address/0xee85aEfb15b9489563A6a29891ebe0750AA1A7Ae" urlId="4326_0xee85aEfb15b9489563A6a29891ebe0750AA1A7Ae" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on MegaETH Mainnet                                                                                                                                                          |
+| Symbol    | LINK                                                                                                                                                                                        |
+| Decimals  | 18                                                                                                                                                                                          |
+
+### MegaETH Testnet
+
+| Parameter | Value                                                                                                                                                                                               |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `6343`                                                                                                                                                                                              |
+| Address   | <Address contractUrl="https://testnet-mega.etherscan.io/address/0xAd1652471967E7FBf524245782A7f4430F6a4243" urlId="6343_0xAd1652471967E7FBf524245782A7f4430F6a4243" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on MegaETH Testnet                                                                                                                                                                  |
+| Symbol    | LINK                                                                                                                                                                                                |
+| Decimals  | 18                                                                                                                                                                                                  |
+
+## <img src="/assets/chains/merlin.svg" style="height: 24px; width: auto; margin-right: 8px;" />Merlin
+
+### Merlin Mainnet
+
+| Parameter | Value                                                                                                                                                                                         |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `4200`                                                                                                                                                                                        |
+| Address   | <Address contractUrl="https://scan.merlinchain.io/address/0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlId="4200_0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Merlin Mainnet                                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                          |
+| Decimals  | 18                                                                                                                                                                                            |
+
+### Merlin Testnet
+
+| Parameter | Value                                                                                                                                                                                                    |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `686868`                                                                                                                                                                                                 |
+| Address   | <Address contractUrl="https://testnet-scan.merlinchain.io//address/0xB904d5b9a1e74F6576fFF550EeE75Eaa68e2dd50" urlId="686868_0xB904d5b9a1e74F6576fFF550EeE75Eaa68e2dd50" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Merlin Testnet                                                                                                                                                                        |
+| Symbol    | LINK                                                                                                                                                                                                     |
+| Decimals  | 18                                                                                                                                                                                                       |
+
+## <img src="/assets/chains/metal.svg" style="height: 24px; width: auto; margin-right: 8px;" />Metal
+
+### Metal Mainnet
+
+| Parameter | Value                                                                                                                                                                                          |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `1750`                                                                                                                                                                                         |
+| Address   | <Address contractUrl="https://explorer.metall2.com/address/0x587d19DDF735D6B536aAdB1a2A92938eB23B8d5C" urlId="1750_0x587d19DDF735D6B536aAdB1a2A92938eB23B8d5C" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                |
+| Symbol    | LINK                                                                                                                                                                                           |
+| Decimals  | 18                                                                                                                                                                                             |
+
+### Metal L2 Testnet
+
+| Parameter | Value                                                                                                                                                                                                  |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `1740`                                                                                                                                                                                                 |
+| Address   | <Address contractUrl="https://testnet.explorer.metall2.com/address/0x7ECBE3416d92E8d79C8e5d8EB8Aad5DdEdAa0237" urlId="1740_0x7ECBE3416d92E8d79C8e5d8EB8Aad5DdEdAa0237" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                        |
+| Symbol    | LINK                                                                                                                                                                                                   |
+| Decimals  | 18                                                                                                                                                                                                     |
+
+## <img src="/assets/chains/metis.svg" style="height: 24px; width: auto; margin-right: 8px;" />Metis
+
+### Metis Mainnet
+
+METIS is used to pay for transactions on Metis Mainnet. You can use the [Metis Bridge](https://bridge.metis.io/) to transfer METIS from Ethereum Mainnet to Metis Mainnet.
+
+> **CAUTION: ERC-677 LINK on Metis**
+>
+> The LINK provided by the [Metis Bridge](https://bridge.metis.io/) is not ERC-677 compatible, so you cannot use it with
+> Chainlink services or oracle nodes.
+
+| Parameter      | Value                                                                                                                                                                                       |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID       | `1088`                                                                                                                                                                                      |
+| Address        | <Address contractUrl="https://explorer.metis.io/address/0xd2FE54D1E5F568eB710ba9d898Bf4bD02C7c0353" urlId="1088_0xd2FE54D1E5F568eB710ba9d898Bf4bD02C7c0353" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Metis Mainnet                                                                                                                                                            |
+| Symbol         | LINK                                                                                                                                                                                        |
+| Decimals       | 18                                                                                                                                                                                          |
+| Network status | [explorer.metis.io](https://explorer.metis.io/)                                                                                                                                             |
+
+### Metis Sepolia Testnet
+
+Testnet METIS is used to pay for transactions on Metis Sepolia.
+
+Testnet METIS and LINK are available at [faucets.chain.link/metis-sepolia](https://faucets.chain.link/metis-sepolia).
+
+| Parameter      | Value                                                                                                                                                                                                        |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `59902`                                                                                                                                                                                                      |
+| Address        | <Address contractUrl="https://sepolia-explorer.metisdevops.link/address/0x9870D6a0e05F867EAAe696e106741843F7fD116D" urlId="59902_0x9870D6a0e05F867EAAe696e106741843F7fD116D" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Metis Sepolia Testnet                                                                                                                                                                     |
+| Symbol         | LINK                                                                                                                                                                                                         |
+| Decimals       | 18                                                                                                                                                                                                           |
+| Network status | [sepolia-explorer.metisdevops.link](https://sepolia-explorer.metisdevops.link/)                                                                                                                              |
+
+## <img src="/assets/chains/mindnetwork.svg" style="height: 24px; width: auto; margin-right: 8px;" />Mind Network
+
+### Mind Network Mainnet
+
+| Parameter      | Value                                                                                                                                                                                             |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ETH_CHAIN_ID` | `228`                                                                                                                                                                                             |
+| Address        | <Address contractUrl="https://explorer.mindnetwork.xyz/address/0xd8A9246e84903e82CA01e42774b01A7CdD465BFa" urlId="228_0xd8A9246e84903e82CA01e42774b01A7CdD465BFa" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token                                                                                                                                                                                   |
+| Symbol         | LINK                                                                                                                                                                                              |
+| Decimals       | 18                                                                                                                                                                                                |
+
+### Mind Network Testnet
+
+| Parameter      | Value                                                                                                                                                                                                        |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `192940`                                                                                                                                                                                                     |
+| Address        | <Address contractUrl="https://explorer-testnet.mindnetwork.xyz/address/0xE0352dEd874c3E72d922CE533E136385fBE4a9B4" urlId="192940_0xE0352dEd874c3E72d922CE533E136385fBE4a9B4" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token                                                                                                                                                                                              |
+| Symbol         | LINK                                                                                                                                                                                                         |
+| Decimals       | 18                                                                                                                                                                                                           |
+
+## <img src="/assets/chains/mint.svg" style="height: 24px; width: auto; margin-right: 8px;" />Mint
+
+### Mint Mainnet
+
+| Parameter | Value                                                                                                                                                                                          |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `185`                                                                                                                                                                                          |
+| Address   | <Address contractUrl="https://explorer.mintchain.io/address/0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlId="185_0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                |
+| Symbol    | LINK                                                                                                                                                                                           |
+| Decimals  | 18                                                                                                                                                                                             |
+
+### Mint Sepolia Testnet
+
+| Parameter | Value                                                                                                                                                                                                           |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `1687`                                                                                                                                                                                                          |
+| Address   | <Address contractUrl="https://sepolia-testnet-explorer.mintchain.io/address/0x7ECBE3416d92E8d79C8e5d8EB8Aad5DdEdAa0237" urlId="1687_0x7ECBE3416d92E8d79C8e5d8EB8Aad5DdEdAa0237" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                                 |
+| Symbol    | LINK                                                                                                                                                                                                            |
+| Decimals  | 18                                                                                                                                                                                                              |
+
+## <img src="/assets/chains/mode.svg" style="height: 24px; width: auto; margin-right: 8px;" />Mode
+
+### Mode Mainnet
+
+ETH is used to pay for transactions on the Mode mainnet.
+
+| Parameter      | Value                                                                                                                                                                                            |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `34443`                                                                                                                                                                                          |
+| Address        | <Address contractUrl="https://explorer.mode.network/address/0x183E3691EfF3524B2315D3703D94F922CbE51F54" urlId="34443_0x183E3691EfF3524B2315D3703D94F922CbE51F54" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Mode Mainnet                                                                                                                                                                  |
+| Symbol         | LINK                                                                                                                                                                                             |
+| Decimals       | 18                                                                                                                                                                                               |
+
+### Mode Sepolia Testnet
+
+Testnet ETH is used to pay for transactions on the Mode testnet.
+
+Testnet ETH and LINK are available at [faucets.chain.link/mode-sepolia](https://faucets.chain.link/mode-sepolia).
+
+| Parameter      | Value                                                                                                                                                                                                  |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `919`                                                                                                                                                                                                  |
+| Address        | <Address contractUrl="https://sepolia.explorer.mode.network/address/0x925a4bfE64AE2bFAC8a02b35F78e60C29743755d" urlId="919_0x925a4bfE64AE2bFAC8a02b35F78e60C29743755d" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Mode Sepolia Testnet                                                                                                                                                                |
+| Symbol         | LINK                                                                                                                                                                                                   |
+| Decimals       | 18                                                                                                                                                                                                     |
+
+## <img src="/assets/chains/monad.svg" style="height: 24px; width: auto; margin-right: 8px;" />Monad
+
+### Monad Mainnet
+
+| Parameter | Value                                                                                                                                                                                     |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `143`                                                                                                                                                                                     |
+| Address   | <Address contractUrl="https://monadvision.com//address/0x76f257B1DDA5cC71bee4eF637Fbdde4C801310A9" urlId="143_0x76f257B1DDA5cC71bee4eF637Fbdde4C801310A9" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Monad Mainnet                                                                                                                                                          |
+| Symbol    | LINK                                                                                                                                                                                      |
+| Decimals  | 18                                                                                                                                                                                        |
+
+### Monad Testnet
+
+| Parameter | Value                                                                                                                                                                                                |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `10143`                                                                                                                                                                                              |
+| Address   | <Address contractUrl="https://testnet.monadexplorer.com/address/0x6fE981Dbd557f81ff66836af0932cba535Cbc343" urlId="10143_0x6fE981Dbd557f81ff66836af0932cba535Cbc343" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Monad Testnet                                                                                                                                                                     |
+| Symbol    | LINK                                                                                                                                                                                                 |
+| Decimals  | 18                                                                                                                                                                                                   |
+
+## <img src="/assets/chains/moonbeam.svg" style="height: 24px; width: auto; margin-right: 8px;" />Moonbeam
+
+### Moonbeam Mainnet
+
+GLMR is used to pay transaction fees on Moonbeam Mainnet.
+
+| Parameter      | Value                                                                                                                                                                                 |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID       | `1284`                                                                                                                                                                                |
+| Address        | <Address contractUrl="https://moonscan.io/address/0x012414A392F9FA442a3109f1320c439C45518aC3" urlId="1284_0x012414A392F9FA442a3109f1320c439C45518aC3" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Moonbeam Mainnet                                                                                                                                                   |
+| Symbol         | LINK                                                                                                                                                                                  |
+| Decimals       | 18                                                                                                                                                                                    |
+| Network status | [moonscan.freshstatus.io](https://moonscan.freshstatus.io/)                                                                                                                           |
+
+## <img src="/assets/chains/moonriver.svg" style="height: 24px; width: auto; margin-right: 8px;" />Moonriver
+
+### Moonriver Mainnet
+
+MOVR is used to pay transaction fees on Moonriver Mainnet.
+
+| Parameter      | Value                                                                                                                                                                                           |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `1285`                                                                                                                                                                                          |
+| Address        | <Address contractUrl="https://moonriver.moonscan.io/address/0x8b12Ac23BFe11cAb03a634C1F117D64a7f2cFD3e" urlId="1285_0x8b12Ac23BFe11cAb03a634C1F117D64a7f2cFD3e" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Moonriver Mainnet                                                                                                                                                            |
+| Symbol         | LINK                                                                                                                                                                                            |
+| Decimals       | 18                                                                                                                                                                                              |
+| Network status | [moonscan.freshstatus.io](https://moonscan.freshstatus.io/)                                                                                                                                     |
+
+## <img src="/assets/chains/morph.svg" style="height: 24px; width: auto; margin-right: 8px;" />Morph
+
+### Morph Mainnet
+
+| Parameter | Value                                                                                                                                                                                         |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `2818`                                                                                                                                                                                        |
+| Address   | <Address contractUrl="https://explorer.morphl2.io/address/0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlId="2818_0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Morph Mainnet                                                                                                                                                              |
+| Symbol    | LINK                                                                                                                                                                                          |
+| Decimals  | 18                                                                                                                                                                                            |
+
+### Morph Hoodi Testnet
+
+| Parameter | Value                                                                                                                                                                                               |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `2910`                                                                                                                                                                                              |
+| Address   | <Address contractUrl="https://explorer-hoodi.morphl2.io/address/0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlId="2910_0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Morph Hoodi Testnet                                                                                                                                                              |
+| Symbol    | LINK                                                                                                                                                                                                |
+| Decimals  | 18                                                                                                                                                                                                  |
+
+## <img src="/assets/chains/neox.svg" style="height: 24px; width: auto; margin-right: 8px;" />Neo X
+
+### Neo X Mainnet
+
+| Parameter | Value                                                                                                                                                                                        |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `47763`                                                                                                                                                                                      |
+| Address   | <Address contractUrl="https://xexplorer.neo.org/address/0xb25de57d73AB177FC091327Bcb725154dFBb5bFB" urlId="47763_0xb25de57d73AB177FC091327Bcb725154dFBb5bFB" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Neo X Mainnet                                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                         |
+| Decimals  | 18                                                                                                                                                                                           |
+
+### Neo X Testnet
+
+| Parameter | Value                                                                                                                                                                                             |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `12227332`                                                                                                                                                                                        |
+| Address   | <Address contractUrl="https://xt4scan.ngd.network/address/0x7F85bAC57B5D4b81F866F495c30AB8C8c453f6FD" urlId="12227332_0x7F85bAC57B5D4b81F866F495c30AB8C8c453f6FD" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Neo X Testnet                                                                                                                                                                  |
+| Symbol    | LINK                                                                                                                                                                                              |
+| Decimals  | 18                                                                                                                                                                                                |
+
+## <img src="/assets/chains/opbnb.svg" style="height: 24px; width: auto; margin-right: 8px;" />OPBNB
+
+### OPBNB Mainnet
+
+| Parameter | Value                                                                                                                                                                                  |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `204`                                                                                                                                                                                  |
+| Address   | <Address contractUrl="https://opbnbscan.com/address/0x99f0d88B81b758AB07E22C7AbA00E0121a882dEA" urlId="204_0x99f0d88B81b758AB07E22C7AbA00E0121a882dEA" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                        |
+| Symbol    | LINK                                                                                                                                                                                   |
+| Decimals  | 18                                                                                                                                                                                     |
+
+### OPBNB Testnet
+
+| Parameter | Value                                                                                                                                                                                               |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `5611`                                                                                                                                                                                              |
+| Address   | <Address contractUrl="https://opbnb-testnet.bscscan.com/address/0x56E16E648c51609A14Eb14B99BAB771Bee797045" urlId="5611_0x56E16E648c51609A14Eb14B99BAB771Bee797045" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                     |
+| Symbol    | LINK                                                                                                                                                                                                |
+| Decimals  | 18                                                                                                                                                                                                  |
+
+## <img src="/assets/chains/optimism.svg" style="height: 24px; width: auto; margin-right: 8px;" />OP
+
+### OP Mainnet
+
+ETH is used to pay for transactions on OP. Use the [OP Bridge](https://app.optimism.io/bridge) to transfer ETH and LINK from Ethereum Mainnet to OP Mainnet.
+
+| Parameter      | Value                                                                                                                                                                                           |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `10`                                                                                                                                                                                            |
+| Address        | <Address contractUrl="https://optimistic.etherscan.io/address/0x350a791Bfc2C21F9Ed5d10980Dad2e2638ffa7f6" urlId="10_0x350a791Bfc2C21F9Ed5d10980Dad2e2638ffa7f6" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on OP Mainnet                                                                                                                                                                   |
+| Symbol         | LINK                                                                                                                                                                                            |
+| Decimals       | 18                                                                                                                                                                                              |
+| Network status | [status.optimism.io](https://status.optimism.io/)                                                                                                                                               |
+
+### OP Sepolia Testnet
+
+Testnet ETH is used to pay for transactions on OP Sepolia. Use the [OP Bridge](https://app.optimism.io/bridge) to transfer testnet ETH from Ethereum Sepolia to OP Sepolia. Testnet ETH is available at [faucets.chain.link/sepolia](https://faucets.chain.link/sepolia).
+
+Testnet Native and LINK is available at [faucets.chain.link/optimism-sepolia](https://faucets.chain.link/optimism-sepolia). Testnet bridges might not transfer the correct type of LINK to OP Sepolia, so it is recommended to use only the LINK acquired from [faucets.chain.link/optimism-sepolia](https://faucets.chain.link/optimism-sepolia) when developing applications on testnet.
+
+| Parameter      | Value                                                                                                                                                                                                     |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `11155420`                                                                                                                                                                                                |
+| Address        | <Address contractUrl="https://sepolia-optimism.etherscan.io/token/0xE4aB69C077896252FAFBD49EFD26B5D171A32410" urlId="11155420_0xE4aB69C077896252FAFBD49EFD26B5D171A32410" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on OP Sepolia Testnet                                                                                                                                                                     |
+| Symbol         | LINK                                                                                                                                                                                                      |
+| Decimals       | 18                                                                                                                                                                                                        |
+| Network status | [status.optimism.io](https://status.optimism.io/)                                                                                                                                                         |
+
+## <img src="/assets/chains/pharos.svg" style="height: 24px; width: auto; margin-right: 8px;" />Pharos
+
+### Pharos Mainnet
+
+| Parameter | Value                                                                                                                                                                                    |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `1672`                                                                                                                                                                                   |
+| Address   | <Address contractUrl="https://pharosscan.xyz/address/0x51e2A24742Db77604B881d6781Ee16B5b8fcBE29" urlId="1672_0x51e2A24742Db77604B881d6781Ee16B5b8fcBE29" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Pharos Mainnet                                                                                                                                                        |
+| Symbol    | LINK                                                                                                                                                                                     |
+| Decimals  | 18                                                                                                                                                                                       |
+
+### Pharos Atlantic Testnet
+
+| Parameter | Value                                                                                                                                                                                               |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `688689`                                                                                                                                                                                            |
+| Address   | <Address contractUrl="https://atlantic.pharosscan.xyz/address/0x2f79e049f552e600d5d8118923278aa0fcd67179" urlId="688689_0x2f79e049f552E600D5d8118923278Aa0fCD67179" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Pharos Atlantic Testnet                                                                                                                                                          |
+| Symbol    | LINK                                                                                                                                                                                                |
+| Decimals  | 18                                                                                                                                                                                                  |
+
+## <img src="/assets/chains/plasma.svg" style="height: 24px; width: auto; margin-right: 8px;" />Plasma
+
+### Plasma Mainnet
+
+| Parameter | Value                                                                                                                                                                                 |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `9745`                                                                                                                                                                                |
+| Address   | <Address contractUrl="https://plasmascan.to/token/0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlId="9745_0x76a443768A5e3B8d1AED0105FC250877841Deb40" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Plasma Mainnet                                                                                                                                                     |
+| Symbol    | LINK                                                                                                                                                                                  |
+| Decimals  | 18                                                                                                                                                                                    |
+
+### Plasma Testnet
+
+| Parameter | Value                                                                                                                                                                                         |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `9746`                                                                                                                                                                                        |
+| Address   | <Address contractUrl="https://testnet.plasmascan.to/token/0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlId="9746_0xB97e3665AEAF96BDD6b300B2e0C93C662104A068" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Plasma Testnet                                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                          |
+| Decimals  | 18                                                                                                                                                                                            |
+|           |                                                                                                                                                                                               |
+
+## <img src="/assets/chains/plume.svg" style="height: 24px; width: auto; margin-right: 8px;" />Plume
+
+### Plume Mainnet
+
+| Parameter | Value                                                                                                                                                                                                        |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `98866`                                                                                                                                                                                                      |
+| Address   | <Address contractUrl="https://phoenix-explorer.plumenetwork.xyz/address/0xb549B375dA0c76f8b3877B9aDfDD28378f087A64" urlId="98866_0xb549B375dA0c76f8b3877B9aDfDD28378f087A64" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                              |
+| Symbol    | LINK                                                                                                                                                                                                         |
+| Decimals  | 18                                                                                                                                                                                                           |
+
+### Plume Testnet
+
+| Parameter | Value                                                                                                                                                                                                        |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `98867`                                                                                                                                                                                                      |
+| Address   | <Address contractUrl="https://testnet-explorer.plumenetwork.xyz/address/0xB97e3665AEAF96BDD6b300B2e0C93C662104A068" urlId="98867_0xB97e3665AEAF96BDD6b300B2e0C93C662104A068" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                              |
+| Symbol    | LINK                                                                                                                                                                                                         |
+| Decimals  | 18                                                                                                                                                                                                           |
+|           |                                                                                                                                                                                                              |
+
+## <img src="/assets/chains/polygon.svg" style="height: 24px; width: auto; margin-right: 8px;" />Polygon
+
+### Polygon Mainnet
+
+POL is used to pay for transactions on Polygon. You can use the [Polygon Bridge](https://wallet.polygon.technology/polygon/bridge/) to transfer tokens to Polygon Mainnet and then use [Polygon Gas Swap](https://wallet.polygon.technology/polygon/gas-swap/) to swap supported tokens to POL.
+
+> **CAUTION: ERC-677 LINK on Polygon**
+>
+> The LINK provided by the <a href="https://wallet.polygon.technology/polygon/bridge/">Polygon Bridge</a> is not ERC-677
+> compatible, so you cannot use it with Chainlink services or oracle nodes. Use the{" "}
+
+{" "}
+
+to convert bridged LINK to the official ERC-677 LINK token on Polygon.
+
+<br />
+
+Watch the <a href="https://www.youtube.com/watch?v=WKvIGkBWRUA">Moving Chainlink Cross-Chains</a> video to learn more.
+
+| Parameter      | Value                                                                                                                                                                                    |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `137`                                                                                                                                                                                    |
+| Address        | <Address contractUrl="https://polygonscan.com/address/0xb0897686c545045aFc77CF20eC7A532E3120E0F1" urlId="137_0xb0897686c545045aFc77CF20eC7A532E3120E0F1" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Polygon Mainnet                                                                                                                                                       |
+| Symbol         | LINK                                                                                                                                                                                     |
+| Decimals       | 18                                                                                                                                                                                       |
+| Network status | [polygonscan.freshstatus.io](https://polygonscan.freshstatus.io)                                                                                                                         |
+
+### Polygon Amoy Testnet
+
+Testnet POL is used to pay for transactions on Polygon Amoy.
+
+Testnet POL and LINK are available at [faucets.chain.link/polygon-amoy](https://faucets.chain.link/polygon-amoy).
+
+| Parameter      | Value                                                                                                                                                                                           |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `80002`                                                                                                                                                                                         |
+| Address        | <Address contractUrl="https://amoy.polygonscan.com/address/0x0Fd9e8d3aF1aaee056EB9e802c3A762a667b1904" urlId="80002_0x0Fd9e8d3aF1aaee056EB9e802c3A762a667b1904" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Polygon Amoy Testnet                                                                                                                                                         |
+| Symbol         | LINK                                                                                                                                                                                            |
+| Decimals       | 18                                                                                                                                                                                              |
+| Network status | [polygonscan.freshstatus.io](https://polygonscan.freshstatus.io)                                                                                                                                |
+
+## <img src="/assets/chains/polygonkatana.svg" style="height: 24px; width: auto; margin-right: 8px;" />Polygon Katana
+
+### Polygon Katana Mainnet
+
+| Parameter | Value                                                                                                                                                                                              |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `747474`                                                                                                                                                                                           |
+| Address   | <Address contractUrl="https://explorer.katanarpc.com/address/0xc2C447b04e0ED3476DdbDae8E9E39bE7159d27b6" urlId="747474_0xc2C447b04e0ED3476DdbDae8E9E39bE7159d27b6" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                    |
+| Symbol    | LINK                                                                                                                                                                                               |
+| Decimals  | 18                                                                                                                                                                                                 |
+
+### Polygon Katana Tatara Testnet
+
+| Parameter | Value                                                                                                                                                                                                      |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `129399`                                                                                                                                                                                                   |
+| Address   | <Address contractUrl="https://explorer.tatara.katana.network/address/0x29261B6Fb93097885bEB714ee253Da63A52dFc46" urlId="129399_0x29261B6Fb93097885bEB714ee253Da63A52dFc46" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Polygon Katana Takara Testnet                                                                                                                                                           |
+| Symbol    | LINK                                                                                                                                                                                                       |
+| Decimals  | 18                                                                                                                                                                                                         |
+
+## <img src="/assets/chains/robinhood-chain.svg" style="height: 24px; width: auto; margin-right: 8px;" />Robinhood Chain
+
+### Robinhood Chain Mainnet
+
+| Parameter | Value                                                                                                                                                                                                   |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `4663`                                                                                                                                                                                                  |
+| Address   | <Address contractUrl="https://robinhoodchain.blockscout.com/address/0x492641f648a4986844848e0befe66d14817bce34" urlId="4663_0x492641f648a4986844848e0befe66d14817bce34" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Robinhood Chain Mainnet                                                                                                                                                              |
+| Symbol    | LINK                                                                                                                                                                                                    |
+| Decimals  | 18                                                                                                                                                                                                      |
+
+### Robinhood Chain Testnet
+
+| Parameter | Value                                                                                                                                                                                                         |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `46630`                                                                                                                                                                                                       |
+| Address   | <Address contractUrl="https://explorer.testnet.chain.robinhood.com/token/0xD610B8f58689de7755947C05342A2DFaC30ebD57" urlId="46630_0xD610B8f58689de7755947C05342A2DFaC30ebD57" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Robinhood Chain Testnet                                                                                                                                                                    |
+| Symbol    | LINK                                                                                                                                                                                                          |
+| Decimals  | 18                                                                                                                                                                                                            |
+
+## <img src="/assets/chains/ronin.svg" style="height: 24px; width: auto; margin-right: 8px;" />Ronin
+
+### Ronin Mainnet
+
+RON is used to pay for transactions on Ronin Mainnet.
+
+| Parameter      | Value                                                                                                                                                                                        |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `2020`                                                                                                                                                                                       |
+| Address        | <Address contractUrl="https://app.roninchain.com/address/0x3902228D6A3d2Dc44731fD9d45FeE6a61c722D0b" urlId="2020_0x3902228D6A3d2Dc44731fD9d45FeE6a61c722D0b" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Ronin Mainnet                                                                                                                                                             |
+| Symbol         | LINK                                                                                                                                                                                         |
+| Decimals       | 18                                                                                                                                                                                           |
+| Network status | [app.roninchain.com](https://app.roninchain.com/)                                                                                                                                            |
+
+### Ronin Saigon Testnet
+
+Testnet RON is used to pay for transactions on Ronin Saigon.
+
+Testnet Native and LINK are available at [faucets.chain.link/ronin-saigon](https://faucets.chain.link/ronin-saigon).
+
+| Parameter      | Value                                                                                                                                                                                                      |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `202601`                                                                                                                                                                                                   |
+| Address        | <Address contractUrl="https://saigon-explorer.roninchain.com/address/0x2282DA461850d900ba7E777b6D4161a415860931" urlId="202601_0x2282DA461850d900ba7E777b6D4161a415860931" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Ronin Saigon Testnet                                                                                                                                                                    |
+| Symbol         | LINK                                                                                                                                                                                                       |
+| Decimals       | 18                                                                                                                                                                                                         |
+| Network status | [app.roninchain.com](https://saigon-app.roninchain.com/)                                                                                                                                                   |
+
+## <img src="/assets/chains/rootstock.svg" style="height: 24px; width: auto; margin-right: 8px;" />Rootstock
+
+### Rootstock Mainnet
+
+| Parameter | Value                                                                                                                                                                                   |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `30`                                                                                                                                                                                    |
+| Address   | <Address contractUrl="https://explorer.rsk.co/address/0x938D84942f5D924070A6bb82F8e56a5E2b3098A4" urlId="30_0x938D84942f5D924070A6bb82F8e56a5E2b3098A4" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Rootstock Mainnet                                                                                                                                                    |
+| Symbol    | LINK                                                                                                                                                                                    |
+| Decimals  | 18                                                                                                                                                                                      |
+
+### Rootstock Testnet
+
+| Parameter | Value                                                                                                                                                                                           |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `31`                                                                                                                                                                                            |
+| Address   | <Address contractUrl="https://explorer.testnet.rsk.co/address/0x39dD98CcCC3a51b2c0007e23517488e363581264" urlId="31_0x39dD98CcCC3a51b2c0007e23517488e363581264" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Rootstock Testnet                                                                                                                                                            |
+| Symbol    | LINK                                                                                                                                                                                            |
+| Decimals  | 18                                                                                                                                                                                              |
+
+## <img src="/assets/chains/scroll.svg" style="height: 24px; width: auto; margin-right: 8px;" />Scroll
+
+### Scroll Mainnet
+
+ETH is used to pay for transactions on Scroll Mainnet. Use the [Scroll Bridge](https://scroll.io/bridge) to transfer ETH from Ethereum to Scroll.
+
+| Parameter      | Value                                                                                                                                                                                      |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `534352`                                                                                                                                                                                   |
+| Address        | <Address contractUrl="https://scrollscan.com/address/0x548C6944cba02B9D1C0570102c89de64D258d3Ac" urlId="534352_0x548C6944cba02B9D1C0570102c89de64D258d3Ac" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Scroll Mainnet                                                                                                                                                          |
+| Symbol         | LINK                                                                                                                                                                                       |
+| Decimals       | 18                                                                                                                                                                                         |
+| Network status | [status.scroll.io](https://status.scroll.io/)                                                                                                                                              |
+
+### Scroll Sepolia Testnet
+
+Testnet ETH is used to pay for transactions on Scroll testnet.
+
+Testnet ETH and LINK are available at [faucets.chain.link/scroll-sepolia-testnet](https://faucets.chain.link/scroll-sepolia-testnet). Testnet ETH is also available from the [Scroll Sepolia Faucets](https://docs.scroll.io/en/user-guide/faucet/#scroll-sepolia-faucets).
+
+| Parameter      | Value                                                                                                                                                                                                    |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `534351`                                                                                                                                                                                                 |
+| Address        | <Address contractUrl="https://sepolia-blockscout.scroll.io/address/0x231d45b53C905c3d6201318156BDC725c9c3B9B1" urlId="534351_0x231d45b53C905c3d6201318156BDC725c9c3B9B1" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Scroll Sepolia Testnet                                                                                                                                                                |
+| Symbol         | LINK                                                                                                                                                                                                     |
+| Decimals       | 18                                                                                                                                                                                                       |
+| Network status | [status.scroll.io](https://status.scroll.io/)                                                                                                                                                            |
+
+## <img src="/assets/chains/sei.svg" style="height: 24px; width: auto; margin-right: 8px;" />Sei
+
+### Sei Network
+
+| Parameter      | Value                                                                                                                                                                                                   |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ETH_CHAIN_ID` | `1329`                                                                                                                                                                                                  |
+| Address        | <Address contractUrl="https://seitrace.com/address/0x71052BAe71C25C78E37fD12E5ff1101A71d9018F/?chain=pacific-1" urlId="1329_0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Sei Network                                                                                                                                                                          |
+| Symbol         | LINK                                                                                                                                                                                                    |
+| Decimals       | 18                                                                                                                                                                                                      |
+
+### Sei Testnet
+
+Testnet Native and LINK are available at [faucets.chain.link/sei-testnet](https://faucets.chain.link/sei-testnet).
+
+| Parameter      | Value                                                                                                                                                                                                 |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `1328`                                                                                                                                                                                                |
+| Address        | <Address contractUrl="https://seitrace.com/token/0xA9d21ed8260DE08fF39DC5e7B65806d4e1CB817B?chain=atlantic-2" urlId="1328_0xA9d21ed8260DE08fF39DC5e7B65806d4e1CB817B" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Sei Testnet                                                                                                                                                                        |
+| Symbol         | LINK                                                                                                                                                                                                  |
+| Decimals       | 18                                                                                                                                                                                                    |
+
+## <img src="/assets/chains/shibarium.svg" style="height: 24px; width: auto; margin-right: 8px;" />Shibarium
+
+### Shibarium Mainnet
+
+BONE is used to pay for transactions on Shibarium Mainnet.
+
+| Parameter      | Value                                                                                                                                                                                         |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `109`                                                                                                                                                                                         |
+| Address        | <Address contractUrl="https://www.shibariumscan.io/address/0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlId="109_0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Shibarium Mainnet                                                                                                                                                          |
+| Symbol         | LINK                                                                                                                                                                                          |
+| Decimals       | 18                                                                                                                                                                                            |
+| Network status | [explorer.shibariumscan.io](https://explorer.shibariumscan.io/)                                                                                                                               |
+
+### Shibarium Puppynet
+
+Testnet BONE is used to pay for transactions on Shibarium Puppynet.
+
+Testnet Native and LINK are available at [faucets.chain.link/shibarium-puppynet](https://faucet.chain.link/shibarium-puppynet).
+
+| Parameter      | Value                                                                                                                                                                                      |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `157`                                                                                                                                                                                      |
+| Address        | <Address contractUrl="https://puppyscan.shib.io/address/0x44637eEfD71A090990f89faEC7022fc74B2969aD" urlId="157_0x44637eEfD71A090990f89faEC7022fc74B2969aD" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Shibarium Puppynet                                                                                                                                                      |
+| Symbol         | LINK                                                                                                                                                                                       |
+| Decimals       | 18                                                                                                                                                                                         |
+| Network status | [puppyscan.shib.io](https://puppyscan.shib.io/)                                                                                                                                            |
+
+## <img src="/assets/chains/solana.svg" style="height: 24px; width: auto; margin-right: 8px;" />Solana
+
+### Solana Mainnet
+
+SOL is used to pay for transactions on the Solana network.
+
+| Parameter      | Value                                                                                                     |
+| :------------- | :-------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `mainnet`                                                                                                 |
+| Address        | <Address contractUrl="https://explorer.solana.com/address/LinkhB3afbBKb2EQQu7s7umdZceV3wcvAUJhQAfQ23L" /> |
+| Name           | Chainlink Token                                                                                           |
+| Symbol         | LINK                                                                                                      |
+| Decimals       | 9                                                                                                         |
+| Network status | [status.solana.com/](https://status.solana.com/)                                                          |
+
+### Solana Devnet
+
+| Parameter | Value                                                                                                                                                                          |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `devnet`                                                                                                                                                                       |
+| Address   | <Address address="LinkhB3afbBKb2EQQu7s7umdZceV3wcvAUJhQAfQ23L" contractUrl="https://explorer.solana.com/address/LinkhB3afbBKb2EQQu7s7umdZceV3wcvAUJhQAfQ23L?cluster=devnet" /> |
+| Name      | Chainlink Token                                                                                                                                                                |
+| Symbol    | LINK                                                                                                                                                                           |
+| Decimals  | 9                                                                                                                                                                              |
+
+## <img src="/assets/chains/soneium.svg" style="height: 24px; width: auto; margin-right: 8px;" />Soneium
+
+### Soneium Mainnet
+
+| Parameter      | Value                                                                                                                                                                                            |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `1868`                                                                                                                                                                                           |
+| Address        | <Address contractUrl="https://soneium.blockscout.com/address/0x32D8F819C8080ae44375F8d383Ffd39FC642f3Ec" urlId="1868_0x32D8F819C8080ae44375F8d383Ffd39FC642f3Ec" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Soneium Mainnet                                                                                                                                                               |
+| Symbol         | LINK                                                                                                                                                                                             |
+| Decimals       | 18                                                                                                                                                                                               |
+
+### Soneium Minato Testnet
+
+Testnet ETH is used to pay for transactions on the Soneium Minato testnet. Testnet Native and LINK are available at [faucets.chain.link/soneium-minato](https://faucets.chain.link/soneium-minato).
+
+| Parameter      | Value                                                                                                                                                                                                   |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ETH_CHAIN_ID` | `1946`                                                                                                                                                                                                  |
+| Address        | <Address contractUrl="https://soneium-minato.blockscout.com/address/0x7ea13478Ea3961A0e8b538cb05a9DF0477c79Cd2" urlId="1946_0x7ea13478Ea3961A0e8b538cb05a9DF0477c79Cd2" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Soneium Minato Testnet                                                                                                                                                               |
+| Symbol         | LINK                                                                                                                                                                                                    |
+| Decimals       | 18                                                                                                                                                                                                      |
+
+## <img src="/assets/chains/sonic.svg" style="height: 24px; width: auto; margin-right: 8px;" />Sonic
+
+### Sonic Mainnet
+
+S is used to pay for transactions on Sonic mainnet.
+
+| Parameter      | Value                                                                                                                                                                                  |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `146`                                                                                                                                                                                  |
+| Address        | <Address contractUrl="https://sonicscan.org/address/0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlId="146_0x71052BAe71C25C78E37fD12E5ff1101A71d9018F" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Sonic Mainnet                                                                                                                                                       |
+| Symbol         | LINK                                                                                                                                                                                   |
+| Decimals       | 18                                                                                                                                                                                     |
+
+### Sonic Testnet
+
+Testnet S is used to pay for transactions on Sonic Testnet.
+
+| Parameter      | Value                                                                                                                                                                                                     |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `14601`                                                                                                                                                                                                   |
+| Address        | <Address contractUrl="https://explorer.testnet.soniclabs.com/address/0x19e696e75ccbB3155EEbB579BFa555Fab22293bA" urlId="14601_0x19e696e75ccbB3155EEbB579BFa555Fab22293bA" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Sonic Testnet                                                                                                                                                                          |
+| Symbol         | LINK                                                                                                                                                                                                      |
+| Decimals       | 18                                                                                                                                                                                                        |
+
+## <img src="/assets/chains/stable.svg" style="height: 24px; width: auto; margin-right: 8px;" />Stable
+
+### Stable Mainnet
+
+| Parameter | Value                                                                                                                                                                                   |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `988`                                                                                                                                                                                   |
+| Address   | <Address contractUrl="https://stablescan.xyz/address/0x985FB0821Eef0056ec26DD8b33dC61b9415B7F4b" urlId="988_0x985FB0821Eef0056ec26DD8b33dC61b9415B7F4b" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Stable Mainnet                                                                                                                                                       |
+| Symbol    | LINK                                                                                                                                                                                    |
+| Decimals  | 18                                                                                                                                                                                      |
+
+## <img src="/assets/chains/starknet.svg" style="height: 24px; width: auto; margin-right: 8px;" />Starknet
+
+### Starknet Mainnet
+
+| Parameter | Value                                                                                                                                                                                                           |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `SN_MAIN`                                                                                                                                                                                                       |
+| Address   | <Address contractUrl="https://voyager.online/contract/0x060f47b96b525c1014fed595e87e98edc3ce0731627a0670e1804ee1a3ca0ee9" urlId="SN_MAIN_0x060f47b96b525c1014fed595e87e98edc3ce0731627a0670e1804ee1a3ca0ee9" /> |
+| Name      | Chainlink Token on Starknet Mainnet                                                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                                            |
+| Decimals  | 18                                                                                                                                                                                                              |
+
+## <img src="/assets/chains/superseed.svg" style="height: 24px; width: auto; margin-right: 8px;" />Superseed
+
+### Superseed Mainnet
+
+| Parameter | Value                                                                                                                                                                                            |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `5330`                                                                                                                                                                                           |
+| Address   | <Address contractUrl="https://explorer.superseed.xyz/address/0x41Ccf59e3F30EB624eF8E5Ea34b2da96bee472d9" urlId="5330_0x41Ccf59e3F30EB624eF8E5Ea34b2da96bee472d9" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                  |
+| Symbol    | LINK                                                                                                                                                                                             |
+| Decimals  | 18                                                                                                                                                                                               |
+
+### Superseed Sepolia Testnet
+
+| Parameter | Value                                                                                                                                                                                                     |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `53302`                                                                                                                                                                                                   |
+| Address   | <Address contractUrl="https://sepolia-explorer.superseed.xyz/address/0xA3063eE34d9B4E407DF0E153c9bE679680e3A956" urlId="53302_0xA3063eE34d9B4E407DF0E153c9bE679680e3A956" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                           |
+| Symbol    | LINK                                                                                                                                                                                                      |
+| Decimals  | 18                                                                                                                                                                                                        |
+
+## <img src="/assets/chains/tac.svg" style="height: 24px; width: auto; margin-right: 8px;" />TAC
+
+### TAC Mainnet
+
+| Parameter | Value                                                                                                                                                                                       |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `239`                                                                                                                                                                                       |
+| Address   | <Address contractUrl="https://explorer.tac.build/address/0xc2BE2F77562A6676098e8D363B9d8A33Ea009D4e" urlId="239_0xc2BE2F77562A6676098e8D363B9d8A33Ea009D4e" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                        |
+| Decimals  | 18                                                                                                                                                                                          |
+
+### TAC Saint Petersburg Testnet
+
+| Parameter | Value                                                                                                                                                                                            |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `2391`                                                                                                                                                                                           |
+| Address   | <Address contractUrl="https://spb.explorer.tac.build/address/0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlId="2391_0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                  |
+| Symbol    | LINK                                                                                                                                                                                             |
+| Decimals  | 18                                                                                                                                                                                               |
+
+## <img src="/assets/chains/taiko.svg" style="height: 24px; width: auto; margin-right: 8px;" />Taiko
+
+### Taiko Alethia
+
+| Parameter | Value                                                                                                                                                                                    |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `167000`                                                                                                                                                                                 |
+| Address   | <Address contractUrl="https://taikoscan.io/address/0x917a3964C37993e99a47C779bEb5Db1E9d13804d" urlId="167000_0x917a3964C37993e99a47C779bEb5Db1E9d13804d" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                          |
+| Symbol    | LINK                                                                                                                                                                                     |
+| Decimals  | 18                                                                                                                                                                                       |
+
+### Taiko Hekla Testnet
+
+| Parameter | Value                                                                                                                                                                                          |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `167009`                                                                                                                                                                                       |
+| Address   | <Address contractUrl="https://hekla.taikoscan.io/address/0x01fcdEedbA59bc68b0914D92277678dAB6827e2c" urlId="167009_0x01fcdEedbA59bc68b0914D92277678dAB6827e2c" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                |
+| Symbol    | LINK                                                                                                                                                                                           |
+| Decimals  | 18                                                                                                                                                                                             |
+
+## <img src="/assets/chains/tempo.svg" style="height: 24px; width: auto; margin-right: 8px;" />Tempo
+
+### Tempo Mainnet
+
+| Parameter | Value                                                                                                                                                                                       |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `4217`                                                                                                                                                                                      |
+| Address   | <Address contractUrl="https://explore.tempo.xyz/address/0x15C03488B29e27d62BAf10E30b0c474bf60E0264" urlId="4217_0x15C03488B29e27d62BAf10E30b0c474bf60E0264" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Tempo Mainnet                                                                                                                                                            |
+| Symbol    | LINK                                                                                                                                                                                        |
+| Decimals  | 18                                                                                                                                                                                          |
+
+### Tempo Testnet Moderato
+
+| Parameter | Value                                                                                                                                                                                                 |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `42431`                                                                                                                                                                                               |
+| Address   | <Address contractUrl="https://explore.moderato.tempo.xyz/address/0xEAB080c724587fFC9F2EFF82e36EE4Fb27774959" urlId="42431_0xEAB080c724587fFC9F2EFF82e36EE4Fb27774959" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Tempo Testnet Moderato                                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                                  |
+| Decimals  | 18                                                                                                                                                                                                    |
+
+## <img src="/assets/chains/treasure.svg" style="height: 24px; width: auto; margin-right: 8px;" />Treasure
+
+### Treasure Mainnet
+
+| Parameter | Value                                                                                                                                                                                      |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `61166`                                                                                                                                                                                    |
+| Address   | <Address contractUrl="https://treasurescan.io/address/0xC74eAEf00bE07C6C8A28feAa54e50942efEDF02A" urlId="61166_0xC74eAEf00bE07C6C8A28feAa54e50942efEDF02A" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Treasure Mainnet                                                                                                                                                        |
+| Symbol    | LINK                                                                                                                                                                                       |
+| Decimals  | 18                                                                                                                                                                                         |
+
+### Treasure Topaz Testnet
+
+| Parameter | Value                                                                                                                                                                                             |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `978658`                                                                                                                                                                                          |
+| Address   | <Address contractUrl="https://topaz.treasurescan.io/address/0x0FE9fAAF3e26f756443fd8f92F6711989a8e0fF5" urlId="978658_0x0FE9fAAF3e26f756443fd8f92F6711989a8e0fF5" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Treasure Topaz Testnet                                                                                                                                                         |
+| Symbol    | LINK                                                                                                                                                                                              |
+| Decimals  | 18                                                                                                                                                                                                |
+
+## <img src="/assets/chains/unichain.svg" style="height: 24px; width: auto; margin-right: 8px;" />Unichain
+
+### Unichain Mainnet
+
+| Parameter | Value                                                                                                                                                                                 |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `130`                                                                                                                                                                                 |
+| Address   | <Address contractUrl="https://uniscan.xyz//address/0xEF66491eab4bbB582c57b14778afd8dFb70D8A1A" urlId="130_0xEF66491eab4bbB582c57b14778afd8dFb70D8A1A" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Unichain Mainnet                                                                                                                                                   |
+| Symbol    | LINK                                                                                                                                                                                  |
+| Decimals  | 18                                                                                                                                                                                    |
+
+### Unichain Sepolia Testnet
+
+Testnet Native and LINK are available at [faucets.chain.link/unichain-testnet](https://faucets.chain.link/unichain-testnet).
+
+| Parameter | Value                                                                                                                                                                                         |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `1301`                                                                                                                                                                                        |
+| Address   | <Address contractUrl="https://sepolia.uniscan.xyz/address/0xda40816f278Cd049c137F6612822D181065EBfB4" urlId="1301_0xda40816f278Cd049c137F6612822D181065EBfB4" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on Unichain Testnet                                                                                                                                                           |
+| Symbol    | LINK                                                                                                                                                                                          |
+| Decimals  | 18                                                                                                                                                                                            |
+
+## <img src="/assets/chains/wemix.svg" style="height: 24px; width: auto; margin-right: 8px;" />Wemix
+
+### Wemix Mainnet
+
+WEMIX is used to pay for transactions on the Wemix mainnet. To transfer LINK from Ethereum to Wemix, use [Transporter](https://app.transporter.io/).
+
+| Parameter      | Value                                                                                                                                                                                   |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `1111`                                                                                                                                                                                  |
+| Address        | <Address contractUrl="https://wemixscan.com/address/0x80f1FcdC96B55e459BF52b998aBBE2c364935d69" urlId="1111_0x80f1FcdC96B55e459BF52b998aBBE2c364935d69" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Wemix Mainnet                                                                                                                                                        |
+| Symbol         | LINK                                                                                                                                                                                    |
+| Decimals       | 18                                                                                                                                                                                      |
+
+### Wemix Testnet
+
+Testnet WEMIX is used to pay for transactions on the Wemix testnet.
+
+Testnet Native and LINK are available at [faucets.chain.link/wemix-testnet](https://faucets.chain.link/wemix-testnet). Testnet WEMIX is also available from the [WEMIX Faucet](https://wallet.test.wemix.com/faucet).
+
+| Parameter      | Value                                                                                                                                                                                           |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `1112`                                                                                                                                                                                          |
+| Address        | <Address contractUrl="https://testnet.wemixscan.com/address/0x3580c7A817cCD41f7e02143BFa411D4EeAE78093" urlId="1112_0x3580c7A817cCD41f7e02143BFa411D4EeAE78093" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Wemix Testnet                                                                                                                                                                |
+| Symbol         | LINK                                                                                                                                                                                            |
+| Decimals       | 18                                                                                                                                                                                              |
+
+## <img src="/assets/chains/worldchain.svg" style="height: 24px; width: auto; margin-right: 8px;" />World Chain
+
+### World Chain Mainnet
+
+ETH is used to pay for transactions on World Chain Mainnet.
+
+| Parameter      | Value                                                                                                                                                                                  |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `480`                                                                                                                                                                                  |
+| Address        | <Address contractUrl="https://worldscan.org/address/0x915b648e994d5f31059B38223b9fbe98ae185473" urlId="480_0x915b648e994d5f31059B38223b9fbe98ae185473" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on World Chain Mainnet                                                                                                                                                 |
+| Symbol         | LINK                                                                                                                                                                                   |
+| Decimals       | 18                                                                                                                                                                                     |
+| Network status | [world.org](https://world.org/world-chain/)                                                                                                                                            |
+
+### World Chain Sepolia Testnet
+
+Testnet ETH is used to pay for transactions on World Chain Sepolia. Testnet Native and LINK are available at [faucets.chain.link/worldchain-testnet](https://faucets.chain.link/worldchain-testnet).
+
+| Parameter      | Value                                                                                                                                                                                           |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `486`                                                                                                                                                                                           |
+| Address        | <Address contractUrl="https://sepolia.worldscan.org/address/0xC82Ea35634BcE95C394B6BC00626f827bB0F4801" urlId="4801_0xC82Ea35634BcE95C394B6BC00626f827bB0F4801" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on World Chain Testnet                                                                                                                                                          |
+| Symbol         | LINK                                                                                                                                                                                            |
+| Decimals       | 18                                                                                                                                                                                              |
+| Network status | [world.org](https://world.org/world-chain)                                                                                                                                                      |
+
+## <img src="/assets/chains/xdc.svg" style="height: 24px; width: auto; margin-right: 8px;" />XDC
+
+### XDC Mainnet
+
+| Parameter | Value                                                                                                                                                                               |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `50`                                                                                                                                                                                |
+| Address   | <Address contractUrl="https://xdcscan.com/address/0xE27dd9BF01B55ce6803c0d81386A04212c718b95" urlId="50_0xE27dd9BF01B55ce6803c0d81386A04212c718b95" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on XDC Mainnet                                                                                                                                                      |
+| Symbol    | LINK                                                                                                                                                                                |
+| Decimals  | 18                                                                                                                                                                                  |
+
+### XDC Apothem Testnet
+
+| Parameter | Value                                                                                                                                                                                     |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `51`                                                                                                                                                                                      |
+| Address   | <Address contractUrl="https://testnet.xdcscan.com/token/0xe5e3a4ff1773d043a387b16ceb3c91cc49bafd54" urlId="51_0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlClass="erc-token-address" /> |
+| Name      | XDC Apothem Testnet                                                                                                                                                                       |
+| Symbol    | LINK                                                                                                                                                                                      |
+| Decimals  | 18                                                                                                                                                                                        |
+
+## <img src="/assets/chains/xlayer.svg" style="height: 24px; width: auto; margin-right: 8px;" />X Layer
+
+### X Layer Mainnet
+
+| Parameter | Value                                                                                                                                                                                          |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `196`                                                                                                                                                                                          |
+| Address   | <Address contractUrl="https://www.oklink.com/xlayer/address/0x8aF9711B44695a5A081F25AB9903DDB73aCf8FA9" urlId="196_0x8aF9711B44695a5A081F25AB9903DDB73aCf8FA9" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on X Layer Mainnet                                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                           |
+| Decimals  | 18                                                                                                                                                                                             |
+
+### X Layer Testnet
+
+| Parameter | Value                                                                                                                                                                                                           |
+| :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `1952`                                                                                                                                                                                                          |
+| Address   | <Address contractUrl="https://web3.okx.com/explorer/x-layer-testnet/address/0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlId="1952_0xe5e3a4fF1773d043a387b16Ceb3c91cC49bAFD54" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token on X Layer Testnet                                                                                                                                                                              |
+| Symbol    | LINK                                                                                                                                                                                                            |
+| Decimals  | 18                                                                                                                                                                                                              |
+
+## <img src="/assets/chains/zircuit.svg" style="height: 24px; width: auto; margin-right: 8px;" />Zircuit
+
+### Zircuit Mainnet
+
+ETH is used to pay for transactions on the Zircuit mainnet.
+
+| Parameter      | Value                                                                                                                                                                                           |
+| :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ETH_CHAIN_ID` | `48900`                                                                                                                                                                                         |
+| Address        | <Address contractUrl="https://explorer.zircuit.com/address/0x5D6d033B4FbD2190D99D930719fAbAcB64d2439a" urlId="48900_0x5D6d033B4FbD2190D99D930719fAbAcB64d2439a" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Zircuit Mainnet                                                                                                                                                              |
+| Symbol         | LINK                                                                                                                                                                                            |
+| Decimals       | 18                                                                                                                                                                                              |
+
+### Zircuit Testnet
+
+Testnet ETH is used to pay for transactions on the Zircuit testnet.
+
+| Parameter      | Value                                                                                                                                                                                                   |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ETH_CHAIN_ID` | `48899`                                                                                                                                                                                                 |
+| Address        | <Address contractUrl="https://explorer.testnet.zircuit.com/address/0xDEE94506570cA186BC1e3516fCf4fd719C312cCD" urlId="48899_0xDEE94506570cA186BC1e3516fCf4fd719C312cCD" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on Zircuit Testnet                                                                                                                                                                      |
+| Symbol         | LINK                                                                                                                                                                                                    |
+| Decimals       | 18                                                                                                                                                                                                      |
+
+## <img src="/assets/chains/zksync.svg" style="height: 24px; width: auto; margin-right: 8px;" />ZKsync
+
+### ZKsync Era Mainnet
+
+ETH is used to pay for transactions on ZKsync Era Mainnet. Use the recommended [ZKsync Bridges](https://docs.zksync.io/zksync-network/zksync-era/ecosystem/bridges) to transfer ETH from Ethereum to ZKsync.
+
+| Parameter      | Value                                                                                                                                                                                       |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID       | `324`                                                                                                                                                                                       |
+| Address        | <Address contractUrl="https://explorer.zksync.io/address/0x52869bae3E091e36b0915941577F2D47d8d8B534" urlId="324_0x52869bae3E091e36b0915941577F2D47d8d8B534" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on ZKsync Era Mainnet                                                                                                                                                       |
+| Symbol         | LINK                                                                                                                                                                                        |
+| Decimals       | 18                                                                                                                                                                                          |
+| Network status | [explorer.zksync.io](https://explorer.zksync.io/)                                                                                                                                           |
+
+### ZKsync Sepolia Testnet
+
+Testnet ETH is used to pay for transactions on ZKsync Sepolia testnet.
+
+Testnet Native and LINK are available at [faucets.chain.link/zksync-sepolia](https://faucets.chain.link/zksync-sepolia).
+
+| Parameter      | Value                                                                                                                                                                                               |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID       | `300`                                                                                                                                                                                               |
+| Address        | <Address contractUrl="https://sepolia.explorer.zksync.io/address/0x23A1aFD896c8c8876AF46aDc38521f4432658d1e" urlId="300_0x23A1aFD896c8c8876AF46aDc38521f4432658d1e" urlClass="erc-token-address" /> |
+| Name           | Chainlink Token on ZKsync Sepolia Testnet                                                                                                                                                           |
+| Symbol         | LINK                                                                                                                                                                                                |
+| Decimals       | 18                                                                                                                                                                                                  |
+| Network status | [uptime.com/statuspage/zkSync](https://uptime.com/statuspage/zkSync)                                                                                                                                |
+
+## <img src="/assets/chains/zora.svg" style="height: 24px; width: auto; margin-right: 8px;" />Zora
+
+### Zora Mainnet
+
+| Parameter | Value                                                                                                                                                                                             |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Chain ID  | `7777777`                                                                                                                                                                                         |
+| Address   | <Address contractUrl="https://explorer.zora.energy/address/0x3662B6f73c5560229D1a98aF6e59E6649D568374" urlId="7777777_0x3662B6f73c5560229D1a98aF6e59E6649D568374" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                   |
+| Symbol    | LINK                                                                                                                                                                                              |
+| Decimals  | 18                                                                                                                                                                                                |
+
+### Zora Testnet
+
+| Parameter | Value                                                                                                                                                                                                       |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Chain ID  | `999999999`                                                                                                                                                                                                 |
+| Address   | <Address contractUrl="https://sepolia.explorer.zora.energy/address/0xBEDDEB2DF8904cdBCFB6Bf29b91d122D5Ae4eb7e" urlId="999999999_0xBEDDEB2DF8904cdBCFB6Bf29b91d122D5Ae4eb7e" urlClass="erc-token-address" /> |
+| Name      | Chainlink Token                                                                                                                                                                                             |
+| Symbol    | LINK                                                                                                                                                                                                        |
+| Decimals  | 18                                                                                                                                                                                                          |
