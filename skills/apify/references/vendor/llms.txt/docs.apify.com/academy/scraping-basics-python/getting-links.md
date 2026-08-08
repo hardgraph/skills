@@ -1,0 +1,660 @@
+---
+title: Getting links from HTML with Python
+url: https://docs.apify.com/academy/scraping-basics-python/getting-links.md
+parents:
+  - [Apify documentation](https://docs.apify.com/llms.txt)
+  - [Apify Academy](https://docs.apify.com/academy.md)
+  - [Web scraping basics with Python](https://docs.apify.com/academy/scraping-basics-python.md)
+previous: [Saving data](https://docs.apify.com/academy/scraping-basics-python/saving-data.md)
+next: [Crawling websites](https://docs.apify.com/academy/scraping-basics-python/crawling.md)
+---
+
+> ## Documentation index
+> Fetch the complete documentation index at: https://docs.apify.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Getting links from HTML with Python
+
+**In this lesson, we'll locate and extract links to individual product pages. We'll use BeautifulSoup to find the relevant bits of HTML.**
+
+***
+
+The previous lesson concludes our effort to create a scraper. Our program now downloads HTML, locates and extracts data from the markup, and saves the data in a structured and reusable way.
+
+For some use cases, this is already enough! In other cases, though, scraping just one page is hardly useful. The data is spread across the website, over several pages.
+
+## Crawling websites
+
+We'll use a technique called crawling, i.e. following links to scrape multiple pages. The algorithm goes like this:
+
+1. Visit the start URL.
+2. Extract new URLs (and data), and save them.
+3. Visit one of the newly found URLs and save data and/or more URLs from it.
+4. Repeat steps 2 and 3 until you have everything you need.
+
+This will help us figure out the actual prices of products, as right now, for some, we're only getting the min price. Implementing the algorithm will require quite a few changes to our code, though.
+
+## Restructuring code
+
+Over the course of the previous lessons, the code of our program grew to almost 50 lines containing downloading, parsing, and exporting:
+
+
+```py
+import httpx
+
+from bs4 import BeautifulSoup
+
+import json
+
+import csv
+
+
+
+url = "https://warehouse-theme-metal.myshopify.com/collections/sales"
+
+response = httpx.get(url)
+
+response.raise_for_status()
+
+
+
+html_code = response.text
+
+soup = BeautifulSoup(html_code, "html.parser")
+
+
+
+data = []
+
+for product in soup.select(".product-item"):
+
+    title = product.select_one(".product-item__title").text.strip()
+
+
+
+    price_text = (
+
+        product
+
+        .select_one(".price")
+
+        .contents[-1]
+
+        .strip()
+
+        .replace("$", "")
+
+        .replace(".", "")
+
+        .replace(",", "")
+
+    )
+
+    if price_text.startswith("From "):
+
+        min_price = int(price_text.removeprefix("From "))
+
+        price = None
+
+    else:
+
+        min_price = int(price_text)
+
+        price = min_price
+
+
+
+    data.append({"title": title, "min_price": min_price, "price": price})
+
+
+
+with open("products.json", "w") as file:
+
+    json.dump(data, file)
+
+
+
+with open("products.csv", "w") as file:
+
+    writer = csv.DictWriter(file, fieldnames=["title", "min_price", "price"])
+
+    writer.writeheader()
+
+    for row in data:
+
+        writer.writerow(row)
+```
+
+
+Let's introduce several functions to make the whole thing easier to digest. First, we can turn the beginning of our program into this `download()` function, which takes a URL and returns a `BeautifulSoup` instance:
+
+
+```py
+def download(url):
+
+    response = httpx.get(url)
+
+    response.raise_for_status()
+
+
+
+    html_code = response.text
+
+    return BeautifulSoup(html_code, "html.parser")
+```
+
+
+Next, we can put parsing into a `parse_product()` function, which takes the product item element and returns the dictionary with data:
+
+
+```py
+def parse_product(product):
+
+    title = product.select_one(".product-item__title").text.strip()
+
+
+
+    price_text = (
+
+        product
+
+        .select_one(".price")
+
+        .contents[-1]
+
+        .strip()
+
+        .replace("$", "")
+
+        .replace(".", "")
+
+        .replace(",", "")
+
+    )
+
+    if price_text.startswith("From "):
+
+        min_price = int(price_text.removeprefix("From "))
+
+        price = None
+
+    else:
+
+        min_price = int(price_text)
+
+        price = min_price
+
+
+
+    return {"title": title, "min_price": min_price, "price": price}
+```
+
+
+Now the JSON export. For better readability, let's make a small change here and set the indentation level to two spaces:
+
+
+```py
+def export_json(file, data):
+
+    json.dump(data, file, indent=2)
+```
+
+
+The last function we'll add will take care of the CSV export. We'll make a small change here as well. Having to specify the field names is not ideal. What if we add more field names in the parsing function? We'd always have to remember to go and edit the export function as well. If we could figure out the field names in place, we'd remove this dependency. One way would be to infer the field names from the dictionary keys of the first row:
+
+
+```py
+def export_csv(file, data):
+
+    fieldnames = list(data[0].keys())
+
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+    writer.writeheader()
+
+    for row in data:
+
+        writer.writerow(row)
+```
+
+
+Fragile code
+
+The code above assumes the `data` variable contains at least one item, and that all the items have the same keys. This isn't robust and could break, but in our program, this isn't a problem, and omitting these corner cases allows us to keep the code examples more succinct.
+
+Now let's put it all together:
+
+
+```py
+import httpx
+
+from bs4 import BeautifulSoup
+
+import json
+
+import csv
+
+
+
+def download(url):
+
+    response = httpx.get(url)
+
+    response.raise_for_status()
+
+
+
+    html_code = response.text
+
+    return BeautifulSoup(html_code, "html.parser")
+
+
+
+def parse_product(product):
+
+    title = product.select_one(".product-item__title").text.strip()
+
+
+
+    price_text = (
+
+        product
+
+        .select_one(".price")
+
+        .contents[-1]
+
+        .strip()
+
+        .replace("$", "")
+
+        .replace(".", "")
+
+        .replace(",", "")
+
+    )
+
+    if price_text.startswith("From "):
+
+        min_price = int(price_text.removeprefix("From "))
+
+        price = None
+
+    else:
+
+        min_price = int(price_text)
+
+        price = min_price
+
+
+
+    return {"title": title, "min_price": min_price, "price": price}
+
+
+
+def export_json(file, data):
+
+    json.dump(data, file, indent=2)
+
+
+
+def export_csv(file, data):
+
+    fieldnames = list(data[0].keys())
+
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+    writer.writeheader()
+
+    for row in data:
+
+        writer.writerow(row)
+
+
+
+listing_url = "https://warehouse-theme-metal.myshopify.com/collections/sales"
+
+listing_soup = download(listing_url)
+
+
+
+data = []
+
+for product in listing_soup.select(".product-item"):
+
+    item = parse_product(product)
+
+    data.append(item)
+
+
+
+with open("products.json", "w") as file:
+
+    export_json(file, data)
+
+
+
+with open("products.csv", "w") as file:
+
+    export_csv(file, data)
+```
+
+
+The program is much easier to read now. With the `parse_product()` function handy, we could also replace the convoluted loop with one that only takes up four lines of code.
+
+Refactoring
+
+We turned the whole program upside down, and at the same time, we didn't make any actual changes! This is [refactoring](https://en.wikipedia.org/wiki/Code_refactoring): improving the structure of existing code without changing its behavior.
+
+![Refactoring](/assets/images/refactoring-269525c424ecc082de290a3ecfd4d9ce.gif)
+
+## Extracting links
+
+With everything in place, we can now start working on a scraper that also scrapes the product pages. For that, we'll need the links to those pages. Let's open the browser DevTools and remind ourselves of the structure of a single product item:
+
+![Product card\&#39;s child elements](/assets/images/child-elements-83a62a55f65911b057ec16c4c7cde7b6.png)
+
+Several methods exist for transitioning from one page to another, but the most common is a link element, which looks like this:
+
+
+```html
+<a href="https://example.com">Text of the link</a>
+```
+
+
+In DevTools, we can see that each product title is, in fact, also a link element. We already locate the titles, so that makes our task easier. We just need to edit the code so that it extracts not only the text of the element but also the `href` attribute. Beautiful Soup elements support accessing attributes as if they were dictionary keys:
+
+
+```py
+def parse_product(product):
+
+    title_element = product.select_one(".product-item__title")
+
+    title = title_element.text.strip()
+
+    url = title_element["href"]
+
+
+
+    ...
+
+
+
+    return {"title": title, "min_price": min_price, "price": price, "url": url}
+```
+
+
+In the previous code example, we've also added the URL to the dictionary returned by the function. If we run the scraper now, it should produce exports where each product contains a link to its product page:
+
+
+```json
+[
+
+  {
+
+    "title": "JBL Flip 4 Waterproof Portable Bluetooth Speaker",
+
+    "min_price": "7495",
+
+    "price": "7495",
+
+    "url": "/products/jbl-flip-4-waterproof-portable-bluetooth-speaker"
+
+  },
+
+  {
+
+    "title": "Sony XBR-950G BRAVIA 4K HDR Ultra HD TV",
+
+    "min_price": "139800",
+
+    "price": null,
+
+    "url": "/products/sony-xbr-65x950g-65-class-64-5-diag-bravia-4k-hdr-ultra-hd-tv"
+
+  },
+
+  ...
+
+]
+```
+
+
+Hmm, but that isn't what we wanted! Where is the beginning of each URL? It turns out the HTML contains so-called *relative links*.
+
+## Turning relative links into absolute
+
+Browsers reading the HTML know the base address and automatically resolve such links, but we'll have to do this manually. The function [urljoin](https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urljoin) from Python's standard library will help us. Let's add it to our imports first:
+
+
+```py
+import httpx
+
+from bs4 import BeautifulSoup
+
+import json
+
+import csv
+
+from urllib.parse import urljoin
+```
+
+
+Next, we'll change the `parse_product()` function so that it also takes the base URL as an argument and then joins it with the relative URL to the product page:
+
+
+```py
+def parse_product(product, base_url):
+
+    title_element = product.select_one(".product-item__title")
+
+    title = title_element.text.strip()
+
+    url = urljoin(base_url, title_element["href"])
+
+
+
+    ...
+
+
+
+    return {"title": title, "min_price": min_price, "price": price, "url": url}
+```
+
+
+Now we'll pass the base URL to the function in the main body of our program:
+
+
+```py
+listing_url = "https://warehouse-theme-metal.myshopify.com/collections/sales"
+
+listing_soup = download(listing_url)
+
+
+
+data = []
+
+for product in listing_soup.select(".product-item"):
+
+    item = parse_product(product, listing_url)
+
+    data.append(item)
+```
+
+
+When we run the scraper now, we should see full URLs in our exports:
+
+
+```json
+[
+
+  {
+
+    "title": "JBL Flip 4 Waterproof Portable Bluetooth Speaker",
+
+    "min_price": "7495",
+
+    "price": "7495",
+
+    "url": "https://warehouse-theme-metal.myshopify.com/products/jbl-flip-4-waterproof-portable-bluetooth-speaker"
+
+  },
+
+  {
+
+    "title": "Sony XBR-950G BRAVIA 4K HDR Ultra HD TV",
+
+    "min_price": "139800",
+
+    "price": null,
+
+    "url": "https://warehouse-theme-metal.myshopify.com/products/sony-xbr-65x950g-65-class-64-5-diag-bravia-4k-hdr-ultra-hd-tv"
+
+  },
+
+  ...
+
+]
+```
+
+
+Ta-da! We've managed to get links leading to the product pages. In the next lesson, we'll crawl these URLs so that we can gather more details about the products in our dataset.
+
+***
+
+## Exercises
+
+These challenges are here to help you test what you’ve learned in this lesson. Try to resist the urge to peek at the solutions right away. Remember, the best learning happens when you dive in and do it yourself!
+
+Real world
+
+You're about to touch the real web, which is practical and exciting! But websites change, so some exercises might break. If you run into any issues, please leave a comment below or [file a GitHub Issue](https://github.com/apify/apify-docs/issues).
+
+### Scrape links to top tennis players
+
+Download the WTA singles rankings page, use Beautiful Soup to parse it, and print links to the detail pages of the listed players. Start with this URL:
+
+
+```text
+https://www.wtatennis.com/rankings/singles
+```
+
+
+Your program should print the following:
+
+
+```text
+https://www.wtatennis.com/players/318310/iga-swiatek
+
+https://www.wtatennis.com/players/322341/aryna-sabalenka
+
+https://www.wtatennis.com/players/326911/coco-gauff
+
+https://www.wtatennis.com/players/320203/elena-rybakina
+
+...
+```
+
+
+Solution
+
+
+```py
+import httpx
+
+from bs4 import BeautifulSoup
+
+from urllib.parse import urljoin
+
+
+
+listing_url = "https://www.wtatennis.com/rankings/singles"
+
+response = httpx.get(listing_url)
+
+response.raise_for_status()
+
+
+
+soup = BeautifulSoup(response.text, "html.parser")
+
+
+
+for link in soup.select(".rankings__list .player-row-drawer__link"):
+
+    player_url = urljoin(listing_url, link["href"])
+
+    print(player_url)
+```
+
+
+### Scrape links to F1 news
+
+Download Guardian's page with the latest F1 news, use Beautiful Soup to parse it, and print links to all the listed articles. Start with this URL:
+
+
+```text
+https://www.theguardian.com/sport/formulaone
+```
+
+
+Your program should print something like the following:
+
+
+```text
+https://www.theguardian.com/world/2024/sep/13/africa-f1-formula-one-fans-lewis-hamilton-grand-prix
+
+https://www.theguardian.com/sport/2024/sep/12/mclaren-lando-norris-oscar-piastri-team-orders-f1-title-race-max-verstappen
+
+https://www.theguardian.com/sport/article/2024/sep/10/f1-designer-adrian-newey-signs-aston-martin-deal-after-quitting-red-bull
+
+https://www.theguardian.com/sport/article/2024/sep/02/max-verstappen-damns-his-undriveable-monster-how-bad-really-is-it-and-why
+
+...
+```
+
+
+Solution
+
+
+```py
+import httpx
+
+from bs4 import BeautifulSoup
+
+from urllib.parse import urljoin
+
+
+
+listing_url = "https://www.theguardian.com/sport/formulaone"
+
+response = httpx.get(listing_url)
+
+response.raise_for_status()
+
+
+
+soup = BeautifulSoup(response.text, "html.parser")
+
+
+
+for item in soup.select('#maincontent ul li'):
+
+    link = item.select_one('a')
+
+    if link and 'href' in link.attrs:
+
+        url = urljoin(listing_url, link['href'])
+
+        print(url)
+```
+
+
+Note that some cards contain two links. One leads to the article, and one to the comments. If we selected all the links in the list by `#maincontent ul li a`, we would get incorrect output like this:
+
+
+```text
+https://www.theguardian.com/sport/article/2024/sep/02/example
+
+https://www.theguardian.com/sport/article/2024/sep/02/example#comments
+```

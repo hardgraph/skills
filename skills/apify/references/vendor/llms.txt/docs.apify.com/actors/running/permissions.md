@@ -1,0 +1,121 @@
+---
+title: Permissions
+url: https://docs.apify.com/actors/running/permissions.md
+parents:
+  - [Apify documentation](https://docs.apify.com/llms.txt)
+  - [Actors](https://docs.apify.com/actors.md)
+  - [Running Actors](https://docs.apify.com/actors/running.md)
+previous: [Usage and resources](https://docs.apify.com/actors/running/usage-and-resources.md)
+next: [Tasks](https://docs.apify.com/actors/running/tasks.md)
+---
+
+> ## Documentation index
+> Fetch the complete documentation index at: https://docs.apify.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Permissions
+
+When you run an Actor, it runs under your Apify account and may need access to your data to complete its task. Actor permissions define how much data the Actor can access. Each Actor declares its required permission level in its configuration, and the platform enforces this level at runtime.
+
+Understanding Actor permissions
+
+The approach is similar to mobile platforms (Android, iOS) where each app explicitly requests the access it needs and the user approves it. The difference is that instead of granular per-Actor permissions, we use two broad permission levels which cover the vast majority of use cases. If you are a developer, see the [development guide on Actor permissions](https://docs.apify.com/actors/development/permissions.md) to learn how to declare and manage permissions for your Actors.
+
+The permissions model follows the principle of least privilege. Actors run only with the access they explicitly request, giving you transparency and control over what the Actor can access in your account.
+
+## Permission levels
+
+There are two permission levels:
+
+* **Limited permissions (default):** An Actor has access to its own storages, the data it generates, and resources that it's given an explicit access to. It can't access any other data in your Apify account.
+* **Full permissions:** An Actor has access to all data in your Apify account. For example, it can perform administrative tasks in your account, manage your datasets or schedules.
+
+This model protects your data and strengthens platform security by showing what level of access each Actor requires.
+
+Actors that need full permissions clearly indicate this in their detail page and will require your **explicit approval** before running for the first time. Whenever possible, choose Actors that use limited permissions. They are safer, easier to trust, and sufficient for most workflows.
+
+## How Actor permissions work
+
+When a user runs an Actor, it receives an Apify API token. Traditionally, this token grants access to the user's entire Apify account via the Apify API. Actors with **full permissions** will continue to operate this way.
+
+Actors with **limited permissions** receive a restricted token. This token only allows the Actor to perform a specific set of actions, which covers the vast majority of common use cases.
+
+A limited-permission Actor can:
+
+* Read and write to its default storages.
+* Create any additional storage, and write to that storage.
+* Read and write to storages created in previous runs.
+* Update the current run's status or abort the run.
+* [Metamorph](https://docs.apify.com/actors/development/programming-interface/metamorph.md) to another Actor with limited permissions.
+* Read and write to storages provided via Actor input (for example, when the user provides a dataset that the Actor should write into).
+* Read basic user information from the environment (whether the user is paying, their proxy password, or public profile).
+* Run any other Actor with limited permissions and obtain the results.
+
+This approach ensures the Actor has everything it needs to function while protecting your data from unnecessary exposure.
+
+### View permission levels in Apify Console and Apify Store
+
+To view an Actor's permission level in [Apify Console](https://console.apify.com) or Apify Store, check the badge in the **Security** section. Hover over the badge to see what access the Actor will have when it runs under your account.
+
+![Limited-permissions badge shown on Actor detail page](/assets/images/permissions-actor-store-screen-limited-e41e1b8afe348c7d8f47eea4aa8c1b88.png)
+
+Moreover, full-permission Actors have a small badge on the Actor detail page and ask you for approval before you run them (read more below).
+
+![Full-permissions badge shown on Actor detail page](/assets/images/permissions-actor-detail-screen-full-b740f0a9b89fc22c432973c4f8e00e86.png)
+
+## Full-permission Actors
+
+Before you can run a full-permission Actor you don't own, you must approve its permissions in Apify Console. This is a one-time action per Actor. Once you approve it, the approval persists and you can run the Actor freely.
+
+To approve the Actor, click the **Start** button on the Actor detail screen and a confirmation modal shows up. Alternatively, you can open the three-dot menu in the top right corner and select **Approve Actor permissions**.
+
+![Confirmation modal to approve running a full-permission Actor](/assets/images/permissions-approve-full-permission-actor-8a66943568f5a9900381664965653177.png)
+
+This approval step protects you from accidentally running Actors that have unrestricted access to your entire Apify account. It applies to all execution paths: Console, API, CLI, schedules, and webhooks.
+
+If you try to run an unapproved full-permission Actor through the API or any other channel, the request fails with a `403` error. The error response includes a direct link to the Actor's page in Console where you can review and approve its permissions:
+
+
+```json
+{
+
+    "error": {
+
+        "type": "full-permission-actor-not-approved",
+
+        "message": "This Actor requires full access to your account. You must approve its permissions before running it.",
+
+        "data": {
+
+            "approvalUrl": "https://console.apify.com/actors/<ACTOR_ID>?approvePermissions=true"
+
+        }
+
+    }
+
+}
+```
+
+
+Approval through Console only
+
+You can only approve an Actor's permissions through Apify Console, not through the API. This is by design - it prevents automated tools and AI agents from bypassing the approval check on your behalf.
+
+You are always protected
+
+If you scheduled (or integrated with) a limited-permission Actor from the Store, and its author changes its permissions to full permissions, the schedule will stop working until you approve the Actor.
+
+### Exceptions: When the approval is not needed
+
+* **Your own Actors**: You never need to approve Actors you own. They always run without an approval step.
+* **Actor-to-Actor calls**: When an approved full-permission Actor calls or [metamorphs](https://docs.apify.com/actors/development/programming-interface/metamorph.md) into another full-permission Actor, the called Actor runs without requiring separate approval. By approving the first Actor, you are choosing to trust it in whatever it does - including calling other Actors.
+
+### Skip approvals
+
+If you prefer not to be prompted for approval, you can opt out in your account settings. Go to **Settings > Login & Privacy** and change the **Actor permission approval** setting to **Skip approval**.
+
+![User setting to opt out of the approval requirement](/assets/images/permissions-skip-approval-setting-318b77518a15b3adfaa7d014806f76e8.png)
+
+Disabling approval removes a safety check
+
+When you skip the approval requirement, any full-permission Actor can run under your account without explicit consent. Only disable this if you understand the risk.

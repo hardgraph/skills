@@ -1,0 +1,281 @@
+---
+title: Proxy
+url: https://docs.apify.com/proxy.md
+parents:
+  - [Apify documentation](https://docs.apify.com/llms.txt)
+next: [Datacenter proxy](https://docs.apify.com/proxy/datacenter-proxy.md)
+---
+
+> ## Documentation index
+> Fetch the complete documentation index at: https://docs.apify.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Proxy
+
+[Apify Proxy](https://apify.com/proxy) lets you rotate IP addresses when scraping to avoid geographic [blocking](https://docs.apify.com/academy/anti-scraping/techniques.md). Use it from your [Actors](https://docs.apify.com/actors.md) or any application that supports HTTP proxies. Apify monitors the IP pool's health and rotates addresses to prevent IP-based blocking.
+
+Your proxy settings and password are on the [Proxy](https://console.apify.com/proxy) page in Apify Console. For pricing, see [apify.com/pricing](https://apify.com/pricing).
+
+## Proxy types
+
+Each proxy type has distinct advantages, disadvantages, and pricing. Use them to access websites from different geographies and with different levels of anonymity.
+
+#### [Datacenter proxy](https://docs.apify.com/proxy/datacenter-proxy.md)
+
+[The fastest and cheapest option. It uses datacenters to change your IP address. Other users' activity can get these IPs blocked.](https://docs.apify.com/proxy/datacenter-proxy.md)
+
+#### [Residential proxy](https://docs.apify.com/proxy/residential-proxy.md)
+
+[IP addresses located in homes and offices around the world. These IPs are the least likely to be blocked.](https://docs.apify.com/proxy/residential-proxy.md)
+
+#### [Google SERP proxy](https://docs.apify.com/proxy/google-serp-proxy.md)
+
+[Download and extract data from Google Search Engine Result Pages (SERPs). You can select country and language to get localized results.](https://docs.apify.com/proxy/google-serp-proxy.md)
+
+## Quickstart
+
+Using Apify Proxy takes just a couple of lines of code with the [Apify SDKs](https://docs.apify.com/sdk.md):
+
+**JavaScript SDK with PuppeteerCrawler**
+
+
+```javascript
+import { Actor } from 'apify';
+
+import { PuppeteerCrawler } from 'crawlee';
+
+
+
+await Actor.init();
+
+
+
+const proxyConfiguration = await Actor.createProxyConfiguration();
+
+
+
+const crawler = new PuppeteerCrawler({
+
+    proxyConfiguration,
+
+    async requestHandler({ page }) {
+
+        console.log(await page.content());
+
+    },
+
+});
+
+
+
+await crawler.run(['https://proxy.apify.com/?format=json']);
+
+
+
+await Actor.exit();
+```
+
+
+**Python SDK with requests**
+
+
+```python
+import requests, asyncio
+
+from apify import Actor
+
+
+
+async def main():
+
+    async with Actor:
+
+        proxy_configuration = await Actor.create_proxy_configuration()
+
+        proxy_url = await proxy_configuration.new_url()
+
+
+
+        proxies = {
+
+            'http': proxy_url,
+
+            'https': proxy_url,
+
+        }
+
+
+
+        response = requests.get('https://api.apify.com/v2/browser-info', proxies=proxies)
+
+        print(response.text)
+
+
+
+if __name__ == '__main__':
+
+    asyncio.run(main())
+```
+
+
+For more examples connecting to Apify Proxy from the SDKs and other libraries:
+
+* [Datacenter proxy](https://docs.apify.com/proxy/datacenter-proxy.md#examples)
+* [Residential proxy](https://docs.apify.com/proxy/residential-proxy.md#connecting-to-residential-proxy)
+* [Google SERP proxy](https://docs.apify.com/proxy/google-serp-proxy.md#examples)
+* [Apify SDK JavaScript](https://docs.apify.com/sdk/js/docs/guides/proxy-management)
+* [Apify SDK Python](https://docs.apify.com/sdk/python/docs/concepts/proxy-management)
+* [Crawlee](https://crawlee.dev/docs/guides/proxy-management)
+
+## Connection settings
+
+To connect to Apify Proxy, you use the [HTTP proxy protocol](https://en.wikipedia.org/wiki/Proxy_server#Web_proxy_servers). Configure your HTTP client to use the proxy server at the Apify Proxy hostname, and provide your Apify Proxy password and the parameters described below.
+
+The full connection string has the following format:
+
+
+```text
+http://<username>:<password>@<hostname>:<port>
+```
+
+
+Password security
+
+All usage of Apify Proxy with your password is charged towards your account. Do not share the password with untrusted parties or use it from insecure networks, as **the password is sent unencrypted** due to the HTTP protocol's [limitations](https://www.guru99.com/difference-http-vs-https.html).
+
+### External connection
+
+To connect to Apify Proxy from outside the Apify platform, you need a paid Apify plan (to prevent abuse). To test Apify Proxy before subscribing, [contact Apify support](https://apify.com/contact).
+
+| Parameter | Value / explanation                                                                                                                                                               |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hostname  | `proxy.apify.com`                                                                                                                                                                 |
+| Port      | `8000`                                                                                                                                                                            |
+| Username  | Specifies the proxy parameters such as groups, session and location. See username parameters below for details. **Note**: this is not your Apify username.                        |
+| Password  | Apify Proxy password. Your password is displayed on the [Proxy](https://console.apify.com/proxy/groups) page in Apify Console. **Note**: this is not your Apify account password. |
+
+External connections
+
+If you use these parameters from Actors running on the Apify platform, the connection is still treated as external. It won't work on the Free plan, and on paid plans you'll be charged for external data transfer. Use the Connection from Actors parameters instead.
+
+Example connection string for external connections:
+
+
+```text
+http://auto:PASSWORD_REDACTED@proxy.apify.com:8000
+```
+
+
+### Connection from Actors
+
+To connect from Actors running on the Apify platform, use the built-in proxy configuration tools in the [Apify SDK JavaScript](https://docs.apify.com/sdk/js/docs/guides/proxy-management) or [Apify SDK Python](https://docs.apify.com/sdk/python/docs/concepts/proxy-management).
+
+To connect manually instead, find the configuration values in the [environment variables](https://docs.apify.com/actors/development/programming-interface/environment-variables.md) provided to the Actor. This connects you directly through Apify infrastructure, bypassing the public Internet, which improves connection speed and avoids external data transfer charges.
+
+| Parameter | Source / explanation                                                                                                                                       |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hostname  | `APIFY_PROXY_HOSTNAME` environment variable                                                                                                                |
+| Port      | `APIFY_PROXY_PORT` environment variable                                                                                                                    |
+| Username  | Specifies the proxy parameters such as groups, session and location. See username parameters below for details. **Note**: this is not your Apify username. |
+| Password  | `APIFY_PROXY_PASSWORD` environment variable                                                                                                                |
+
+Example connection string creation:
+
+
+```js
+const { APIFY_PROXY_HOSTNAME, APIFY_PROXY_PORT, APIFY_PROXY_PASSWORD } = process.env;
+
+const connectionString = `http://auto:${APIFY_PROXY_PASSWORD}@${APIFY_PROXY_HOSTNAME}:${APIFY_PROXY_PORT}`;
+```
+
+
+## Username parameters
+
+The `username` field enables you to pass parameters like **groups**, **session ID** and **country** for your proxy connection.
+
+For example, if you're using [datacenter proxies](https://docs.apify.com/proxy/datacenter-proxy.md) and want to use the `new_job_123` session using the `SHADER` group, the username will be:
+
+
+```text
+groups-SHADER,session-new_job_123
+```
+
+
+The table below describes the available parameters.
+
+| Parameter | Type     | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `groups`  | Required | Set proxied requests to use servers from the selected groups: - `groups-[group name]` or `auto` when using datacenter proxies. - `groups-RESIDENTIAL` when using residential proxies. - `groups-GOOGLE_SERP` when using Google SERP proxies.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `session` | Optional | If specified to `session-new_job_123`, for example, all proxied requests with the same session identifier are routed through the same IP address. If not specified, each proxied request is assigned a randomly picked least used IP address.The session string can only contain numbers (0–9), letters (a-z or A-Z), dot (.), underscore (\_), a tilde (\~). The maximum length is 50 characters.Session management may work differently for residential and SERP proxies. Check the relevant documentation for details.                                                                                                                                                                              |
+| `country` | Optional | If specified, all proxied requests will use proxy servers from a selected country. Note that if there are no proxy servers from the specified country, the connection will fail. For example `groups-SHADER,country-US` uses proxies from the `SHADER` group located in the USA. By default, the proxy uses all available proxy servers from all countries. For [residential proxies](https://docs.apify.com/residential_proxy#how-to-set-a-state), you can also target US states using the [ISO 3166-2:US](https://en.wikipedia.org/wiki/ISO_3166-2:US) format: `country-US_XX`, where `XX` is the two-letter state abbreviation. For example, `groups-RESIDENTIAL,country-US_CA` targets California. |
+
+To specify only some parameters, provide those and omit the rest. To use the default behavior (not specifying `groups`, `session`, or `country`), set the username to `auto` (a placeholder, since the username cannot be empty).
+
+## IP address rotation
+
+Web scrapers can rotate the IP addresses they use to access websites. They assign each request a different IP address, which makes it appear like they are all coming from different users. This improves performance and data throughput.
+
+Depending on whether you use a [browser](https://apify.com/apify/web-scraper) or [HTTP requests](https://apify.com/apify/cheerio-scraper) for your scraping jobs, IP address rotation works differently.
+
+* Browser - a different IP address is used for each browser.
+* HTTP request - a different IP address is used for each request.
+
+Use sessions to control how you rotate IP addresses. See the guide [Anti-scraping techniques](https://docs.apify.com/academy/anti-scraping/techniques.md) to learn more about IP address rotation and Apify's findings on how blocking works.
+
+## Sessions
+
+Sessions allow you to use the same IP address for multiple connections. When you need to keep a session (for example, to stay logged in to a website), keep the same proxy, and so the same IP address. Switching the IP address, by contrast, helps you avoid being blocked.
+
+To set a new session, pass the `session` parameter in your username field when connecting to a proxy. This will serve as the session's ID and an IP address will be assigned to it. To [use that IP address in other requests](https://docs.apify.com/proxy/datacenter-proxy.md#connecting-to-datacenter-proxies), pass that same session ID in the username field.
+
+We recommend the [SessionPool](https://crawlee.dev/api/core/class/SessionPool) abstraction for managing sessions. The created session will then store information such as cookies and can be used to generate [browser fingerprints](https://docs.apify.com/academy/anti-scraping/mitigation/generating-fingerprints.md). You can also assign custom user data such as authorization tokens and specific headers. Sessions are available for [datacenter](https://docs.apify.com/proxy/datacenter-proxy.md) and [residential](https://docs.apify.com/proxy/residential-proxy.md#session-persistence) proxies. For datacenter proxies, a session persists for **26 hours** ([more info](https://docs.apify.com/proxy/datacenter-proxy.md)). For residential proxies, it persists for around **30 minutes** ([more info](https://docs.apify.com/proxy/residential-proxy.md#session-persistence)). Google SERP proxies do not support sessions.
+
+## Proxy groups
+
+You can see which proxy groups you have access to on the [Proxy page](https://console.apify.com/proxy/groups) in Apify Console. To use a specific proxy group (or multiple groups), specify it in the `username` parameter.
+
+## Proxy IP addresses
+
+If you need to allow communication to `proxy.apify.com`, add the following IP addresses to your firewall rule or whitelist:
+
+* `18.208.102.16`
+* `35.171.134.41`
+
+## Troubleshooting
+
+To view your connection status to [Apify Proxy](https://apify.com/proxy), open the URL below in the browser using the proxy. [http://proxy.apify.com/](http://proxy.apify.com/). If the proxy connection is working, the page should look something like this:
+
+![Apify Proxy status page](/assets/images/proxy-status-6ea6ff237ab297936618fcb2c52a58e4.png)
+
+To test that your requests are proxied and IP addresses are being [rotated](https://docs.apify.com/academy/anti-scraping/techniques.md) correctly, open the following API endpoint via the proxy. It shows information about the client IP address.
+
+[https://api.apify.com/v2/browser-info/](https://api.apify.com/v2/browser-info/)
+
+### A different approach to `502 Bad Gateway`
+
+Sometimes the `502` status code is not comprehensive enough. Therefore, Apify Proxy uses `590-599` codes instead to provide more insight:
+
+* `590 Non Successful`: upstream responded with non-200 status code.
+* `591 RESERVED`: *this status code is reserved for further use.*
+* `592 Status Code Out Of Range`: upstream responded with status code different than 100–999.
+* `593 Not Found`: DNS lookup failed, indicating either [EAI_NODATA](https://github.com/libuv/libuv/blob/cdbba74d7a756587a696fb3545051f9a525b85ac/include/uv.h#L82) or [EAI_NONAME](https://github.com/libuv/libuv/blob/cdbba74d7a756587a696fb3545051f9a525b85ac/include/uv.h#L83).
+* `594 Connection Refused`: upstream refused connection.
+* `595 Connection Reset`: connection reset due to loss of connection or timeout.
+* `596 Broken Pipe`: trying to write on a closed socket.
+* `597 Auth Failed`: incorrect upstream credentials.
+* `598 RESERVED`: *this status code is reserved for further use.*
+* `599 Upstream Error`: generic upstream error.
+
+The typical issues behind these codes are:
+
+* `590` and `592` indicate an issue on the upstream side.
+
+* `593` indicates an incorrect `proxy-chain` configuration.
+
+* `594`, `595` and `596` may occur due to connection loss.
+
+* `597` indicates incorrect upstream credentials.
+
+* `599` is a generic error, where the above is not applicable.
+
+  Note that Apify Proxy is based on the [proxy-chain](https://github.com/apify/proxy-chain) open-source `npm` package developed and maintained by Apify. You can find the details of the above errors and their implementation there.

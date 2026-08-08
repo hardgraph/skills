@@ -1,0 +1,99 @@
+---
+title: Puppeteer and Playwright course
+url: https://docs.apify.com/academy/puppeteer-playwright.md
+parents:
+  - [Apify documentation](https://docs.apify.com/llms.txt)
+  - [Apify Academy](https://docs.apify.com/academy.md)
+children:
+  - [I - Launching a browser](https://docs.apify.com/academy/puppeteer-playwright/browser.md)
+  - [II - Opening & controlling a page](https://docs.apify.com/academy/puppeteer-playwright/page.md)
+  - [III - Executing scripts](https://docs.apify.com/academy/puppeteer-playwright/executing-scripts.md)
+  - [IV - Reading & intercepting requests](https://docs.apify.com/academy/puppeteer-playwright/reading-intercepting-requests.md)
+  - [V - Using proxies](https://docs.apify.com/academy/puppeteer-playwright/proxies.md)
+  - [VI - Creating multiple browser contexts](https://docs.apify.com/academy/puppeteer-playwright/browser-contexts.md)
+  - [Common use cases](https://docs.apify.com/academy/puppeteer-playwright/common-use-cases.md)
+previous: [Using a platform](https://docs.apify.com/academy/scraping-basics-python/platform.md)
+next: [I - Launching a browser](https://docs.apify.com/academy/puppeteer-playwright/browser.md)
+---
+
+> ## Documentation index
+> Fetch the complete documentation index at: https://docs.apify.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Puppeteer and Playwright course
+
+**Learn in-depth how to use two of the most popular Node.js libraries for controlling a headless browser - Puppeteer and Playwright.**
+
+***
+
+[Puppeteer](https://pptr.dev/) and [Playwright](https://playwright.dev/) are libraries that allow you to automate browsing. Based on your instructions, they can open a browser window, load a website, click on links, etc. They can also do this *headlessly*, i.e., in a way that the browser window isn't visible, which is faster.
+
+Both packages were developed by the same team and are very similar, which is why we have combined the Puppeteer course and the Playwright course into one super-course that shows code examples for both technologies. The two differ in only small ways, and those will always be highlighted in the examples.
+
+> Each lesson's activity will contain examples for both libraries, but we recommend using Playwright, as it is newer and has more features and better [documentation](https://playwright.dev/docs/intro)
+
+## Advantages of using a headless browser
+
+When automating a headless browser, you can do a whole lot more in comparison to making HTTP requests for static content. In fact, you can programmatically do pretty much anything a human could do with a browser, such as clicking elements, taking screenshots, typing into text areas, etc.
+
+Additionally, since the requests aren't static, dynamic content can be rendered and interacted with (or, data from the dynamic content can be scraped). Turn on the [headful mode](https://playwright.dev/docs/api/class-testoptions#test-options-headless) (`headless: false`) to see exactly what the browser is doing.
+
+Browsers can also be effective for [overcoming anti-scraping measures](https://docs.apify.com/academy/anti-scraping.md), especially if the website is running [JavaScript browser challenges](https://docs.apify.com/academy/anti-scraping/techniques/browser-challenges.md).
+
+## Disadvantages of headless browsers
+
+Browsers are slow and expensive to run. In the follow-up courses, the Apify Academy will show you how to scrape websites without a browser. Every website can potentially be reverse-engineered into a series of quick and cheap HTTP calls, but it might require significant effort and specialized knowledge.
+
+## Setup
+
+For this course, we'll be jumping right into the features of these awesome libraries and expecting you to already have an environment set up. Here's how we set up our environment:
+
+1. Make sure you've installed [Node.js](https://nodejs.org/en/)
+2. Create a new folder called **puppeteer-playwright** (or whatever you want to call it)
+3. Run the command `npm init -y` within your new folder to automatically initialize the project
+4. Add `"type": "module"` to the **package.json** file
+5. Create a new file named **index.js**
+6. Install the library you're going to be using during this course:
+
+**Install Playwright**
+
+
+```shell
+npm install playwright
+```
+
+
+**Install Puppeteer**
+
+
+```shell
+npm install puppeteer
+```
+
+
+## Course overview
+
+1. [Launching a browser](https://docs.apify.com/academy/puppeteer-playwright/browser.md)
+
+2. [Opening a page](https://docs.apify.com/academy/puppeteer-playwright/page.md)
+
+   * [Interacting with a page](https://docs.apify.com/academy/puppeteer-playwright/page/interacting-with-a-page.md)
+   * [Waiting for content & events](https://docs.apify.com/academy/puppeteer-playwright/page/waiting.md)
+   * [Page methods](https://docs.apify.com/academy/puppeteer-playwright/page/page-methods.md)
+
+3. [Executing scripts](https://docs.apify.com/academy/puppeteer-playwright/executing-scripts.md)
+
+   * [Injecting code](https://docs.apify.com/academy/puppeteer-playwright/executing-scripts/injecting-code.md)
+   * [Extracting data](https://docs.apify.com/academy/puppeteer-playwright/executing-scripts/collecting-data.md)
+
+4. [Reading & intercepting requests](https://docs.apify.com/academy/puppeteer-playwright/reading-intercepting-requests.md)
+
+5. [Using proxies](https://docs.apify.com/academy/puppeteer-playwright/proxies.md)
+
+6. [Creating multiple browser contexts](https://docs.apify.com/academy/puppeteer-playwright/browser-contexts.md)
+
+7. [Common use cases](https://docs.apify.com/academy/puppeteer-playwright/common-use-cases.md)
+
+## First up
+
+In the [first lesson](https://docs.apify.com/academy/puppeteer-playwright/browser.md) of this course, we'll be learning a bit about how to create and use the **Browser** object.

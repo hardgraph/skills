@@ -1,0 +1,606 @@
+---
+title: Extracting data from HTML with Node.js
+url: https://docs.apify.com/academy/scraping-basics-javascript/extracting-data.md
+parents:
+  - [Apify documentation](https://docs.apify.com/llms.txt)
+  - [Apify Academy](https://docs.apify.com/academy.md)
+  - [Web scraping basics with JS](https://docs.apify.com/academy/scraping-basics-javascript.md)
+previous: [Locating HTML elements](https://docs.apify.com/academy/scraping-basics-javascript/locating-elements.md)
+next: [Saving data](https://docs.apify.com/academy/scraping-basics-javascript/saving-data.md)
+---
+
+> ## Documentation index
+> Fetch the complete documentation index at: https://docs.apify.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Extracting data from HTML with Node.js
+
+**In this lesson we'll finish extracting product data from the downloaded HTML. With help of basic string manipulation we'll focus on cleaning and correctly representing the product price.**
+
+***
+
+Locating the right HTML elements is the first step of a successful data extraction, so it's no surprise that we're already close to having the data in the correct form. The last bit that still requires our attention is the price:
+
+
+```text
+$ node index.js
+
+JBL Flip 4 Waterproof Portable Bluetooth Speaker | $74.95
+
+Sony XBR-950G BRAVIA 4K HDR Ultra HD TV | From $1,398.00
+
+...
+```
+
+
+Let's summarize what stands in our way if we want to have it in our Python program as a number:
+
+* A dollar sign precedes the number,
+* the number contains decimal commas for better human readability, and
+* some prices start with `From`, which reveals there is a certain complexity in how the shop deals with prices.
+
+## Representing price
+
+The last bullet point is the most important to figure out before we start coding. We thought we'll be scraping numbers, but in the middle of our effort, we discovered that the price is actually a range.
+
+It's because some products have variants with different prices. Later in the course we'll get to crawling, i.e. following links and scraping data from more than just one page. That will allow us to get exact prices for all the products, but for now let's extract just what's in the listing.
+
+Ideally we'd go and discuss the problem with those who are about to use the resulting data. For their purposes, is the fact that some prices are just minimum prices important? What would be the most useful representation of the range for them? Maybe they'd tell us that it's okay if we just remove the `From` prefix?
+
+
+```js
+const priceText = $price.text().replace("From ", "");
+```
+
+
+In other cases, they'd tell us the data must include the range. And in cases when we just don't know, the safest option is to include all the information we have and leave the decision on what's important to later stages. One approach could be having the exact and minimum prices as separate values. If we don't know the exact price, we leave it empty:
+
+
+```js
+const priceRange = { minPrice: null, price: null };
+
+const priceText = $price.text()
+
+if (priceText.startsWith("From ")) {
+
+    priceRange.minPrice = priceText.replace("From ", "");
+
+} else {
+
+    priceRange.minPrice = priceText;
+
+    priceRange.price = priceRange.minPrice;
+
+}
+```
+
+
+Built-in string methods
+
+If you're not proficient in JavaScript's string methods, [.startsWith()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith) checks the beginning of a given string, and [.replace()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace) changes part of a given string.
+
+The whole program would look like this:
+
+
+```js
+import * as cheerio from 'cheerio';
+
+
+
+const url = "https://warehouse-theme-metal.myshopify.com/collections/sales";
+
+const response = await fetch(url);
+
+
+
+if (response.ok) {
+
+  const html = await response.text();
+
+  const $ = cheerio.load(html);
+
+
+
+  for (const element of $(".product-item").toArray()) {
+
+    const $productItem = $(element);
+
+
+
+    const $title = $productItem.find(".product-item__title");
+
+    const title = $title.text();
+
+
+
+    const $price = $productItem.find(".price").contents().last();
+
+    const priceRange = { minPrice: null, price: null };
+
+    const priceText = $price.text();
+
+    if (priceText.startsWith("From ")) {
+
+        priceRange.minPrice = priceText.replace("From ", "");
+
+    } else {
+
+        priceRange.minPrice = priceText;
+
+        priceRange.price = priceRange.minPrice;
+
+    }
+
+
+
+    console.log(`${title} | ${priceRange.minPrice} | ${priceRange.price}`);
+
+  }
+
+} else {
+
+  throw new Error(`HTTP ${response.status}`);
+
+}
+```
+
+
+## Removing white space
+
+Often, the strings we extract from a web page start or end with some amount of whitespace, typically space characters or newline characters, which come from the [indentation](https://en.wikipedia.org/wiki/Indentation_(typesetting)#Indentation_in_programming) of the HTML tags.
+
+We call the operation of removing whitespace *trimming* or *stripping*, and it's so useful in many applications that programming languages and libraries include ready-made tools for it. Let's add JavaScript's built-in [.trim()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim):
+
+
+```js
+const title = $title.text().trim();
+
+
+
+const priceText = $price.text().trim();
+```
+
+
+## Removing dollar sign and commas
+
+We got rid of the `From` and possible whitespace, but we still can't save the price as a number in our JavaScript program:
+
+
+```js
+> const priceText = "$1,998.00"
+
+> parseFloat(priceText)
+
+NaN
+```
+
+
+Interactive JavaScript
+
+The demonstration above is inside the Node.js' [interactive REPL](https://nodejs.org/en/learn/command-line/how-to-use-the-nodejs-repl). It's similar to running arbitrary code in your browser's DevTools Console, and it's a useful playground where you can try how code behaves before you use it in your program.
+
+We need to remove the dollar sign and the decimal commas. For this type of cleaning, [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions) are often the best tool for the job, but in this case [.replace()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace) is also sufficient:
+
+
+```js
+const priceText = $price
+
+  .text()
+
+  .trim()
+
+  .replace("$", "")
+
+  .replace(",", "");
+```
+
+
+## Representing money in programs
+
+Now we should be able to add `parseFloat()`, so that we have the prices not as a text, but as numbers:
+
+
+```js
+const priceRange = { minPrice: null, price: null };
+
+const priceText = $price.text()
+
+if (priceText.startsWith("From ")) {
+
+    priceRange.minPrice = parseFloat(priceText.replace("From ", ""));
+
+} else {
+
+    priceRange.minPrice = parseFloat(priceText);
+
+    priceRange.price = priceRange.minPrice;
+
+}
+```
+
+
+Great! Only if we didn't overlook an important pitfall called [floating-point error](https://en.wikipedia.org/wiki/Floating-point_error_mitigation). In short, computers save floating point numbers in a way which isn't always reliable:
+
+
+```py
+> 0.1 + 0.2
+
+0.30000000000000004
+```
+
+
+These errors are small and usually don't matter, but sometimes they can add up and cause unpleasant discrepancies. That's why it's typically best to avoid floating point numbers when working with money. We won't store dollars, but cents:
+
+
+```js
+const priceText = $price
+
+  .text()
+
+  .trim()
+
+  .replace("$", "")
+
+  .replace(".", "")
+
+  .replace(",", "");
+```
+
+
+In this case, removing the dot from the price text is the same as if we multiplied all the numbers with 100, effectively converting dollars to cents. This is how the whole program looks like now:
+
+
+```js
+import * as cheerio from 'cheerio';
+
+
+
+const url = "https://warehouse-theme-metal.myshopify.com/collections/sales";
+
+const response = await fetch(url);
+
+
+
+if (response.ok) {
+
+  const html = await response.text();
+
+  const $ = cheerio.load(html);
+
+
+
+  for (const element of $(".product-item").toArray()) {
+
+    const $productItem = $(element);
+
+
+
+    const $title = $productItem.find(".product-item__title");
+
+    const titleText = $title.text().trim();
+
+
+
+    const $price = $productItem.find(".price").contents().last();
+
+    const priceRange = { minPrice: null, price: null };
+
+    const priceText = $price
+
+      .text()
+
+      .trim()
+
+      .replace("$", "")
+
+      .replace(".", "")
+
+      .replace(",", "");
+
+
+
+    if (priceText.startsWith("From ")) {
+
+        priceRange.minPrice = parseInt(priceText.replace("From ", ""));
+
+    } else {
+
+        priceRange.minPrice = parseInt(priceText);
+
+        priceRange.price = priceRange.minPrice;
+
+    }
+
+
+
+    console.log(`${title} | ${priceRange.minPrice} | ${priceRange.price}`);
+
+  }
+
+} else {
+
+  throw new Error(`HTTP ${response.status}`);
+
+}
+```
+
+
+If we run the code above, we have nice, clean data about all the products!
+
+
+```text
+$ node index.js
+
+JBL Flip 4 Waterproof Portable Bluetooth Speaker | 7495 | 7495
+
+Sony XBR-950G BRAVIA 4K HDR Ultra HD TV | 139800 | null
+
+...
+```
+
+
+Well, not to spoil the excitement, but in its current form, the data isn't very useful. In the next lesson we'll save the product details to a file which data analysts can use or other programs can read.
+
+***
+
+## Exercises
+
+These challenges are here to help you test what you’ve learned in this lesson. Try to resist the urge to peek at the solutions right away. Remember, the best learning happens when you dive in and do it yourself!
+
+Real world
+
+You're about to touch the real web, which is practical and exciting! But websites change, so some exercises might break. If you run into any issues, please leave a comment below or [file a GitHub Issue](https://github.com/apify/apify-docs/issues).
+
+### Scrape dimensions and prices from IKEA
+
+Download the [IKEA JONAXEL system page](https://www.ikea.com/se/en/cat/jonaxel-system-45730/) and parse it with Cheerio. Print each product's width, depth, height, and price.
+
+![IKEA product listing](/assets/images/exercise-ikea-ed95ef422e1c5aca5b9aacb4cb5f3e1a.webp)
+
+Skip products that don't list all three dimensions. For example, the top shelf in the image lists only its width and depth, so your program shouldn't print it. Your output should resemble the following (prices are in [SEK](https://www.google.com/search?q=1%20sek)):
+
+
+```text
+50 | 51 | 104 ... 599 SEK
+
+99 | 51 | 173 ... 1496 SEK
+
+50 | 51 | 104 ... 349 SEK
+```
+
+
+Solution
+
+
+```js
+import * as cheerio from 'cheerio';
+
+
+
+function parseDimensions(text) {
+
+  const words = text.trim().split(' ');
+
+  if (words.at(-1) === 'cm') {
+
+    const dimensions = words.at(-2).split('x');
+
+    if (dimensions.length === 3) {
+
+      return dimensions;
+
+    }
+
+  }
+
+  return null;
+
+}
+
+
+
+const url = 'https://www.ikea.com/se/en/cat/jonaxel-system-45730/';
+
+const response = await fetch(url);
+
+
+
+if (!response.ok) {
+
+  throw new Error(`HTTP ${response.status}`);
+
+}
+
+
+
+const html = await response.text();
+
+const $ = cheerio.load(html);
+
+
+
+for (const element of $('.plp-mastercard').toArray()) {
+
+  const $productCard = $(element);
+
+
+
+  const descriptionText = $productCard.find('.plp-text').text();
+
+  const dimensions = parseDimensions(descriptionText);
+
+  if (dimensions) {
+
+    const price = $productCard.find('.plp-price__integer').text().replaceAll(' ', '').trim();
+
+    console.log(`${dimensions.join(' | ')} ... ${price} SEK`);
+
+  }
+
+}
+```
+
+
+### Use regular expressions
+
+Simplify the code from the previous exercise. Use a [regular expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions) to parse the width, depth, and height. Match digits with `[0-9]` or `\d`, and use `+` to match one or more digits.
+
+Solution
+
+
+```js
+import * as cheerio from 'cheerio';
+
+
+
+function parseDimensions(text) {
+
+  const match = text.match(/(\d+)x(\d+)x(\d+) cm/);
+
+  if (match) {
+
+    return [match[1], match[2], match[3]];
+
+  }
+
+  return null;
+
+}
+
+
+
+const url = 'https://www.ikea.com/se/en/cat/jonaxel-system-45730/';
+
+const response = await fetch(url);
+
+
+
+if (!response.ok) {
+
+  throw new Error(`HTTP ${response.status}`);
+
+}
+
+
+
+const html = await response.text();
+
+const $ = cheerio.load(html);
+
+
+
+for (const element of $('.plp-mastercard').toArray()) {
+
+  const $productCard = $(element);
+
+
+
+  const descriptionText = $productCard.find('.plp-text').text();
+
+  const dimensions = parseDimensions(descriptionText);
+
+  if (dimensions) {
+
+    const price = $productCard.find('.plp-price__integer').text().replaceAll(' ', '').trim();
+
+    console.log(`${dimensions.join(' | ')} ... ${price} SEK`);
+
+  }
+
+}
+```
+
+
+### Scrape publish dates of F1 news
+
+Download Guardian's page with the latest F1 news and use Beautiful Soup to parse it. Print titles and publish dates of all the listed articles. This is the URL:
+
+
+```text
+https://www.theguardian.com/sport/formulaone
+```
+
+
+Your program should print something like the following. Note the dates at the end of each line:
+
+
+```text
+Brad Pitt in the paddock: how F1 the Movie went deep to keep fans coming | Fri Jun 20 2025
+
+Wolff hits out at Red Bull protest after Russell’s Canadian GP win | Tue Jun 17 2025
+
+F1 the Movie review – spectacular macho melodrama handles Brad Pitt with panache | Tue Jun 17 2025
+
+Hamilton reveals distress over ‘devastating’ groundhog accident at Canadian F1 GP | Mon Jun 16 2025
+
+...
+```
+
+
+Need a nudge?
+
+* HTML's `time` element can have an attribute `datetime`, which [contains data in a machine-readable format](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time), such as the ISO 8601.
+* Cheerio gives you [.attr()](https://cheerio.js.org/docs/api/classes/Cheerio#attr) to access attributes.
+* In JavaScript you can use an ISO 8601 string to create a [Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) object.
+* To get the date, you can call `.toDateString()` on `Date` objects.
+
+Solution
+
+
+```js
+import * as cheerio from 'cheerio';
+
+
+
+const url = 'https://www.theguardian.com/sport/formulaone';
+
+const response = await fetch(url);
+
+
+
+if (!response.ok) {
+
+  throw new Error(`HTTP ${response.status}`);
+
+}
+
+
+
+const html = await response.text();
+
+const $ = cheerio.load(html);
+
+
+
+for (const element of $('#maincontent ul li').toArray()) {
+
+  const $article = $(element);
+
+  const title = $article.find('h3').text().trim();
+
+  const dateAttr = $article.find('time').attr('datetime');
+
+
+
+  if (!title || !dateAttr) {
+
+    continue;
+
+  }
+
+
+
+  const date = new Date(dateAttr.trim());
+
+  if (Number.isNaN(date.getTime())) {
+
+    continue;
+
+  }
+
+
+
+  console.log(`${title} | ${date.toDateString()}`);
+
+}
+```

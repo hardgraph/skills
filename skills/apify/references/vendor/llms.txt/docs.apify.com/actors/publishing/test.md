@@ -1,0 +1,40 @@
+---
+title: Automated testing
+url: https://docs.apify.com/actors/publishing/test.md
+parents:
+  - [Apify documentation](https://docs.apify.com/llms.txt)
+  - [Actors](https://docs.apify.com/actors.md)
+  - [Publishing and monetization](https://docs.apify.com/actors/publishing.md)
+previous: [Pricing and costs](https://docs.apify.com/actors/publishing/monetize/pricing-and-costs.md)
+next: [Actor status badge](https://docs.apify.com/actors/publishing/status-badge.md)
+---
+
+> ## Documentation index
+> Fetch the complete documentation index at: https://docs.apify.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Automated testing
+
+## Why we test
+
+We want to make sure that all Actors in Apify Store are top-notch, or at least as top-notch as they can be. Since there are many of them, we have an automated testing procedure in place that tests all Actors daily. This helps us to flag Actors that temporarily don't work as expected `under maintenance`, and to automatically `deprecate` Actors that have been broken for more than a month.
+
+## How we test
+
+The test runs the Actor with its default input (defined by the [prefill](https://docs.apify.com/actors/development/actor-definition/input-schema/specification/v1#prefill-vs-default-vs-required) option in the input schema file) and expects it to finish with a **Succeeded** status and non-empty default dataset within 5 minutes of the beginning of the run.
+
+![Actor page](/assets/images/actor-test-06ec218b357a5e86a8c3ea01b1050ac7.webp)
+
+If the Actor fails to complete successful runs for three consecutive days, the developer will be notified, and the Actor will be labeled `under maintenance` until it is fixed. After another 14 days of failing runs, you will receive another notification. Finally, if the runs continue to fail after yet another 14 days, the Actor will be `deprecated`.
+
+## How can I make my Actor healthy again
+
+The best course of action is to fix the Actor and rebuild it. The automatic testing system will pick this up within 24 hours and mark it as healthy. In some cases, your Actor might break because of issues with the target website. In such a case, if your Actor passes the majority of test runs in the next 7 days, it will be marked as healthy automatically.
+
+## What if my Actor cannot comply with the test logic
+
+Actors that require some sort of authentication will always fail the tests despite being fully functional. Also, some Actors inherently run for longer than 5 minutes. If that's the case with your Actor, [contact support](http://apify.com/contact) and explain your specific use case that justifies why the Actor should be excluded from the automated tests.
+
+## Advanced Actor testing
+
+You can easily implement your own tests and customize them to fit your Actor's particularities by using the public [Actor Testing](https://apify.com/pocesar/actor-testing) tool available in Apify Store. For more information, see the [automated testing](https://docs.apify.com/actors/development/automated-tests.md) section.

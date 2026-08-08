@@ -1,0 +1,116 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 4
+  tags:
+    - web-scraping
+    - browser-automation
+    - actors
+    - rest-api
+    - proxy
+visibility:
+  audiences:
+    - backend-devs
+    - fullstack-devs
+    - data-engineers
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: apify-docs-llms-index
+    kind: llms.txt
+    url: "https://docs.apify.com/llms.txt"
+    allowed_hosts:
+      - docs.apify.com
+    allowed_extensions:
+      - .md
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: apify
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: apify
+    intensity: 10
+  - type: keyword
+    value: apify actor
+    intensity: 10
+  - type: keyword
+    value: apify api
+    intensity: 10
+  - type: keyword
+    value: apify cli
+    intensity: 9
+  - type: keyword
+    value: run-sync-get-dataset-items
+    intensity: 9
+  - type: keyword
+    value: apify dataset
+    intensity: 8
+  - type: keyword
+    value: apify proxy
+    intensity: 8
+  - type: keyword
+    value: apify sdk
+    intensity: 8
+  - type: keyword
+    value: actor task
+    intensity: 7
+  - type: keyword
+    value: web scraping
+    intensity: 7
+  - type: vector
+    value: Run an Apify Actor to scrape a website and read its dataset results.
+    intensity: 10
+  - type: vector
+    value: Trigger Apify Actor runs over the REST API and fetch dataset items.
+    intensity: 10
+  - type: vector
+    value: Build and deploy an Apify Actor with an input schema from the CLI.
+    intensity: 9
+  - type: vector
+    value: Choose between Apify Console, API, CLI, and SDK for a task.
+    intensity: 8
+  - type: vector
+    value: Schedule Apify runs and chain Actors with webhooks.
+    intensity: 7
+provenance:
+  summary: Apify reference. Packages the official Apify llms.txt index (https://docs.apify.com/llms.txt) plus a reproducible verbatim mirror of the .md documentation pages it links to on docs.apify.com, under references/vendor/. Covers Actors and their lifecycle, the REST API v2 (runs, datasets, key-value stores, request queues, schedules), the CLI, the SDKs, storage and dataset exports, and the proxy network.
+  sources:
+    - title: Apify llms.txt index
+      url: https://docs.apify.com/llms.txt
+      authors:
+        - Apify
+      inspected_at: "2026-08-08"
+      adopted:
+        - Curated link index organising Apify docs by topic (actors, API, CLI, storage, proxy, scheduling)
+        - Direct .md links resolved against allowed_extensions
+    - title: Apify documentation corpus (mirrored .md)
+      url: https://docs.apify.com
+      authors:
+        - Apify
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of the docs.apify.com pages the seed index links to
+        - Actor lifecycle, API v2 endpoints, storage, CLI, SDK, and proxy guidance
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: '2026-08-08'
+  file_count: 427
+  sources:
+    - id: apify-docs-llms-index
+      kind: llms.txt
+      url: https://docs.apify.com/llms.txt
+      seed_path: docs.apify.com/llms.txt
+  failures:
+    - url: https://docs.apify.com/sdk/js/docs/guides/type-script-actor.md
+      status: 404
+      detail: HTTP 404
+    - url: https://docs.apify.com/sdk/python/docs/introduction/quick-start.md
+      status: 404
+      detail: HTTP 404

@@ -1,0 +1,576 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+### 3.1.2 - **not yet released**[](#312---not-yet-released)
+
+#### 🐛 Bug Fixes[](#-bug-fixes)
+
+* Read file-like KVS values before upload and reject unencodable ones ([#965](https://github.com/apify/apify-client-python/pull/965)) ([064b5cc](https://github.com/apify/apify-client-python/commit/064b5cccbce8b585f58271b089e4987c6559a7d8)) by [@vdusek](https://github.com/vdusek)
+* Respect caller-supplied Content-Encoding for pre-compressed request bodies ([#997](https://github.com/apify/apify-client-python/pull/997)) ([b5541c9](https://github.com/apify/apify-client-python/commit/b5541c919923f69d537b4062e21c1f3c46396c7a)) by [@vdusek](https://github.com/vdusek), closes [#996](https://github.com/apify/apify-client-python/issues/996)
+
+#### ⚡ Performance[](#-performance)
+
+* Skip request-body compression for already-compressed content types ([#987](https://github.com/apify/apify-client-python/pull/987)) ([808bdde](https://github.com/apify/apify-client-python/commit/808bdde06ed1befe9d30bede0f947320240747a6)) by [@vdusek](https://github.com/vdusek)
+* Skip request-body compression for small payloads ([#988](https://github.com/apify/apify-client-python/pull/988)) ([6bd31b2](https://github.com/apify/apify-client-python/commit/6bd31b2abb840ea9af1efc98bf984c85b8510ce3)) by [@vdusek](https://github.com/vdusek), closes [#934](https://github.com/apify/apify-client-python/issues/934)
+
+### [3.1.1](https://github.com/apify/apify-client-python/releases/tag/v3.1.1) (2026-08-03)[](#311-2026-08-03)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-1)
+
+* Add missing cannot-monetize-without-payout-billing-info error code ([#960](https://github.com/apify/apify-client-python/pull/960)) ([c1bffc6](https://github.com/apify/apify-client-python/commit/c1bffc6e9f67a8358769591006f46bb2831594d8)) by [@apify-service-account](https://github.com/apify-service-account)
+* Normalize query params in dataset create\_items\_public\_url ([#963](https://github.com/apify/apify-client-python/pull/963)) ([c3ecaa9](https://github.com/apify/apify-client-python/commit/c3ecaa96a43415d70d71c27e7dd177e9992c84e4)) by [@vdusek](https://github.com/vdusek)
+* Keep pagination iterators advancing past fully-filtered pages ([#964](https://github.com/apify/apify-client-python/pull/964)) ([2e7f75c](https://github.com/apify/apify-client-python/commit/2e7f75ca951f2b7b59c319badd6e024d47fe67f1)) by [@vdusek](https://github.com/vdusek)
+
+### [3.1.0](https://github.com/apify/apify-client-python/releases/tag/v3.1.0) (2026-07-20)[](#310-2026-07-20)
+
+#### 🚀 Features[](#-features)
+
+* Add request body compression with optional brotli ([#927](https://github.com/apify/apify-client-python/pull/927)) ([a8a393b](https://github.com/apify/apify-client-python/commit/a8a393bfcca01c8396b461036a9978fa5b28e6bf)) by [@mixalturek](https://github.com/mixalturek), closes [#942](https://github.com/apify/apify-client-python/issues/942)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-2)
+
+* Offload async request body compression to a worker thread ([#950](https://github.com/apify/apify-client-python/pull/950)) ([7ac3885](https://github.com/apify/apify-client-python/commit/7ac3885826f0010df63eee9f1d30b5aed825872e)) by [@vdusek](https://github.com/vdusek)
+* Propagate last\_run status/origin filters to chained storage clients ([#954](https://github.com/apify/apify-client-python/pull/954)) ([fe24058](https://github.com/apify/apify-client-python/commit/fe24058bb29ed6e2f42ae754dce3f15e5f6628e6)) by [@vdusek](https://github.com/vdusek)
+* Propagate API token to custom HTTP clients ([#956](https://github.com/apify/apify-client-python/pull/956)) ([ded0852](https://github.com/apify/apify-client-python/commit/ded0852ffb420055e04141eb2a46d2766c77f890)) by [@vdusek](https://github.com/vdusek)
+* Make batch\_add\_requests split batches by serialized payload size ([#953](https://github.com/apify/apify-client-python/pull/953)) ([2adf515](https://github.com/apify/apify-client-python/commit/2adf515d3e8db47b7f75d69931580ab9269cb2e3)) by [@vdusek](https://github.com/vdusek)
+
+### [3.0.6](https://github.com/apify/apify-client-python/releases/tag/v3.0.6) (2026-07-13)[](#306-2026-07-13)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-3)
+
+* Relax constraints on generated models based on updated specification ([#936](https://github.com/apify/apify-client-python/pull/936)) ([a02247e](https://github.com/apify/apify-client-python/commit/a02247e817fd801c315d2848d3000af904deb95f)) by [@apify-service-account](https://github.com/apify-service-account)
+* Relax enum validation to tolerate unknown API values ([#941](https://github.com/apify/apify-client-python/pull/941)) ([587baa7](https://github.com/apify/apify-client-python/commit/587baa77e023d7ba925a7d4eecaff58da3b55237)) by [@vdusek](https://github.com/vdusek), closes [#931](https://github.com/apify/apify-client-python/issues/931)
+* Relax required stats fields (compute units, counts) to optional ([#947](https://github.com/apify/apify-client-python/pull/947)) ([46f1286](https://github.com/apify/apify-client-python/commit/46f1286773740867b2d44a0d330e898d7d46f732)) by [@apify-service-account](https://github.com/apify-service-account)
+* Prevent Actor log-streaming thread from crashing on stream timeout ([#944](https://github.com/apify/apify-client-python/pull/944)) ([24dd614](https://github.com/apify/apify-client-python/commit/24dd614bd083a93735a12dccb4b7b1588e87f3ec)) by [@vdusek](https://github.com/vdusek), closes [#945](https://github.com/apify/apify-client-python/issues/945)
+
+### [3.0.5](https://github.com/apify/apify-client-python/releases/tag/v3.0.5) (2026-07-08)[](#305-2026-07-08)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-4)
+
+* Relax model validation constraints for `Plan` and `StoreListActor` ([#910](https://github.com/apify/apify-client-python/pull/910)) ([7a5b157](https://github.com/apify/apify-client-python/commit/7a5b157a20a1c6d04175a8f33d3f048af3ab5f9d)) by [@apify-service-account](https://github.com/apify-service-account)
+* Add missing EventData fields and new error type ([#917](https://github.com/apify/apify-client-python/pull/917)) ([93566b8](https://github.com/apify/apify-client-python/commit/93566b883b269d1f7fb098c51c0677cd10ebcc7d)) by [@apify-service-account](https://github.com/apify-service-account)
+* Add missing MCP to RunOrigin enum ([#929](https://github.com/apify/apify-client-python/pull/929)) ([3536c18](https://github.com/apify/apify-client-python/commit/3536c183adf495c26e65d50fd12fbdf584819a07)) by [@apify-service-account](https://github.com/apify-service-account)
+
+### [3.0.4](https://github.com/apify/apify-client-python/releases/tag/v3.0.4) (2026-06-26)[](#304-2026-06-26)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-5)
+
+* Fix casing in `isAtHome` in `User-Agent` header ([#903](https://github.com/apify/apify-client-python/pull/903)) ([1e50374](https://github.com/apify/apify-client-python/commit/1e50374e91bc39282bc724f77770963a14e051eb)) by [@Pijukatel](https://github.com/Pijukatel)
+* Update impit to \~=0.13.0 ([#871](https://github.com/apify/apify-client-python/pull/871)) ([8dffe34](https://github.com/apify/apify-client-python/commit/8dffe34defbcd7b7c4a9cba9a1e1a2751c0096cd)) by [@renovate](https://github.com/apps/renovate)
+* Remove unused run-failed and run-timeout-exceeded error models ([#900](https://github.com/apify/apify-client-python/pull/900)) ([8c48a06](https://github.com/apify/apify-client-python/commit/8c48a06395fc000ec1df15ccd27cc79d5a2dc46b)) by [@apify-service-account](https://github.com/apify-service-account)
+
+### [3.0.3](https://github.com/apify/apify-client-python/releases/tag/v3.0.3) (2026-06-18)[](#303-2026-06-18)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-6)
+
+* Include all supported fields for ad-hoc webhooks ([#855](https://github.com/apify/apify-client-python/pull/855)) ([6eb267d](https://github.com/apify/apify-client-python/commit/6eb267dbe620cb9d864c2390a84dfeb851cecc7c)) by [@apify-service-account](https://github.com/apify-service-account)
+* Only log any error that happens during log redirection ([#866](https://github.com/apify/apify-client-python/pull/866)) ([a2cc987](https://github.com/apify/apify-client-python/commit/a2cc987b6d1ef1d06b37a179876b12ee4f739f5f)) by [@Pijukatel](https://github.com/Pijukatel), closes [#864](https://github.com/apify/apify-client-python/issues/864)
+
+### [3.0.2](https://github.com/apify/apify-client-python/releases/tag/v3.0.2) (2026-05-26)[](#302-2026-05-26)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-7)
+
+* Add missing response fields returned by the live API ([#821](https://github.com/apify/apify-client-python/pull/821)) ([e794411](https://github.com/apify/apify-client-python/commit/e794411dd3935cd09941096abc9767f33c4a4cf9)) by [@apify-service-account](https://github.com/apify-service-account)
+* Prevent StreamedLog stop() from hanging on a silent stream ([#825](https://github.com/apify/apify-client-python/pull/825)) ([c15cb1b](https://github.com/apify/apify-client-python/commit/c15cb1bb2702120dd6fabe154a4b3d879248aafa)) by [@vdusek](https://github.com/vdusek)
+* Flush StreamedLogAsync tail when stop() cancels the task ([#754](https://github.com/apify/apify-client-python/pull/754)) ([ea23338](https://github.com/apify/apify-client-python/commit/ea2333822937c4ad9b72fbba63e6fd7b52343055)) by [@vdusek](https://github.com/vdusek)
+
+### [3.0.1](https://github.com/apify/apify-client-python/releases/tag/v3.0.1) (2026-05-22)[](#301-2026-05-22)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-8)
+
+* Add new API error codes and drop obsolete UnknownBuildTagError model ([#813](https://github.com/apify/apify-client-python/pull/813)) ([d1e2020](https://github.com/apify/apify-client-python/commit/d1e202087a37e6ab5048b0b8724cc73a3769ea8e)) by [@apify-service-account](https://github.com/apify-service-account)
+* Add support for tiered pricing in Actor charge events ([#818](https://github.com/apify/apify-client-python/pull/818)) ([c3ea8c1](https://github.com/apify/apify-client-python/commit/c3ea8c10ae1d606fd3954177b690703f220ae857)) by [@apify-service-account](https://github.com/apify-service-account), closes [#811](https://github.com/apify/apify-client-python/issues/811)
+* Allow 128MB memory limits and add CI to RunOrigin in models ([#819](https://github.com/apify/apify-client-python/pull/819)) ([01eb993](https://github.com/apify/apify-client-python/commit/01eb9934467e17e669c51d1c1e6f7e0bce1a608e)) by [@apify-service-account](https://github.com/apify-service-account)
+
+### [3.0.0](https://github.com/apify/apify-client-python/releases/tag/v3.0.0) (2026-05-20)[](#300-2026-05-20)
+
+* Check out the [Upgrading guide](https://docs.apify.com/api/client/python/api/client/python/docs/upgrading/upgrading-to-v3.md) to ensure a smooth update.
+
+#### 🚀 Features[](#-features-1)
+
+* \[**breaking**] Introduce fully typed clients ([#604](https://github.com/apify/apify-client-python/pull/604)) ([81ee194](https://github.com/apify/apify-client-python/commit/81ee1943b400b49797868fe4dfa52d1662e09370)) by [@vdusek](https://github.com/vdusek), closes [#21](https://github.com/apify/apify-client-python/issues/21), [#481](https://github.com/apify/apify-client-python/issues/481)
+* \[**breaking**] Introduce tiered timeout system with per-endpoint configuration ([#653](https://github.com/apify/apify-client-python/pull/653)) ([723ec6e](https://github.com/apify/apify-client-python/commit/723ec6e5954474767a5ecbf4902d9b62f7d214f8)) by [@vdusek](https://github.com/vdusek)
+* \[**breaking**] Generate Literal type aliases instead of StrEnum classes ([#759](https://github.com/apify/apify-client-python/pull/759)) ([2bf5a75](https://github.com/apify/apify-client-python/commit/2bf5a75f38a74a48c5c9a9682d9eaf330da27935)) by [@vdusek](https://github.com/vdusek), closes [#576](https://github.com/apify/apify-client-python/issues/576)
+* Make HTTP client pluggable with abstract base classes ([#641](https://github.com/apify/apify-client-python/pull/641)) ([5ae33a0](https://github.com/apify/apify-client-python/commit/5ae33a0a801fdacd0c456a8630fea053f9df6550)) by [@vdusek](https://github.com/vdusek), closes [#416](https://github.com/apify/apify-client-python/issues/416)
+* Accept Pydantic models as alternatives to dicts in resource client methods ([#663](https://github.com/apify/apify-client-python/pull/663)) ([b778c20](https://github.com/apify/apify-client-python/commit/b778c2040228ff9f5a97765de10535cec3f0353e)) by [@vdusek](https://github.com/vdusek), closes [#421](https://github.com/apify/apify-client-python/issues/421)
+* Add ownership parameter to storage collection listing methods ([#696](https://github.com/apify/apify-client-python/pull/696)) ([51a92a3](https://github.com/apify/apify-client-python/commit/51a92a31dac5dd433acfaea76155011d0892d8c8)) by [@nmanerikar](https://github.com/nmanerikar)
+* Add filter and cursor parameters to list\_requests method ([#743](https://github.com/apify/apify-client-python/pull/743)) ([3445ff7](https://github.com/apify/apify-client-python/commit/3445ff74e61d5f1f9a964f2ee3c14d198298f709)) by [@mvolfik](https://github.com/mvolfik)
+* Add ApifyApiError subclasses grouped by HTTP status ([#737](https://github.com/apify/apify-client-python/pull/737)) ([a6daff7](https://github.com/apify/apify-client-python/commit/a6daff754e5e1af8a6230f4c504db24a246c734f)) by [@vdusek](https://github.com/vdusek), closes [#423](https://github.com/apify/apify-client-python/issues/423)
+* Generate TypedDict types for input-side models ([#738](https://github.com/apify/apify-client-python/pull/738)) ([2fd66d0](https://github.com/apify/apify-client-python/commit/2fd66d0adf253dff470f40d0bfdbc620da0ed608)) by [@vdusek](https://github.com/vdusek), closes [#666](https://github.com/apify/apify-client-python/issues/666)
+* Add iterate methods for paginated collections ([#771](https://github.com/apify/apify-client-python/pull/771)) ([3f3129c](https://github.com/apify/apify-client-python/commit/3f3129c729791d0e012070a77d7245b44a1f1180)) by [@Pijukatel](https://github.com/Pijukatel), closes [#539](https://github.com/apify/apify-client-python/issues/539)
+* Accept camelCase keys in input TypedDicts ([#793](https://github.com/apify/apify-client-python/pull/793)) ([7a579bf](https://github.com/apify/apify-client-python/commit/7a579bf2083e93092cfa5ba411c1c38d5cba2085)) by [@vdusek](https://github.com/vdusek), closes [#756](https://github.com/apify/apify-client-python/issues/756)
+* Expose WebhooksList and JsonSerializable from public types module ([#800](https://github.com/apify/apify-client-python/pull/800)) ([104011c](https://github.com/apify/apify-client-python/commit/104011c28bc08197d61e384126a4403acc3579f1)) by [@vdusek](https://github.com/vdusek)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-9)
+
+* Prevent `_prepare_request_call` from mutating caller's headers dict ([#746](https://github.com/apify/apify-client-python/pull/746)) ([d553162](https://github.com/apify/apify-client-python/commit/d5531621535f5a491be5b5791ea4b80e46de1405)) by [@vdusek](https://github.com/vdusek)
+* Don't block StatusMessageWatcher exit with 6s sleep on exception ([#753](https://github.com/apify/apify-client-python/pull/753)) ([48f5037](https://github.com/apify/apify-client-python/commit/48f50378e92e2058ff8e5aaba45ef9e3a6e5f081)) by [@vdusek](https://github.com/vdusek)
+* Treat naive datetime query params as UTC ([#752](https://github.com/apify/apify-client-python/pull/752)) ([9ab096a](https://github.com/apify/apify-client-python/commit/9ab096a7453080a3079c7459079f99a30bd6a7cb)) by [@vdusek](https://github.com/vdusek)
+* Raise NotFoundError on ambiguous 404 responses ([#755](https://github.com/apify/apify-client-python/pull/755)) ([701185e](https://github.com/apify/apify-client-python/commit/701185e6e8a98f0b14d83cab10139f1e19be3f47)) by [@vdusek](https://github.com/vdusek)
+* Correct deadline logic in \_wait\_for\_finish ([#749](https://github.com/apify/apify-client-python/pull/749)) ([fd0663e](https://github.com/apify/apify-client-python/commit/fd0663e22b31ddd289325146c9750ff07c068d6b)) by [@vdusek](https://github.com/vdusek)
+* Preserve count=0 in RunClient's charge ([#751](https://github.com/apify/apify-client-python/pull/751)) ([0a8942c](https://github.com/apify/apify-client-python/commit/0a8942c3a5728689e28e0273938a3509ebb5f58d)) by [@vdusek](https://github.com/vdusek)
+
+#### 🚜 Refactor[](#-refactor)
+
+* \[**breaking**] Update default timeout tiers on non-storage resource clients ([#664](https://github.com/apify/apify-client-python/pull/664)) ([0b35bbe](https://github.com/apify/apify-client-python/commit/0b35bbe212a8a64c5aea5d5d813315252760b055)) by [@vdusek](https://github.com/vdusek)
+* \[**breaking**] Mark secondary arguments as keyword-only ([#766](https://github.com/apify/apify-client-python/pull/766)) ([4ca99fd](https://github.com/apify/apify-client-python/commit/4ca99fd6a442ad12adbdfc866e72543c0feaf96b)) by [@vdusek](https://github.com/vdusek)
+* \[**breaking**] Remove deprecated APIs ([#799](https://github.com/apify/apify-client-python/pull/799)) ([6e5df35](https://github.com/apify/apify-client-python/commit/6e5df3595e5f858d944887445a9019dea1008e97)) by [@vdusek](https://github.com/vdusek)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks)
+
+* \[**breaking**] Drop support for Python 3.10 ([#636](https://github.com/apify/apify-client-python/pull/636)) ([7895a4e](https://github.com/apify/apify-client-python/commit/7895a4e60145f490911044da4aa7e3c1c424d416)) by [@vdusek](https://github.com/vdusek)
+
+### [2.5.1](https://github.com/apify/apify-client-python/releases/tag/v2.5.1) (2026-05-20)[](#251-2026-05-20)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-10)
+
+* Use DeprecationWarning for deprecated methods and arguments (#802) ([0d91e12](https://github.com/apify/apify-client-python/commit/0d91e129014369534a9a37078f90c8f81f8236a6))
+
+### [2.5.0](https://github.com/apify/apify-client-python/releases/tag/v2.5.0) (2026-02-18)[](#250-2026-02-18)
+
+#### 🚀 Features[](#-features-2)
+
+* Add `headers` argument to allow setting additional user headers ([#601](https://github.com/apify/apify-client-python/pull/601)) ([9e3ec03](https://github.com/apify/apify-client-python/commit/9e3ec03d8873acbbb809d5acc392c8df27981b88)) by [@Mantisus](https://github.com/Mantisus)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-11)
+
+* Prevent infinite loop in \_wait\_for\_finish on persistent 404s ([#619](https://github.com/apify/apify-client-python/pull/619)) ([00e8621](https://github.com/apify/apify-client-python/commit/00e86213227631b9ea3d39e8f9d736e9a9b028f1)) by [@vdusek](https://github.com/vdusek)
+* Remove erroneous async keyword from sync ActorClient.default\_build ([#620](https://github.com/apify/apify-client-python/pull/620)) ([b2b1103](https://github.com/apify/apify-client-python/commit/b2b110364ddd97640268fe6b6727273d0e1739d5)) by [@vdusek](https://github.com/vdusek)
+* Use explicit None checks for client config to respect zero values ([#623](https://github.com/apify/apify-client-python/pull/623)) ([416fd98](https://github.com/apify/apify-client-python/commit/416fd98d54b5ba9535afe157dcc354464c902ed5)) by [@vdusek](https://github.com/vdusek)
+* Correct boolean parsing of pagination desc header in list\_items ([#621](https://github.com/apify/apify-client-python/pull/621)) ([9ca9d44](https://github.com/apify/apify-client-python/commit/9ca9d4415f287705b0eb2528b69fa31232090691)) by [@vdusek](https://github.com/vdusek)
+* Retry on all impit.HTTPError exceptions, not just specific subclasses ([#624](https://github.com/apify/apify-client-python/pull/624)) ([03b0e9c](https://github.com/apify/apify-client-python/commit/03b0e9c8c82ae58e17c6e068c149aedff178c397)) by [@vdusek](https://github.com/vdusek)
+
+### [2.4.1](https://github.com/apify/apify-client-python/releases/tag/v2.4.1) (2026-01-30)[](#241-2026-01-30)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-12)
+
+* Only include Actor standby when at least one field is provided ([#597](https://github.com/apify/apify-client-python/pull/597)) ([7112c09](https://github.com/apify/apify-client-python/commit/7112c09ceab0d87a0bd0caecabea634c70f63b8c)) by [@vdusek](https://github.com/vdusek), closes [#595](https://github.com/apify/apify-client-python/issues/595)
+* Add missing tagged\_builds parameter to Actor update method ([#596](https://github.com/apify/apify-client-python/pull/596)) ([6210e80](https://github.com/apify/apify-client-python/commit/6210e80fc5037d57c969a16458c13b68b61ddd07)) by [@vdusek](https://github.com/vdusek), closes [#585](https://github.com/apify/apify-client-python/issues/585)
+
+### [2.4.0](https://github.com/apify/apify-client-python/releases/tag/v2.4.0) (2026-01-09)[](#240-2026-01-09)
+
+#### 🚀 Features[](#-features-3)
+
+* Expose `actorPermissionLevel` in Actor client ([#553](https://github.com/apify/apify-client-python/pull/553)) ([198e2ca](https://github.com/apify/apify-client-python/commit/198e2cad0d9b79a599a678285420e7dc7026ef00)) by [@stepskop](https://github.com/stepskop)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-13)
+
+* Fetch key-value store records as attachments ([#573](https://github.com/apify/apify-client-python/pull/573)) ([f5d2941](https://github.com/apify/apify-client-python/commit/f5d2941f27a3fa926e9edcc3b29cb62f1e8534e4)) by [@mvolfik](https://github.com/mvolfik)
+* Fix force permissions serialization for Actor calls ([#575](https://github.com/apify/apify-client-python/pull/575)) ([4a763f6](https://github.com/apify/apify-client-python/commit/4a763f6076a5b097765ecbe642e0ffc619e123d3)) by [@vdusek](https://github.com/vdusek)
+
+### [2.3.0](https://github.com/apify/apify-client-python/releases/tag/v2.3.0) (2025-11-13)[](#230-2025-11-13)
+
+#### 🚀 Features[](#-features-4)
+
+* Add support for Python 3.14 ([#520](https://github.com/apify/apify-client-python/pull/520)) ([68ebbd9](https://github.com/apify/apify-client-python/commit/68ebbd9162f076a20a4a02dd1ebe0dac7ece696a)) by [@vdusek](https://github.com/vdusek)
+* Add signature arguments for dataset and kvs methods ([#530](https://github.com/apify/apify-client-python/pull/530)) ([10d1e45](https://github.com/apify/apify-client-python/commit/10d1e45c727cd0cc9324dca70755d8fd61c67f74)) by [@Pijukatel](https://github.com/Pijukatel), closes [#517](https://github.com/apify/apify-client-python/issues/517)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-14)
+
+* Update impit to fix rare `JSONDecodeError` ([#536](https://github.com/apify/apify-client-python/pull/536)) ([c0b9096](https://github.com/apify/apify-client-python/commit/c0b90967a085307f08e455c860f990f824ce87e2)) by [@Pijukatel](https://github.com/Pijukatel)
+
+### [2.2.1](https://github.com/apify/apify-client-python/releases/tag/v2.2.1) (2025-10-20)[](#221-2025-10-20)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-15)
+
+* Move restart on error Actor option to Run options ([#508](https://github.com/apify/apify-client-python/pull/508)) ([8f73420](https://github.com/apify/apify-client-python/commit/8f73420ba2b9f2045bfdf3a224b6573ca2941b85)) by [@DaveHanns](https://github.com/DaveHanns)
+
+### [2.2.0](https://github.com/apify/apify-client-python/releases/tag/v2.2.0) (2025-10-13)[](#220-2025-10-13)
+
+#### 🚀 Features[](#-features-5)
+
+* Add `KeyValueStoreClient(Async).get_record_public_url` ([#506](https://github.com/apify/apify-client-python/pull/506)) ([6417d26](https://github.com/apify/apify-client-python/commit/6417d26f90af2113247b73a42a5909510a3a1a16)) by [@Pijukatel](https://github.com/Pijukatel), closes [#497](https://github.com/apify/apify-client-python/issues/497)
+* Add started\_before and started\_after to run list ([#513](https://github.com/apify/apify-client-python/pull/513)) ([3aaa056](https://github.com/apify/apify-client-python/commit/3aaa056a651f773638b6847c846117365bae6309)) by [@danpoletaev](https://github.com/danpoletaev)
+
+### [2.1.0](https://github.com/apify/apify-client-python/releases/tag/v2.1.0) (2025-09-15)[](#210-2025-09-15)
+
+#### 🚀 Features[](#-features-6)
+
+* Add forcePermissionLevel run option ([#498](https://github.com/apify/apify-client-python/pull/498)) ([b297523](https://github.com/apify/apify-client-python/commit/b2975233c30f47883dbcfc716fc6bb77ce388306)) by [@tobice](https://github.com/tobice)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-16)
+
+* Casing in `exclusiveStartKey` API param ([#495](https://github.com/apify/apify-client-python/pull/495)) ([5e96f71](https://github.com/apify/apify-client-python/commit/5e96f71cc6d3290d161fa46fc8cd9adef478088e)) by [@barjin](https://github.com/barjin), closes [#484](https://github.com/apify/apify-client-python/issues/484)
+* Presigned resource urls shouldn't follow base url ([#500](https://github.com/apify/apify-client-python/pull/500)) ([b224218](https://github.com/apify/apify-client-python/commit/b2242185f7eb0891bda29c361c7f5cf6f7dcba20)) by [@Pijukatel](https://github.com/Pijukatel), closes [#496](https://github.com/apify/apify-client-python/issues/496)
+
+### [2.0.0](https://github.com/apify/apify-client-python/releases/tag/v2.0.0) (2025-08-15)[](#200-2025-08-15)
+
+* Check out the [Upgrading guide](https://docs.apify.com/api/client/python/api/client/python/docs/upgrading/upgrading-to-v2.md) to ensure a smooth update.
+
+#### 🚀 Features[](#-features-7)
+
+* Extend status parameter to an array of possible statuses ([#455](https://github.com/apify/apify-client-python/pull/455)) ([76f6769](https://github.com/apify/apify-client-python/commit/76f676973d067ce8af398d8e6ceea55595da5ecf)) by [@JanHranicky](https://github.com/JanHranicky)
+* Expose apify\_client.errors module ([#468](https://github.com/apify/apify-client-python/pull/468)) ([c0cc147](https://github.com/apify/apify-client-python/commit/c0cc147fd0c5a60e5a025db6b6c761e811efe1da)) by [@Mantisus](https://github.com/Mantisus), closes [#158](https://github.com/apify/apify-client-python/issues/158)
+* Add dataset.create\_items\_public\_url and key\_value\_store.create\_keys\_public\_url ([#453](https://github.com/apify/apify-client-python/pull/453)) ([2b1e110](https://github.com/apify/apify-client-python/commit/2b1e1104c15c987b0024010df41d6d356ea37dd3)) by [@danpoletaev](https://github.com/danpoletaev)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-1)
+
+* \[**breaking**] Bump minimum Python version to 3.10 ([#469](https://github.com/apify/apify-client-python/pull/469)) ([92b4789](https://github.com/apify/apify-client-python/commit/92b47895eb48635e2d573b99d59bb077999c5b27)) by [@vdusek](https://github.com/vdusek)
+
+#### 🚜 Refactor[](#-refactor-1)
+
+* \[**breaking**] Remove support for passing a single string to the `unwind` parameter in `DatasetClient` ([#467](https://github.com/apify/apify-client-python/pull/467)) ([e8aea2c](https://github.com/apify/apify-client-python/commit/e8aea2c8f3833082bf78562f3fa981a1f8e88b26)) by [@Mantisus](https://github.com/Mantisus), closes [#255](https://github.com/apify/apify-client-python/issues/255)
+* \[**breaking**] Remove deprecated constant re-exports from `consts.py` ([#466](https://github.com/apify/apify-client-python/pull/466)) ([7731f0b](https://github.com/apify/apify-client-python/commit/7731f0b3a4ca8c99be9392517d36f841cb293ed5)) by [@Mantisus](https://github.com/Mantisus), closes [#163](https://github.com/apify/apify-client-python/issues/163)
+* \[**breaking**] Replace `httpx` HTTP client with `impit` ([#456](https://github.com/apify/apify-client-python/pull/456)) ([1df6792](https://github.com/apify/apify-client-python/commit/1df6792386398b28eb565dfbc58c7eba13f451a4)) by [@Mantisus](https://github.com/Mantisus)
+* \[**breaking**] Remove deprecated `as_bytes` and `as_file` parameters from `KeyValueStoreClient.get_record` ([#463](https://github.com/apify/apify-client-python/pull/463)) ([b880231](https://github.com/apify/apify-client-python/commit/b88023125a41d02f95f687b8fd6090e7080efe3e)) by [@Mantisus](https://github.com/Mantisus)
+* \[**breaking**] Remove `parse_response` arg from the `call` method ([#462](https://github.com/apify/apify-client-python/pull/462)) ([840d51a](https://github.com/apify/apify-client-python/commit/840d51af12a7e53decf9d3294d0e0c3c848e9c08)) by [@Mantisus](https://github.com/Mantisus), closes [#166](https://github.com/apify/apify-client-python/issues/166)
+
+### [1.12.2](https://github.com/apify/apify-client-python/releases/tag/v1.12.2) (2025-08-08)[](#1122-2025-08-08)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-17)
+
+* Fix API error with stream ([#459](https://github.com/apify/apify-client-python/pull/459)) ([0c91ca5](https://github.com/apify/apify-client-python/commit/0c91ca516a01a6fca7bc8fa07f7bf9c15c75bf9d)) by [@Pijukatel](https://github.com/Pijukatel)
+
+### [1.12.1](https://github.com/apify/apify-client-python/releases/tag/v1.12.1) (2025-07-30)[](#1121-2025-07-30)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-18)
+
+* Restrict apify-shared version ([#447](https://github.com/apify/apify-client-python/pull/447)) ([22cd220](https://github.com/apify/apify-client-python/commit/22cd220e8f22af01f5fdfcedc684015c006b6fe6)) by [@vdusek](https://github.com/vdusek)
+
+### [1.12.0](https://github.com/apify/apify-client-python/releases/tag/v1.12.0) (2025-06-26)[](#1120-2025-06-26)
+
+#### 🚀 Features[](#-features-8)
+
+* Allow sorting of Actors collection ([#422](https://github.com/apify/apify-client-python/pull/422)) ([df6e47d](https://github.com/apify/apify-client-python/commit/df6e47d3b72e0aa5563f1ece7abc9d9da50b77a2)) by [@protoss70](https://github.com/protoss70)
+* Add `KeyValueStoreClient.record_exists` ([#427](https://github.com/apify/apify-client-python/pull/427)) ([519529b](https://github.com/apify/apify-client-python/commit/519529b01895958aa33516d8ec4853290c388d05)) by [@janbuchar](https://github.com/janbuchar)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-19)
+
+* Enable to add headers template in webhooks created dynamically ([#419](https://github.com/apify/apify-client-python/pull/419)) ([b84d1ec](https://github.com/apify/apify-client-python/commit/b84d1ec0491ad2623defcfba5fe1aa06274cf533)) by [@gaelloyoly](https://github.com/gaelloyoly)
+* Rename sortBy parameters option ([#426](https://github.com/apify/apify-client-python/pull/426)) ([a270409](https://github.com/apify/apify-client-python/commit/a2704095928651bf183743bf85fb365c65480d80)) by [@protoss70](https://github.com/protoss70)
+
+### [1.11.0](https://github.com/apify/apify-client-python/releases/tag/v1.11.0) (2025-06-13)[](#1110-2025-06-13)
+
+#### 🚀 Features[](#-features-9)
+
+* Add `validate_input` endpoint ([#396](https://github.com/apify/apify-client-python/pull/396)) ([1c5bf85](https://github.com/apify/apify-client-python/commit/1c5bf8550ffd91b94ea83694f7c933cf2767fadc)) by [@Pijukatel](https://github.com/Pijukatel), closes [#151](https://github.com/apify/apify-client-python/issues/151)
+* Add list kv store keys by collection or prefix ([#397](https://github.com/apify/apify-client-python/pull/397)) ([6747c20](https://github.com/apify/apify-client-python/commit/6747c201cd654953a97a4c3fe8256756eb7568c7)) by [@MFori](https://github.com/MFori)
+* Add redirected actor logs ([#403](https://github.com/apify/apify-client-python/pull/403)) ([fd02cd8](https://github.com/apify/apify-client-python/commit/fd02cd8726f1664677a47dcb946a0186080d7839)) by [@Pijukatel](https://github.com/Pijukatel), closes [#402](https://github.com/apify/apify-client-python/issues/402)
+* Add `unlock_requests` method to RequestQueue clients ([#408](https://github.com/apify/apify-client-python/pull/408)) ([d4f0018](https://github.com/apify/apify-client-python/commit/d4f00186016fab4e909a7886467e619b23e627e5)) by [@drobnikj](https://github.com/drobnikj)
+* Add `StatusMessageWatcher` ([#407](https://github.com/apify/apify-client-python/pull/407)) ([a535512](https://github.com/apify/apify-client-python/commit/a53551217b62a2a6ca2ccbc81130043560fbc475)) by [@Pijukatel](https://github.com/Pijukatel), closes [#404](https://github.com/apify/apify-client-python/issues/404)
+
+### [1.10.0](https://github.com/apify/apify-client-python/releases/tag/v1.10.0) (2025-04-29)[](#1100-2025-04-29)
+
+#### 🚀 Features[](#-features-10)
+
+* Add support for general resource access ([#394](https://github.com/apify/apify-client-python/pull/394)) ([cc79c30](https://github.com/apify/apify-client-python/commit/cc79c30a7d0b57d21a5fc7efb94c08cc4035c8b4)) by [@tobice](https://github.com/tobice)
+
+### [1.9.4](https://github.com/apify/apify-client-python/releases/tag/v1.9.4) (2025-04-24)[](#194-2025-04-24)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-20)
+
+* Default\_build() returns BuildClient ([#389](https://github.com/apify/apify-client-python/pull/389)) ([8149052](https://github.com/apify/apify-client-python/commit/8149052a97032f1336147a48c8a8f6cd5e076b95)) by [@danpoletaev](https://github.com/danpoletaev)
+
+### [1.9.3](https://github.com/apify/apify-client-python/releases/tag/v1.9.3) (2025-04-14)[](#193-2025-04-14)
+
+#### 🚀 Features[](#-features-11)
+
+* Add maxItems and maxTotalChargeUsd to resurrect ([#360](https://github.com/apify/apify-client-python/pull/360)) ([a020807](https://github.com/apify/apify-client-python/commit/a0208073ef93804358e4377959a56d8342f83447)) by [@novotnyj](https://github.com/novotnyj)
+* Add get default build method ([#385](https://github.com/apify/apify-client-python/pull/385)) ([f818b95](https://github.com/apify/apify-client-python/commit/f818b95fec1c4e57e98b28ad0b2b346ee2f64602)) by [@danpoletaev](https://github.com/danpoletaev)
+
+### [1.9.2](https://github.com/apify/apify-client-python/releases/tag/v1.9.2) (2025-02-14)[](#192-2025-02-14)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-21)
+
+* Add missing PPE-related Actor parameters ([#351](https://github.com/apify/apify-client-python/pull/351)) ([75b1c6c](https://github.com/apify/apify-client-python/commit/75b1c6c4d26c21d69ce10ef4424c6ba458bd5a33)) by [@janbuchar](https://github.com/janbuchar)
+
+### [1.9.1](https://github.com/apify/apify-client-python/releases/tag/v1.9.1) (2025-02-07)[](#191-2025-02-07)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-22)
+
+* Add `stats` attribute for `ApifyClientAsync` ([#348](https://github.com/apify/apify-client-python/pull/348)) ([6631f8c](https://github.com/apify/apify-client-python/commit/6631f8ccbd56107647a6b886ddcd5cbae378069d)) by [@Mantisus](https://github.com/Mantisus)
+* Fix return type of charge API call ([#350](https://github.com/apify/apify-client-python/pull/350)) ([28102fe](https://github.com/apify/apify-client-python/commit/28102fe42039df2f1f2bb3c4e4aa652e37933456)) by [@janbuchar](https://github.com/janbuchar)
+
+### [1.9.0](https://github.com/apify/apify-client-python/releases/tag/v1.9.0) (2025-02-04)[](#190-2025-02-04)
+
+#### 🚀 Features[](#-features-12)
+
+* Add user.update\_limits ([#279](https://github.com/apify/apify-client-python/pull/279)) ([7aed9c9](https://github.com/apify/apify-client-python/commit/7aed9c928958831168ac8d293538d6fd3adbc5e5)) by [@MFori](https://github.com/MFori), closes [#329](https://github.com/apify/apify-client-python/issues/329)
+* Add charge method to the run client for "pay per event" ([#304](https://github.com/apify/apify-client-python/pull/304)) ([3bd6bbb](https://github.com/apify/apify-client-python/commit/3bd6bbb86d2b777863f0c3d0459b61da9a7f15ff)) by [@Jkuzz](https://github.com/Jkuzz)
+* Add error data to ApifyApiError ([#314](https://github.com/apify/apify-client-python/pull/314)) ([df2398b](https://github.com/apify/apify-client-python/commit/df2398b51d774c5f8653a80f83b320d0f5394dde)) by [@Pijukatel](https://github.com/Pijukatel), closes [#306](https://github.com/apify/apify-client-python/issues/306)
+* Add GET: dataset.statistics ([#324](https://github.com/apify/apify-client-python/pull/324)) ([19ea4ad](https://github.com/apify/apify-client-python/commit/19ea4ad46068520885bd098739a9b64d1f17e1fc)) by [@MFori](https://github.com/MFori)
+* Add `get_open_api_specification` method to `BuildClient` ([#336](https://github.com/apify/apify-client-python/pull/336)) ([9ebcedb](https://github.com/apify/apify-client-python/commit/9ebcedbaede53add167f1c51ec6196e793e67917)) by [@danpoletaev](https://github.com/danpoletaev)
+* Add rate limit statistics ([#343](https://github.com/apify/apify-client-python/pull/343)) ([f35c68f](https://github.com/apify/apify-client-python/commit/f35c68ff824ce83bf9aca893589381782a1a48c7)) by [@Mantisus](https://github.com/Mantisus)
+
+### [1.8.1](https://github.com/apify/apify-client-python/releases/tag/v1.8.1) (2024-09-17)[](#181-2024-09-17)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-23)
+
+* Batch add requests can handle more than 25 requests ([#268](https://github.com/apify/apify-client-python/pull/268)) ([9110ee0](https://github.com/apify/apify-client-python/commit/9110ee08954762aed00ac09cd042e802c1d041f7)) by [@vdusek](https://github.com/vdusek), closes [#264](https://github.com/apify/apify-client-python/issues/264)
+
+### [1.8.0](https://github.com/apify/apify-client-python/releases/tag/v1.8.0) (2024-08-30)[](#180-2024-08-30)
+
+* drop support for Python 3.8
+
+#### 🚀 Features[](#-features-13)
+
+* Adds headers\_template to webhooks and webhooks\_collection ([#239](https://github.com/apify/apify-client-python/pull/239)) ([6dbd781](https://github.com/apify/apify-client-python/commit/6dbd781d24d9deb6a7669193ce4d5a4190fe5026)) by [@jakerobers](https://github.com/jakerobers)
+* Add actor standby ([#248](https://github.com/apify/apify-client-python/pull/248)) ([dd4bf90](https://github.com/apify/apify-client-python/commit/dd4bf9072a4caa189af5f90e513e37df325dc929)) by [@jirimoravcik](https://github.com/jirimoravcik)
+* Allow passing list of fields to unwind parameter ([#256](https://github.com/apify/apify-client-python/pull/256)) ([036b455](https://github.com/apify/apify-client-python/commit/036b455c51243e0ef81cb74a44fe670abc085ce7)) by [@fnesveda](https://github.com/fnesveda)
+
+### [1.7.1](https://github.com/apify/apify-client-python/releases/tag/v1.7.1) (2024-07-11)[](#171-2024-07-11)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-24)
+
+* Fix breaking change (sync -> async) in 1.7.0
+* Fix getting storages of last run
+
+### [1.7.0](https://github.com/apify/apify-client-python/releases/tag/v1.7.0) (2024-05-20)[](#170-2024-05-20)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-25)
+
+* Fix abort of last task run
+* Fix abort of last Actor run
+* `ActorClient`'s and `TaskClient`'s `last_run` methods are asynchronous
+
+### [1.6.4](https://github.com/apify/apify-client-python/releases/tag/v1.6.4) (2024-02-27)[](#164-2024-02-27)
+
+#### 🚀 Features[](#-features-14)
+
+* Add `monthlyUsage()` and `limits()` methods to `UserClient`
+
+### [1.6.3](https://github.com/apify/apify-client-python/releases/tag/v1.6.3) (2023-02-16)[](#163-2023-02-16)
+
+#### 🚀 Features[](#-features-15)
+
+* Add `log()` method to `BuildClient`
+
+### [1.6.2](https://github.com/apify/apify-client-python/releases/tag/v1.6.2) (2023-01-08)[](#162-2023-01-08)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-2)
+
+* Relative imports were replaced for absolute imports
+
+### [1.6.1](https://github.com/apify/apify-client-python/releases/tag/v1.6.1) (2023-12-11)[](#161-2023-12-11)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-26)
+
+* Fix `_BaseHTTPClient._parse_params()` method to ensure correct conversion of API list parameters
+
+### [1.6.0](https://github.com/apify/apify-client-python/releases/tag/v1.6.0) (2023-11-16)[](#160-2023-11-16)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-3)
+
+* Migrate from Autopep8 and Flake8 to Ruff
+
+### [1.5.0](https://github.com/apify/apify-client-python/releases/tag/v1.5.0) (2023-10-18)[](#150-2023-10-18)
+
+#### 🚀 Features[](#-features-16)
+
+* Add support for Python 3.12
+* Add DELETE to Actor runs
+* Add DELETE to Actor builds
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-4)
+
+* Rewrite documentation publication to use Docusaurus
+* Remove PR Toolkit workflow
+
+### [1.4.1](https://github.com/apify/apify-client-python/releases/tag/v1.4.1) (2023-09-06)[](#141-2023-09-06)
+
+#### 🚀 Features[](#-features-17)
+
+* Add `StoreCollectionClient` for listing Actors in the Apify Store
+* Add support for specifying the `max_items` parameter for pay-per result Actors and their runs
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-5)
+
+* Improve logging of HTTP requests
+* Remove `pytest-randomly` Pytest plugin
+
+### [1.4.0](https://github.com/apify/apify-client-python/releases/tag/v1.4.0) (2023-08-23)[](#140-2023-08-23)
+
+#### 🚀 Features[](#-features-18)
+
+* Add `RunClient.reboot` method to reboot Actor runs
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-6)
+
+* Simplify code via `flake8-simplify`
+* Unify indentation in configuration files
+
+### [1.3.1](https://github.com/apify/apify-client-python/releases/tag/v1.3.1) (2023-07-28)[](#131-2023-07-28)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-7)
+
+* Start importing general constants and utilities from the `apify-shared` library
+
+### [1.3.0](https://github.com/apify/apify-client-python/releases/tag/1.3.0) (2023-07-24)[](#130-2023-07-24)
+
+#### 🚀 Features[](#-features-19)
+
+* Add `list_and_lock_head`, `delete_request_lock`, `prolong_request_lock` methods to `RequestQueueClient`
+* Add `batch_add_requests`, `batch_delete_requests`, `list_requests` methods `RequestQueueClient`
+
+### [1.2.2](https://github.com/apify/apify-client-python/releases/tag/v1.2.2) (2023-05-31)[](#122-2023-05-31)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-27)
+
+* Fix encoding webhook lists in request parameters
+
+### [1.2.1](https://github.com/apify/apify-client-python/releases/tag/v1.2.1) (2023-05-23)[](#121-2023-05-23)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-28)
+
+* Relax dependency requirements to improve compatibility with other libraries
+
+### [1.2.0](https://github.com/apify/apify-client-python/releases/tag/v1.2.0) (2023-05-23)[](#120-2023-05-23)
+
+#### 🚀 Features[](#-features-20)
+
+* Add option to change the build, memory limit and timeout when resurrecting a run
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-8)
+
+* Update dependencies
+
+### [1.1.1](https://github.com/apify/apify-client-python/releases/tag/v1.1.1) (2023-05-05)[](#111-2023-05-05)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-9)
+
+* Change GitHub workflows to use new secrets
+
+### [1.1.0](https://github.com/apify/apify-client-python/releases/tag/v1.1.0) (2023-05-05)[](#110-2023-05-05)
+
+#### 🚀 Features[](#-features-21)
+
+* Add support for `is_status_message_terminal` flag in Actor run status message update
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-10)
+
+* Switch from `setup.py` to `pyproject.toml` for specifying project setup
+
+### [1.0.0](https://github.com/apify/apify-client-python/releases/tag/v1.0.0) (2023-03-13)[](#100-2023-03-13)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-11)
+
+* \[**breaking**] Drop support for Python 3.7, add support for Python 3.11
+* \[**breaking**] Unify methods for streaming resources
+* \[**breaking**] Switch underlying HTTP library from `requests` to `httpx`
+
+#### 🚀 Features[](#-features-22)
+
+* Add support for asynchronous usage via `ApifyClientAsync`
+* Add configurable socket timeout for requests to the Apify API
+* Add `py.typed` file to signal type checkers that this package is typed
+* Add method to update status message for a run
+* Add option to set up webhooks for Actor builds
+* Add logger with basic debugging info
+* Add support for `schema` parameter in `get_or_create` method for datasets and key-value stores
+* Add support for `title` parameter in task and schedule methods
+* Add `x-apify-workflow-key` header support
+* Add support for `flatten` and `view` parameters in dataset items methods
+* Add support for `origin` parameter in Actor/task run methods
+* Add clients for Actor version environment variables
+
+#### 🐛 Bug Fixes[](#-bug-fixes-29)
+
+* Disallow `NaN` and `Infinity` values in JSONs sent to the Apify API
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-12)
+
+* Simplify retrying with exponential backoff
+* Improve checks for "not found" errors
+* Simplify flake8 config
+* Update development dependencies
+* Simplify development scripts
+* Update GitHub Actions versions to fix deprecations
+* Unify unit test style
+* Unify preparing resource representation
+* Update output management in GitHub Workflows to fix deprecations
+* Improve type hints across codebase
+* Add option to manually publish the package with a workflow dispatch
+* Add `pre-commit` to run code quality checks before committing
+* Convert `unittest`-style tests to `pytest`-style tests
+* Backport project setup improvements from `apify-sdk-python`
+
+### [0.6.0](https://github.com/apify/apify-client-python/releases/tag/v0.6.0) (2022-06-27)[](#060-2022-06-27)
+
+#### 🚜 Refactor[](#-refactor-2)
+
+* Drop support for single-file Actors
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-13)
+
+* Update dependencies
+* Fix some lint issues in shell scripts and `setup.py`
+* Add Python 3.10 to unit test roster
+
+### [0.5.0](https://github.com/apify/apify-client-python/releases/tag/v0.5.0) (2021-09-16)[](#050-2021-09-16)
+
+#### 🚜 Refactor[](#-refactor-3)
+
+* Improve retrying broken API server connections
+
+#### 🐛 Bug Fixes[](#-bug-fixes-30)
+
+* Fix timeout value in actively waiting for a run to finish
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-14)
+
+* Update development dependencies
+
+### [0.4.0](https://github.com/apify/apify-client-python/releases/tag/v0.4.0) (2021-09-07)[](#040-2021-09-07)
+
+#### 🚜 Refactor[](#-refactor-4)
+
+* Improve handling of `Enum` arguments
+* Improve support for storing more data types in key-value stores
+
+#### 🐛 Bug Fixes[](#-bug-fixes-31)
+
+* Fix values of some `ActorJobStatus` `Enum` members
+
+### [0.3.0](https://github.com/apify/apify-client-python/releases/tag/v0.3.0) (2021-08-26)[](#030-2021-08-26)
+
+#### 🚀 Features[](#-features-23)
+
+* Add the `test()` method to the webhook client
+* Add support for indicating the pagination direction in the `ListPage` objects
+
+#### 🚜 Refactor[](#-refactor-5)
+
+* Improve support for storing more data types in datasets
+
+#### 🐛 Bug Fixes[](#-bug-fixes-32)
+
+* Fix return type in the `DatasetClient.list_items()` method docs
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-15)
+
+* Add human-friendly names to the jobs in Github Action workflows
+* Update development dependencies
+
+### [0.2.0](https://github.com/apify/apify-client-python/releases/tag/v0.2.0) (2021-08-09)[](#020-2021-08-09)
+
+#### 🚀 Features[](#-features-24)
+
+* Add the `gracefully` parameter to the "Abort run" method
+
+#### 🚜 Refactor[](#-refactor-6)
+
+* Replace `base_url` with `api_url` in the client constructor to enable easier passing of the API server url from environment variables available to Actors on the Apify platform
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-16)
+
+* Change tags for Actor images with this client on Docker Hub to be aligned with the Apify SDK Node.js images
+* Update the `requests` dependency to 2.26.0
+* Update development dependencies
+
+### [0.1.0](https://github.com/apify/apify-client-python/releases/tag/v0.1.0) (2021-08-02)[](#010-2021-08-02)
+
+#### 🚜 Refactor[](#-refactor-7)
+
+* Methods using specific option values for arguments now use well-defined and documented `Enum`s for those arguments instead of generic strings
+* Make the submodule `apify_client.consts` containing those `Enum`s available
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-17)
+
+* Update development dependencies
+* Enforce unified use of single quotes and double quotes
+* Add repository dispatch to build Actor images with this client when publishing a new version
+
+### [0.0.1](https://github.com/apify/apify-client-python/releases/tag/v0.0.1) (2021-05-13)[](#001-2021-05-13)
+
+* Initial release of the package.

@@ -1,0 +1,83 @@
+# Call actor
+
+Copy for LLM
+
+This example demonstrates how to start an Apify actor using [`Actor.call()`](https://docs.apify.com/sdk/js/sdk/js/reference/class/Actor.md#call) and how to call the Apify API using [`Actor.newClient()`](https://docs.apify.com/sdk/js/sdk/js/reference/class/Actor.md#newClient). The script gets a random weird word and its explanation from [randomword.com](https://randomword.com/) and sends it to your email using the [`apify/send-mail`](https://apify.com/apify/send-mail) actor.
+
+To make the example work, you'll need an [Apify account](https://console.apify.com/). Go to the [Settings - Integrations](https://console.apify.com/account?tab=integrations) page to obtain your API token and set it to the [`APIFY_TOKEN`](https://docs.apify.com/sdk/js/sdk/js/docs/concepts/environment-variables.md#apify_token) environment variable, or run the script using the Apify CLI. If you deploy this actor to the Apify platform, you can do things like set up a scheduler to run your actor early in the morning.
+
+To see what other actors are available, visit the [Apify Store](https://apify.com/store).
+
+> To run this example on Apify Platform, use the `apify/actor-node-puppeteer-chrome` image for your Dockerfile.
+
+```
+import { Actor } from 'apify';
+
+import { launchPuppeteer } from 'crawlee';
+
+
+
+await Actor.init();
+
+
+
+// Launch the web browser.
+
+const browser = await launchPuppeteer();
+
+
+
+console.log('Obtaining own email address...');
+
+const apifyClient = Actor.newClient();
+
+const { email } = await apifyClient.user().get();
+
+
+
+// Load randomword.com and get a random word
+
+console.log('Fetching a random word.');
+
+const page = await browser.newPage();
+
+await page.goto('https://randomword.com/');
+
+const randomWord = await page.$eval('#shared_section', (el) => el.outerHTML);
+
+
+
+// Send random word to your email. For that, you can use an actor we already
+
+// have available on the platform under the name: apify/send-mail.
+
+// The second parameter to the Actor.call() invocation is the actor's
+
+// desired input. You can find the required input parameters by checking
+
+// the actor's documentation page: https://apify.com/apify/send-mail
+
+console.log(`Sending email to ${user.email}...`);
+
+await Actor.call('apify/send-mail', {
+
+    to: email,
+
+    subject: 'Random Word',
+
+    html: `<h1>Random Word</h1>${randomWord}`,
+
+});
+
+console.log('Email sent. Good luck!');
+
+
+
+// Close Browser
+
+await browser.close();
+
+
+
+await Actor.exit();
+```

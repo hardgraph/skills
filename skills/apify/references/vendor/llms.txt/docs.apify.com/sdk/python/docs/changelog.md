@@ -1,0 +1,591 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+### [4.0.1](https://github.com/apify/apify-sdk-python/releases/tag/v4.0.1) (2026-08-07)[](#401-2026-08-07)
+
+#### 🐛 Bug Fixes[](#-bug-fixes)
+
+* Close the platform events websocket iterator on shutdown ([#1077](https://github.com/apify/apify-sdk-python/pull/1077)) ([cad8d7e](https://github.com/apify/apify-sdk-python/commit/cad8d7e9e95e91270348c6b9b2d57b2a7d98e733)) by [@vdusek](https://github.com/vdusek)
+* Do not abort Actor exit when the terminal status message fails ([#1078](https://github.com/apify/apify-sdk-python/pull/1078)) ([439ee7b](https://github.com/apify/apify-sdk-python/commit/439ee7b68fe71bc0965f3ed3f8b08d7666b6f657)) by [@vdusek](https://github.com/vdusek)
+* **events:** Open the platform websocket only once per context ([#1082](https://github.com/apify/apify-sdk-python/pull/1082)) ([c471dde](https://github.com/apify/apify-sdk-python/commit/c471dde0cd4d07cbf5ff3eb91347701da4d0fae5)) by [@vdusek](https://github.com/vdusek)
+
+#### ⚡ Performance[](#-performance)
+
+* Serialize dataset push payloads once per chunk ([#1081](https://github.com/apify/apify-sdk-python/pull/1081)) ([eb6475d](https://github.com/apify/apify-sdk-python/commit/eb6475d89576cf8a14ca7c80cc8eff2c6eff8983)) by [@vdusek](https://github.com/vdusek)
+* Allow concurrent dataset pushes by narrowing the push-path locks ([#1079](https://github.com/apify/apify-sdk-python/pull/1079)) ([7d23ecd](https://github.com/apify/apify-sdk-python/commit/7d23ecdc656f36cc087a23e419ae77fde1adbad8)) by [@vdusek](https://github.com/vdusek)
+
+### [4.0.0](https://github.com/apify/apify-sdk-python/releases/tag/v4.0.0) (2026-07-20)[](#400-2026-07-20)
+
+#### 🚀 Features[](#-features)
+
+* Expose missing platform env vars via Actor.get\_env() ([#984](https://github.com/apify/apify-sdk-python/pull/984)) ([f6e9b3b](https://github.com/apify/apify-sdk-python/commit/f6e9b3b328768aefb51257a258c4b6f03980fc72)) by [@vdusek](https://github.com/vdusek)
+* Re-export apify-client errors from apify.errors ([#990](https://github.com/apify/apify-sdk-python/pull/990)) ([165a3f6](https://github.com/apify/apify-sdk-python/commit/165a3f698dac6ace7394fc6b9f15ab7bb3a48050)) by [@vdusek](https://github.com/vdusek), closes [#988](https://github.com/apify/apify-sdk-python/issues/988)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-1)
+
+* **scrapy:** Correct proxy middleware exception log and import ([#953](https://github.com/apify/apify-sdk-python/pull/953)) ([5bd6eb9](https://github.com/apify/apify-sdk-python/commit/5bd6eb9843d90844cec083372e932413bceedec9)) by [@vdusek](https://github.com/vdusek)
+* **scrapy:** Skip a request that fails to convert instead of crashing the run ([#952](https://github.com/apify/apify-sdk-python/pull/952)) ([db9444f](https://github.com/apify/apify-sdk-python/commit/db9444faeb0158c29aa394121cf733ff2e843f28)) by [@vdusek](https://github.com/vdusek)
+* **scrapy:** \[**breaking**] Serialize requests and HTTP cache as JSON instead of pickle ([#951](https://github.com/apify/apify-sdk-python/pull/951)) ([a87e8d1](https://github.com/apify/apify-sdk-python/commit/a87e8d1597478b4f12fd5bb9b379f65f637d8e96)) by [@vdusek](https://github.com/vdusek)
+* **scrapy:** Make logging configuration idempotent ([#954](https://github.com/apify/apify-sdk-python/pull/954)) ([2cc5602](https://github.com/apify/apify-sdk-python/commit/2cc5602b741b93c81f264d4e09e0d9bcfc7200f2)) by [@vdusek](https://github.com/vdusek)
+* Bump typing-extensions floor to 4.4.0 ([#960](https://github.com/apify/apify-sdk-python/pull/960)) ([b7e7d9c](https://github.com/apify/apify-sdk-python/commit/b7e7d9c9a053992d4281a8a19897957d2bff67e1)) by [@vdusek](https://github.com/vdusek)
+* Preserve decorated symbol types in docs\_group and docs\_name ([#964](https://github.com/apify/apify-sdk-python/pull/964)) ([6c359a7](https://github.com/apify/apify-sdk-python/commit/6c359a714b089b24c1be7fa9a07c9b9899cc5e11)) by [@vdusek](https://github.com/vdusek)
+* Exit already-entered contexts when Actor or event manager init fails ([#969](https://github.com/apify/apify-sdk-python/pull/969)) ([c1a15a7](https://github.com/apify/apify-sdk-python/commit/c1a15a7425eab74f3fe8848160576741c036c4fa)) by [@vdusek](https://github.com/vdusek)
+* **scrapy:** Dump pydantic models in JSON mode when serializing requests ([#961](https://github.com/apify/apify-sdk-python/pull/961)) ([f2ccae1](https://github.com/apify/apify-sdk-python/commit/f2ccae16d046e9586281e1f2ffc531014e05fe51)) by [@vdusek](https://github.com/vdusek)
+* Accept arbitrary JSON userData in ApifyRequestList ([#966](https://github.com/apify/apify-sdk-python/pull/966)) ([2cfd8a5](https://github.com/apify/apify-sdk-python/commit/2cfd8a590ae52a38b7efe39bb8a3a1570437b2fc)) by [@vdusek](https://github.com/vdusek)
+* Coerce null stats in Apify request queue metadata ([#974](https://github.com/apify/apify-sdk-python/pull/974)) ([63eb771](https://github.com/apify/apify-sdk-python/commit/63eb771e0234575ae3842cba9441938c3e4116fc)) by [@vdusek](https://github.com/vdusek)
+* Allow Actor.reboot() to be retried after a failed or cancelled attempt ([#968](https://github.com/apify/apify-sdk-python/pull/968)) ([7d46ec5](https://github.com/apify/apify-sdk-python/commit/7d46ec551252e7137f605e86894511315335f488)) by [@vdusek](https://github.com/vdusek)
+* Correct reclaim\_request count adjustment for already-handled requests ([#973](https://github.com/apify/apify-sdk-python/pull/973)) ([86f4cd5](https://github.com/apify/apify-sdk-python/commit/86f4cd53d774e940954faa0b80b7ca5733d74fcf)) by [@vdusek](https://github.com/vdusek)
+* **scrapy:** Drop deprecated spider arg from Scrapy proxy middleware methods ([#977](https://github.com/apify/apify-sdk-python/pull/977)) ([49dd836](https://github.com/apify/apify-sdk-python/commit/49dd836c986b0e3bda4bb6485be8ad95d286cd82)) by [@vdusek](https://github.com/vdusek)
+* Redirect input key in all file-system key-value store operations ([#976](https://github.com/apify/apify-sdk-python/pull/976)) ([1fbdce2](https://github.com/apify/apify-sdk-python/commit/1fbdce27452f1cdc9580a53edd6de3ce9fe36a1d)) by [@vdusek](https://github.com/vdusek)
+* Respect explicit zero custom\_after\_sleep in metamorph and reboot ([#971](https://github.com/apify/apify-sdk-python/pull/971)) ([e8cda0a](https://github.com/apify/apify-sdk-python/commit/e8cda0a80339a21ce94cc382bd042509052ce1bf)) by [@vdusek](https://github.com/vdusek)
+* Reconnect to platform events websocket after connection drop ([#967](https://github.com/apify/apify-sdk-python/pull/967)) ([5653a22](https://github.com/apify/apify-sdk-python/commit/5653a222d976919cc7388a88242a488ba503647e)) by [@vdusek](https://github.com/vdusek)
+* Forward all `Webhook` fields to ad-hoc webhooks ([#963](https://github.com/apify/apify-sdk-python/pull/963)) ([726620b](https://github.com/apify/apify-sdk-python/commit/726620be25da85b74b3f0d1e4f8c1f8f1b29d9b1)) by [@vdusek](https://github.com/vdusek)
+* **scrapy:** Avoid mutating request userData during Scrapy-Apify conversion ([#978](https://github.com/apify/apify-sdk-python/pull/978)) ([b0b7df7](https://github.com/apify/apify-sdk-python/commit/b0b7df72eb169778ab88be04d8b30bb0bdc307d3)) by [@vdusek](https://github.com/vdusek)
+* **scrapy:** Async-thread startup race, shutdown lifecycle, and timeout setting ([#979](https://github.com/apify/apify-sdk-python/pull/979)) ([ae12935](https://github.com/apify/apify-sdk-python/commit/ae1293512f5ee781533dab5b1dd1f0af0fcc2497)) by [@vdusek](https://github.com/vdusek)
+* Commit request queue dedup cache only after batch\_add\_requests succeeds ([#975](https://github.com/apify/apify-sdk-python/pull/975)) ([078ab87](https://github.com/apify/apify-sdk-python/commit/078ab8744c96e61a5226a9d19869b5e0df71ab23)) by [@vdusek](https://github.com/vdusek)
+* Prevent request queue softlock by adding `is_finished` and correcting `is_empty` ([#1008](https://github.com/apify/apify-sdk-python/pull/1008)) ([4ead0c6](https://github.com/apify/apify-sdk-python/commit/4ead0c64d2a95263b2fa970f5a8fff9141db62b2)) by [@Mantisus](https://github.com/Mantisus), closes [#987](https://github.com/apify/apify-sdk-python/issues/987)
+* \[**breaking**] Honor explicit exit codes and control-flow signals in Actor exit ([#1048](https://github.com/apify/apify-sdk-python/pull/1048)) ([573e3a3](https://github.com/apify/apify-sdk-python/commit/573e3a36659cb4d46b86b9d3fb52d5e93c4eee32)) by [@vdusek](https://github.com/vdusek)
+* Limit timeout to minimum of 1 seconds when timeout='inherit' ([#1051](https://github.com/apify/apify-sdk-python/pull/1051)) ([54e52e6](https://github.com/apify/apify-sdk-python/commit/54e52e6ddfd348b7cf65733a94b8db4c62cb1753)) by [@Pijukatel](https://github.com/Pijukatel)
+* Don't disable Actor exit\_process just because scrapy is importable ([#1049](https://github.com/apify/apify-sdk-python/pull/1049)) ([9d154ae](https://github.com/apify/apify-sdk-python/commit/9d154ae1093c8839c343302ca3d0f7da2600c6ea)) by [@vdusek](https://github.com/vdusek)
+
+#### 🚜 Refactor[](#-refactor)
+
+* \[**breaking**] Remove deprecated APIs ([#918](https://github.com/apify/apify-sdk-python/pull/918)) ([3e5728d](https://github.com/apify/apify-sdk-python/commit/3e5728d94cb8fd879d5a76e33a03d55792d835d5)) by [@vdusek](https://github.com/vdusek), closes [#635](https://github.com/apify/apify-sdk-python/issues/635)
+* \[**breaking**] Mark secondary arguments as keyword-only ([#917](https://github.com/apify/apify-sdk-python/pull/917)) ([eb94c99](https://github.com/apify/apify-sdk-python/commit/eb94c992ec4aba1cd7cf4dfd7a98731cb304651b)) by [@vdusek](https://github.com/vdusek), closes [#881](https://github.com/apify/apify-sdk-python/issues/881)
+* \[**breaking**] Adapt to apify-client v3 ([#719](https://github.com/apify/apify-sdk-python/pull/719)) ([10203bc](https://github.com/apify/apify-sdk-python/commit/10203bc51e67590c97938b37d81614376bc3d29a)) by [@vdusek](https://github.com/vdusek), closes [#697](https://github.com/apify/apify-sdk-python/issues/697), [#736](https://github.com/apify/apify-sdk-python/issues/736), [#770](https://github.com/apify/apify-sdk-python/issues/770), [#853](https://github.com/apify/apify-sdk-python/issues/853)
+* \[**breaking**] Remove wait\_for\_finish from Actor.start ([#962](https://github.com/apify/apify-sdk-python/pull/962)) ([0daca28](https://github.com/apify/apify-sdk-python/commit/0daca2818860cbcbd0778efa4d73622783ce63cf)) by [@vdusek](https://github.com/vdusek)
+* \[**breaking**] Polish logging across the codebase ([#1005](https://github.com/apify/apify-sdk-python/pull/1005)) ([f949c24](https://github.com/apify/apify-sdk-python/commit/f949c24529e424b9151c8600f8057d7518c9b6ff)) by [@vdusek](https://github.com/vdusek)
+* \[**breaking**] Remove unused disable\_outdated\_warning and fact Configuration fields ([#1044](https://github.com/apify/apify-sdk-python/pull/1044)) ([275e770](https://github.com/apify/apify-sdk-python/commit/275e7704f3a2dbced08466291f868e9ed432f9b3)) by [@Pijukatel](https://github.com/Pijukatel)
+
+#### ⚡ Performance[](#-performance-1)
+
+* Enable brotli request compression by default ([#1052](https://github.com/apify/apify-sdk-python/pull/1052)) ([78858ce](https://github.com/apify/apify-sdk-python/commit/78858ce1f8aa4024e6f2b2d8a7b106ae3c4fca77)) by [@vdusek](https://github.com/vdusek), closes [#1045](https://github.com/apify/apify-sdk-python/issues/1045)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks)
+
+* \[**breaking**] Drop Python 3.10 support ([#908](https://github.com/apify/apify-sdk-python/pull/908)) ([a67788e](https://github.com/apify/apify-sdk-python/commit/a67788e4d7845445a3e80a30af70580d2ab84f32)) by [@vdusek](https://github.com/vdusek), closes [#757](https://github.com/apify/apify-sdk-python/issues/757)
+
+### [3.4.1](https://github.com/apify/apify-sdk-python/releases/tag/v3.4.1) (2026-05-29)[](#341-2026-05-29)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-2)
+
+* Forward missing run kwargs in Actor.start/call/call\_task ([#906](https://github.com/apify/apify-sdk-python/pull/906)) ([7a13809](https://github.com/apify/apify-sdk-python/commit/7a13809898f5579138febbb077f7ab7e4e72cbe1)) by [@vdusek](https://github.com/vdusek)
+* Update `push_data` annotation with `JsonSerializable` instead of Any ([#899](https://github.com/apify/apify-sdk-python/pull/899)) ([b4f5485](https://github.com/apify/apify-sdk-python/commit/b4f5485175cfd248893bc8a2b3017fa797d1000e)) by [@Mantisus](https://github.com/Mantisus)
+
+### [3.4.0](https://github.com/apify/apify-sdk-python/releases/tag/v3.4.0) (2026-05-05)[](#340-2026-05-05)
+
+#### 🚀 Features[](#-features-1)
+
+* Add subdivision code to proxy configuration ([#878](https://github.com/apify/apify-sdk-python/pull/878)) ([b2e4006](https://github.com/apify/apify-sdk-python/commit/b2e4006bf29961ef10870877abba88fa1e8f6962)) by [@daniil-poletaev](https://github.com/daniil-poletaev)
+
+### [3.3.3](https://github.com/apify/apify-sdk-python/releases/tag/v3.3.3) (2026-04-21)[](#333-2026-04-21)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-3)
+
+* Cap `_list_head` request limit at `_MAX_HEAD_ITEMS` ([#869](https://github.com/apify/apify-sdk-python/pull/869)) ([1716a2a](https://github.com/apify/apify-sdk-python/commit/1716a2aa55e86769cf9deb665c02c4ba176067d7)) by [@vdusek](https://github.com/vdusek)
+* Preserve `max_total_charge_usd=0` instead of treating it as unlimited ([#870](https://github.com/apify/apify-sdk-python/pull/870)) ([714334c](https://github.com/apify/apify-sdk-python/commit/714334c00df91bf4526de26b14ecdfea05464268)) by [@vdusek](https://github.com/vdusek)
+* Avoid InvalidStateError on mid-stream platform websocket disconnect ([#867](https://github.com/apify/apify-sdk-python/pull/867)) ([4dbbd3f](https://github.com/apify/apify-sdk-python/commit/4dbbd3f82dd45c26ca6f53d16f60b3b3e045bbc6)) by [@vdusek](https://github.com/vdusek)
+* Tolerate non-UTF-8 bodies in ApifyRequestList remote sources ([#871](https://github.com/apify/apify-sdk-python/pull/871)) ([737b0dd](https://github.com/apify/apify-sdk-python/commit/737b0ddbfdd3277a01fa24c3215ddf4572bf1121)) by [@vdusek](https://github.com/vdusek)
+* Use load sentinel and injected config in AliasResolver ([#874](https://github.com/apify/apify-sdk-python/pull/874)) ([2d129ad](https://github.com/apify/apify-sdk-python/commit/2d129adafe1005fb987bf19614fc22009cb39140)) by [@vdusek](https://github.com/vdusek)
+* Honor `event_listeners_timeout` in `Actor.reboot` ([#872](https://github.com/apify/apify-sdk-python/pull/872)) ([03e73d3](https://github.com/apify/apify-sdk-python/commit/03e73d3885030d63795063a4d1acd8abad11cd19)) by [@vdusek](https://github.com/vdusek)
+
+### [3.3.2](https://github.com/apify/apify-sdk-python/releases/tag/v3.3.2) (2026-03-27)[](#332-2026-03-27)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-4)
+
+* **scrapy:** Resolve Crawlee's request data round-trip failure in request conversion ([#832](https://github.com/apify/apify-sdk-python/pull/832)) ([3b9d588](https://github.com/apify/apify-sdk-python/commit/3b9d5888611597a522300c742014c06cc0b857b9)) by [@vdusek](https://github.com/vdusek)
+* Treat `default` alias as default storage when in schema ([#827](https://github.com/apify/apify-sdk-python/pull/827)) ([1610d0d](https://github.com/apify/apify-sdk-python/commit/1610d0dda40ba30bd3b4dea28d9fef04c9b7c839)) by [@Pijukatel](https://github.com/Pijukatel)
+* Guard ReentrantLock against None task context ([#841](https://github.com/apify/apify-sdk-python/pull/841)) ([193de10](https://github.com/apify/apify-sdk-python/commit/193de10910946ca0ce93bc2fc7c741a26e9f6e9c)) by [@vdusek](https://github.com/vdusek)
+* Isolate cleanup steps in Actor `__aexit__` to prevent cascading failures ([#842](https://github.com/apify/apify-sdk-python/pull/842)) ([68c2acf](https://github.com/apify/apify-sdk-python/commit/68c2acf3dba71b78f893fc6f1e816e3a3148f0c9)) by [@vdusek](https://github.com/vdusek)
+* Handle exceptions in pre-reboot event listeners via `return_exceptions` ([#843](https://github.com/apify/apify-sdk-python/pull/843)) ([ed13597](https://github.com/apify/apify-sdk-python/commit/ed13597d7ce0d1f0c5ff5cd0d6796c96555a55ae)) by [@vdusek](https://github.com/vdusek)
+
+### [3.3.1](https://github.com/apify/apify-sdk-python/releases/tag/v3.3.1) (2026-03-11)[](#331-2026-03-11)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-5)
+
+* Fix f-string bugs in charging log message ([#817](https://github.com/apify/apify-sdk-python/pull/817)) ([bcb4050](https://github.com/apify/apify-sdk-python/commit/bcb4050b3f5ade0e577dd7499979dc65c0ba815e)) by [@vdusek](https://github.com/vdusek)
+* Fix BeforeValidator treating 0 as falsy in configuration fields ([#819](https://github.com/apify/apify-sdk-python/pull/819)) ([72efe88](https://github.com/apify/apify-sdk-python/commit/72efe883574ef0d05795934337c7f1c8c0d11877)) by [@vdusek](https://github.com/vdusek)
+* Clamp negative timedelta in \_get\_remaining\_time() ([#818](https://github.com/apify/apify-sdk-python/pull/818)) ([69b8af9](https://github.com/apify/apify-sdk-python/commit/69b8af9b8d245cfed76875f983f374e05d93bba8)) by [@vdusek](https://github.com/vdusek)
+* **scrapy:** Close AsyncThread on scheduler open() failure ([#820](https://github.com/apify/apify-sdk-python/pull/820)) ([7dfaf1a](https://github.com/apify/apify-sdk-python/commit/7dfaf1a5c5af44743bd448a91140d9b074ac44bf)) by [@vdusek](https://github.com/vdusek)
+* Keep track of synthetic apify-default-dataset-item events ([#814](https://github.com/apify/apify-sdk-python/pull/814)) ([50c4b6c](https://github.com/apify/apify-sdk-python/commit/50c4b6ce80b45da5348a74c559b8790edbeae04a)) by [@Mantisus](https://github.com/Mantisus), closes [#705](https://github.com/apify/apify-sdk-python/issues/705), [#760](https://github.com/apify/apify-sdk-python/issues/760)
+
+### [3.3.0](https://github.com/apify/apify-sdk-python/releases/tag/v3.3.0) (2026-02-25)[](#330-2026-02-25)
+
+#### 🚀 Features[](#-features-2)
+
+* Support Actor schema storages with Alias mechanism ([#797](https://github.com/apify/apify-sdk-python/pull/797)) ([10986ac](https://github.com/apify/apify-sdk-python/commit/10986ac2f4a3d1112aa06eaf26f82884ab9c455a)) by [@Pijukatel](https://github.com/Pijukatel), closes [#762](https://github.com/apify/apify-sdk-python/issues/762)
+* Migrate to Scrapy's native AsyncCrawlerRunner ([#793](https://github.com/apify/apify-sdk-python/pull/793)) ([01ad9da](https://github.com/apify/apify-sdk-python/commit/01ad9daf834894f798bbfa4362fc7d7f95bafe5c)) by [@vdusek](https://github.com/vdusek), closes [#638](https://github.com/apify/apify-sdk-python/issues/638)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-6)
+
+* Resolve LogRecord attribute conflict in event manager logging ([#802](https://github.com/apify/apify-sdk-python/pull/802)) ([e1bdbc9](https://github.com/apify/apify-sdk-python/commit/e1bdbc9e303c24571b9511f43ec0815e7e9f4b55)) by [@vdusek](https://github.com/vdusek)
+* Update models.py to align with the current API behavior ([#782](https://github.com/apify/apify-sdk-python/pull/782)) ([b06355d](https://github.com/apify/apify-sdk-python/commit/b06355dbc1c8276e9930ecbde72795b6570dde33)) by [@vdusek](https://github.com/vdusek), closes [#778](https://github.com/apify/apify-sdk-python/issues/778)
+* Handle `ServiceConflictError` when reusing `Actor` across sequential context ([#804](https://github.com/apify/apify-sdk-python/pull/804)) ([9e5078f](https://github.com/apify/apify-sdk-python/commit/9e5078fa7b1a19e44893bd3409b45108519aef63)) by [@Mantisus](https://github.com/Mantisus), closes [#678](https://github.com/apify/apify-sdk-python/issues/678)
+
+### [3.2.1](https://github.com/apify/apify-sdk-python/releases/tag/v3.2.1) (2026-02-17)[](#321-2026-02-17)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-7)
+
+* Fix crawler deadlock when API fails during marking request as handled ([#768](https://github.com/apify/apify-sdk-python/pull/768)) ([66ed5ea](https://github.com/apify/apify-sdk-python/commit/66ed5eaf819f9c9f411c814606187d76d32a4e11)) by [@Pijukatel](https://github.com/Pijukatel), closes [#1694](https://github.com/apify/apify-sdk-python/issues/1694)
+* Use hashed request\_id as cache key in shared RQ client reclaim\_request ([#795](https://github.com/apify/apify-sdk-python/pull/795)) ([bd7572f](https://github.com/apify/apify-sdk-python/commit/bd7572f5b66e9417e4fa1c021b4d47a86b4cb8cf)) by [@vdusek](https://github.com/vdusek)
+* Correct inverted return value in Scrapy scheduler enqueue\_request ([#794](https://github.com/apify/apify-sdk-python/pull/794)) ([405cf5d](https://github.com/apify/apify-sdk-python/commit/405cf5dc96f9fd794eaf570ffc877d503829244a)) by [@vdusek](https://github.com/vdusek)
+* Eliminate race condition in \_fetch\_requests\_from\_url ([#796](https://github.com/apify/apify-sdk-python/pull/796)) ([c0a74b9](https://github.com/apify/apify-sdk-python/commit/c0a74b9eaf8032510528c2a9ab93c4840a51e79f)) by [@vdusek](https://github.com/vdusek)
+
+### [3.2.0](https://github.com/apify/apify-sdk-python/releases/tag/v3.2.0) (2026-02-11)[](#320-2026-02-11)
+
+#### 🚀 Features[](#-features-3)
+
+* Add `Actor` method `use_state` ([#738](https://github.com/apify/apify-sdk-python/pull/738)) ([8a78b6f](https://github.com/apify/apify-sdk-python/commit/8a78b6fc9324e948b3481b07a3582215d3c966fe)) by [@Mantisus](https://github.com/Mantisus), closes [#735](https://github.com/apify/apify-sdk-python/issues/735)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-8)
+
+* Stop silently swallowing exceptions in request queue ([#777](https://github.com/apify/apify-sdk-python/pull/777)) ([6358d66](https://github.com/apify/apify-sdk-python/commit/6358d66aeb83484845b17f7c8632b6c763cef368)) by [@vdusek](https://github.com/vdusek)
+* Handle TimeoutError in Actor **aexit** to prevent resource leaks ([#776](https://github.com/apify/apify-sdk-python/pull/776)) ([fb13765](https://github.com/apify/apify-sdk-python/commit/fb13765448a2a6e2b776de819ece68f90abff1e3)) by [@vdusek](https://github.com/vdusek)
+* Pass name instead of id for name param in SmartApifyStorageClient ([#775](https://github.com/apify/apify-sdk-python/pull/775)) ([56cfc38](https://github.com/apify/apify-sdk-python/commit/56cfc38aa98a2a6689dd077e9d5c5d8729872413)) by [@vdusek](https://github.com/vdusek)
+
+### [3.1.0](https://github.com/apify/apify-sdk-python/releases/tag/v3.1.0) (2025-12-08)[](#310-2025-12-08)
+
+#### 🚀 Features[](#-features-4)
+
+* Add support for Python 3.14 ([#680](https://github.com/apify/apify-sdk-python/pull/680)) ([b81e86a](https://github.com/apify/apify-sdk-python/commit/b81e86ad294b953f72bce944739649eac3789ebc)) by [@Mantisus](https://github.com/Mantisus)
+* Add `ACTOR_PERMISSION_LEVEL` to the configuration ([#689](https://github.com/apify/apify-sdk-python/pull/689)) ([68012c7](https://github.com/apify/apify-sdk-python/commit/68012c7dfe5e4a8b043ce4075826e63c0262ae2e)) by [@stepskop](https://github.com/stepskop), closes [#690](https://github.com/apify/apify-sdk-python/issues/690)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-9)
+
+* Make `ApifyFileSystemStorageClient` compatible with the apify cli ([#677](https://github.com/apify/apify-sdk-python/pull/677)) ([a32274f](https://github.com/apify/apify-sdk-python/commit/a32274f26b1d2ae4fcf36958e799bf412941464a)) by [@Pijukatel](https://github.com/Pijukatel)
+* Synchronize charge operations to prevent race conditions ([#684](https://github.com/apify/apify-sdk-python/pull/684)) ([1c7a9e6](https://github.com/apify/apify-sdk-python/commit/1c7a9e6f386105630c3c1de7ffa092e369698aa0)) by [@vdusek](https://github.com/vdusek), closes [#666](https://github.com/apify/apify-sdk-python/issues/666)
+
+### [3.0.5](https://github.com/apify/apify-sdk-python/releases/tag/v3.0.5) (2025-11-18)[](#305-2025-11-18)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-10)
+
+* Fix crash in `Actor.push_data` with PPE and a strict charging limit ([#664](https://github.com/apify/apify-sdk-python/pull/664)) ([8f2e4b2](https://github.com/apify/apify-sdk-python/commit/8f2e4b2cc1f62e9a09656b4d3334caf840338a3a)) by [@janbuchar](https://github.com/janbuchar)
+* Avoid charge calls with count=0 ([#665](https://github.com/apify/apify-sdk-python/pull/665)) ([a0f894e](https://github.com/apify/apify-sdk-python/commit/a0f894e879225eb1b639c4f897a1dd0103903c78)) by [@janbuchar](https://github.com/janbuchar)
+* Fix Actor.charge behavior when the budget is overdrawn ([#668](https://github.com/apify/apify-sdk-python/pull/668)) ([88e6ba3](https://github.com/apify/apify-sdk-python/commit/88e6ba340a68dcf5e272ee947f4e38ce0f3dea46)) by [@janbuchar](https://github.com/janbuchar)
+* Fix detection of whether any instance is initialized ([#675](https://github.com/apify/apify-sdk-python/pull/675)) ([b2355cf](https://github.com/apify/apify-sdk-python/commit/b2355cf697aac6383a404e1bbbefbecd5f38c760)) by [@vdusek](https://github.com/vdusek), closes [#674](https://github.com/apify/apify-sdk-python/issues/674)
+* Update apify client to fix rare `JSONDecodeError` ([#679](https://github.com/apify/apify-sdk-python/pull/679)) ([17c13d1](https://github.com/apify/apify-sdk-python/commit/17c13d1ecfbe231fdc4f91c5a24abe65b8abdb26)) by [@Pijukatel](https://github.com/Pijukatel), closes [#672](https://github.com/apify/apify-sdk-python/issues/672)
+
+### [3.0.4](https://github.com/apify/apify-sdk-python/releases/tag/v3.0.4) (2025-11-03)[](#304-2025-11-03)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-11)
+
+* Fix type of `cloud_storage_client` in `SmartApifyStorageClient` ([#642](https://github.com/apify/apify-sdk-python/pull/642)) ([3bf285d](https://github.com/apify/apify-sdk-python/commit/3bf285d60f507730954986a80c19ed2e27a38f9c)) by [@vdusek](https://github.com/vdusek)
+* Fix local charging log dataset name ([#649](https://github.com/apify/apify-sdk-python/pull/649)) ([fdb1276](https://github.com/apify/apify-sdk-python/commit/fdb1276264aee2687596d87c96d19033fe915823)) by [@vdusek](https://github.com/vdusek), closes [#648](https://github.com/apify/apify-sdk-python/issues/648)
+
+#### ⚡ Performance[](#-performance-2)
+
+* Use Apify-provided environment variables to obtain PPE pricing information ([#644](https://github.com/apify/apify-sdk-python/pull/644)) ([0c32f29](https://github.com/apify/apify-sdk-python/commit/0c32f29d6a316f5bacc931595d694f262c925b2b)) by [@Mantisus](https://github.com/Mantisus), closes [#614](https://github.com/apify/apify-sdk-python/issues/614)
+
+### [3.0.3](https://github.com/apify/apify-sdk-python/releases/tag/v3.0.3) (2025-10-21)[](#303-2025-10-21)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-12)
+
+* Cache requests in RQ implementations by `id` ([#633](https://github.com/apify/apify-sdk-python/pull/633)) ([76886ce](https://github.com/apify/apify-sdk-python/commit/76886ce496165346a01f67e018547287c211ea54)) by [@Pijukatel](https://github.com/Pijukatel), closes [#630](https://github.com/apify/apify-sdk-python/issues/630)
+
+### [3.0.2](https://github.com/apify/apify-sdk-python/releases/tag/v3.0.2) (2025-10-17)[](#302-2025-10-17)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-13)
+
+* Handle None result in single consumer request queue client ([#623](https://github.com/apify/apify-sdk-python/pull/623)) ([451284a](https://github.com/apify/apify-sdk-python/commit/451284a5c633bc5613bd1e9060df286a1c20b259)) by [@janbuchar](https://github.com/janbuchar), closes [#1472](https://github.com/apify/apify-sdk-python/issues/1472)
+* Unify Actor context manager with init & exit methods ([#600](https://github.com/apify/apify-sdk-python/pull/600)) ([6b0d084](https://github.com/apify/apify-sdk-python/commit/6b0d0842ae66a3a206bbb682a3e5f81ad552f029)) by [@vdusek](https://github.com/vdusek), closes [#598](https://github.com/apify/apify-sdk-python/issues/598)
+* Handle truncated `unique_key` in `list_head` by fetching full request data ([#631](https://github.com/apify/apify-sdk-python/pull/631)) ([4238086](https://github.com/apify/apify-sdk-python/commit/423808678d9155a84a266bf50bb09f1a56466174)) by [@vdusek](https://github.com/vdusek), closes [#627](https://github.com/apify/apify-sdk-python/issues/627)
+
+### [3.0.1](https://github.com/apify/apify-sdk-python/releases/tag/v3.0.1) (2025-10-08)[](#301-2025-10-08)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-14)
+
+* Also load input from a file with a .json extension in file system storage ([#617](https://github.com/apify/apify-sdk-python/pull/617)) ([b62804c](https://github.com/apify/apify-sdk-python/commit/b62804c170069cd7aa77572bb9682a156581cbac)) by [@janbuchar](https://github.com/janbuchar)
+
+### [3.0.0](https://github.com/apify/apify-sdk-python/releases/tag/v3.0.0) (2025-09-29)[](#300-2025-09-29)
+
+* Check out the [Upgrading guide](https://docs.apify.com/sdk/python/sdk/python/docs/upgrading/upgrading-to-v3.md) to ensure a smooth update.
+
+#### 🚀 Features[](#-features-5)
+
+* Add deduplication to `add_batch_of_requests` ([#534](https://github.com/apify/apify-sdk-python/pull/534)) ([dd03c4d](https://github.com/apify/apify-sdk-python/commit/dd03c4d446f611492adf35f1b5738648ee5a66f7)) by [@Pijukatel](https://github.com/Pijukatel), closes [#514](https://github.com/apify/apify-sdk-python/issues/514)
+* Add new methods to ChargingManager ([#580](https://github.com/apify/apify-sdk-python/pull/580)) ([54f7f8b](https://github.com/apify/apify-sdk-python/commit/54f7f8b29c5982be98b595dac11eceff915035c9)) by [@vdusek](https://github.com/vdusek)
+* Add support for NDU storages ([#594](https://github.com/apify/apify-sdk-python/pull/594)) ([8721ef5](https://github.com/apify/apify-sdk-python/commit/8721ef5731bcb1a04ad63c930089bf83be29f308)) by [@vdusek](https://github.com/vdusek), closes [#1175](https://github.com/apify/apify-sdk-python/issues/1175)
+* Add stats to `ApifyRequestQueueClient` ([#574](https://github.com/apify/apify-sdk-python/pull/574)) ([21f6782](https://github.com/apify/apify-sdk-python/commit/21f6782b444f623aba986b4922cf67bafafd4b2c)) by [@Pijukatel](https://github.com/Pijukatel), closes [#1344](https://github.com/apify/apify-sdk-python/issues/1344)
+* Add specialized ApifyRequestQueue clients ([#573](https://github.com/apify/apify-sdk-python/pull/573)) ([f830ab0](https://github.com/apify/apify-sdk-python/commit/f830ab09b1fa12189c9d3297d5cf18a4f2da62fa)) by [@Pijukatel](https://github.com/Pijukatel)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-15)
+
+* Restrict apify-shared and apify-client versions ([#523](https://github.com/apify/apify-sdk-python/pull/523)) ([b3ae5a9](https://github.com/apify/apify-sdk-python/commit/b3ae5a972a65454a4998eda59c9fcc3f6b7e8579)) by [@vdusek](https://github.com/vdusek)
+* Expose `APIFY_USER_IS_PAYING` env var to the configuration ([#507](https://github.com/apify/apify-sdk-python/pull/507)) ([0801e54](https://github.com/apify/apify-sdk-python/commit/0801e54887317c1280cc6828ecd3f2cc53287e76)) by [@stepskop](https://github.com/stepskop)
+* Resolve DeprecationWarning in ApifyEventManager ([#555](https://github.com/apify/apify-sdk-python/pull/555)) ([0c5111d](https://github.com/apify/apify-sdk-python/commit/0c5111dafe19796ec1fb9652a44c031bed9758df)) by [@vdusek](https://github.com/vdusek), closes [#343](https://github.com/apify/apify-sdk-python/issues/343)
+* Use same `client_key` for `Actor` created `request_queue` and improve its metadata estimation ([#552](https://github.com/apify/apify-sdk-python/pull/552)) ([7e4e5da](https://github.com/apify/apify-sdk-python/commit/7e4e5da81dd87e84ebeef2bd336c6c1d422cb9a7)) by [@Pijukatel](https://github.com/Pijukatel), closes [#536](https://github.com/apify/apify-sdk-python/issues/536)
+* Properly process pre-existing Actor input file ([#591](https://github.com/apify/apify-sdk-python/pull/591)) ([cc5075f](https://github.com/apify/apify-sdk-python/commit/cc5075fab8c72ca5711cfd97932037b34e6997cd)) by [@Pijukatel](https://github.com/Pijukatel), closes [#590](https://github.com/apify/apify-sdk-python/issues/590)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-1)
+
+* \[**breaking**] Update apify-client and apify-shared to v2.0 ([#548](https://github.com/apify/apify-sdk-python/pull/548)) ([8ba084d](https://github.com/apify/apify-sdk-python/commit/8ba084ded6cd018111343f2219260b481c8d4e35)) by [@vdusek](https://github.com/vdusek)
+
+#### 🚜 Refactor[](#-refactor-1)
+
+* \[**breaking**] Adapt to the Crawlee v1.0 ([#470](https://github.com/apify/apify-sdk-python/pull/470)) ([f7e3320](https://github.com/apify/apify-sdk-python/commit/f7e33206cf3e4767faacbdc43511b45b6785f929)) by [@vdusek](https://github.com/vdusek), closes [#469](https://github.com/apify/apify-sdk-python/issues/469), [#540](https://github.com/apify/apify-sdk-python/issues/540)
+* \[**breaking**] Replace `httpx` with `impit` ([#560](https://github.com/apify/apify-sdk-python/pull/560)) ([cca3869](https://github.com/apify/apify-sdk-python/commit/cca3869e85968865e56aafcdcb36fbccba27aef0)) by [@Mantisus](https://github.com/Mantisus), closes [#558](https://github.com/apify/apify-sdk-python/issues/558)
+* \[**breaking**] Remove `Request.id` field ([#553](https://github.com/apify/apify-sdk-python/pull/553)) ([445ab5d](https://github.com/apify/apify-sdk-python/commit/445ab5d752b785fc2018b35c8adbe779253d7acd)) by [@Pijukatel](https://github.com/Pijukatel)
+* \[**breaking**] Make `Actor` initialization stricter and more predictable ([#576](https://github.com/apify/apify-sdk-python/pull/576)) ([912222a](https://github.com/apify/apify-sdk-python/commit/912222a7a8123be66c94c50a2e461276fbfc50c4)) by [@Pijukatel](https://github.com/Pijukatel)
+* \[**breaking**] Make default Apify storages use alias mechanism ([#606](https://github.com/apify/apify-sdk-python/pull/606)) ([dbea7d9](https://github.com/apify/apify-sdk-python/commit/dbea7d97fe7f25aa8658a32c5bb46a3800561df5)) by [@Pijukatel](https://github.com/Pijukatel), closes [#599](https://github.com/apify/apify-sdk-python/issues/599)
+
+### [2.7.3](https://github.com/apify/apify-sdk-python/releases/tag/v2.7.3) (2025-08-11)[](#273-2025-08-11)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-16)
+
+* Expose `APIFY_USER_IS_PAYING` env var to the configuration (#507) ([0de022c](https://github.com/apify/apify-sdk-python/commit/0de022c3435f24c821053c771e7b659433e3fb6e))
+
+### [2.7.2](https://github.com/apify/apify-sdk-python/releases/tag/v2.7.2) (2025-07-30)[](#272-2025-07-30)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-17)
+
+* Restrict apify-shared and apify-client versions ([#523](https://github.com/apify/apify-sdk-python/pull/523)) ([581ebae](https://github.com/apify/apify-sdk-python/commit/581ebae5752a984a34cbabc02c49945ae392db00)) by [@vdusek](https://github.com/vdusek)
+
+### [2.7.1](https://github.com/apify/apify-sdk-python/releases/tag/v2.7.1) (2025-07-24)[](#271-2025-07-24)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-18)
+
+* Add back support for Python 3.9.
+
+### [2.7.0](https://github.com/apify/apify-sdk-python/releases/tag/v2.7.0) (2025-07-14)[](#270-2025-07-14)
+
+#### 🚀 Features[](#-features-6)
+
+* Expose `logger` argument on `Actor.call` to control log redirection from started Actor run ([#487](https://github.com/apify/apify-sdk-python/pull/487)) ([aa6fa47](https://github.com/apify/apify-sdk-python/commit/aa6fa4750ea1bc7909be1191c0d276a2046930c2)) by [@Pijukatel](https://github.com/Pijukatel)
+* **crypto:** Decrypt secret objects ([#482](https://github.com/apify/apify-sdk-python/pull/482)) ([ce9daf7](https://github.com/apify/apify-sdk-python/commit/ce9daf7381212b8dc194e8a643e5ca0dedbc0078)) by [@MFori](https://github.com/MFori)
+
+### [2.6.0](https://github.com/apify/apify-sdk-python/releases/tag/v2.6.0) (2025-06-09)[](#260-2025-06-09)
+
+#### 🚀 Features[](#-features-7)
+
+* Add `RemainingTime` option for `timeout` argument of `Actor.call` and `Actor.start` ([#473](https://github.com/apify/apify-sdk-python/pull/473)) ([ba7f757](https://github.com/apify/apify-sdk-python/commit/ba7f757a82661a5a181d9bd767950d09557409f9)) by [@Pijukatel](https://github.com/Pijukatel), closes [#472](https://github.com/apify/apify-sdk-python/issues/472)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-19)
+
+* Fix duplicate logs from apify logger in Scrapy integration ([#457](https://github.com/apify/apify-sdk-python/pull/457)) ([2745ee6](https://github.com/apify/apify-sdk-python/commit/2745ee6529deecb4f2838c764b9bb3fb6606762b)) by [@vdusek](https://github.com/vdusek), closes [#391](https://github.com/apify/apify-sdk-python/issues/391)
+* Prefer proxy password from env var ([#468](https://github.com/apify/apify-sdk-python/pull/468)) ([1c4ad9b](https://github.com/apify/apify-sdk-python/commit/1c4ad9bcfbf6ac404f942d7d2d249b036c2e7f54)) by [@stepskop](https://github.com/stepskop)
+
+### [2.5.0](https://github.com/apify/apify-sdk-python/releases/tag/v2.5.0) (2025-03-27)[](#250-2025-03-27)
+
+#### 🚀 Features[](#-features-8)
+
+* Implement Scrapy HTTP cache backend ([#403](https://github.com/apify/apify-sdk-python/pull/403)) ([137e3c8](https://github.com/apify/apify-sdk-python/commit/137e3c8d5c6b28cf6935cfb742b5f072cd2e0a02)) by [@honzajavorek](https://github.com/honzajavorek)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-20)
+
+* Fix calculation of CPU utilization from SystemInfo events ([#447](https://github.com/apify/apify-sdk-python/pull/447)) ([eb4c8e4](https://github.com/apify/apify-sdk-python/commit/eb4c8e4e498e23f573b9e2d4c7dbd8e2ecc277d9)) by [@janbuchar](https://github.com/janbuchar)
+
+### [2.4.0](https://github.com/apify/apify-sdk-python/releases/tag/v2.4.0) (2025-03-07)[](#240-2025-03-07)
+
+#### 🚀 Features[](#-features-9)
+
+* Update to Crawlee v0.6 ([#420](https://github.com/apify/apify-sdk-python/pull/420)) ([9be4336](https://github.com/apify/apify-sdk-python/commit/9be433667231cc5739861fa693d7a726860d6aca)) by [@vdusek](https://github.com/vdusek)
+* Add Actor `exit_process` option ([#424](https://github.com/apify/apify-sdk-python/pull/424)) ([994c832](https://github.com/apify/apify-sdk-python/commit/994c8323b994e009db0ccdcb624891a2fef97070)) by [@vdusek](https://github.com/vdusek), closes [#396](https://github.com/apify/apify-sdk-python/issues/396), [#401](https://github.com/apify/apify-sdk-python/issues/401)
+* Upgrade websockets to v14 to adapt to library API changes ([#425](https://github.com/apify/apify-sdk-python/pull/425)) ([5f49275](https://github.com/apify/apify-sdk-python/commit/5f49275ca1177e5ba56856ffe3860f6b97bee9ee)) by [@Mantisus](https://github.com/Mantisus), closes [#325](https://github.com/apify/apify-sdk-python/issues/325)
+* Add signing of public URL ([#407](https://github.com/apify/apify-sdk-python/pull/407)) ([a865461](https://github.com/apify/apify-sdk-python/commit/a865461c703aea01d91317f4fdf38c1bedd35f00)) by [@danpoletaev](https://github.com/danpoletaev)
+
+### [2.3.1](https://github.com/apify/apify-sdk-python/releases/tag/v2.3.1) (2025-02-25)[](#231-2025-02-25)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-21)
+
+* Allow None value in 'inputBodyLen' in ActorRunStats ([#413](https://github.com/apify/apify-sdk-python/pull/413)) ([1cf37f1](https://github.com/apify/apify-sdk-python/commit/1cf37f13f8db1313ac82276d13200af4aa2bf773)) by [@janbuchar](https://github.com/janbuchar)
+
+### [2.3.0](https://github.com/apify/apify-sdk-python/releases/tag/v2.3.0) (2025-02-19)[](#230-2025-02-19)
+
+#### 🚀 Features[](#-features-10)
+
+* Add `rate_limit_errors` property for `ApifyStorageClient` ([#387](https://github.com/apify/apify-sdk-python/pull/387)) ([89c230a](https://github.com/apify/apify-sdk-python/commit/89c230a21a1a8698159975f97c73a724b9063278)) by [@Mantisus](https://github.com/Mantisus), closes [#318](https://github.com/apify/apify-sdk-python/issues/318)
+* Unify Apify and Scrapy to use single event loop & remove `nest-asyncio` ([#390](https://github.com/apify/apify-sdk-python/pull/390)) ([96949be](https://github.com/apify/apify-sdk-python/commit/96949be4f7687ac9285992d1fb02ac6172307bdb)) by [@vdusek](https://github.com/vdusek), closes [#148](https://github.com/apify/apify-sdk-python/issues/148), [#176](https://github.com/apify/apify-sdk-python/issues/176), [#392](https://github.com/apify/apify-sdk-python/issues/392)
+* Support pay-per-event via `Actor.charge` ([#393](https://github.com/apify/apify-sdk-python/pull/393)) ([78888c4](https://github.com/apify/apify-sdk-python/commit/78888c4d6258211cdbc5fd5b5cbadbf23c39d818)) by [@janbuchar](https://github.com/janbuchar), closes [#374](https://github.com/apify/apify-sdk-python/issues/374)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-22)
+
+* Fix RQ usage in Scrapy scheduler ([#385](https://github.com/apify/apify-sdk-python/pull/385)) ([3363478](https://github.com/apify/apify-sdk-python/commit/3363478dbf6eb35e45c237546fe0df5c104166f6)) by [@vdusek](https://github.com/vdusek)
+* Make sure that Actor instances with non-default configurations are also accessible through the global Actor proxy after initialization ([#402](https://github.com/apify/apify-sdk-python/pull/402)) ([b956a02](https://github.com/apify/apify-sdk-python/commit/b956a02d0ba59e0cfde489cc13ca92d7f8f8c84f)) by [@janbuchar](https://github.com/janbuchar), closes [#397](https://github.com/apify/apify-sdk-python/issues/397)
+
+### [2.2.1](https://github.com/apify/apify-sdk-python/releases/tag/v2.2.1) (2025-01-17)[](#221-2025-01-17)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-23)
+
+* Better event listener type definitions ([#354](https://github.com/apify/apify-sdk-python/pull/354)) ([52a6dee](https://github.com/apify/apify-sdk-python/commit/52a6dee92cc0cc4fa032dfc8c312545bc5e07206)) by [@janbuchar](https://github.com/janbuchar), closes [#344](https://github.com/apify/apify-sdk-python/issues/344)
+
+### [2.2.0](https://github.com/apify/apify-sdk-python/releases/tag/v2.2.0) (2025-01-10)[](#220-2025-01-10)
+
+#### 🚀 Features[](#-features-11)
+
+* Add new config variables to `Actor.config` ([#351](https://github.com/apify/apify-sdk-python/pull/351)) ([7b6478c](https://github.com/apify/apify-sdk-python/commit/7b6478c3fc239b454f733fbd98348dab7b3a1766)) by [@fnesveda](https://github.com/fnesveda)
+* Upgrade to Crawlee v0.5 ([#355](https://github.com/apify/apify-sdk-python/pull/355)) ([826f4db](https://github.com/apify/apify-sdk-python/commit/826f4dbcc8cfd693d97e40c17faf91d225d7ffaf)) by [@vdusek](https://github.com/vdusek)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-24)
+
+* Better error message when attempting to use force\_cloud without an Apify token ([#356](https://github.com/apify/apify-sdk-python/pull/356)) ([33245ce](https://github.com/apify/apify-sdk-python/commit/33245ceddb1fa0ed39548181fb57fb3e6b98f954)) by [@janbuchar](https://github.com/janbuchar)
+* Allow calling `Actor.reboot()` from migrating handler, align reboot behavior with JS SDK ([#361](https://github.com/apify/apify-sdk-python/pull/361)) ([7ba0221](https://github.com/apify/apify-sdk-python/commit/7ba022121fe7b65470fec901295f74cebce72610)) by [@fnesveda](https://github.com/fnesveda)
+
+### [2.1.0](https://github.com/apify/apify-sdk-python/releases/tag/v2.1.0) (2024-12-03)[](#210-2024-12-03)
+
+#### 🚀 Features[](#-features-12)
+
+* Handle request list user input ([#326](https://github.com/apify/apify-sdk-python/pull/326)) ([c14fb9a](https://github.com/apify/apify-sdk-python/commit/c14fb9a9527c8b699e32ed49d39ce0a69447f87c)) by [@Pijukatel](https://github.com/Pijukatel), closes [#310](https://github.com/apify/apify-sdk-python/issues/310)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-25)
+
+* Add upper bound of HTTPX version ([#347](https://github.com/apify/apify-sdk-python/pull/347)) ([e86dbce](https://github.com/apify/apify-sdk-python/commit/e86dbce69f6978cf2c15910213655e5d80f62a23)) by [@vdusek](https://github.com/vdusek)
+
+### [2.0.2](https://github.com/apify/apify-sdk-python/releases/tag/v2.0.2) (2024-11-12)[](#202-2024-11-12)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-26)
+
+* Fix CPU usage calculation ([#315](https://github.com/apify/apify-sdk-python/pull/315)) ([0521d91](https://github.com/apify/apify-sdk-python/commit/0521d911afbb8029ad29949f69c4f19166a01fc0)) by [@janbuchar](https://github.com/janbuchar)
+* Set version constraint of the `websockets` dependency to <14.0.0 ([#322](https://github.com/apify/apify-sdk-python/pull/322)) ([15ad055](https://github.com/apify/apify-sdk-python/commit/15ad0550e7a5508adff3eb35511248c611a0f595)) by [@Pijukatel](https://github.com/Pijukatel)
+* Fix Dataset.iter\_items for apify\_storage ([#321](https://github.com/apify/apify-sdk-python/pull/321)) ([2db1beb](https://github.com/apify/apify-sdk-python/commit/2db1beb2d56a7e7954cd76023d1273c7546d7cbf)) by [@Pijukatel](https://github.com/Pijukatel), closes [#320](https://github.com/apify/apify-sdk-python/issues/320)
+
+### [2.0.1](https://github.com/apify/apify-sdk-python/releases/tag/v2.0.1) (2024-10-25)[](#201-2024-10-25)
+
+#### 🚀 Features[](#-features-13)
+
+* Add standby URL, change default standby port ([#287](https://github.com/apify/apify-sdk-python/pull/287)) ([8cd2f2c](https://github.com/apify/apify-sdk-python/commit/8cd2f2cb9d1191dbc93bf1b8a2d70189881c64ad)) by [@jirimoravcik](https://github.com/jirimoravcik)
+* Add crawlee version to system info print ([#304](https://github.com/apify/apify-sdk-python/pull/304)) ([c28f38f](https://github.com/apify/apify-sdk-python/commit/c28f38f4e205515e1b5d1ce97a2072be3a09d338)) by [@vdusek](https://github.com/vdusek)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-27)
+
+* Adjust tests of scrapy user data ([#284](https://github.com/apify/apify-sdk-python/pull/284)) ([26ffb15](https://github.com/apify/apify-sdk-python/commit/26ffb15797effcfad1a25c840dd3d17663e26ea3)) by [@janbuchar](https://github.com/janbuchar)
+* Use HttpHeaders type in Scrapy integration ([#289](https://github.com/apify/apify-sdk-python/pull/289)) ([3e33e91](https://github.com/apify/apify-sdk-python/commit/3e33e9147bfd60554b9da41b032c0451f91ba27b)) by [@vdusek](https://github.com/vdusek)
+* Allow empty timeout\_at env variable ([#303](https://github.com/apify/apify-sdk-python/pull/303)) ([b67ec98](https://github.com/apify/apify-sdk-python/commit/b67ec989dfcc21756cc976c52edc25735a3f0501)) by [@janbuchar](https://github.com/janbuchar), closes [#596](https://github.com/apify/apify-sdk-python/issues/596)
+
+### [2.0.0](https://github.com/apify/apify-sdk-python/releases/tag/v2.0.0) (2024-09-10)[](#200-2024-09-10)
+
+* Check out the [Upgrading guide](https://docs.apify.com/sdk/python/sdk/python/docs/upgrading/upgrading-to-v2.md) to ensure a smooth update.
+
+#### 🚀 Features[](#-features-14)
+
+* Better Actor API typing ([#256](https://github.com/apify/apify-sdk-python/pull/256)) ([abb87e7](https://github.com/apify/apify-sdk-python/commit/abb87e7f3c272f88a9a76292d8394fe93b98428a)) by [@janbuchar](https://github.com/janbuchar), closes [#243](https://github.com/apify/apify-sdk-python/issues/243)
+* Expose Request from Crawlee ([#266](https://github.com/apify/apify-sdk-python/pull/266)) ([1f01278](https://github.com/apify/apify-sdk-python/commit/1f01278c77f261500bc74efd700c0583ac45fd82)) by [@vdusek](https://github.com/vdusek)
+* Automatically configure logging ([#271](https://github.com/apify/apify-sdk-python/pull/271)) ([1906bb2](https://github.com/apify/apify-sdk-python/commit/1906bb216b8a3f1c2ad740c551ee019c2ba0696f)) by [@janbuchar](https://github.com/janbuchar)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-28)
+
+* Make apify.log public again ([#249](https://github.com/apify/apify-sdk-python/pull/249)) ([22677f5](https://github.com/apify/apify-sdk-python/commit/22677f57b2aff6c9bddbee305e5a62e39bbf5915)) by [@janbuchar](https://github.com/janbuchar)
+* Dataset list response handling ([#257](https://github.com/apify/apify-sdk-python/pull/257)) ([0ea57d7](https://github.com/apify/apify-sdk-python/commit/0ea57d7c4788bff31f215c447c1881e56d6508bb)) by [@janbuchar](https://github.com/janbuchar)
+* Ignore deprecated platform events ([#258](https://github.com/apify/apify-sdk-python/pull/258)) ([ed5ab3b](https://github.com/apify/apify-sdk-python/commit/ed5ab3b80c851a817aa87806c39cd8ef3e86fde5)) by [@janbuchar](https://github.com/janbuchar)
+* Possible infinity loop in Apify-Scrapy proxy middleware ([#259](https://github.com/apify/apify-sdk-python/pull/259)) ([8647a94](https://github.com/apify/apify-sdk-python/commit/8647a94289423528f2940d9f7174f81682fbb407)) by [@vdusek](https://github.com/vdusek)
+* Hotfix for batch\_add\_requests batch size limit ([#261](https://github.com/apify/apify-sdk-python/pull/261)) ([61d7a39](https://github.com/apify/apify-sdk-python/commit/61d7a392d182a752c91193170dca351f4cb0fbf3)) by [@janbuchar](https://github.com/janbuchar)
+
+#### 🚜 Refactor[](#-refactor-2)
+
+* \[**breaking**] Preparation for v2 release ([#210](https://github.com/apify/apify-sdk-python/pull/210)) ([2f9dcc5](https://github.com/apify/apify-sdk-python/commit/2f9dcc559414f31e3f4fc87e72417a36494b9c84)) by [@janbuchar](https://github.com/janbuchar), closes [#135](https://github.com/apify/apify-sdk-python/issues/135), [#137](https://github.com/apify/apify-sdk-python/issues/137), [#138](https://github.com/apify/apify-sdk-python/issues/138), [#147](https://github.com/apify/apify-sdk-python/issues/147), [#149](https://github.com/apify/apify-sdk-python/issues/149), [#237](https://github.com/apify/apify-sdk-python/issues/237)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-2)
+
+* \[**breaking**] Drop support for Python 3.8
+
+### [1.7.2](https://github.com/apify/apify-sdk-python/releases/tag/v1.7.2) (2024-07-08)[](#172-2024-07-08)
+
+* Add Actor Standby port
+
+### [1.7.1](https://github.com/apify/apify-sdk-python/releases/tag/v1.7.1) (2024-05-23)[](#171-2024-05-23)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-29)
+
+* Set a timeout for Actor cleanup
+
+### [1.7.0](https://github.com/apify/apify-sdk-python/releases/tag/v1.7.0) (2024-03-12)[](#170-2024-03-12)
+
+#### 🚀 Features[](#-features-15)
+
+* Add a new way of generating the `uniqueKey` field of the request, aligning it with the Crawlee.
+
+#### 🐛 Bug Fixes[](#-bug-fixes-30)
+
+* Improve error handling for `to_apify_request` serialization failures
+* Scrapy's `Request.dont_filter` works.
+
+### [1.6.0](https://github.com/apify/apify-sdk-python/releases/tag/v1.6.0) (2024-02-23)[](#160-2024-02-23)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-31)
+
+* Update of Scrapy integration, fixes in `ApifyScheduler`, `to_apify_request` and `apply_apify_settings`.
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-3)
+
+* Remove `ApifyRetryMiddleware` and stay with the Scrapy's default one
+
+### [1.5.5](https://github.com/apify/apify-sdk-python/releases/tag/v1.5.5) (2024-02-01)[](#155-2024-02-01)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-32)
+
+* Fix conversion of `headers` fields in Apify <--> Scrapy request translation
+
+### [1.5.4](https://github.com/apify/apify-sdk-python/releases/tag/v1.5.4) (2024-01-24)[](#154-2024-01-24)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-33)
+
+* Fix conversion of `userData` and `headers` fields in Apify <--> Scrapy request translation
+
+### [1.5.3](https://github.com/apify/apify-sdk-python/releases/tag/v1.5.3) (2024-01-23)[](#153-2024-01-23)
+
+#### 🚀 Features[](#-features-16)
+
+* Add `apply_apify_settings` function to Scrapy subpackage
+
+### [1.5.2](https://github.com/apify/apify-sdk-python/releases/tag/v1.5.2) (2024-01-19)[](#152-2024-01-19)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-34)
+
+* Add missing import check to `ApifyHttpProxyMiddleware`
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-4)
+
+* Create a new subpackage for Scrapy pipelines
+* Remove some noqas thanks to the new Ruff release
+* Replace relative imports with absolute imports
+* Replace asserts with custom checks in Scrapy subpackage
+
+### [1.5.1](https://github.com/apify/apify-sdk-python/releases/tag/v1.5.1) (2024-01-10)[](#151-2024-01-10)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-5)
+
+* Allowed running integration tests from PRs from forks, after maintainer approval
+* Do not close `nested_event_loop` in the `Scheduler.__del__`
+
+### [1.5.0](https://github.com/apify/apify-sdk-python/releases/tag/v1.5.0) (2024-01-03)[](#150-2024-01-03)
+
+#### 🚀 Features[](#-features-17)
+
+* Add `ApifyHttpProxyMiddleware`
+
+### [1.4.1](https://github.com/apify/apify-sdk-python/releases/tag/v1.4.1) (2023-12-21)[](#141-2023-12-21)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-35)
+
+* Resolve issue in `ApifyRetryMiddleware.process_exception()`, where requests were getting stuck in the request queue
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-6)
+
+* Fix type hint problems for resource clients
+
+### [1.4.0](https://github.com/apify/apify-sdk-python/releases/tag/v1.4.0) (2023-12-05)[](#140-2023-12-05)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-7)
+
+* Migrate from Autopep8 and Flake8 to Ruff
+
+### [1.3.0](https://github.com/apify/apify-sdk-python/releases/tag/v1.3.0) (2023-11-15)[](#130-2023-11-15)
+
+#### 🚀 Features[](#-features-18)
+
+* Add `scrapy` extra
+
+### [1.2.0](https://github.com/apify/apify-sdk-python/releases/tag/v1.2.0) (2023-10-23)[](#120-2023-10-23)
+
+#### 🚀 Features[](#-features-19)
+
+* Add support for Python 3.12
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-8)
+
+* Fix lint error (E721) in unit tests (for instance checks use `isinstance()`)
+
+### [1.1.5](https://github.com/apify/apify-sdk-python/releases/tag/v1.1.5) (2023-10-03)[](#115-2023-10-03)
+
+#### 🚀 Features[](#-features-20)
+
+* Update the Apify log formatter to contain an option for adding the logger name
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-9)
+
+* Rewrite documentation publication to use Docusaurus
+* Remove PR Toolkit workflow
+
+### [1.1.4](https://github.com/apify/apify-sdk-python/releases/tag/v1.1.4) (2023-09-06)[](#114-2023-09-06)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-36)
+
+* Resolve issue with querying request queue head multiple times in parallel
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-10)
+
+* Fix integration tests for Actor logger
+* Remove `pytest-randomly` Pytest plugin
+* Unpin `apify-client` and `apify-shared` to improve compatibility with their newer versions
+
+### [1.1.3](https://github.com/apify/apify-sdk-python/releases/tag/v1.1.3) (2023-08-25)[](#113-2023-08-25)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-11)
+
+* Unify indentation in configuration files
+* Update the `Actor.reboot` method to use the new reboot endpoint
+
+### [1.1.2](https://github.com/apify/apify-sdk-python/releases/tag/v1.1.2) (2023-08-02)[](#112-2023-08-02)
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-12)
+
+* Start importing general constants and utilities from the `apify-shared` library
+* Simplify code via `flake8-simplify`
+* Start using environment variables with prefix `ACTOR_` instead of some with prefix `APIFY_`
+* Pin `apify-client` and `apify-shared` to prevent their implicit updates from breaking SDK
+
+### [1.1.1](https://github.com/apify/apify-sdk-python/releases/tag/v1.1.1) (2023-05-23)[](#111-2023-05-23)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-37)
+
+* Relax dependency requirements to improve compatibility with other libraries
+
+### [1.1.0](https://github.com/apify/apify-sdk-python/releases/tag/v1.1.0) (2023-05-23)[](#110-2023-05-23)
+
+#### 🚀 Features[](#-features-21)
+
+* Add option to add event handlers which accept no arguments
+* Add support for `is_terminal` flag in status message update
+* Add option to set status message along with `Actor.exit()`
+
+#### 🐛 Bug Fixes[](#-bug-fixes-38)
+
+* Start enforcing local storage to always use the UTF-8 encoding
+* Fix saving key-value store values to local storage with the right extension for a given content type
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-13)
+
+* Switch from `setup.py` to `pyproject.toml` for specifying project setup
+
+### [1.0.0](https://github.com/apify/apify-sdk-python/releases/tag/v1.0.0) (2023-03-13)[](#100-2023-03-13)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-39)
+
+* Fix `RequestQueue` not loading requests from an existing queue properly
+
+#### ⚙️ Miscellaneous Tasks[](#️-miscellaneous-tasks-14)
+
+* Update to `apify-client` 1.0.0
+* Start triggering base Docker image builds when releasing a new version
+
+### [0.2.0](https://github.com/apify/apify-sdk-python/releases/tag/v0.2.0) (2023-03-06)[](#020-2023-03-06)
+
+#### 🚀 Features[](#-features-22)
+
+* Add chunking mechanism to push\_data, cleanup TODOs ([#67](https://github.com/apify/apify-sdk-python/pull/67)) ([5f38d51](https://github.com/apify/apify-sdk-python/commit/5f38d51a57912071439ac88405311d2cb7044190)) by [@jirimoravcik](https://github.com/jirimoravcik)
+
+### [0.1.0](https://github.com/apify/apify-sdk-python/releases/tag/v0.1.0) (2023-02-09)[](#010-2023-02-09)
+
+#### 🚀 Features[](#-features-23)
+
+* Implement MemoryStorage and local storage clients ([#15](https://github.com/apify/apify-sdk-python/pull/15)) ([b7c9886](https://github.com/apify/apify-sdk-python/commit/b7c98869bdc749feadc7b5a0d105fce041506011)) by [@jirimoravcik](https://github.com/jirimoravcik)
+* Implement Dataset, KeyValueStore classes, create storage management logic ([#21](https://github.com/apify/apify-sdk-python/pull/21)) ([d1b357c](https://github.com/apify/apify-sdk-python/commit/d1b357cd02f7357137fd9413b105a8ac48b1796b)) by [@jirimoravcik](https://github.com/jirimoravcik)
+* Implement RequestQueue class ([#25](https://github.com/apify/apify-sdk-python/pull/25)) ([c6cad34](https://github.com/apify/apify-sdk-python/commit/c6cad3442d1a9a37c3eb3991cf45daed03e74ff5)) by [@jirimoravcik](https://github.com/jirimoravcik)
+* Add test for get\_env and is\_at\_home ([#29](https://github.com/apify/apify-sdk-python/pull/29)) ([cc45afb](https://github.com/apify/apify-sdk-python/commit/cc45afbf848db3626054c599cb3a5a2972a48748)) by [@drobnikj](https://github.com/drobnikj)
+* Updating pull request toolkit config \[INTERNAL] ([387143c](https://github.com/apify/apify-sdk-python/commit/387143ccf2c32a99c95e9931e5649e558d35daeb)) by [@mtrunkat](https://github.com/mtrunkat)
+* Add documentation for `StorageManager` and `StorageClientManager`, open\_\* methods in `Actor` ([#34](https://github.com/apify/apify-sdk-python/pull/34)) ([3f6b942](https://github.com/apify/apify-sdk-python/commit/3f6b9426dc03fea40d80af2e4c8f04ecf2620e8a)) by [@jirimoravcik](https://github.com/jirimoravcik)
+* Add tests for actor lifecycle ([#35](https://github.com/apify/apify-sdk-python/pull/35)) ([4674728](https://github.com/apify/apify-sdk-python/commit/4674728905be5076283ff3795332866e8bef6ee8)) by [@drobnikj](https://github.com/drobnikj)
+* Add docs for `Dataset`, `KeyValueStore`, and `RequestQueue` ([#37](https://github.com/apify/apify-sdk-python/pull/37)) ([174548e](https://github.com/apify/apify-sdk-python/commit/174548e952b47ee519d1a05c0821a2c42c2fddf6)) by [@jirimoravcik](https://github.com/jirimoravcik)
+* Docs string for memory storage clients ([#31](https://github.com/apify/apify-sdk-python/pull/31)) ([8f55d46](https://github.com/apify/apify-sdk-python/commit/8f55d463394307b004193efc43b67b44d030f6de)) by [@drobnikj](https://github.com/drobnikj)
+* Add test for storage actor methods ([#39](https://github.com/apify/apify-sdk-python/pull/39)) ([b89bbcf](https://github.com/apify/apify-sdk-python/commit/b89bbcfdcae4f436a68e92f1f60628aea1036dde)) by [@drobnikj](https://github.com/drobnikj)
+* Various fixes and improvements ([#41](https://github.com/apify/apify-sdk-python/pull/41)) ([5bae238](https://github.com/apify/apify-sdk-python/commit/5bae238821b3b63c73d0cbadf4b478511cb045d2)) by [@jirimoravcik](https://github.com/jirimoravcik)
+* Add the rest unit tests for actor ([#40](https://github.com/apify/apify-sdk-python/pull/40)) ([72d92ea](https://github.com/apify/apify-sdk-python/commit/72d92ea080670ceecc234c149058d2ebe763e3a8)) by [@drobnikj](https://github.com/drobnikj)
+* Decrypt input secrets if there are some ([#45](https://github.com/apify/apify-sdk-python/pull/45)) ([6eb1630](https://github.com/apify/apify-sdk-python/commit/6eb163077341218a3f9dcf566986d7464f6ab09e)) by [@drobnikj](https://github.com/drobnikj)
+* Add a few integration tests ([#48](https://github.com/apify/apify-sdk-python/pull/48)) ([1843f48](https://github.com/apify/apify-sdk-python/commit/1843f48845e724e1c2682b8d09a6b5c48c57d9ec)) by [@drobnikj](https://github.com/drobnikj)
+* Add integration tests for storages, proxy configuration ([#49](https://github.com/apify/apify-sdk-python/pull/49)) ([fd0566e](https://github.com/apify/apify-sdk-python/commit/fd0566ed3b8c85c7884f8bba3cf7394215fabed0)) by [@jirimoravcik](https://github.com/jirimoravcik)
+* Unify datetime handling, remove utcnow() ([#52](https://github.com/apify/apify-sdk-python/pull/52)) ([09dd8ac](https://github.com/apify/apify-sdk-python/commit/09dd8ac9dc26afee777f497ed1d2733af1eef848)) by [@jirimoravcik](https://github.com/jirimoravcik)
+* Separate ID and name params for `Actor.open_xxx` ([#56](https://github.com/apify/apify-sdk-python/pull/56)) ([a1e962e](https://github.com/apify/apify-sdk-python/commit/a1e962ebe74384baabb96fdbb4f0e0ed2f92e454)) by [@jirimoravcik](https://github.com/jirimoravcik)
+
+#### 🐛 Bug Fixes[](#-bug-fixes-40)
+
+* Key error for storage name ([#28](https://github.com/apify/apify-sdk-python/pull/28)) ([83b30a9](https://github.com/apify/apify-sdk-python/commit/83b30a90df4d3b173302f1c6006b346091fced60)) by [@drobnikj](https://github.com/drobnikj)

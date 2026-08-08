@@ -1,0 +1,298 @@
+---
+title: Actor environment variables
+url: https://docs.apify.com/actors/development/programming-interface/environment-variables.md
+parents:
+  - [Apify documentation](https://docs.apify.com/llms.txt)
+  - [Actors](https://docs.apify.com/actors.md)
+  - [Development](https://docs.apify.com/actors/development.md)
+  - [Programming interface](https://docs.apify.com/actors/development/programming-interface.md)
+previous: [Basic commands](https://docs.apify.com/actors/development/programming-interface/basic-commands.md)
+next: [Status messages](https://docs.apify.com/actors/development/programming-interface/status-messages.md)
+---
+
+> ## Documentation index
+> Fetch the complete documentation index at: https://docs.apify.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Actor environment variables
+
+Actor runs get their environment variables from two sources:
+
+* System environment variables - set automatically by the Apify platform for each Actor run.
+* Custom environment variables - defined by the Actor owner, either in `.actor/actor.json` or in Apify Console.
+
+By default, both kinds of variables are passed only to the Actor **run**, not to the **build**. For variables passed to the build process (Docker build arguments), see Build-time environment variables.
+
+Check out how you can access environment variables in Actors.
+
+## System environment variables
+
+Apify sets several system environment variables for each Actor run. They come in two groups, identified by their name prefix: standard `ACTOR_` variables defined by the Actor specification, and Apify-specific `APIFY_` variables that extend it.
+
+Runtime only
+
+System variables apply only to Actor runs and are never passed to builds - not even when **Apply environment variables also to the build process** is enabled in **Code** > **Environment variables**. That option forwards only your custom variables.
+
+### Standard Actor variables
+
+Variables prefixed with `ACTOR_` are defined by the [Actor specification](https://whitepaper.actor/#environment-variables). They describe the run's execution context - identifiers, default storages, resource limits, and timing - and aren't specific to the Apify platform.
+
+| Environment variable               | Description                                                                                                                                                                                                                                                                                       |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ACTOR_ID`                         | ID of the Actor.                                                                                                                                                                                                                                                                                  |
+| `ACTOR_FULL_NAME`                  | Full technical name of the Actor, in the format `owner-username/actor-name`.                                                                                                                                                                                                                      |
+| `ACTOR_RUN_ID`                     | ID of the Actor run.                                                                                                                                                                                                                                                                              |
+| `ACTOR_DEFAULT_DATASET_ID`         | Unique identifier for the default dataset associated with the current Actor run.                                                                                                                                                                                                                  |
+| `ACTOR_DEFAULT_KEY_VALUE_STORE_ID` | Unique identifier for the default key-value store associated with the current Actor run.                                                                                                                                                                                                          |
+| `ACTOR_DEFAULT_REQUEST_QUEUE_ID`   | Unique identifier for the default request queue associated with the current Actor run.                                                                                                                                                                                                            |
+| `ACTOR_INPUT_KEY`                  | Key of the record in the default key-value store that holds the [Actor input](https://docs.apify.com/actors/running/input-and-output.md#input).                                                                                                                                                   |
+| `ACTOR_STORAGES_JSON`              | JSON-encoded unique identifiers of storages associated with the current Actor run, e.g. `{ "keyValueStores": { "default": "<id>" }, "datasets": { "default": "<id>" }, "requestQueues": { "default": "<id>" } }`.                                                                                 |
+| `ACTOR_MEMORY_MBYTES`              | Size of memory allocated for the Actor run, in megabytes. Can be used to optimize memory usage or finetuning of low-level external libraries.                                                                                                                                                     |
+| `ACTOR_MAX_TOTAL_CHARGE_USD`       | For all pricing models, the user-set limit on total run cost. Do not exceed this limit.                                                                                                                                                                                                           |
+| `ACTOR_PERMISSION_LEVEL`           | [Permission level](https://docs.apify.com/actors/running/permissions.md) the Actor is run under (`LIMITED_PERMISSIONS` or `FULL_PERMISSIONS`). This determines what resources in the user’s account the Actor can access.                                                                         |
+| `ACTOR_RESTART_ON_ERROR`           | If **1**, the Actor run will be restarted if it fails.                                                                                                                                                                                                                                            |
+| `ACTOR_STARTED_AT`                 | Date when the Actor was started.                                                                                                                                                                                                                                                                  |
+| `ACTOR_TIMEOUT_AT`                 | Date when the Actor will time out.                                                                                                                                                                                                                                                                |
+| `ACTOR_BUILD_ID`                   | ID of the Actor build used in the run.                                                                                                                                                                                                                                                            |
+| `ACTOR_BUILD_NUMBER`               | Build number of the Actor build used in the run.                                                                                                                                                                                                                                                  |
+| `ACTOR_BUILD_TAGS`                 | A comma-separated list of tags of the Actor build used in the run. Note that this environment variable is assigned at the time of start of the Actor and doesn't change over time, even if the assigned build tags change.                                                                        |
+| `ACTOR_TASK_ID`                    | ID of the Actor task. Empty if Actor is run outside of any task, e.g. directly using the API.                                                                                                                                                                                                     |
+| `ACTOR_WEB_SERVER_URL`             | Unique public URL for accessing the Actor run web server from the outside world.                                                                                                                                                                                                                  |
+| `ACTOR_WEB_SERVER_PORT`            | TCP port for the Actor to start an HTTP server on. This server can be used to receive external messages or expose monitoring and control interfaces. The server also receives messages from the [Actor Standby](https://docs.apify.com/actors/development/programming-interface/standby.md) mode. |
+| `ACTOR_STANDBY_URL`                | URL for accessing web servers of Actor runs in the [Actor Standby](https://docs.apify.com/actors/development/programming-interface/standby.md) mode.                                                                                                                                              |
+| `ACTOR_EVENTS_WEBSOCKET_URL`       | Websocket URL where Actor may listen for [events](https://docs.apify.com/actors/development/programming-interface/system-events.md) from Actor platform.                                                                                                                                          |
+| `ACTOR_MCP_CONNECTOR_BASE_URL`     | Base URL of the Apify MCP Proxy. Connect to an [MCP connector](https://docs.apify.com/integrations/mcp-connectors.md) at `${ACTOR_MCP_CONNECTOR_BASE_URL}/<connectorId>` using `APIFY_TOKEN` as the bearer token.                                                                                 |
+
+Date format
+
+All date-related variables use the UTC timezone and are in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format (e.g., *2022-07-13T14:23:37.281Z*).
+
+### Apify platform variables
+
+Variables prefixed with `APIFY_` are Apify-platform-specific extensions that go beyond the Actor specification. They expose features unique to the Apify platform, such as your API token, Apify Proxy, and details about the user who started the run.
+
+| Environment variable                         | Description                                                                                                                                                      |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `APIFY_TOKEN`                                | API token of the user who started the Actor.                                                                                                                     |
+| `APIFY_USER_ID`                              | ID of the user who started the Actor. May differ from the Actor owner.                                                                                           |
+| `APIFY_USER_IS_PAYING`                       | If it is `1`, it means that the user who started the Actor is a paying user.                                                                                     |
+| `APIFY_IS_AT_HOME`                           | Contains **1** if the Actor is running on Apify servers.                                                                                                         |
+| `APIFY_DEDICATED_CPUS`                       | Number of CPU cores reserved for the Actor, based on allocated memory.                                                                                           |
+| `APIFY_PROXY_PASSWORD`                       | Password for accessing Apify Proxy services. This password enables the Actor to utilize proxy servers on behalf of the user who initiated the Actor run.         |
+| `APIFY_PROXY_PORT`                           | TCP port number to be used for connecting to Apify Proxy.                                                                                                        |
+| `APIFY_PROXY_STATUS_URL`                     | URL for retrieving proxy status information. Appending `?format=json` to this URL returns the data in JSON format for programmatic processing.                   |
+| `APIFY_API_PUBLIC_BASE_URL`                  | Public URL of the Apify API. May be used to interact with the platform programmatically. Typically set to `api.apify.com`.                                       |
+| `APIFY_WORKFLOW_KEY`                         | Identifier used for grouping related runs and API calls together.                                                                                                |
+| `APIFY_META_ORIGIN`                          | Specifies how an Actor run was started. Possible values are in [Runs and builds](https://docs.apify.com/actors/running/runs-and-builds.md#origin) documentation. |
+| `APIFY_INPUT_SECRETS_PRIVATE_KEY_FILE`       | Path to the secret key used to decrypt [Secret inputs](https://docs.apify.com/actors/development/actor-definition/input-schema/secret-input.md).                 |
+| `APIFY_INPUT_SECRETS_PRIVATE_KEY_PASSPHRASE` | Passphrase for the input secret key specified in `APIFY_INPUT_SECRETS_PRIVATE_KEY_FILE`.                                                                         |
+| ~~`APIFY_HEADLESS`~~                         | *Deprecated* - on the Apify platform this is always set to **1**, so web browsers inside the Actor always run in headless mode (no windowing system available).  |
+
+## Custom environment variables
+
+Actor owners can define custom environment variables to pass additional configuration to their Actors.
+
+* Define in actor.json
+* Define in Apify Console
+
+Your local `.actor/actor.json` file overrides variables set in Apify Console. To use Console variables, remove the `environmentVariables` key from the local file.
+
+### Define in `actor.json`
+
+Actor owners can define custom environment variables in [.actor/actor.json](https://docs.apify.com/actors/development/actor-definition/actor-json.md). All keys from `environmentVariables` will be set as environment variables into the Apify platform after you push Actor to Apify.
+
+
+```json
+{
+
+  "actorSpecification": 1,
+
+  "name": "dataset-to-mysql",
+
+  "version": "0.1",
+
+  "buildTag": "latest",
+
+  "environmentVariables": {
+
+    "MYSQL_USER": "my_username"
+
+  }
+
+}
+```
+
+
+Git-workflow with actor.json
+
+If you define `environmentVariables` in `.actor/actor.json`, it only works with [Apify CLI](https://docs.apify.com/cli). If you use a Git workflow for Actor development, the environment variables will not be set from `.actor/actor.json` and you need to define them in Apify Console.
+
+### Define in Apify Console
+
+To set custom variables in Apify Console:
+
+1. Go to your Actor's **Source** page in Apify Console.
+
+2. Navigate to the **Environment variables** section.
+
+3. Add your custom variables.
+
+### Secure environment variables
+
+For sensitive data such as API keys or passwords, enable the **Secret** option when defining a variable in Apify Console. Secret values are encrypted at rest and redacted from Actor run logs to prevent accidental exposure.
+
+Visibility of environment variables in public Actors
+
+When you [publish your Actor](https://docs.apify.com/actors/publishing/publish.md), environment variables not marked as **Secret** are visible to anyone on the Actor detail page alongside the source code. Enable **Hide source files from Actor detail** in the Actor's **Settings** to hide both.
+
+Secret environment variables are never exposed on the Actor detail page regardless of this setting. Always mark sensitive values as **Secret**.
+
+## Access environment variables
+
+You can access environment variables in your code as follows:
+
+**JavaScript**
+
+In Node.js, use the `process.env` object:
+
+
+```js
+import { Actor } from 'apify';
+
+
+
+await Actor.init();
+
+
+
+// get MYSQL_USER
+
+const mysql_user = process.env.MYSQL_USER
+
+
+
+// print MYSQL_USER to console
+
+console.log(mysql_user);
+
+
+
+await Actor.exit();
+```
+
+
+**Python**
+
+In Python, use the `os.environ` dictionary:
+
+
+```python
+import os
+
+print(os.environ['MYSQL_USER'])
+
+
+
+from apify import Actor
+
+
+
+async def main():
+
+    async with Actor:
+
+        # get MYSQL_USER
+
+        mysql_user = os.environ['MYSQL_USER']
+
+
+
+        # print MYSQL_USER to console
+
+        print(mysql_user)
+```
+
+
+### Use the `Configuration` class
+
+For more convenient access to Actor configuration, use the [Configuration](https://docs.apify.com/sdk/js/reference/class/Configuration) class.
+
+**JavaScript**
+
+
+```js
+import { Actor } from 'apify';
+
+
+
+await Actor.init();
+
+
+
+// get current token
+
+const token = Actor.config.get('token');
+
+// use different token
+
+Actor.config.set('token', 's0m3n3wt0k3n');
+
+
+
+await Actor.exit();
+```
+
+
+**Python**
+
+
+```python
+from apify import Actor
+
+
+
+async def main():
+
+    async with Actor:
+
+        old_token = Actor.configuration.token
+
+        Actor.log.info(f'old_token = {old_token}')
+
+
+
+        # use different token
+
+        Actor.configuration.token = 's0m3n3wt0k3n'
+
+
+
+        new_token = Actor.configuration.token
+
+        Actor.log.info(f'new_token = {new_token}')
+```
+
+
+## Build-time environment variables
+
+The environment variables described above apply only to Actor **runs**. To make a variable available during the Actor's **build** process, you need to opt in explicitly. In this case, the variables function as Docker build arguments. To use them in your Dockerfile, include the `ARG` instruction:
+
+
+```docker
+ARG MY_BUILD_VARIABLE
+
+RUN echo $MY_BUILD_VARIABLE
+```
+
+
+To pass your user-defined environment variables to the build, enable **Apply environment variables also to the build process** in your Actor's **Code** > **Environment variables** section in Apify Console.
+
+Only user-defined variables are passed to the build
+
+Even with **Apply environment variables also to the build process** enabled, only the variables you define in the Actor's **Environment variables** section are forwarded to the build. The Apify system environment variables (such as `ACTOR_RUN_ID`, `APIFY_TOKEN`, or `ACTOR_DEFAULT_DATASET_ID`) are never available at build time, since the build is not associated with a specific run.
+
+Variables set during the build
+
+Build-time environment variables are not suitable for secrets, as they are not encrypted.
+
+Once a build starts, its environment variables are frozen into that build's Docker image. To change them, you need to create a new build. Learn more in [Builds](https://docs.apify.com/actors/development/builds-and-runs/builds.md).
