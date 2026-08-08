@@ -1,0 +1,123 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 5
+  tags:
+  - stripe
+  - payments
+  - checkout
+  - payment-intents
+  - connect
+  - billing
+  - webhooks
+  - elements
+  - tax
+  - api
+visibility:
+  audiences:
+  - backend-devs
+  - fullstack-devs
+  - platform-engineers
+lifecycle:
+  status: active
+  created: '2026-08-08'
+  updated: '2026-08-08'
+routing:
+  relevant_skills:
+  - name: stripe
+    intensity: 10
+    when: Self-reference for routing to this node.
+activation:
+- type: keyword
+  value: Stripe
+  intensity: 10
+- type: keyword
+  value: Stripe Checkout
+  intensity: 9
+- type: keyword
+  value: PaymentIntent
+  intensity: 9
+- type: keyword
+  value: checkout.sessions
+  intensity: 8
+- type: keyword
+  value: Stripe Connect
+  intensity: 8
+- type: keyword
+  value: stripe webhook signature
+  intensity: 8
+- type: keyword
+  value: Payment Element
+  intensity: 7
+- type: keyword
+  value: stripe-node
+  intensity: 7
+- type: keyword
+  value: Stripe-Version
+  intensity: 7
+- type: vector
+  value: Accept online payments using a hosted checkout page or a payment intents
+    API.
+  intensity: 10
+- type: vector
+  value: Build a marketplace or SaaS platform that pays out to connected accounts.
+  intensity: 9
+- type: vector
+  value: Handle recurring billing, subscriptions, and invoicing for a product.
+  intensity: 9
+- type: vector
+  value: Receive and verify payment webhook events with signature checking.
+  intensity: 8
+- type: vector
+  value: Migrate a payments integration off a deprecated charges or tokens API.
+  intensity: 8
+- type: vector
+  value: Embed a payment form in a custom checkout instead of a hosted page.
+  intensity: 7
+provenance:
+  summary: Stripe payments platform reference. Packages the official Stripe llms.txt
+    index (https://docs.stripe.com/llms.txt) plus a reproducible verbatim mirror of
+    the documentation corpus it links to, under references/vendor/. Covers Checkout,
+    Payment Intents, Connect, Billing, Tax, Elements, webhooks, API versioning, and
+    the agent guidance that prefers current APIs over the deprecated Charges/Sources/Tokens/Card-Element
+    surfaces.
+  sources:
+  - title: Stripe llms.txt index
+    url: https://docs.stripe.com/llms.txt
+    authors:
+    - Stripe
+    inspected_at: '2026-08-08'
+    adopted:
+    - Curated link index organizing Stripe docs by product area (Checkout, Payments,
+      Billing, Elements, Connect, Tax, Identity, Issuing, Treasury)
+    - Agent instructions to resolve the latest SDK version, prefer Checkout, avoid
+      Charges/Sources/Tokens, use Payment Element over Card Element, use Accounts
+      v2 for Connect, and enable dynamic payment methods
+    - Decision-tree depth pattern (overview to quickstart to API reference to object
+      schema) with legacy content marked
+  - title: Stripe documentation corpus (mirrored .md)
+    url: https://docs.stripe.com/
+    authors:
+    - Stripe
+    inspected_at: '2026-08-08'
+    adopted:
+    - Verbatim mirror of every resolvable .md link in the seed index, preserving URL
+      path structure under references/vendor/
+    - Sandbox and test-card guidance, API reference, webhook delivery and verification,
+      Connect, Checkout/Payments/Billing quickstarts, security guidance, and version
+      upgrade notes
+  - title: Stripe logo kit (official brand assets)
+    url: https://stripe.com/newsroom/brand-assets
+    authors:
+    - Stripe
+    license: Stripe trademark. Distributed by Stripe for identification use under
+      the Stripe Marks Usage Terms; not placed in the public domain and not relicensed
+      here.
+    inspected_at: '2026-08-08'
+    adopted:
+    - Official SVG wordmark in Blurple, used as assets/logo-light.svg for light backgrounds
+    - Official SVG wordmark in White, used as assets/logo-dark.svg for dark backgrounds
+    notes: Downloaded from Stripe_logo_kit.zip linked on the official brand-assets
+      page. The marks are used unmodified to identify Stripe as the subject of this
+      node. Do not recolour, distort, or use them to imply endorsement.
