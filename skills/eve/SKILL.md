@@ -1,9 +1,15 @@
 ---
 name: eve
-description: Vercel eve — a filesystem-first framework for durable backend AI agents. Use when creating, editing, debugging, or operating an eve agent project: authoring instructions, defining typed tools, on-demand skills, message channels (Slack/Discord/HTTP), scheduled cron jobs, subagents, sandboxes, human-in-the-loop prompts, model/runtime config, and spend guards. Covers project layout, agent.ts, defineAgent/defineTool, extensions, and the bundled docs.
+description: "Vercel eve — a filesystem-first framework for durable backend AI agents. Use when creating, editing, debugging, or operating an eve agent project: authoring instructions, defining typed tools, on-demand skills, message channels (Slack/Discord/HTTP), scheduled cron jobs, subagents, sandboxes, human-in-the-loop prompts, model/runtime config, and spend guards. Covers project layout, agent.ts, defineAgent/defineTool, extensions, and the bundled docs. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents."
+metadata:
+  display-name: eve
+  category: AI and agents
+  tags: [eve, ai-agents, agent-framework, durable-agents, vercel, typescript]
 ---
 
 # eve
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 `eve` is a framework for **durable backend AI agents** whose authoring interface
 is the filesystem. An agent is a directory on disk; instructions, tools, skills,

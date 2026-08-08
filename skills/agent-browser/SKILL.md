@@ -1,9 +1,15 @@
 ---
 name: agent-browser
-description: Vercel Labs agent-browser — a fast native Rust CLI that drives a real Chrome browser for AI agents. Use when an agent must navigate pages, read or fill the DOM by stable refs, take snapshots, capture screenshots/video, audit accessibility or Web Vitals, introspect a React tree, or run a headless/CDP/remote browser session. Covers installation, the snapshot-and-ref interaction model, commands, engines, providers, sessions, proxy, security, and streaming.
+description: Vercel Labs agent-browser — a fast native Rust CLI that drives a real Chrome browser for AI agents. Use when an agent must navigate pages, read or fill the DOM by stable refs, take snapshots, capture screenshots/video, audit accessibility or Web Vitals, introspect a React tree, or run a headless/CDP/remote browser session. Covers installation, the snapshot-and-ref interaction model, commands, engines, providers, sessions, proxy, security, and streaming. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: agent-browser
+  category: Testing and automation
+  tags: [agent-browser, browser-automation, rust-cli, accessibility, web-vitals, mcp]
 ---
 
 # agent-browser
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 `agent-browser` is a browser-automation CLI built for AI coding agents. It is a
 native Rust binary (no Playwright or Node daemon required) that launches a real

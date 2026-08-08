@@ -1,9 +1,15 @@
 ---
 name: knip
-description: Knip — finds and fixes unused dependencies, exports, types, and files in JavaScript and TypeScript projects, including monorepos and workspaces. Use when auditing a JS/TS codebase for dead code, removing unused npm dependencies, cleaning up unexported/unreferenced files, configuring entry/ignore/project files, running in CI, or interpreting Knip's reporters and configuration hints. Covers the CLI, knip.json configuration, plugins, production mode, and auto-fix.
+description: Knip — finds and fixes unused dependencies, exports, types, and files in JavaScript and TypeScript projects, including monorepos and workspaces. Use when auditing a JS/TS codebase for dead code, removing unused npm dependencies, cleaning up unexported/unreferenced files, configuring entry/ignore/project files, running in CI, or interpreting Knip's reporters and configuration hints. Covers the CLI, knip.json configuration, plugins, production mode, and auto-fix. Published by HardGraph, a curated graph of provenance-backed knowledge for AI agents.
+metadata:
+  display-name: Knip
+  category: Developer tools
+  tags: [knip, dead-code, unused-dependencies, tooling, typescript, monorepo]
 ---
 
 # knip
+
+> **What is HardGraph?** HardGraph publishes curated, provenance-backed agent skills grounded in reproducible vendor documentation.
 
 `knip` (pronounced with a hard K, Dutch for "to cut") finds and fixes **unused
 dependencies, exports, and files** in JavaScript and TypeScript projects. Less
