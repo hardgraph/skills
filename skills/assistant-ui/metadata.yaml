@@ -1,0 +1,109 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 5
+  tags:
+    - assistant-ui
+    - react
+    - chat-ui
+    - ai-chat
+    - llm-ui
+    - shadcn
+    - radix
+visibility:
+  audiences:
+    - frontend-devs
+    - fullstack-devs
+    - ai-engineers
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: assistant-ui-llms-index
+    kind: llms.txt
+    url: "https://www.assistant-ui.com/llms.txt"
+    allowed_hosts:
+      - www.assistant-ui.com
+    allowed_extensions:
+      - .md
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: assistant-ui
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: assistant-ui
+    intensity: 10
+  - type: keyword
+    value: "@assistant-ui/react"
+    intensity: 10
+  - type: keyword
+    value: AI chat interface
+    intensity: 9
+  - type: keyword
+    value: chat UI React
+    intensity: 9
+  - type: keyword
+    value: useExternalStoreRuntime
+    intensity: 9
+  - type: keyword
+    value: Thread runtime
+    intensity: 8
+  - type: keyword
+    value: message parts
+    intensity: 7
+  - type: keyword
+    value: assistant-ui CLI
+    intensity: 8
+  - type: keyword
+    value: shadcn registry
+    intensity: 7
+  - type: vector
+    value: Build an AI chat interface in React with a thread, composer, and streaming.
+    intensity: 10
+  - type: vector
+    value: Wire assistant-ui components to a Vercel AI SDK or custom model runtime.
+    intensity: 9
+  - type: vector
+    value: Render tool-call and multimodal message parts in a chat UI.
+    intensity: 8
+  - type: vector
+    value: Scaffold an assistant-ui project and add components with its CLI.
+    intensity: 8
+  - type: vector
+    value: Style assistant-ui with a shadcn, Radix UI, or Base UI flavor.
+    intensity: 7
+provenance:
+  summary: assistant-ui reference. Packages the official assistant-ui llms.txt index (https://www.assistant-ui.com/llms.txt) plus a reproducible verbatim mirror of the documentation pages it links to, under references/vendor/. Covers the component/runtime/cloud architecture, CLI scaffolding, runtimes (useExternalStoreRuntime, AI SDK runtime), part-based messages, the shadcn/Radix/Base UI registry flavors, DevTools, and web/React Native/terminal targets.
+  sources:
+    - title: assistant-ui llms.txt index
+      url: https://www.assistant-ui.com/llms.txt
+      authors:
+        - assistant-ui
+      inspected_at: "2026-08-08"
+      adopted:
+        - Curated link index organising assistant-ui docs by topic (architecture, installation, CLI, runtimes, base-ui, devtools)
+        - Convention that .md is the canonical docs suffix and .mdx is a backwards-compatible alias
+    - title: assistant-ui documentation corpus (mirrored .md)
+      url: https://www.assistant-ui.com/docs
+      authors:
+        - assistant-ui
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of every resolvable .md link in the seed index, preserving URL path structure under references/vendor/
+        - Architecture, CLI, runtimes, message parts, styling flavors, and DevTools
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: "2026-08-08"
+  file_count: 306
+  sources:
+    - id: assistant-ui-llms-index
+      kind: llms.txt
+      url: https://www.assistant-ui.com/llms.txt
+      seed_path: www.assistant-ui.com/llms.txt
+  failures: []

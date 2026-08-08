@@ -1,0 +1,110 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 5
+  tags:
+    - angular
+    - typescript
+    - framework
+    - signals
+    - rxjs
+    - dependency-injection
+    - standalone-components
+visibility:
+  audiences:
+    - frontend-devs
+    - fullstack-devs
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: angular-llms-index
+    kind: llms.txt
+    url: "https://angular.dev/llms.txt"
+    allowed_hosts:
+      - angular.dev
+    append_extension: ".md"
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: angular
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: Angular
+    intensity: 10
+  - type: keyword
+    value: "@angular/core"
+    intensity: 9
+  - type: keyword
+    value: standalone component
+    intensity: 9
+  - type: keyword
+    value: Angular signals
+    intensity: 9
+  - type: keyword
+    value: dependency injection
+    intensity: 8
+  - type: keyword
+    value: NgModules
+    intensity: 7
+  - type: keyword
+    value: RxJS
+    intensity: 7
+  - type: keyword
+    value: zoneless change detection
+    intensity: 8
+  - type: keyword
+    value: "@if"
+    intensity: 7
+  - type: keyword
+    value: provideRouter
+    intensity: 7
+  - type: vector
+    value: Build a modern Angular application with standalone components and signals.
+    intensity: 10
+  - type: vector
+    value: Migrate an Angular app off NgModules to standalone components.
+    intensity: 9
+  - type: vector
+    value: Manage reactive state in Angular with signals, computed, and resource.
+    intensity: 9
+  - type: vector
+    value: Configure dependency injection and routing in a standalone Angular app.
+    intensity: 8
+  - type: vector
+    value: Replace legacy structural directives with the new control flow blocks.
+    intensity: 8
+provenance:
+  summary: Angular framework reference. Packages the official Angular llms.txt index (https://angular.dev/llms.txt) plus a reproducible verbatim mirror of the documentation pages it links to (served as .md via append_extension), under references/vendor/. Covers standalone components, templates and bindings, signals and computed state, dependency injection, routing, forms, RxJS interop, and the modern guidance that prefers standalone over NgModules, signals over manual change detection, the new control flow, and inject() over constructor-parameter DI.
+  sources:
+    - title: Angular llms.txt index
+      url: https://angular.dev/llms.txt
+      authors:
+        - Google
+      inspected_at: "2026-08-08"
+      adopted:
+        - Curated link index organising Angular docs by topic (components, templates, directives, signals, dependency injection, RxJS)
+        - Markdown rendering of each docs page at the extensionless path plus .md
+    - title: Angular documentation corpus (mirrored .md)
+      url: https://angular.dev
+      authors:
+        - Google
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of every resolvable page in the seed index, preserving URL path structure under references/vendor/
+        - Components, signals, templates, dependency injection, routing, forms, and RxJS interop
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: "2026-08-08"
+  file_count: 88
+  sources:
+    - id: angular-llms-index
+      kind: llms.txt
+      url: https://angular.dev/llms.txt
+      seed_path: angular.dev/llms.txt
+  failures: []

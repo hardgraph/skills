@@ -1,0 +1,340 @@
+# Realtime Voice Chat
+URL: /docs/guides/voice
+
+Build bidirectional voice conversations with AI in React. Realtime audio streaming, interruption handling, and visual state, integrated via assistant-ui.
+
+> For AI agents: a documentation index is available at [llms.txt](/llms.txt). Use `.md` for canonical markdown pages; `.mdx` is kept as a backwards-compatible alias on supported URL paths.
+
+assistant-ui supports realtime bidirectional voice through the `RealtimeVoiceAdapter` interface. Users speak into their microphone, the agent answers with audio, and transcripts appear in the thread while the session runs.
+
+\[interactive preview omitted]
+
+## Three voice modes
+
+assistant-ui ships three related but distinct voice capabilities. Choose the mode that matches the product surface:
+
+| Mode                       | Guide                               | Adapter                  | Direction                      |
+| -------------------------- | ----------------------------------- | ------------------------ | ------------------------------ |
+| **Realtime duplex**        | this page                           | `RealtimeVoiceAdapter`   | Audio ↔ audio, live session    |
+| **Push-to-talk dictation** | [Dictation](/docs/guides/dictation) | `DictationAdapter`       | Audio → text into the composer |
+| **Read-aloud**             | [Speech](/docs/guides/speech)       | `SpeechSynthesisAdapter` | Text → audio for one message   |
+
+Realtime voice is the only mode that owns both directions at once. Dictation fills the composer; speech reads a finished message aloud.
+
+## RealtimeVoiceAdapter
+
+Implement `RealtimeVoiceAdapter` to connect any voice provider. The contract lives in `@assistant-ui/core` and is re-exported from `@assistant-ui/react`:
+
+```
+import type { RealtimeVoiceAdapter } from "@assistant-ui/react";
+
+type RealtimeVoiceAdapter = {
+  connect: (options: {
+    abortSignal?: AbortSignal;
+  }) => RealtimeVoiceAdapter.Session;
+};
+```
+
+A session exposes connection state, mute controls, and event subscriptions:
+
+```
+namespace RealtimeVoiceAdapter {
+  type Status =
+    | { type: "starting" | "running" }
+    | {
+        type: "ended";
+        reason: "finished" | "cancelled" | "error";
+        error?: unknown;
+      };
+
+  type Mode = "listening" | "speaking";
+
+  type TranscriptItem = {
+    role: "user" | "assistant";
+    text: string;
+    isFinal?: boolean;
+  };
+
+  type Session = {
+    status: Status;
+    isMuted: boolean;
+
+    disconnect: () => void;
+    mute: () => void;
+    unmute: () => void;
+
+    onStatusChange: (callback: (status: Status) => void) => Unsubscribe;
+    onTranscript: (
+      callback: (transcript: TranscriptItem) => void,
+    ) => Unsubscribe;
+    onModeChange: (callback: (mode: Mode) => void) => Unsubscribe;
+    onVolumeChange: (callback: (volume: number) => void) => Unsubscribe;
+  };
+}
+```
+
+Session status moves `starting` → `running` → `ended`. The `ended` status includes a reason: `"finished"`, `"cancelled"`, or `"error"` (with an optional `error` field).
+
+Transcripts from `onTranscript` are appended to the message thread automatically:
+
+- User transcripts (`role: "user"`, `isFinal: true`) become user messages.
+- Assistant transcripts (`role: "assistant"`) stream into an assistant message. The message stays in a running status until `isFinal: true`.
+
+`onModeChange` reports `"listening"` (user's turn) or `"speaking"` (agent's turn). `onVolumeChange` reports a real-time level from `0` to `1` for visual feedback such as the voice orb.
+
+## createVoiceSession
+
+`createVoiceSession` removes the manual callback-set boilerplate when you implement an adapter. Pass it the connect options and an async `setup` function that receives `VoiceSessionHelpers` and returns `VoiceSessionControls`:
+
+```
+import {
+  createVoiceSession,
+  type RealtimeVoiceAdapter,
+  type VoiceSessionControls,
+  type VoiceSessionHelpers,
+} from "@assistant-ui/react";
+
+export class MyVoiceAdapter implements RealtimeVoiceAdapter {
+  connect(options: {
+    abortSignal?: AbortSignal;
+  }): RealtimeVoiceAdapter.Session {
+    return createVoiceSession(options, async (helpers: VoiceSessionHelpers) => {
+      const client = await MyVoiceClient.connect();
+
+      client.on("open", () => helpers.setStatus({ type: "running" }));
+      client.on("close", () => helpers.end("finished"));
+      client.on("error", (err: unknown) => helpers.end("error", err));
+      client.on("transcript", (item) => helpers.emitTranscript(item));
+      client.on("mode", (mode) => helpers.emitMode(mode));
+      client.on("volume", (v: number) => helpers.emitVolume(v));
+
+      const controls: VoiceSessionControls = {
+        disconnect: () => client.close(),
+        mute: () => client.setMuted(true),
+        unmute: () => client.setMuted(false),
+      };
+      return controls;
+    });
+  }
+}
+```
+
+`VoiceSessionHelpers` provides:
+
+| Helper                 | Role                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| `setStatus(status)`    | Update session status (for example to `{ type: "running" }`) |
+| `end(reason, error?)`  | End the session and clean up subscribers                     |
+| `emitTranscript(item)` | Push a transcript into the thread                            |
+| `emitMode(mode)`       | Report `"listening"` or `"speaking"`                         |
+| `emitVolume(volume)`   | Report a level from `0` to `1`                               |
+| `isDisposed()`         | Skip events after teardown                                   |
+
+`createVoiceSession` wires status tracking, mute state, abort-signal disconnect, and all `on*` subscriptions for you.
+
+## Configuration
+
+Pass a `RealtimeVoiceAdapter` implementation on the runtime:
+
+```
+const runtime = useChatRuntime({
+  adapters: {
+    voice: new MyVoiceAdapter({ /* provider options */ }),
+  },
+});
+```
+
+When a voice adapter is provided, `capabilities.voice` is set to `true` automatically.
+
+## React hooks
+
+These hooks are exported from `@assistant-ui/react` and read the active voice session on the current thread.
+
+### useVoiceState
+
+Returns the current `VoiceSessionState`, or `undefined` when no session is active:
+
+```
+import { useVoiceState } from "@assistant-ui/react";
+
+const voiceState = useVoiceState();
+// voiceState?.status.type: "starting" | "running" | "ended"
+// voiceState?.isMuted: boolean
+// voiceState?.mode: "listening" | "speaking"
+```
+
+`VoiceSessionState` is:
+
+```
+type VoiceSessionState = {
+  readonly status: RealtimeVoiceAdapter.Status;
+  readonly isMuted: boolean;
+  readonly mode: RealtimeVoiceAdapter.Mode;
+};
+```
+
+### useVoiceVolume
+
+Subscribes to real-time audio level independently of session state:
+
+```
+import { useVoiceVolume } from "@assistant-ui/react";
+
+const volume = useVoiceVolume(); // number from 0 to 1
+```
+
+### useVoiceControls
+
+Returns methods that drive the session:
+
+```
+import { useVoiceControls } from "@assistant-ui/react";
+
+const { connect, disconnect, mute, unmute } = useVoiceControls();
+```
+
+### Headless control bar
+
+Build your own controls from the hooks when you need a custom layout:
+
+```
+import { useVoiceState, useVoiceControls } from "@assistant-ui/react";
+import { PhoneIcon, PhoneOffIcon, MicIcon, MicOffIcon } from "lucide-react";
+
+function VoiceControls() {
+  const voiceState = useVoiceState();
+  const { connect, disconnect, mute, unmute } = useVoiceControls();
+
+  const isRunning = voiceState?.status.type === "running";
+  const isStarting = voiceState?.status.type === "starting";
+  const isMuted = voiceState?.isMuted ?? false;
+
+  if (!isRunning && !isStarting) {
+    return (
+      <button onClick={() => connect()}>
+        <PhoneIcon /> Connect
+      </button>
+    );
+  }
+
+  return (
+    <>
+      <button onClick={() => (isMuted ? unmute() : mute())} disabled={!isRunning}>
+        {isMuted ? <MicOffIcon /> : <MicIcon />}
+        {isMuted ? "Unmute" : "Mute"}
+      </button>
+      <button onClick={() => disconnect()}>
+        <PhoneOffIcon /> Disconnect
+      </button>
+    </>
+  );
+}
+```
+
+## Voice UI component
+
+The fastest path is the styled `voice` registry component. It ships a `VoiceControl` bar, mute and disconnect buttons, status indicator, and animated `VoiceOrb` built on the hooks above.
+
+### Install
+
+With the style-aware registry configured in components.json ("@assistant-ui": "https\://r.assistant-ui.com/styles/{style}/{name}.json"), the flavor resolves from the project style automatically:
+
+```bash
+npx shadcn@latest add @assistant-ui/voice
+```
+
+Or add by direct URL without registry configuration:
+
+```bash
+npx shadcn@latest add https://r.assistant-ui.com/base/voice.json
+```
+
+Or install manually:
+
+```bash
+npm install @assistant-ui/react
+```
+
+```bash
+npx shadcn@latest add button tooltip
+```
+
+Then copy these source files from GitHub:
+
+- [components/assistant-ui/voice.tsx](https://github.com/assistant-ui/assistant-ui/blob/main/packages/ui/src/components/assistant-ui/voice.tsx)
+- [components/assistant-ui/tooltip-icon-button.tsx](https://github.com/assistant-ui/assistant-ui/blob/main/packages/ui/src/components/assistant-ui/tooltip-icon-button.tsx)
+
+```bash
+curl -sSL --create-dirs \
+  -o components/assistant-ui/voice.tsx https://raw.githubusercontent.com/assistant-ui/assistant-ui/main/packages/ui/src/components/assistant-ui/voice.tsx \
+  -o components/assistant-ui/tooltip-icon-button.tsx https://raw.githubusercontent.com/assistant-ui/assistant-ui/main/packages/ui/src/components/assistant-ui/tooltip-icon-button.tsx
+```
+
+This adds `/components/assistant-ui/voice.tsx` to your project. Adjust styling as needed.
+
+### Use with a runtime
+
+```
+import { Thread } from "@/components/assistant-ui/thread";
+import { VoiceControl } from "@/components/assistant-ui/voice";
+import { AuiIf } from "@assistant-ui/react";
+
+export default function Chat() {
+  return (
+    <div className="flex h-full flex-col">
+      <AuiIf condition={(s) => s.thread.capabilities.voice}>
+        <VoiceControl />
+      </AuiIf>
+      <div className="min-h-0 flex-1">
+        <Thread />
+      </div>
+    </div>
+  );
+}
+```
+
+See the [Voice UI page](/docs/ui/voice) for anatomy, variants, and state samples.
+
+## Example: LiveKit
+
+[LiveKit](https://livekit.io/) provides realtime voice over WebRTC rooms with transcription support. The browser adapter joins a room; a separate agent worker (STT, LLM, TTS) joins the same room. Without an agent in the room, the client connects but has nothing to talk to.
+
+The [`with-livekit`](https://github.com/assistant-ui/assistant-ui/tree/main/examples/with-livekit) example shows the full wiring:
+
+1. **Adapter** (`examples/with-livekit/lib/livekit-voice-adapter.ts`): `LiveKitVoiceAdapter` implements `RealtimeVoiceAdapter`. `connect` calls `createVoiceSession`, connects a LiveKit `Room`, enables the local microphone, attaches remote audio tracks, and maps room events to helpers (`setStatus`, `end`, `emitMode`, `emitVolume`, `emitTranscript`).
+2. **Token route** (`examples/with-livekit/app/api/livekit-token/route.ts`): mints a short-lived room token server-side so secrets stay off the client.
+3. **Agent worker** (`examples/with-livekit/agent/`): a Python LiveKit Agents process that joins the room and runs the voice pipeline.
+
+Minimal runtime wiring:
+
+```
+import { LiveKitVoiceAdapter } from "@/lib/livekit-voice-adapter";
+
+const runtime = useChatRuntime({
+  adapters: {
+    voice: new LiveKitVoiceAdapter({
+      url: process.env.NEXT_PUBLIC_LIVEKIT_URL!,
+      token: async () => {
+        const res = await fetch("/api/livekit-token", { method: "POST" });
+        const { token } = await res.json();
+        return token;
+      },
+    }),
+  },
+});
+```
+
+Clone the example for the adapter source, token endpoint, and agent worker rather than re-implementing the full LiveKit event map from scratch.
+
+You can also scaffold it with the CLI:
+
+```
+npx assistant-ui create my-app -e with-livekit
+```
+
+## Related guides
+
+- [Dictation](/docs/guides/dictation): push-to-talk speech-to-text into the composer (`DictationAdapter`, `ComposerPrimitive.Dictate`).
+- [Speech](/docs/guides/speech): read-aloud for assistant messages (`SpeechSynthesisAdapter`, `ActionBarPrimitive.Speak`).
+- [Voice UI](/docs/ui/voice): registry component reference for `VoiceControl` and `VoiceOrb`.
+- [Voice API reference](/docs/api-reference/voice): generated types for sessions, speech, and dictation.

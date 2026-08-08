@@ -1,0 +1,843 @@
+# Primitives
+URL: /docs/react-native/primitives
+
+Composable React Native components for building chat UIs.
+
+> For AI agents: a documentation index is available at [llms.txt](/llms.txt). Use `.md` for canonical markdown pages; `.mdx` is kept as a backwards-compatible alias on supported URL paths.
+
+Primitives are thin wrappers around React Native components (`View`, `TextInput`, `FlatList`, `Pressable`) that integrate with the assistant-ui runtime. They accept all standard React Native props and add runtime-aware behavior.
+
+Primitives are accessed via namespace imports (e.g. `ThreadPrimitive.Root`, `ComposerPrimitive.Input`), matching the pattern used in `@assistant-ui/react`.
+
+Many primitives share their core logic with `@assistant-ui/react` via `@assistant-ui/core/react` — only the UI layer (View/Pressable/Text vs DOM elements) differs.
+
+## Thread
+
+```
+import { ThreadPrimitive } from "@assistant-ui/react-native";
+```
+
+### ThreadPrimitive.Root
+
+Container `View` for the thread area.
+
+```
+<ThreadPrimitive.Root style={{ flex: 1 }}>
+  {children}
+</ThreadPrimitive.Root>
+```
+
+| Prop      | Type        | Description                      |
+| --------- | ----------- | -------------------------------- |
+| `...rest` | `ViewProps` | Standard React Native View props |
+
+### ThreadPrimitive.Messages
+
+Deprecated `FlatList`-based message list kept for backwards compatibility. It uses `ThreadPrimitive.MessagesFlatList` internally, but keeps the previous no-auto-scroll default so existing apps with custom scroll handling do not change behavior on upgrade.
+
+Use `ThreadPrimitive.MessagesFlatList` for new React Native threads.
+
+```
+<ThreadPrimitive.Messages>
+  {() => <MyMessage />}
+</ThreadPrimitive.Messages>
+```
+
+You can also provide role-specific components:
+
+```
+<ThreadPrimitive.Messages>
+  {({ message }) => {
+    if (message.role === "user") return <MyUserMessage />;
+    return <MyAssistantMessage />;
+  }}
+</ThreadPrimitive.Messages>
+```
+
+| Prop         | Type                                     | Description                                                                                                                                                                                                                                                                                               |
+| ------------ | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `components` | `MessageComponents`                      | Component map — provide either a `Message` component (used for all roles) or role-specific `UserMessage`, `AssistantMessage`, and optionally `SystemMessage`. Edit composers can be set via `EditComposer` or role-specific variants (`UserEditComposer`, `AssistantEditComposer`, `SystemEditComposer`). |
+| `...rest`    | `ThreadPrimitive.MessagesFlatList` props | Same props as `ThreadPrimitive.MessagesFlatList`, with the auto-scroll options defaulting to `false` on this deprecated wrapper                                                                                                                                                                           |
+
+### ThreadPrimitive.MessagesFlatList
+
+Canonical React Native message viewport backed by `FlatList`. It scopes each row to its message, forwards refs to the underlying `FlatList`, and handles scroll-to-bottom behavior for common chat flows.
+
+```
+<ThreadPrimitive.MessagesFlatList autoScroll>
+  {() => <MyMessage />}
+</ThreadPrimitive.MessagesFlatList>
+```
+
+| Prop                           | Type                         | Description                                                                                        |
+| ------------------------------ | ---------------------------- | -------------------------------------------------------------------------------------------------- |
+| `children`                     | `({ message }) => ReactNode` | Render function for each message                                                                   |
+| `components`                   | `MessageComponents`          | Component map alternative to `children`                                                            |
+| `autoScroll`                   | `boolean`                    | Automatically keeps the list at the bottom while it is already near the bottom. Defaults to `true` |
+| `scrollToBottomOnRunStart`     | `boolean`                    | Scrolls to the bottom when a run starts. Defaults to `true`                                        |
+| `scrollToBottomOnInitialize`   | `boolean`                    | Scrolls to the bottom when messages first appear. Defaults to `true`                               |
+| `scrollToBottomOnThreadSwitch` | `boolean`                    | Scrolls to the bottom when switching threads. Defaults to `true`                                   |
+| `...rest`                      | `FlatListProps`              | Standard FlatList props, except `data`, `renderItem`, and `children`                               |
+
+The built-in auto-scroll behavior assumes the default, non-inverted `FlatList` direction.
+
+### ThreadPrimitive.MessageByIndex
+
+Renders a single message at a specific index in the thread. Provides message context so that `useAuiState((s) => s.message)` works inside the rendered component. This component is shared from `@assistant-ui/core/react`.
+
+```
+<ThreadPrimitive.MessageByIndex
+  index={0}
+  components={{
+    UserMessage: MyUserMessage,
+    AssistantMessage: MyAssistantMessage,
+  }}
+/>
+```
+
+| Prop         | Type                | Description                                      |
+| ------------ | ------------------- | ------------------------------------------------ |
+| `index`      | `number`            | Zero-based index of the message to render        |
+| `components` | `MessageComponents` | Same component map as `ThreadPrimitive.Messages` |
+
+### ThreadPrimitive.Empty
+
+Renders its children only when the thread has no messages. Deprecated in favor of `AuiIf`.
+
+```
+<ThreadPrimitive.Empty>
+  <Text>Send a message to get started</Text>
+</ThreadPrimitive.Empty>
+```
+
+### ThreadPrimitive.If
+
+Conditional rendering based on thread state. Deprecated in favor of `AuiIf`.
+
+```
+<ThreadPrimitive.If empty>
+  <Text>No messages yet</Text>
+</ThreadPrimitive.If>
+
+<ThreadPrimitive.If running>
+  <ActivityIndicator />
+</ThreadPrimitive.If>
+```
+
+| Prop      | Type      | Description                                                   |
+| --------- | --------- | ------------------------------------------------------------- |
+| `empty`   | `boolean` | Renders children when thread emptiness matches this value     |
+| `running` | `boolean` | Renders children when thread running state matches this value |
+
+### ThreadPrimitive.Suggestion
+
+`Pressable` that inserts or sends a hard-coded suggestion prompt. Unlike `SuggestionPrimitive.Trigger`, this component does not require a suggestion context — the prompt is passed directly as a prop.
+
+```
+<ThreadPrimitive.Suggestion prompt="What can you help me with?" send>
+  <Text>What can you help me with?</Text>
+</ThreadPrimitive.Suggestion>
+```
+
+| Prop            | Type             | Description                                                                                 |
+| --------------- | ---------------- | ------------------------------------------------------------------------------------------- |
+| `prompt`        | `string`         | The text to send or insert into the composer                                                |
+| `send`          | `boolean`        | When true, sends the prompt immediately; when false, inserts into composer (default: false) |
+| `clearComposer` | `boolean`        | Whether to replace composer text (default: true)                                            |
+| `...rest`       | `PressableProps` | Standard Pressable props (except `onPress`)                                                 |
+
+### ThreadPrimitive.Suggestions
+
+Renders all suggestions using the provided component configuration. This component is shared from `@assistant-ui/core/react`.
+
+```
+<ThreadPrimitive.Suggestions>
+  {() => <MySuggestion />}
+</ThreadPrimitive.Suggestions>
+```
+
+| Prop         | Type                            | Description                             |
+| ------------ | ------------------------------- | --------------------------------------- |
+| `components` | `{ Suggestion: ComponentType }` | Component to render for each suggestion |
+
+### ThreadPrimitive.SuggestionByIndex
+
+Renders a single suggestion at the specified index, providing suggestion context. This component is shared from `@assistant-ui/core/react`.
+
+```
+<ThreadPrimitive.SuggestionByIndex
+  index={0}
+  components={{ Suggestion: MySuggestion }}
+/>
+```
+
+| Prop         | Type                            | Description                                  |
+| ------------ | ------------------------------- | -------------------------------------------- |
+| `index`      | `number`                        | Zero-based index of the suggestion to render |
+| `components` | `{ Suggestion: ComponentType }` | Component to render for the suggestion       |
+
+### AuiIf
+
+Conditional rendering based on assistant state. Replaces the deprecated `ThreadPrimitive.Empty`, `ThreadPrimitive.If`, `MessagePrimitive.If`, and `ComposerPrimitive.If`.
+
+```
+import { AuiIf } from "@assistant-ui/react-native";
+
+<AuiIf condition={(s) => s.thread.isEmpty}>
+  <Text>Send a message to get started</Text>
+</AuiIf>
+
+<AuiIf condition={(s) => s.thread.isRunning}>
+  <ActivityIndicator />
+</AuiIf>
+```
+
+| Prop        | Type                 | Description                                            |
+| ----------- | -------------------- | ------------------------------------------------------ |
+| `condition` | `(state) => boolean` | Selector that determines whether children are rendered |
+
+## Composer
+
+```
+import { ComposerPrimitive } from "@assistant-ui/react-native";
+```
+
+### ComposerPrimitive.Root
+
+Container `View` for the composer area.
+
+```
+<ComposerPrimitive.Root style={styles.composerContainer}>
+  {children}
+</ComposerPrimitive.Root>
+```
+
+### ComposerPrimitive.Input
+
+`TextInput` wired to the composer runtime. Value and `onChangeText` are managed automatically.
+
+```
+<ComposerPrimitive.Input
+  placeholder="Message..."
+  multiline
+  style={styles.input}
+/>
+```
+
+| Prop         | Type                | Description                                                 |
+| ------------ | ------------------- | ----------------------------------------------------------- |
+| `submitMode` | `"enter" \| "none"` | Whether Enter sends the message on web (default: `"enter"`) |
+| `...rest`    | `TextInputProps`    | Standard TextInput props (except `value`, `onChangeText`)   |
+
+### ComposerPrimitive.Send
+
+`Pressable` that sends the current message. Automatically disabled when the composer is empty.
+
+```
+<ComposerPrimitive.Send style={styles.sendButton}>
+  <Text>Send</Text>
+</ComposerPrimitive.Send>
+```
+
+### ComposerPrimitive.Cancel
+
+`Pressable` that cancels the current run. Automatically disabled when no run is active.
+
+```
+<ComposerPrimitive.Cancel style={styles.cancelButton}>
+  <Text>Stop</Text>
+</ComposerPrimitive.Cancel>
+```
+
+### ComposerPrimitive.Attachments
+
+Renders composer attachments using the provided component configuration.
+
+```
+<ComposerPrimitive.Attachments>
+  {({ attachment }) => {
+    if (attachment.type === "image") return <MyImageAttachment />;
+    if (attachment.type === "document") return <MyDocumentAttachment />;
+    return <MyFallbackAttachment />;
+  }}
+</ComposerPrimitive.Attachments>
+```
+
+| Prop         | Type                                        | Description                            |
+| ------------ | ------------------------------------------- | -------------------------------------- |
+| `components` | `{ Image?, Document?, File?, Attachment? }` | Component renderers by attachment type |
+
+### ComposerPrimitive.AddAttachment
+
+`Pressable` for triggering attachment addition. The actual file picker must be implemented by the consumer (e.g. using `expo-document-picker` or `expo-image-picker`).
+
+```
+<ComposerPrimitive.AddAttachment>
+  <Text>Attach</Text>
+</ComposerPrimitive.AddAttachment>
+```
+
+### ComposerPrimitive.AttachmentByIndex
+
+Renders a single composer attachment at the specified index. Useful for building custom attachment layouts.
+
+```
+<ComposerPrimitive.AttachmentByIndex
+  index={0}
+  components={{
+    Image: MyImageAttachment,
+    Attachment: MyFallbackAttachment,
+  }}
+/>
+```
+
+| Prop         | Type                                        | Description                                  |
+| ------------ | ------------------------------------------- | -------------------------------------------- |
+| `index`      | `number`                                    | Zero-based index of the attachment to render |
+| `components` | `{ Image?, Document?, File?, Attachment? }` | Component renderers by attachment type       |
+
+### ComposerPrimitive.EditInput
+
+`TextInput` wired to the edit composer runtime. Used inside an edit composer to allow editing an existing message. Value and `onChangeText` are managed automatically.
+
+```
+<ComposerPrimitive.EditInput
+  placeholder="Edit message..."
+  multiline
+  style={styles.input}
+/>
+```
+
+| Prop      | Type             | Description                                               |
+| --------- | ---------------- | --------------------------------------------------------- |
+| `...rest` | `TextInputProps` | Standard TextInput props (except `value`, `onChangeText`) |
+
+### ComposerPrimitive.EditSend
+
+`Pressable` that confirms and submits a message edit. Automatically disabled when the composer is empty.
+
+```
+<ComposerPrimitive.EditSend style={styles.sendButton}>
+  <Text>Save</Text>
+</ComposerPrimitive.EditSend>
+```
+
+### ComposerPrimitive.EditCancel
+
+`Pressable` that cancels an in-progress message edit and returns to the original message.
+
+```
+<ComposerPrimitive.EditCancel style={styles.cancelButton}>
+  <Text>Cancel</Text>
+</ComposerPrimitive.EditCancel>
+```
+
+### Conditional Rendering (Composer)
+
+Use `AuiIf` for conditional rendering based on composer state:
+
+```
+<AuiIf condition={(s) => s.composer.isEditing}>
+  <Text>Currently editing</Text>
+</AuiIf>
+
+<AuiIf condition={(s) => s.composer.dictation != null}>
+  <Text>Dictation active</Text>
+</AuiIf>
+```
+
+## Message
+
+```
+import { MessagePrimitive } from "@assistant-ui/react-native";
+```
+
+### MessagePrimitive.Root
+
+Container `View` for a single message.
+
+```
+<MessagePrimitive.Root style={styles.messageBubble}>
+  {children}
+</MessagePrimitive.Root>
+```
+
+### MessagePrimitive.Content
+
+Renders message content parts using render-prop functions instead of the component-map approach used by `MessagePrimitive.Parts`. Each part type receives a `part` object and its `index`. Registered toolkit renderers are automatically dispatched and take priority over `renderToolCall`.
+
+```
+<MessagePrimitive.Content
+  renderText={({ part }) => <Text>{part.text}</Text>}
+  renderToolCall={({ part, index }) => (
+    <Text>Tool: {part.toolName}</Text>
+  )}
+  renderImage={({ part }) => (
+    <Image source={{ uri: part.image }} />
+  )}
+/>
+```
+
+| Prop              | Type                                       | Description                                                              |
+| ----------------- | ------------------------------------------ | ------------------------------------------------------------------------ |
+| `renderText`      | `(props: { part, index }) => ReactElement` | Renderer for text parts (default: React Native `<Text>`)                 |
+| `renderToolCall`  | `(props: { part, index }) => ReactElement` | Fallback renderer for tool-call parts not handled by registered tool UIs |
+| `renderImage`     | `(props: { part, index }) => ReactElement` | Renderer for image parts                                                 |
+| `renderReasoning` | `(props: { part, index }) => ReactElement` | Renderer for reasoning parts                                             |
+| `renderSource`    | `(props: { part, index }) => ReactElement` | Renderer for source parts                                                |
+| `renderFile`      | `(props: { part, index }) => ReactElement` | Renderer for file parts                                                  |
+| `renderData`      | `(props: { part, index }) => ReactElement` | Fallback renderer for data parts not handled by registered data UIs      |
+
+#### Rendering Markdown
+
+`MessagePrimitive.Content` renders text parts with React Native's `<Text>` by default, so markdown syntax is displayed as plain text. To render markdown, install a React Native markdown renderer and pass it through `renderText`:
+
+```bash
+npm install react-native-markdown-display
+```
+
+```
+import Markdown from "react-native-markdown-display";
+import { MessagePrimitive } from "@assistant-ui/react-native";
+
+const AssistantMessage = () => {
+  return (
+    <MessagePrimitive.Root>
+      <MessagePrimitive.Content
+        renderText={({ part }) => (
+          <Markdown>{part.text}</Markdown>
+        )}
+      />
+    </MessagePrimitive.Root>
+  );
+};
+```
+
+### MessagePrimitive.Parts
+
+Renders message content parts via a `components` prop. Tool call and data parts automatically render registered toolkit renderers and data UIs (via `useAssistantDataUI`), falling back to components provided here. A default `Text` component using React Native's `<Text>` is provided out of the box.
+
+```
+<MessagePrimitive.Parts>
+  {({ part }) => {
+    if (part.type === "text") return <Text>{part.text}</Text>;
+    if (part.type === "image") return <Image source={{ uri: part.image }} />;
+    if (part.type === "tool-call") return <MyToolCallComponent {...part} />;
+    return null;
+  }}
+</MessagePrimitive.Parts>
+```
+
+| Prop         | Type     | Description                                            |
+| ------------ | -------- | ------------------------------------------------------ |
+| `components` | `object` | Component map for rendering each part type. See below. |
+
+**`components` fields:**
+
+| Field            | Type                                        | Description                                                                                                                                           |
+| ---------------- | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Text`           | `TextMessagePartComponent`                  | Text part renderer (default: React Native `<Text>`)                                                                                                   |
+| `Image`          | `ImageMessagePartComponent`                 | Image part renderer                                                                                                                                   |
+| `Reasoning`      | `ReasoningMessagePartComponent`             | Reasoning part renderer                                                                                                                               |
+| `Source`         | `SourceMessagePartComponent`                | Source part renderer                                                                                                                                  |
+| `File`           | `FileMessagePartComponent`                  | File part renderer                                                                                                                                    |
+| `Unstable_Audio` | `Unstable_AudioMessagePartComponent`        | Audio part renderer (deprecated, render `audio/*` from `File`)                                                                                        |
+| `tools`          | `{ by_name?, Fallback? }` or `{ Override }` | Tool call rendering config — use `by_name` to map tool names to components, `Fallback` for unregistered tools, or `Override` to handle all tool calls |
+| `data`           | `{ by_name?, Fallback? }`                   | Data part rendering config — use `by_name` to map data event names, `Fallback` for unmatched events                                                   |
+| `Empty`          | `EmptyMessagePartComponent`                 | Component shown for empty messages                                                                                                                    |
+| `Quote`          | `QuoteMessagePartComponent`                 | Component for rendering quoted message references                                                                                                     |
+| `ChainOfThought` | `ComponentType`                             | Groups all reasoning and tool-call parts into a single component (mutually exclusive with `Reasoning`/`tools`/`ToolGroup`/`ReasoningGroup`)           |
+
+### MessagePrimitive.PartByIndex
+
+Renders a single message part at the specified index, providing part context. Useful for building custom part layouts outside of `MessagePrimitive.Parts`. This component is shared from `@assistant-ui/core/react`.
+
+```
+<MessagePrimitive.PartByIndex
+  index={0}
+  components={{
+    Text: ({ text }) => <Text>{text}</Text>,
+    tools: { Fallback: MyToolComponent },
+  }}
+/>
+```
+
+| Prop         | Type     | Description                                    |
+| ------------ | -------- | ---------------------------------------------- |
+| `index`      | `number` | Zero-based index of the message part to render |
+| `components` | `object` | Same component map as `MessagePrimitive.Parts` |
+
+### Conditional Rendering (Message)
+
+Use `AuiIf` for conditional rendering based on message properties:
+
+```
+<AuiIf condition={(s) => s.message.role === "user"}>
+  <Text>You said:</Text>
+</AuiIf>
+
+<AuiIf condition={(s) => s.message.role === "assistant" && s.message.isLast}>
+  <ActivityIndicator />
+</AuiIf>
+```
+
+### MessagePrimitive.Attachments
+
+Renders user message attachments using the provided component configuration.
+
+```
+<MessagePrimitive.Attachments>
+  {({ attachment }) => {
+    if (attachment.type === "image") return <MyImageAttachment />;
+    return <MyFallbackAttachment />;
+  }}
+</MessagePrimitive.Attachments>
+```
+
+| Prop         | Type                                        | Description                            |
+| ------------ | ------------------------------------------- | -------------------------------------- |
+| `components` | `{ Image?, Document?, File?, Attachment? }` | Component renderers by attachment type |
+
+### MessagePrimitive.AttachmentByIndex
+
+Renders a single message attachment at the specified index. Useful for building custom attachment layouts outside of `MessagePrimitive.Attachments`.
+
+```
+<MessagePrimitive.AttachmentByIndex
+  index={0}
+  components={{
+    Image: MyImageAttachment,
+    Attachment: MyFallbackAttachment,
+  }}
+/>
+```
+
+| Prop         | Type                                        | Description                                  |
+| ------------ | ------------------------------------------- | -------------------------------------------- |
+| `index`      | `number`                                    | Zero-based index of the attachment to render |
+| `components` | `{ Image?, Document?, File?, Attachment? }` | Component renderers by attachment type       |
+
+## Attachment
+
+```
+import { AttachmentPrimitive } from "@assistant-ui/react-native";
+```
+
+Primitives for rendering individual attachments (inside `ComposerPrimitive.Attachments` or `MessagePrimitive.Attachments`).
+
+### AttachmentPrimitive.Root
+
+Container `View` for an attachment.
+
+```
+<AttachmentPrimitive.Root style={styles.attachment}>
+  {children}
+</AttachmentPrimitive.Root>
+```
+
+### AttachmentPrimitive.Name
+
+`Text` component displaying the attachment filename.
+
+```
+<AttachmentPrimitive.Name style={styles.filename} />
+```
+
+### AttachmentPrimitive.Thumb
+
+`Text` component displaying the file extension (e.g. `.pdf`), or the attachment type (e.g. `image`) when the filename has no extension (including leading-dot names like `.env`). If you pass `children`, they override that text.
+
+```
+<AttachmentPrimitive.Thumb style={styles.extension} />
+```
+
+### AttachmentPrimitive.Remove
+
+`Pressable` that removes the attachment from the composer.
+
+```
+<AttachmentPrimitive.Remove>
+  <Text>Remove</Text>
+</AttachmentPrimitive.Remove>
+```
+
+## ActionBar
+
+```
+import { ActionBarPrimitive } from "@assistant-ui/react-native";
+```
+
+### ActionBarPrimitive.Copy
+
+`Pressable` that copies the message content. Pass a platform clipboard writer through `copyToClipboard`. Supports function-as-children for copy state feedback.
+
+```
+import * as Clipboard from "expo-clipboard";
+
+const copyToClipboard = async (text: string) => {
+  const didCopy = await Clipboard.setStringAsync(text);
+  if (!didCopy) throw new Error("Clipboard write failed");
+};
+
+<ActionBarPrimitive.Copy
+  copiedDuration={3000}
+  copyToClipboard={copyToClipboard}
+>
+  {({ isCopied }) => <Text>{isCopied ? "Copied!" : "Copy"}</Text>}
+</ActionBarPrimitive.Copy>
+```
+
+| Prop              | Type                                      | Description                                           |
+| ----------------- | ----------------------------------------- | ----------------------------------------------------- |
+| `copiedDuration`  | `number`                                  | Duration in ms to show "copied" state (default: 3000) |
+| `copyToClipboard` | `(text: string) => void \| Promise<void>` | Platform clipboard writer                             |
+
+### ActionBarPrimitive.Edit
+
+`Pressable` that enters edit mode for a message.
+
+```
+<ActionBarPrimitive.Edit>
+  <Text>Edit</Text>
+</ActionBarPrimitive.Edit>
+```
+
+### ActionBarPrimitive.Reload
+
+`Pressable` that regenerates an assistant message.
+
+```
+<ActionBarPrimitive.Reload>
+  <Text>Retry</Text>
+</ActionBarPrimitive.Reload>
+```
+
+### ActionBarPrimitive.FeedbackPositive / ActionBarPrimitive.FeedbackNegative
+
+`Pressable` buttons for submitting message feedback.
+
+```
+<ActionBarPrimitive.FeedbackPositive>
+  {({ isSubmitted }) => <Text>{isSubmitted ? "Liked" : "Like"}</Text>}
+</ActionBarPrimitive.FeedbackPositive>
+
+<ActionBarPrimitive.FeedbackNegative>
+  {({ isSubmitted }) => <Text>{isSubmitted ? "Disliked" : "Dislike"}</Text>}
+</ActionBarPrimitive.FeedbackNegative>
+```
+
+## BranchPicker
+
+```
+import { BranchPickerPrimitive } from "@assistant-ui/react-native";
+```
+
+### BranchPickerPrimitive.Previous / BranchPickerPrimitive.Next
+
+`Pressable` buttons to navigate between message branches.
+
+```
+<View style={{ flexDirection: "row", alignItems: "center" }}>
+  <BranchPickerPrimitive.Previous>
+    <Text>-</Text>
+  </BranchPickerPrimitive.Previous>
+  <BranchPickerPrimitive.Number />
+  <Text>/</Text>
+  <BranchPickerPrimitive.Count />
+  <BranchPickerPrimitive.Next>
+    <Text>+</Text>
+  </BranchPickerPrimitive.Next>
+</View>
+```
+
+### BranchPickerPrimitive.Number / BranchPickerPrimitive.Count
+
+`Text` components displaying the current branch number and total count.
+
+## ThreadList
+
+```
+import { ThreadListPrimitive } from "@assistant-ui/react-native";
+```
+
+### ThreadListPrimitive.Root
+
+Container `View` for the thread list.
+
+```
+<ThreadListPrimitive.Root style={styles.threadList}>
+  {children}
+</ThreadListPrimitive.Root>
+```
+
+### ThreadListPrimitive.Items
+
+`FlatList` of thread IDs with runtime integration.
+
+```
+<ThreadListPrimitive.Items
+  renderItem={({ threadId }) => (
+    <ThreadListEntry threadId={threadId} />
+  )}
+/>
+```
+
+| Prop         | Type                                                           | Description                                           |
+| ------------ | -------------------------------------------------------------- | ----------------------------------------------------- |
+| `renderItem` | `(props: { threadId: string; index: number }) => ReactElement` | Thread item renderer                                  |
+| `...rest`    | `FlatListProps`                                                | Standard FlatList props (except `data`, `renderItem`) |
+
+### ThreadListPrimitive.New
+
+`Pressable` that creates a new thread.
+
+```
+<ThreadListPrimitive.New style={styles.newThreadButton}>
+  <Text>New Chat</Text>
+</ThreadListPrimitive.New>
+```
+
+## ThreadListItem
+
+```
+import { ThreadListItemPrimitive } from "@assistant-ui/react-native";
+```
+
+Primitives for rendering individual thread list items.
+
+### ThreadListItemPrimitive.Root
+
+Container `View` for a thread list item.
+
+```
+<ThreadListItemPrimitive.Root style={styles.threadItem}>
+  {children}
+</ThreadListItemPrimitive.Root>
+```
+
+### ThreadListItemPrimitive.Title
+
+Renders the thread title text. Falls back to the provided fallback when title is empty. This component is shared from `@assistant-ui/core/react`.
+
+```
+<ThreadListItemPrimitive.Title fallback="New Chat" />
+```
+
+| Prop       | Type        | Description                         |
+| ---------- | ----------- | ----------------------------------- |
+| `fallback` | `ReactNode` | Content to show when title is empty |
+
+### ThreadListItemPrimitive.Trigger
+
+`Pressable` that switches to the thread.
+
+```
+<ThreadListItemPrimitive.Trigger>
+  <ThreadListItemPrimitive.Title fallback="New Chat" />
+</ThreadListItemPrimitive.Trigger>
+```
+
+### ThreadListItemPrimitive.Delete
+
+`Pressable` that deletes the thread.
+
+```
+<ThreadListItemPrimitive.Delete>
+  <Text>Delete</Text>
+</ThreadListItemPrimitive.Delete>
+```
+
+### ThreadListItemPrimitive.Archive / ThreadListItemPrimitive.Unarchive
+
+`Pressable` buttons that archive or unarchive the thread.
+
+```
+<ThreadListItemPrimitive.Archive>
+  <Text>Archive</Text>
+</ThreadListItemPrimitive.Archive>
+
+<ThreadListItemPrimitive.Unarchive>
+  <Text>Unarchive</Text>
+</ThreadListItemPrimitive.Unarchive>
+```
+
+## Suggestion
+
+```
+import { SuggestionPrimitive } from "@assistant-ui/react-native";
+```
+
+Primitives for rendering suggestions. Use inside a `SuggestionByIndexProvider` (from `@assistant-ui/core/react`).
+
+### SuggestionPrimitive.Title
+
+`Text` component displaying the suggestion title.
+
+```
+<SuggestionPrimitive.Title style={styles.suggestionTitle} />
+```
+
+### SuggestionPrimitive.Description
+
+`Text` component displaying the suggestion description/label.
+
+```
+<SuggestionPrimitive.Description style={styles.suggestionDescription} />
+```
+
+### SuggestionPrimitive.Trigger
+
+`Pressable` that triggers the suggestion action (send or insert into composer).
+
+```
+<SuggestionPrimitive.Trigger send>
+  <SuggestionPrimitive.Title />
+</SuggestionPrimitive.Trigger>
+```
+
+| Prop            | Type      | Description                                                     |
+| --------------- | --------- | --------------------------------------------------------------- |
+| `send`          | `boolean` | When true, sends immediately; when false, inserts into composer |
+| `clearComposer` | `boolean` | Whether to clear/replace composer text (default: true)          |
+
+## ChainOfThought
+
+```
+import { ChainOfThoughtPrimitive } from "@assistant-ui/react-native";
+```
+
+Primitives for rendering chain of thought content (grouped reasoning and tool-call parts).
+
+### ChainOfThoughtPrimitive.Root
+
+Container `View` for chain of thought content.
+
+```
+<ChainOfThoughtPrimitive.Root style={styles.chainOfThought}>
+  {children}
+</ChainOfThoughtPrimitive.Root>
+```
+
+### ChainOfThoughtPrimitive.AccordionTrigger
+
+`Pressable` that toggles the collapsed state of the chain of thought.
+
+```
+<ChainOfThoughtPrimitive.AccordionTrigger>
+  <Text>Toggle reasoning</Text>
+</ChainOfThoughtPrimitive.AccordionTrigger>
+```
+
+### ChainOfThoughtPrimitive.Parts
+
+Renders the parts within a chain of thought. Shared from `@assistant-ui/core/react`.
+
+```
+<ChainOfThoughtPrimitive.Parts>
+  {({ part }) => {
+    if (part.type === "reasoning") return <Text>{part.text}</Text>;
+    if (part.type === "tool-call") return <MyToolComponent {...part} />;
+    return null;
+  }}
+</ChainOfThoughtPrimitive.Parts>
+```

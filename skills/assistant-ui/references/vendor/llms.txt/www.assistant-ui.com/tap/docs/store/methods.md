@@ -1,0 +1,141 @@
+# Methods
+URL: /tap/docs/store/methods
+
+Access scope methods with useAui.
+
+> For AI agents: a documentation index is available at [llms.txt](/llms.txt). Use `.md` for canonical markdown pages; `.mdx` is kept as a backwards-compatible alias on supported URL paths.
+
+Methods are the imperative API of a scope. They're the functions your resource returns: `increment`, `send`, `delete`, or anything else. You access them through `useAui()`.
+
+## Defining methods
+
+First, register the method signatures in `ScopeRegistry`:
+
+```
+import "@assistant-ui/store";
+
+declare module "@assistant-ui/store" {
+  interface ScopeRegistry {
+    counter: {
+      methods: {
+        increment: () => void;
+        decrement: () => void;
+        reset: () => void;
+      };
+    };
+  }
+}
+```
+
+Then create a resource that implements them. The return type `ClientOutput<"counter">` ties the resource to the scope: TypeScript will error if the returned methods don't match the registry:
+
+```
+import { resource } from "@assistant-ui/tap";
+import { useState } from "react";
+import type { ClientOutput } from "@assistant-ui/store";
+
+const useCounterResource = (): ClientOutput<"counter"> => {
+  const [count, setCount] = useState(0);
+
+  return {
+    increment: () => setCount((c) => c + 1),
+    decrement: () => setCount((c) => c - 1),
+    reset: () => setCount(0),
+  };
+};
+
+const CounterResource = resource(useCounterResource);
+```
+
+Every function you return becomes a method on the scope. There's nothing special about them: they're plain functions that can call `useState` setters, trigger side effects, or do anything else.
+
+## useAui
+
+Call `useAui()` with no arguments inside any `AuiProvider` to get the current store:
+
+```
+const aui = useAui();
+```
+
+The returned client has an accessor for every scope available in the current context. The client is immutable: state updates never change its identity, while a structural change (a scope resolving to a different instance) produces a new client and re-renders consumers through React.
+
+## Scope accessors
+
+`aui.counter` is the scope accessor: it exposes the scope's methods plus `source`/`query`/`name` metadata. Its identity is stable per scope binding and changes when the binding changes:
+
+```
+aui.counter.increment();
+```
+
+When a derived scope switches which item it points to, the component re-renders with a new client and a new accessor. Access scopes at the point of use:
+
+```
+const MessageActions = () => {
+  const aui = useAui();
+
+  return (
+    <button
+      onClick={() => {
+        // resolves at click time, always gets the current scope
+        aui.message.reload();
+        aui.thread.cancelRun();
+      }}
+    />
+  );
+};
+```
+
+### Don't read state during render
+
+`aui.counter.getState()` returns a snapshot without subscribing, so render output built from it goes stale. Use `useAuiState` to read state during render instead.
+
+```
+const Counter = () => {
+  const aui = useAui();
+
+  // ❌ Don't read state during render
+  const count = aui.counter.getState().count;
+
+  // ✅ Use useAuiState for render-time reads
+  const count = useAuiState((s) => s.counter.count);
+
+  // ✅ Read in event handlers, effects, or callbacks
+  const handleClick = () => aui.counter.increment();
+};
+```
+
+## Checking if a scope exists
+
+Accessing `aui.counter` never throws, and the accessor is always truthy — `if (aui.counter)` does not tell you anything. When the scope hasn't been provided by any `AuiProvider` above, the accessor still answers `source` (`null`), `query`, and `name`; calling it or reading any other property throws. Check `source`:
+
+```
+const aui = useAui();
+
+if (aui.counter.source != null) {
+  // safe to use
+  aui.counter.increment();
+}
+```
+
+`source` is `null` when the scope isn't available. Any other value (`"root"`, a parent scope name) means the scope is bound.
+
+## Subscribing to scope identity
+
+> [!info]
+>
+> This is an advanced pattern. In the entire assistant-ui codebase, there are only two use cases for this.
+
+Sometimes you need to know when the scope itself changes, for example to register/unregister with an external system when a derived scope switches to a different item.
+
+Use `useAuiState` to subscribe to the scope identity:
+
+```
+const thread = useAuiState(() => aui.thread);
+
+useEffect(() => {
+  analytics.register(thread);
+  return () => analytics.unregister(thread);
+}, [thread]);
+```
+
+`aui.thread` is a stable accessor per scope binding. When a derived scope switches which thread it points to, `useAuiState` detects the new accessor and re-renders, triggering the effect cleanup and re-registration.

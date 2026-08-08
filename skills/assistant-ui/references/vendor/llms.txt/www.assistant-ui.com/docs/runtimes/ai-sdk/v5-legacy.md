@@ -1,0 +1,113 @@
+# AI SDK v5 (legacy)
+URL: /docs/runtimes/ai-sdk/v5-legacy
+
+Reference for projects still on AI SDK v5. New projects should use v7.
+
+> For AI agents: a documentation index is available at [llms.txt](/llms.txt). Use `.md` for canonical markdown pages; `.mdx` is kept as a backwards-compatible alias on supported URL paths.
+
+> [!warn]
+>
+> AI SDK v5 is a legacy version. New projects should use [AI SDK v7](/docs/runtimes/ai-sdk/v7). v5 users pin `@assistant-ui/react-ai-sdk@1.1.21` (the last v5-compatible release); later releases target newer AI SDK majors.
+
+## Why legacy
+
+AI SDK v6 introduced major API changes: async `convertToModelMessages`, a new tool schema, and `toUIMessageStreamResponse()`. v5 still works but no longer receives new features in `@assistant-ui/react-ai-sdk`. Pinning to `1.1.21` keeps you on the v5-compatible surface.
+
+This page is reference for existing v5 projects. Plan to migrate to v7 when feasible.
+
+## Setup
+
+1. ### Install v5-compatible versions
+
+   ```bash
+   npm install @assistant-ui/react @assistant-ui/react-ai-sdk@1.1.21 ai@^5 @ai-sdk/openai@^1 zod
+   ```
+
+2. ### Backend route
+
+   ```
+   import { openai } from "@ai-sdk/openai";
+   import { streamText, tool } from "ai";
+   import type { Message } from "ai";
+   import { z } from "zod";
+
+   export const maxDuration = 30;
+
+   export async function POST(req: Request) {
+     const { messages }: { messages: Message[] } = await req.json();
+     const result = streamText({
+       model: openai("gpt-5.6-luna"),
+       messages,
+       tools: {
+         get_current_weather: tool({
+           description: "Get the current weather",
+           parameters: z.object({ city: z.string() }),
+           execute: async ({ city }) => `The weather in ${city} is sunny`,
+         }),
+       },
+     });
+     return result.toDataStreamResponse();
+   }
+   ```
+
+3. ### Frontend
+
+   ```
+   "use client";
+
+   import { Thread } from "@/components/assistant-ui/thread";
+   import { AssistantRuntimeProvider } from "@assistant-ui/react";
+   import { useChatRuntime } from "@assistant-ui/react-ai-sdk";
+
+   export default function Home() {
+     const runtime = useChatRuntime();
+     return (
+       <AssistantRuntimeProvider runtime={runtime}>
+         <div className="h-full">
+           <Thread />
+         </div>
+       </AssistantRuntimeProvider>
+     );
+   }
+   ```
+
+> [!info]
+>
+> On `@assistant-ui/react-ai-sdk` versions older than 0.11.3, use `useVercelUseChatRuntime` with `useChat` from `ai/react` instead:
+>
+> ```
+> import { useChat } from "ai/react";
+> import { useVercelUseChatRuntime } from "@assistant-ui/react-ai-sdk";
+>
+> const chat = useChat({ api: "/api/chat" });
+> const runtime = useVercelUseChatRuntime(chat);
+> ```
+
+## Differences from v6
+
+| Feature                      | v5                            | v6                                        |
+| ---------------------------- | ----------------------------- | ----------------------------------------- |
+| `ai` package                 | `ai@^5`                       | `ai@^6`                                   |
+| `@assistant-ui/react-ai-sdk` | `@1.1.21`                     | `@1.3.40`                                 |
+| `@ai-sdk/openai`             | `^1`                          | `^3`                                      |
+| Message type                 | `Message`                     | `UIMessage`                               |
+| `convertToModelMessages`     | Sync                          | Async (`await`)                           |
+| Tool schema                  | `parameters: z.object({...})` | `inputSchema: zodSchema(z.object({...}))` |
+| Response                     | `toDataStreamResponse()`      | `toUIMessageStreamResponse()`             |
+
+## Migration to v6
+
+When you are ready to upgrade:
+
+1. Update `ai` from `@^5` to `@^6`, and `@assistant-ui/react-ai-sdk` to the latest line.
+2. Add `await` to `convertToModelMessages(...)` calls.
+3. Convert tool schemas: `parameters: z.object({...})` → `inputSchema: zodSchema(z.object({...}))`.
+4. Replace `toDataStreamResponse()` with `toUIMessageStreamResponse()`.
+5. Switch the `Message` type to `UIMessage`.
+
+AI SDK provides codemods at [ai-sdk.dev/docs/migration-guides/migration-guide-6-0](https://ai-sdk.dev/docs/migration-guides/migration-guide-6-0) that handle most of the package-side rewrites.
+
+## Related
+
+- [AI SDK v7](/docs/runtimes/ai-sdk/v7) — Current integration; what new projects should target.
+- [AI SDK v4 (legacy)](/docs/runtimes/ai-sdk/v4-legacy) — The earlier legacy version using react-data-stream.

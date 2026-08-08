@@ -1,0 +1,122 @@
+version: 1
+classification:
+  kind: reference
+  depth: deep
+  rating: 5
+  tags:
+    - ai-sdk
+    - vercel
+    - llm
+    - streaming
+    - tool-calling
+    - structured-output
+    - react
+    - agents
+visibility:
+  audiences:
+    - ai-engineers
+    - fullstack-devs
+    - backend-devs
+lifecycle:
+  status: active
+  created: "2026-08-08"
+  updated: "2026-08-08"
+crawl:
+  - id: ai-sdk-llms-index
+    kind: llms.txt
+    url: "https://ai-sdk.dev/llms.txt"
+    allowed_hosts:
+      - ai-sdk.dev
+    allowed_extensions:
+      - .md
+    max_failure_ratio: 0.05
+routing:
+  relevant_skills:
+    - name: ai-sdk
+      intensity: 10
+      when: Self-reference for routing to this skill.
+activation:
+  - type: keyword
+    value: AI SDK
+    intensity: 10
+  - type: keyword
+    value: ai-sdk
+    intensity: 10
+  - type: keyword
+    value: "@ai-sdk/react"
+    intensity: 9
+  - type: keyword
+    value: useChat
+    intensity: 9
+  - type: keyword
+    value: generateText
+    intensity: 9
+  - type: keyword
+    value: streamText
+    intensity: 9
+  - type: keyword
+    value: generateObject
+    intensity: 8
+  - type: keyword
+    value: DefaultChatTransport
+    intensity: 8
+  - type: keyword
+    value: UIMessage
+    intensity: 8
+  - type: keyword
+    value: ToolLoopAgent
+    intensity: 8
+  - type: keyword
+    value: maxSteps
+    intensity: 7
+  - type: keyword
+    value: APICallError
+    intensity: 7
+  - type: vector
+    value: Generate or stream text from an LLM in TypeScript with a provider-agnostic SDK.
+    intensity: 10
+  - type: vector
+    value: Build a streaming chat UI in React with useChat and a route handler.
+    intensity: 10
+  - type: vector
+    value: Produce structured JSON output from a model using a Zod schema.
+    intensity: 9
+  - type: vector
+    value: Implement tool calling so a model can invoke functions and use the results.
+    intensity: 9
+  - type: vector
+    value: Compose a multi-step AI agent with tool loops and stop conditions.
+    intensity: 8
+  - type: vector
+    value: Switch an AI SDK integration between OpenAI, Anthropic, or Google providers.
+    intensity: 8
+provenance:
+  summary: Vercel AI SDK reference. Packages the official AI SDK llms.txt index (https://ai-sdk.dev/llms.txt) plus a reproducible verbatim mirror of the documentation pages it links to, under references/vendor/. Covers AI SDK Core (generateText, streamText, generateObject, streamObject, tools, embeddings), AI SDK UI hooks (useChat, useCompletion, useObject), providers, agents (ToolLoopAgent), structured output with Zod, and version-current guidance that prefers maxSteps over maxToolRoundtrips and part-based UIMessage over legacy string content.
+  sources:
+    - title: AI SDK llms.txt index
+      url: https://ai-sdk.dev/llms.txt
+      authors:
+        - Vercel
+      inspected_at: "2026-08-08"
+      adopted:
+        - Curated link index organising AI SDK docs into Core, UI, Agents, Providers, and Reference
+        - Guidance to prefer targeted Markdown pages and the search endpoint over loading the full documentation bundle
+    - title: AI SDK documentation corpus (mirrored .md)
+      url: https://ai-sdk.dev/docs
+      authors:
+        - Vercel
+      inspected_at: "2026-08-08"
+      adopted:
+        - Verbatim mirror of every resolvable .md link in the seed index, preserving URL path structure under references/vendor/
+        - Core model calls, tool calling, structured output, UI hooks, agents, providers, and API reference
+vendor:
+  generated: true
+  root: references/vendor
+  crawled_at: "2026-08-08"
+  file_count: 10
+  sources:
+    - id: ai-sdk-llms-index
+      kind: llms.txt
+      url: https://ai-sdk.dev/llms.txt
+      seed_path: ai-sdk.dev/llms.txt
+  failures: []

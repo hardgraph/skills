@@ -1,0 +1,201 @@
+# Runtime options
+URL: /docs/runtimes/ag-ui/runtime-options
+
+useAgUiRuntime options, adapters, supported events, thread list.
+
+> For AI agents: a documentation index is available at [llms.txt](/llms.txt). Use `.md` for canonical markdown pages; `.mdx` is kept as a backwards-compatible alias on supported URL paths.
+
+Reference for the runtime's API surface. Start with [quickstart](/docs/runtimes/ag-ui/quickstart) if you have not already.
+
+## useAgUiRuntime options
+
+| Option                       | Type                     | Description                                                                                                                                                                    |
+| ---------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `agent`                      | `HttpAgent`              | An AG-UI client agent (from `@ag-ui/client`). Required.                                                                                                                        |
+| `logger`                     | `Partial<Logger>`        | Optional logger overrides. The runtime logs event-parser warnings and run lifecycle events.                                                                                    |
+| `showThinking`               | `boolean`                | Whether to render `THINKING_*` and `REASONING_*` events as visible reasoning. Defaults to `true`.                                                                              |
+| `autoCancelPendingToolCalls` | `boolean`                | Cancel unresolved client-side tool calls automatically when the user sends, edits, or reloads a message. Defaults to `true`. See [below](#auto-cancelling-pending-tool-calls). |
+| `onError`                    | `(e: Error) => void`     | Error callback fired on `RUN_ERROR` events and protocol errors.                                                                                                                |
+| `onCancel`                   | `() => void`             | Cancellation callback fired when the user cancels a run.                                                                                                                       |
+| `adapters`                   | `UseAgUiRuntimeAdapters` | Standard adapter slots (see below).                                                                                                                                            |
+
+## Adapter slots
+
+| Adapter     | Slot                   | Notes                                                                                        |
+| ----------- | ---------------------- | -------------------------------------------------------------------------------------------- |
+| Attachments | `adapters.attachments` | See [attachment adapter](/docs/runtimes/concepts/adapters#attachment-adapter).               |
+| Speech      | `adapters.speech`      | Text-to-speech. See [speech adapter](/docs/runtimes/concepts/adapters#speech-adapter).       |
+| Dictation   | `adapters.dictation`   | Speech-to-text input.                                                                        |
+| Feedback    | `adapters.feedback`    | Thumbs up / down. See [feedback adapter](/docs/runtimes/concepts/adapters#feedback-adapter). |
+| History     | `adapters.history`     | Per-thread message persistence.                                                              |
+| Thread list | `adapters.threadList`  | Multi-thread switching (experimental, see below).                                            |
+
+## Loading conversation history
+
+If your backend exposes the persisted AG-UI messages of a conversation (for example a `GET /agents/state` endpoint), use `fromAgUiMessages` to convert them to assistant-ui messages and return them from the history adapter so the thread is restored on page load:
+
+```
+import { fromAgUiMessages } from "@assistant-ui/react-ag-ui";
+import { ExportedMessageRepository } from "@assistant-ui/react";
+
+const runtime = useAgUiRuntime({
+  agent,
+  adapters: {
+    history: {
+      async load() {
+        const { messages } = await fetch("/agents/state").then((r) => r.json());
+        return ExportedMessageRepository.fromArray(fromAgUiMessages(messages));
+      },
+      async append({ message }) {
+        // persist the newly sent message on your backend
+      },
+    },
+  },
+});
+```
+
+Messages sent during the session are always forwarded to the agent through the run input, independent of `append`. A no-op `append` is therefore only safe when your backend already persists the conversation on its own; otherwise those messages are gone on the next page load.
+
+`fromAgUiMessages` accepts an optional second argument: pass `{ showThinking: false }` to match a runtime configured with `showThinking: false`, so imported reasoning messages are dropped at conversion time, the same way a live run never stores them.
+
+`fromAgUiMessages` reconstructs the text, reasoning, and tool calls of each message. Multimodal user input (`image`, `audio`, `video`, and `document` parts, as well as legacy `binary` parts) is restored as attachments on the user message, so a backend that persists multimodal messages shows them again on reload and re-sends them on the next run. Legacy `binary` parts that only reference a file id are not restored.
+
+An assistant message whose tool call has no matching tool result is reconstructed with `requires-action` status, the same status the runtime derives for a pending tool call, so a reloaded human-in-the-loop call (for example an `ask_user` tool) is actionable rather than stuck. This matches how every other external-store runtime surfaces a pending tool call on reload. The AG-UI wire snapshot carries no run outcome, so a tool call that a successful run intentionally left without a result is also surfaced as actionable.
+
+Interrupts are restored when your backend persists them on the assistant message. The AG-UI message body has no interrupt field, so persist the runtime's own `metadata.custom.agui.interrupts` array alongside the message; `fromAgUiMessages` reads it back, reconstructs `requires-action` / `interrupt` status, and re-attaches the metadata, so `getPendingInterrupts`, `useAgUiInterrupts`, and `submitInterruptResponses` work on reload. When both a pending tool call and an interrupt are present on the same message, interrupt status wins. Without the persisted array, interrupt state cannot be reconstructed.
+
+## Thread list (experimental)
+
+> [!warn]
+>
+> The thread list adapter is currently experimental and may change without notice.
+
+`UseAgUiThreadListAdapter` lets you back the thread list with your own state.
+
+| Option                | Type                                                  | Description                                                                                       |
+| --------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `threadId`            | `string`                                              | The currently active thread ID.                                                                   |
+| `onSwitchToNewThread` | `() => Promise<void>`                                 | Called when the user creates a new thread. Reset your thread state here.                          |
+| `onSwitchToThread`    | `(threadId: string) => Promise<{ messages, state? }>` | Called when the user switches threads. Return the persisted messages (and optional opaque state). |
+
+```
+const runtime = useAgUiRuntime({
+  agent,
+  adapters: {
+    threadList: {
+      threadId: currentThreadId,
+      onSwitchToNewThread: async () => {
+        setCurrentThreadId(await createThread());
+      },
+      onSwitchToThread: async (id) => {
+        const { messages, state } = await loadThread(id);
+        setCurrentThreadId(id);
+        return { messages, state };
+      },
+    },
+  },
+});
+```
+
+## Interrupts (experimental)
+
+> [!warn]
+>
+> The interrupt API is experimental and may change without notice.
+
+When the agent emits `RUN_FINISHED` with `outcome = { type: "interrupt", interrupts: [...] }`, the active assistant message is marked `requires-action` with `reason: "interrupt"` and the `Interrupt[]` payload is written to `metadata.custom.agui.interrupts`. Render an approval / input UI from there.
+
+`useAgUiRuntime` returns an `AgUiAssistantRuntime` with two extra methods:
+
+| Method                                                                       | Description                                                           |
+| ---------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `unstable_getPendingInterrupts(): readonly AgUiInterrupt[]`                  | Snapshot of the open interrupts on the most recent assistant message. |
+| `unstable_submitInterruptResponses(responses: ResumeEntry[]): Promise<void>` | Submits one `ResumeEntry` per open interrupt and resumes the run.     |
+
+`responses` must address every open interrupt; missing entries, unknown ids, or expired interrupts (`expiresAt`) reject before any network call. Each entry is `{ interruptId, status: "resolved" | "cancelled", payload? }`. The next `RunAgentInput` carries `resume: ResumeEntry[]`.
+
+```
+const runtime = useAgUiRuntime({ agent });
+const pending = runtime.unstable_getPendingInterrupts();
+
+await runtime.unstable_submitInterruptResponses(
+  pending.map((i) => ({
+    interruptId: i.id,
+    status: "resolved",
+    payload: { approved: true },
+  })),
+);
+```
+
+### Steering away from an interrupt
+
+When the user ignores the interrupt UI and just sends a new message, use the `useAgUiSteerAway` hook. Every open interrupt defaults to `status: "cancelled"`, the new message is appended, and the run resumes with `resume: ResumeEntry[]` on the wire.
+
+The same hook also steers away from pending client-side tool calls. When the head assistant message is in `requires-action` with `reason: "tool-calls"` (frontend tools awaiting a result) and the user sends a new message, every unresolved tool call is cancelled with an error result, the message is completed, and a single fresh run starts with those cancellations in its history. Passing `responses` in this case throws, since responses only address interrupts. With nothing pending, `steerAway` behaves like a normal append.
+
+```
+const steerAway = useAgUiSteerAway();
+
+// the user typed a new message instead of answering the interrupt
+await steerAway("actually, let's do something else");
+```
+
+The message accepts a plain string or a partial `AppendMessage` (the parent defaults to the current head, which is the interrupted assistant message). Pass `responses` to override the status of specific interrupts; the rest still default to cancelled.
+
+```
+await steerAway("continue without the file", [
+  { interruptId: "tool-1", status: "resolved", payload: { approved: true } },
+]);
+```
+
+### Auto-cancelling pending tool calls
+
+By default the runtime does the tool-call half of this automatically: when client-side tool calls are still unresolved and the user sends a new message, edits an earlier one, or reloads, every unresolved tool call receives the same cancellation error result, the assistant message is completed, and the run proceeds with those cancellations in its history. Set `autoCancelPendingToolCalls: false` to opt out, in which case pending tool calls stay unresolved on a plain send and [steering away](#steering-away-from-an-interrupt) remains the explicit way to cancel them.
+
+Pending interrupts are never auto-cancelled: sending while an interrupt is open still throws, and the interrupt must be answered with `useAgUiSubmitInterruptResponses` or discarded with `useAgUiSteerAway`.
+
+## Supported events
+
+The runtime parses the AG-UI event stream and maps each event type to assistant-ui state.
+
+| Event                                      | Effect                                                                               |
+| ------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `RUN_STARTED` / `RUN_FINISHED`             | Toggles thread `isRunning`. `RUN_FINISHED.outcome` is honored (success / interrupt). |
+| `RUN_CANCELLED`                            | Marks the in-flight assistant message as cancelled.                                  |
+| `RUN_ERROR`                                | Marks the message as errored; fires `onError`.                                       |
+| `TEXT_MESSAGE_START` / `_CONTENT` / `_END` | Streams text content into an assistant message.                                      |
+| `TEXT_MESSAGE_CHUNK`                       | Appends a delta without explicit lifecycle.                                          |
+| `THINKING_START` / `_END`                  | Wraps reasoning blocks (when `showThinking` is on).                                  |
+| `THINKING_TEXT_MESSAGE_*`                  | Streams thinking text deltas.                                                        |
+| `REASONING_START` / `_MESSAGE_*` / `_END`  | Streams structured reasoning per message.                                            |
+| `TOOL_CALL_START` / `_ARGS` / `_END`       | Streams tool calls into the current assistant message.                               |
+| `TOOL_CALL_CHUNK`                          | Streams tool deltas without explicit lifecycle.                                      |
+| `TOOL_CALL_RESULT`                         | Attaches a tool result to a tool call.                                               |
+| `STATE_SNAPSHOT`                           | Replaces the agent's external state.                                                 |
+| `STATE_DELTA`                              | Applies a JSON-patch-style delta to the agent's state.                               |
+| `MESSAGES_SNAPSHOT`                        | Replaces the full message list (used for thread restore).                            |
+| `CUSTOM`                                   | Forwarded to your custom event handling.                                             |
+| `RAW`                                      | Untyped passthrough for unrecognized events.                                         |
+
+## Feature support
+
+| Feature                                     | Supported                                                                   |
+| ------------------------------------------- | --------------------------------------------------------------------------- |
+| Streaming text                              | Yes                                                                         |
+| Thinking / reasoning blocks                 | Yes                                                                         |
+| Tool calls and results                      | Yes                                                                         |
+| Tool result handoff (client-side execution) | Yes                                                                         |
+| State snapshots and deltas                  | Yes                                                                         |
+| Cancellation                                | Yes                                                                         |
+| Message editing                             | Yes                                                                         |
+| Message reload                              | Yes                                                                         |
+| Run resumption                              | Yes                                                                         |
+| Interrupts (human-in-the-loop)              | Experimental (`unstable_*` API, see [Interrupts](#interrupts-experimental)) |
+| Multi-thread                                | Experimental (`adapters.threadList`)                                        |
+| History persistence                         | Via [history adapter](/docs/runtimes/concepts/adapters#history-adapter)     |
+
+## Related
+
+- [AG-UI overview](/docs/runtimes/ag-ui/overview) — What AG-UI is and when to pick it.
+- [Quickstart](/docs/runtimes/ag-ui/quickstart) — Minimal runtime + Thread setup.
+- [Adapters](/docs/runtimes/concepts/adapters) — Attachments, speech, feedback, history, thread list.
